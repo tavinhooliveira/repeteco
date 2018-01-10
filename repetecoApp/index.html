@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>RepetecoApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    
+    <link rel="shortcut icon" href="./src/assets/img/repeteco.ico" />
+    
+    <link rel="stylesheet" href="./src/assets/css/style.css">
+    <link rel="stylesheet" href="./src/assets/css/styleMobile.css">
+    <link rel="stylesheet" href="./src/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./src/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./src/assets/css/bootstrap-toggle.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./src/assets/css/bootstrap-toggle.css">
+
+  </head>
+  <body>
+
+<!--Header-->
+<header class="navbar-fixed-top navbar-default" id="navmenu">
+    <div class="container">
+        <div class="menu col-md-12 btn btn-navbar">             
+            <a onclick="location.href='/profile'"><span class="headerIcon fa fa-user col-md-4" data-toggle="tooltip" data-placement="bottom" title="Perfil"></span></a>     
+            <a href="#" onclick="Refresh();"><span class="headerIcon col-md-4"><img id="logotipo" src="/src/assets/img/logo.png" data-toggle="tooltip" data-placement="right" title="Refresh"></span></a> 
+            <a onclick="location.href='/classification'"><span class="headerIcon fa fa-star-half-o col-md-4" data-toggle="tooltip" data-placement="bottom" title="Classificação"></span></a>  
+        </div>
+    </div>
+</header>
+<!--Header End-->
+<!--Body-->
+<div id="app"></div>
+<!--Body END-->
+<!-- Footer-->
+<footer class="footer navbar-fixed-bottom navbar-default">
+    <div class="container">
+        <div class="col-md-12 btn btn-navbar">              
+              <a data-toggle="modal" data-target="#myModal"><span class="footerIcon fa fa-user-plus fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Convidar Amigos"></span></a>       
+              <a onclick="location.href='/notification'"><span class="footerIcon fa fa-bell fa-1x col-md-3" data-transition="pop" data-toggle="tooltip" data-placement="top" title="Notificação"></span></a> 
+              <a onclick="location.href='/config'"><span class="footerIcon fa fa-sun-o fa-1x col-md-3" data-transition="pop" data-toggle="tooltip" data-placement="top" title="Configuração"></span></a>
+              <a onclick="location.href='/'"><span class="footerIcon fa fa-sign-out fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Sair"></span></a>
+        </div>
+    </div>
+</footer>
+<!--Footer End-->
+
+<script src="/dist/build.js"></script>
+<script src="./src/assets/js/jquery.min.js"></script>
+<script src="./src/assets/js/jquery.jcarousellite.js"></script>
+<script src="./src/assets/js/util.js"></script>
+<script src="./src/assets/js/bootstrap/js/bootstrap-toggle.js"></script>
+<script src="./src/assets/js/bootstrap/js/bootstrap.js"></script>
+
+  </body>
+</html>
