@@ -94,19 +94,26 @@ getFacebook () {
           friendsTotalFb: response.friends.summary.total_count,
           friendsTotalApp: response.friends.data.length
         }
-
-        let friends = null;
-        friends = {
-          name: response.name,
-          link: response.link,
-          email:  response.email,
-          gender: response.gender,
-          imagem: response.picture.data.url,
-        }
+        //id do usuario logado
+        let userid = response.id
+        //lista de Amigos
+        let fdlist = response.friends.data
+        let friendslist = [];
+        let listFB = null;             
+        for (let i = 0; i < fdlist.length; i++) {
+          listFB = { id: fdlist[i].id,
+                    id_fb_friends: fdlist[i].id,
+                    name: fdlist[i].name,
+                    link: fdlist[i].link,
+                    gender: fdlist[i].gender,
+                    imagem: fdlist[i].picture.data.url
+                  }          
+            friendslist.push(listFB)           
+          }        
+        //logs
         console.log("API-FB",response);
         console.log("API-RP-Users",users);
-        console.log("API-RP-Users ",friends);
-        
+        console.log("API-RP-Friends",friendslist);        
         //Inserir User Na Basse Via Ajax
         $.ajax({
           url: "http://localhost:9096/wsrepeteco/users",
@@ -124,7 +131,7 @@ getFacebook () {
 
         //Inserir Friends Na Basse Via Ajax
         $.ajax({
-          url: "http://localhost:9096/wsrepeteco/users/1893438167339291/friends",
+          url: "http://localhost:9096/wsrepeteco/users/"+userid+"/friends",
           method: "POST",
           headers: {
           'Content-Type': 'application/json;charset=UTF-8',
@@ -133,8 +140,8 @@ getFacebook () {
           dataType: 'json',
           crossDomain : true,
           origin: "*",
-          processData: false,
-          data: JSON.stringify([friends])
+          processData: true,
+          data: JSON.stringify(friendslist)
         });
 
     })
