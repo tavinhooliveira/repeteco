@@ -10,23 +10,23 @@
             
             <div class="img_classification" v-on:click="updateStatusOption()"> 
                 <label class="cl_fiquei" title="Já Fiquei">
-                    <input type="radio" value="fiquei" id="fiquei" v-model="statusOption">
+                    <input type="radio" value="fiquei" id="optionc" v-model="statusOption">
                     <span class="cl_fiquei"></span>
                 </label>
                 <label class="cl_ficaria2" title="Ficaria Novamente">
-                    <input type="radio" value="ficariaNovamente" id="ficariaNovamente" v-model="statusOption">
+                    <input type="radio" value="ficariaNovamente" id="optionc" v-model="statusOption">
                     <span class="cl_ficaria2"></span>
                 </label>
                 <label class="cl_picante" title="Relação Picante">
-                    <input type="radio"  value="relacaoPicante" id="relacaoPicante" v-model="statusOption">
+                    <input type="radio"  value="relacaoPicante" id="optionc" v-model="statusOption">
                     <span class="cl_picante"></span>
                 </label>
                 <label class="cl_fico" title="Ficaria">
-                    <input type="radio"  value="ficaria" id="ficaria" v-model="statusOption">
+                    <input type="radio"  value="ficaria" id="optionc" v-model="statusOption">
                     <span class="cl_fico"></span>
                 </label>
                 <label class="cl_Ninteresse" title="Sem Interesse">
-                    <input type="radio"  value="semInterese" id="semInterese" v-model="statusOption">
+                    <input type="radio"  value="semInteresse" id="optionc" v-model="statusOption">
                     <span class="cl_Ninteresse"></span>
                 </label>
             </div>        
@@ -60,11 +60,30 @@ export default{
             this.statusOption = null;
             this.efeitoClick = 'transition: opacity .5s; color: red; transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);'
         },
-        function() {
-            ('[data-toggle="tooltip"]').tooltip()
-        },
         //[TODO]implementar o post ao clicar
         updateStatusOption: function(){
+        //Receber ID do friends e a opcao clicada
+        //let idFriends = this.id;
+        var OptionClick = document.getElementById('optionc').value;
+        console.log("Valor clicado",OptionClick)        
+        var fdOption = null;
+        fdOption = {
+        option:  OptionClick
+        }
+        $.ajax({
+            //url: "http://localhost:9096/wsrepeteco/friends/opcao/"+idFriends,
+            url: "http://localhost:9096/wsrepeteco/friends/opcao/1952913858311706",
+            method: "PUT",
+            headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'dataType': 'json'
+            },
+            dataType: 'json',
+            crossDomain : true,
+            origin: "*",
+            processData: true,
+            data: JSON.stringify(fdOption)
+        });
            
         }
     }

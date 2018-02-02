@@ -54,27 +54,27 @@
 import UserProfile from "../components/UserProfile.vue";
 
 export default {
-  name: 'login',
-  components: {
-    UserProfile
-  },
-  data () {
-    return {
-      profile: {},
-      authorized: false,
-      users: null,
-      data: null,
-      
-    }
-  },
-  computed: {
-    profilePicture () {
-      return (this.profile.id) ? `https://graph.facebook.com/${this.profile.id}/picture?width=300` : `/src/assets/img/loading.gif`
-    }
-  },
-  methods: {
-//Facebook - Begin
-getFacebook () {
+name: 'login',
+components: {
+  UserProfile
+},
+data () {
+  return {
+    profile: {},
+    authorized: false,
+    users: null,
+    data: null,
+    
+  }
+},
+computed: {
+  profilePicture () {
+    return (this.profile.id) ? `https://graph.facebook.com/${this.profile.id}/picture?width=300` : `/src/assets/img/loading.gif`
+  }
+},
+methods: {
+  //Facebook - Begin
+  getFacebook () {
   let vm = this
     FB.api('/me?fields=id,name,link,email,gender,location,locale,picture{url},friends{id,name,link,email,gender,location,locale,picture{url}}', function (response) {
       vm.$set(vm, 'profile', response)
@@ -101,14 +101,15 @@ getFacebook () {
         let friendslist = [];
         let listFB = null;             
         for (let i = 0; i < fdlist.length; i++) {
-          listFB = { id: fdlist[i].id,
-                    id_fb_friends: fdlist[i].id,
-                    name: fdlist[i].name,
-                    link: fdlist[i].link,
-                    gender: fdlist[i].gender,
-                    imagem: fdlist[i].picture.data.url
-                  }          
-            friendslist.push(listFB)           
+          listFB = {
+            id: fdlist[i].id,
+            id_fb_friends: fdlist[i].id,
+            name: fdlist[i].name,
+            link: fdlist[i].link,
+            gender: fdlist[i].gender,
+            imagem: fdlist[i].picture.data.url
+          }          
+          friendslist.push(listFB)           
           }        
         //logs
         console.log("API-FB",response);
@@ -146,59 +147,59 @@ getFacebook () {
 
     })
   },  
-login () {
-  let vm = this
-  FB.login(function (response) {
-      vm.statusChangeCallback(response)
-  }, {
-    scope: 'public_profile, email, user_friends',
-    return_scopes: true
-  })
-},
-logout () {
-  let vm = this
-  FB.logout(function (response) {
-    vm.statusChangeCallback(response)
-    console.log("logout Efetuado")
-  })
-},
-statusChangeCallback (response) {
-      let vm = this
-      if (response.status === 'connected') {
-        console.log("Usuario Autorizado!");
-        console.log("API Facebook! - Ok");
-        vm.authorized = true
-        //Chamada API Facebok e Repeteco
-        vm.getFacebook()
-        console.log("Connectado")
-      } else if (response.status === 'not_authorized') {
-        console.log("Não Autorizado!");
-        vm.authorized = false
-      } else if (response.status === 'unknown') {
-        vm.profile = {}
-        vm.authorized = false
-      } else {
-        vm.authorized = false
-      }
-    }
-  },
-mounted () {
-    let vm = this    
-    // facebook
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId: '175578203007671',
-        cookie: true,
-        xfbml: true,
-        version: 'v2.10'
-      });
-      FB.AppEvents.logPageView();
-      // Get FB Login Status
-      FB.getLoginStatus(response => {
+  login () {
+    let vm = this
+    FB.login(function (response) {
         vm.statusChangeCallback(response)
-      })
-    };
+    }, {
+      scope: 'public_profile, email, user_friends',
+      return_scopes: true
+    })
+  },
+  logout () {
+    let vm = this
+    FB.logout(function (response) {
+      vm.statusChangeCallback(response)
+      console.log("logout Efetuado")
+    })
+  },
+  statusChangeCallback (response) {
+    let vm = this
+    if (response.status === 'connected') {
+      console.log("Usuario Autorizado!");
+      console.log("API Facebook! - Ok");
+      vm.authorized = true
+      //Chamada API Facebok e Repeteco
+      vm.getFacebook()
+      console.log("Connectado")
+    } else if (response.status === 'not_authorized') {
+      console.log("Não Autorizado!");
+      vm.authorized = false
+    } else if (response.status === 'unknown') {
+      vm.profile = {}
+      vm.authorized = false
+    } else {
+      vm.authorized = false
+    }
   }
+},
+mounted () {
+  let vm = this    
+  // facebook
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId: '175578203007671',
+      cookie: true,
+      xfbml: true,
+      version: 'v2.10'
+    });
+    FB.AppEvents.logPageView();
+    // Get FB Login Status
+    FB.getLoginStatus(response => {
+      vm.statusChangeCallback(response)
+    })
+  };
+}
 }
 </script>
 
