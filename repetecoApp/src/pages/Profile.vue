@@ -11,7 +11,7 @@
 </div>
 <div>
 	<section>
-		<profileinfo v-for="profileinfo in users" v-if="profileinfo.id_fb_users === profile.id" v-bind:key="profileinfo.id" v-bind:id="profileinfo.id" v-bind:city="profileinfo.city" v-bind:name="profileinfo.name" v-bind:imagem="profileinfo.imagem" v-bind:link="profileinfo.link" v-bind:id_fb_users="profileinfo.id_fb_users" v-bind:friendsTotalFb="profileinfo.friendsTotalFb"  v-bind:friends="profileinfo.friends"></profileinfo>
+		<profileinfo v-for="profileinfo in users" v-if="profileinfo.id_fb_users === profile.id" v-bind:key="profileinfo.id" v-bind:id="profileinfo.id" v-bind:city="profileinfo.city" v-bind:name="profileinfo.name" v-bind:imagem="profileinfo.imagem" v-bind:link="profileinfo.link" v-bind:id_fb_users="profileinfo.id_fb_users" v-bind:friendsTotalFb="profileinfo.friendsTotalFb" v-bind:friendsTotalApp="profileinfo.friendsTotalApp" v-bind:friends="profileinfo.friends"></profileinfo>
   </section>
 </div>
 </div>

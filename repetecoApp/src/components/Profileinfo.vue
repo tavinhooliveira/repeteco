@@ -11,11 +11,15 @@
 						</h4>			  		
 			  	</div>
 			    <div class="row perfilbrprogress">
-			    	<p class="pull-right" id="friendsCount"><b> 52</b> de {{friendsTotalFb}} <i class="fa fa-users"></i> </p>
+			    	<p class="pull-right" id="friendsCount"><b>{{friendsTotalApp}}</b> de {{friendsTotalFb}} <i class="fa fa-users"></i> </p>
 			    	<div class="progress">
 						<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
 						    70%
 						 </div>
+						 <div>
+							<b-progress :value="25" variant="success" :striped="striped" class="mb-2"></b-progress>
+						</div>
+
 					</div>
 			    </div>
           <ul class="row list-group panel-body">
@@ -97,11 +101,17 @@ import UserComponet from '../components/UserComponet.vue';
 import RecentFriends from './RecentFriends.vue';	
 
 export default{
-  props:['name','imagem','link','friendsTotalFb','friends', 'city', 'id', 'id_fb_users'],
+  props:['name','imagem','link','friendsTotalFb','friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp'],
   components:{
     FriendComponet,
 		UserComponet,
 		RecentFriends
+  },
+	data () {
+    return {
+      max: 50,
+      value: 33.333333333
+    }
   },
   methods:{
     scrollDireita(){

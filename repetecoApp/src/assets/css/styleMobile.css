@@ -151,12 +151,12 @@
     }
     .ListFriends .starClassification {
     background-position: -4px -4px;
-    margin-top: -86px;;
+    margin-top: -60px;;
     margin-right: -40px;
     }
 	.ListFriends .classificationTrue {
     background-position: -4px -43px;
-    margin-top: -88px;
+    margin-top: -60px;
     margin-right: -41px;
     z-index: 9999;
     }

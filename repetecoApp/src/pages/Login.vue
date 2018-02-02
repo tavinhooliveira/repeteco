@@ -26,10 +26,10 @@
                 <br>     
                 <div class="well">
                     <h3><i class="fa fa-star">Pronto!</i></h3>
+                    <h6>Você tem <b v-html="totalFriendsApp"></b> amigos no APP de <b>{{profile.friends.summary.total_count}}</b> no facebook!</h6>
                     <h6>Agora é só Classificar Seus Amigos!</h6>
                     <p onclick="location.href='/classification'" class="btn btn-success">Classificar</p><br>
                 </div>
-                
             </div>
             <div class="row col-md-6 text-center classificationInfo container">
                 <a class="btn btn-default fa fa-question-circle" role="button" data-toggle="collapse" href="#collapseclassificationInfo" aria-expanded="false" aria-controls="collapseclassificationInfo">
@@ -63,14 +63,22 @@ data () {
     profile: {},
     authorized: false,
     users: null,
-    data: null,
-    
+    data: [],
+    summary: []    
   }
 },
 computed: {
   profilePicture () {
     return (this.profile.id) ? `https://graph.facebook.com/${this.profile.id}/picture?width=300` : `/src/assets/img/loading.gif`
-  }
+  },
+  totalFriendsApp () {
+    if(this.profile.id){
+      var f =  this.profile.friends.data.length;
+      return f;
+      }
+    return 0;
+    },
+    
 },
 methods: {
   //Facebook - Begin
@@ -90,7 +98,7 @@ methods: {
           imagem: response.picture.data.url,
           city: response.locale,
           nationality: response.locale,
-          preference: "T",
+          preference: "null",
           friendsTotalFb: response.friends.summary.total_count,
           friendsTotalApp: response.friends.data.length
         }

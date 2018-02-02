@@ -8,7 +8,7 @@
         </div>
         <div class="media-body">
             <h6 class=""><a v-bind:href="profile.link" target="_blank" title="Perfil Facebook">{{this.profile.name}}</a>
-             <p id="friendsCount"><i class="fa fa-users"></i><b> {{profile.friends.summary.total_count}} </b>Amigos</p> 
+             <p id="friendsCount"><i class="fa fa-users"></i><b> {{profile.friends.data.length}} de {{profile.friends.summary.total_count}} </b>Amigos</p> 
             </h6>
         </div>
     </div>
