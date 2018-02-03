@@ -21,12 +21,11 @@
           </div>          
       </div>     
     </div> 
-
-    <div v-if="this.users" class="list-group" id="searchUL">
-      <userComponet v-bind:user="users" v-for="user in users" v-if="user.id_fb_users === profile.id" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"></userComponet>
+    <div v-if="this.users != null" class="list-group" id="searchUL">
+      <userComponet v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"></userComponet>
     </div>
-    <div v-else><reload></reload></div>  
-    
+    <div v-else><reload></reload></div>    
+  
 </div>
 </div>
 </template>
@@ -60,36 +59,40 @@ export default {
     };
   },
 methods: {
-//Facebook - Begin
-getApiRepeteco(){
-this.$http.get("http://localhost:9096/wsrepeteco/users").then(res => {
-      if (res.body.length > 0) {
-        return (this.users = res.body);
-      } else {
-        console.log("Erro na chamada da API - Repeteco");
-      }
-    });
-},
+//Facebook - API GET
 getFacebook () {
     let vm = this
     FB.api('/me?fields=id,name,link,email,gender,location,picture{url},friends{id,name,link,email,gender,picture{url}}', function (response) {
       vm.$set(vm, 'profile', response)
-      console.log(response);     
+      console.log("API Facebook: ",response);
+     
+      let userid = response.id
+      console.log("teste", userid)
     })
+    
   },
+//WsRepeteco - API GET
+getApiRepeteco(){
+//id do usuario logado - 1893438167339291
+let userid = 1893438167339291
+this.$http.get("http://localhost:9096/wsrepeteco/users/"+userid).then(response => {
+    if (response.data != null){     
+      this.users = [response.data]
+      console.log("API APP",this.users)
+    }else{console.log("Erro na Chamada da API APP")}
+    })
+},
 statusChangeCallback (response) {
       let vm = this
       if (response.status === 'connected') {
-        console.log("Usuario Autorizado!");
-        console.log("API Facebook! - Ok");
-        console.log("API Repeteco! - Ok");
+        console.log("Usuario Autorizado!");       
         vm.authorized = true
         //Chamada API Facebok e Repeteco
         vm.getFacebook()
         vm.getApiRepeteco()
-        console.log("Connectado")
+        console.log("Status: Connectado")
       } else if (response.status === 'not_authorized') {
-        console.log("Não Autorizado!");
+        console.log("Status: Não Autorizado!");
         vm.authorized = false
       } else if (response.status === 'unknown') {
         vm.profile = {}
