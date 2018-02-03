@@ -25,7 +25,8 @@
       <userComponet v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"></userComponet>
     </div>
     <div v-else><reload></reload></div>    
-  
+    <!--<input type="text" name="profile" value="1893438167339291" id="profile" v-model="profile.id">-->
+
 </div>
 </div>
 </template>
@@ -53,7 +54,7 @@ export default {
   data() {
     return {
       nomeProjeto: "Classification",
-      profile: [],
+      profile: {},
       authorized: false,
       users: {}
     };
@@ -64,22 +65,18 @@ getFacebook () {
     let vm = this
     FB.api('/me?fields=id,name,link,email,gender,location,picture{url},friends{id,name,link,email,gender,picture{url}}', function (response) {
       vm.$set(vm, 'profile', response)
-      console.log("API Facebook: ",response);
-     
+      console.log("API Facebook: ",response);     
       let userid = response.id
       console.log("teste", userid)
-    })
-    
+    })    
   },
 //WsRepeteco - API GET
 getApiRepeteco(){
-//id do usuario logado - 1893438167339291
-let userid = 1893438167339291
-this.$http.get("http://localhost:9096/wsrepeteco/users/"+userid).then(response => {
-    if (response.data != null){     
+//id: 1893438167339291
+var userid = 1893438167339291;
+this.$http.get("http://localhost:9096/wsrepeteco/users/"+userid).then(response => {   
       this.users = [response.data]
       console.log("API APP",this.users)
-    }else{console.log("Erro na Chamada da API APP")}
     })
 },
 statusChangeCallback (response) {
