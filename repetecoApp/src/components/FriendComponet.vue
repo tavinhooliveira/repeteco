@@ -29,11 +29,12 @@
                     <input type="radio"  value="semInteresse" id="optionclassificada" v-model="optiondata">
                     <span class="cl_Ninteresse"></span>
                 </label>
+
             </div>        
         </div>
-        <div v-if="optiondata != null" v-on:click="starClickOff()"  class=" starClassification classificationTrue pull-right"></div>
+        <div v-if="optiondata != null" v-on:click="starClickOff()" class=" starClassification classificationTrue pull-right"></div>
         <div v-else class=" starClassification starClassificationFalse pull-right"></div>
-        <!--<span class="optionShow">{{optiondata}}</span>-->     			
+        <!--<span class="optionShow">{{optiondata}}</span>-->  			
     </form>   				
 </li>
 </template>
@@ -57,12 +58,29 @@ export default{
         },
         starClickOff: function(){
             this.optiondata = null;
+            const fdOption = {option:  this.optiondata}
+            console.log(" |optionNull: "+this.optiondata)
+            var friendId = this.id_fb_friends;
+            $.ajax({
+                url: "http://localhost:9096/wsrepeteco/friends/opcao/"+friendId,
+                method: "PUT",
+                headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                'dataType': 'json'
+                },
+                dataType: 'json',
+                crossDomain : true,
+                origin: "*",
+                processData: true,
+                data: JSON.stringify(fdOption)
+            });
+
             this.efeitoClick = 'transition: opacity .5s; color: red; transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);'
         },
-        updateStatusOption: function(){
-            var friendId = this.id_fb_friends;
+        updateStatusOption: function(){             
             const fdOption = {option:  this.optiondata}
             console.log(" |optionNew: "+this.optiondata)
+            var friendId = this.id_fb_friends;
             $.ajax({
                 url: "http://localhost:9096/wsrepeteco/friends/opcao/"+friendId,
                 method: "PUT",
