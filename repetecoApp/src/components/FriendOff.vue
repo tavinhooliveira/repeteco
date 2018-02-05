@@ -26,7 +26,7 @@
                     <span class="cl_fico"></span>
                 </label>
                 <label class="cl_Ninteresse" title="Sem Interesse">
-                    <input type="radio"  value="semInterese" id="semInterese" v-model="option">
+                    <input type="radio"  value="semInteresse" id="semInteresse" v-model="option">
                     <span class="cl_Ninteresse"></span>
                 </label>
             </div>

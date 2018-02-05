@@ -26,7 +26,7 @@
                 <br>     
                 <div class="well">
                     <h3><i class="fa fa-star">Pronto!</i></h3>
-                    <h6>Você tem <b v-html="totalFriendsApp"></b> amigos no APP de <b>{{profile.friends.summary.total_count}}</b> no facebook!</h6>
+                    <h6>Você tem <b v-html="totalFriendsApp"></b> amigos no APP de <b v-html="totalFriendsFB"></b> no facebook!</h6>
                     <h6>Agora é só Classificar Seus Amigos!</h6>
                     <p onclick="location.href='/classification'" class="btn btn-success">Classificar</p><br>
                 </div>
@@ -74,6 +74,13 @@ computed: {
   totalFriendsApp () {
     if(this.profile.id){
       var f =  this.profile.friends.data.length;
+      return f;
+      }
+    return 0;
+    },
+    totalFriendsFB () {
+    if(this.profile.id){
+      var f =  this.profile.friends.summary.total_count;
       return f;
       }
     return 0;

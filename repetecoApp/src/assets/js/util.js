@@ -37,29 +37,24 @@ window.location.reload();
 
 
 /*Funcao Star Classification true */
-$(document).ready(function(){
-$("input:radio").on("click", function(){
-var classificacaoId = null;
-var classificacaoId = $(this).attr("id");
-var statusClassification = false;
+// $(document).ready(function(){
+// $("input:radio").on("click", function(){
+// var classificacaoId = null;
+// var classificacaoId = $(this).attr("id");
+// var statusClassification = false;
 
-  if (classificacaoId != null) {    
-    $(this).parent().parent().parent().parent().find('.starClassification').addClass('classificationTrue');
-    statusClassification = true;
-    /*unCheked*/
-    $(".classificationTrue").on("click", function(){
-      $(this).removeClass('classificationTrue').prev().find("input:radio").attr('checked', false);
-      statusClassification = false;
-      classificacaoId = null;
-
-      console.log("Opção: "+classificacaoId);
-      console.log("Status:"+statusClassification);
-    });
-  }
-  console.log("Opção: "+classificacaoId);
-  console.log("Status:"+statusClassification);
-});
-});
+//   if (classificacaoId != null) {    
+//     $(this).parent().parent().parent().parent().find('.starClassification').addClass('classificationTrue');
+//     statusClassification = true;
+//     /*unCheked*/
+//     $(".classificationTrue").on("click", function(){
+//       $(this).removeClass('classificationTrue').prev().find("input:radio").attr('checked', false);
+//       statusClassification = false;
+//       classificacaoId = null;
+//     });
+//   }
+// });
+// });
 
 $('#exampleModal').on('shown.bs.modal', function () {
   $('#myInput').focus()

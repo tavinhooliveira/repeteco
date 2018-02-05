@@ -3,7 +3,7 @@
 <div v-if="!authorized">
   <section class="error-message ">
     <img src="/src/assets/img/loading.gif" style='height: 90px; width: 90px; border-radius: 100px; border: 2px solid rgba(73, 158, 223, 0.144)'/>
-    <h5 class="error-description text-danger">not authorized</h5>
+    <h5 class="error-description text-danger">Verificando Autorização...</h5>
     <a class="error-link" onclick="location.href='/'">login</a>
   </section>
 </div>
@@ -18,7 +18,7 @@
             <button type="button" class="btn btn-default active" data-toggle="tooltip" data-placement="bottom" title="Todos" onclick="location.href='/classification'"><i class="fa fa-star-half-o"> </i></button>
             <button type="button" class="btn btn-default " data-toggle="tooltip" data-placement="bottom" title="Classificados" onclick="location.href='classificationOn'" data-transition="slide"><i class="fa fa-star"> </i></button>
             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Não Classificados" onclick="location.href='/classificationOff'"><i class="fa fa-star-o"> </i></button>
-          </div>          
+          </div>        
       </div>     
     </div> 
     <div v-if="this.users != null" class="list-group" id="searchUL">
@@ -41,14 +41,6 @@ export default {
     UserComponet,
     UserProfile,
     Reload
-  },
-  beforeCreate() {
-
-  },
- created() {
-
-  },
-  beforeMount() {
   },
   data() {
     return {
@@ -83,7 +75,7 @@ statusChangeCallback (response) {
         vm.authorized = true
         //Chamada API Facebok e Repeteco
         vm.getFacebook(vm.getApiRepeteco)
-        console.log("Status: Connectado")
+        console.log("Status: Connectado!")
       } else if (response.status === 'not_authorized') {
         console.log("Status: Não Autorizado!");
         vm.authorized = false

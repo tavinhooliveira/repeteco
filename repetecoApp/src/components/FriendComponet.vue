@@ -1,6 +1,6 @@
 <template>
-<li v-if="genderPreference === gender || genderPreference === null"  class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="clickEfeito()" v-on:mouseout="removeClickEfeito()">
-    <form class="statusForm" v-on:click="updateStatusOption()">
+<li v-if="genderPreference === gender || genderPreference === null"  class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
+    <form class="statusForm" >
         <div class="media-left col-md-4 LfPicture" >
             <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
         </div>
@@ -8,7 +8,7 @@
             <h4 class="media-heading"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
             <div class="LfLocation">{{city}}</div>
             
-            <div class="img_classification"> 
+            <div class="img_classification" @change="updateStatusOption()"> 
                 <label class="cl_fiquei" title="Já Fiquei">
                     <input type="radio" value="fiquei" id="optionclassificada" v-model="optiondata">
                     <span class="cl_fiquei"></span>
@@ -34,8 +34,7 @@
         <div v-if="optiondata != null" v-on:click="starClickOff()"  class=" starClassification classificationTrue pull-right"></div>
         <div v-else class=" starClassification starClassificationFalse pull-right"></div>
         <!--<span class="optionShow">{{optiondata}}</span>-->     			
-    </form>
-   				
+    </form>   				
 </li>
 </template>
 
@@ -49,11 +48,11 @@ export default{
         optiondata: this.option               
     } 
   },
-  methods:{
-        clickEfeito: function(){
+  methods:{        
+        mauseEfeito: function(){
             this.efeitoClick = 'transform: scale(1.1); box-shadow: -0px 1px 15px 0px #cdd2d8;  z-index: 999;'
         },
-        removeClickEfeito: function(){
+        removemauseEfeito: function(){
             this.efeitoClick = null;
         },
         starClickOff: function(){
@@ -62,17 +61,8 @@ export default{
         },
         updateStatusOption: function(){
             var friendId = this.id_fb_friends;
-            var optionOld = this.option;
-            var optionNew = this.optiondata;
-
-            console.log("friendId", friendId)
-            console.log("optionOld", optionOld)
-            console.log("optionNew", optionNew)
-
-            var fdOption = null;
-            fdOption = {
-            option:  optionNew
-            }
+            const fdOption = {option:  this.optiondata}
+            console.log(" |optionNew: "+this.optiondata)
             $.ajax({
                 url: "http://localhost:9096/wsrepeteco/friends/opcao/"+friendId,
                 method: "PUT",

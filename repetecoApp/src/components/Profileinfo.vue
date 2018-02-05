@@ -16,10 +16,6 @@
 						<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
 						    70%
 						 </div>
-						 <div>
-							<b-progress :value="25" variant="success" :striped="striped" class="mb-2"></b-progress>
-						</div>
-
 					</div>
 			    </div>
           <ul class="row list-group panel-body">
