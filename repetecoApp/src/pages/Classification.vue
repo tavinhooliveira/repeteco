@@ -26,11 +26,6 @@
     </div>
     <div v-else><reload></reload></div>    
 </div>
-    <!--teste-->
-    <P>Teste ID </p>
-    <input type="text" name="profile" value="" id="profile" v-model="profile.id">
-    <div id="pfid">Label: {{profile.id}}</div>
-    <!--ENDteste-->
 </div>
 </template>
 
@@ -48,6 +43,7 @@ export default {
     Reload
   },
   beforeCreate() {
+
   },
  created() {
 
@@ -64,20 +60,18 @@ export default {
   },
 methods: {
 //Facebook - API GET
-getFacebook () {
+getFacebook (callback) {
     let vm = this
     FB.api('/me?fields=id,name,link,picture{url},friends{id}', function (response) {
       vm.$set(vm, 'profile', response)
       console.log("API Facebook: ",response);     
       let userid = response.id
-      console.log("useridFB: ", userid)
+      callback(response.id)
     })    
   },
 //WsRepeteco - API GET
-getApiRepeteco(){ 
-//id: 1893438167339291
-let profileId = 1893438167339291
-this.$http.get("http://localhost:9096/wsrepeteco/users/"+profileId).then(response => {   
+getApiRepeteco(profileId){
+this.$http.get(`http://localhost:9096/wsrepeteco/users/${profileId}`).then(response => {   
     this.users = [response.data]
     console.log("API APP",this.users)
   })
@@ -88,8 +82,7 @@ statusChangeCallback (response) {
         console.log("Usuario Autorizado!");       
         vm.authorized = true
         //Chamada API Facebok e Repeteco
-        vm.getFacebook()
-        vm.getApiRepeteco()
+        vm.getFacebook(vm.getApiRepeteco)
         console.log("Status: Connectado")
       } else if (response.status === 'not_authorized') {
         console.log("Status: Não Autorizado!");

@@ -1,5 +1,5 @@
 <template>
-<li v-if="genderPreference === gender && option === null" class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="clickEfeito()" v-on:mouseout="removeClickEfeito()">
+<li v-if="(genderPreference === gender || genderPreference === null) && option === null" class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="clickEfeito()" v-on:mouseout="removeClickEfeito()">
     <form class="statusForm">
         <div class="media-left col-md-4 LfPicture" >
             <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
@@ -43,7 +43,7 @@ export default{
   data(){
      return{
         efeitoClick: null,
-        genderPreference: "female",
+        genderPreference: null,
    
     } 
   },
