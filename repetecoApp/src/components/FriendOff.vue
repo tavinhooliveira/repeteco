@@ -1,5 +1,5 @@
 <template>
-<li v-if="(genderPreference === gender || genderPreference === null) && option === null" class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="clickEfeito()" v-on:mouseout="removeClickEfeito()">
+<li v-if="(genderPreference === gender || genderPreference === null) && option === null" class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
     <form class="statusForm">
         <div class="media-left col-md-4 LfPicture" >
             <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
@@ -8,65 +8,99 @@
             <h4 class="media-heading"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
             <div class="LfLocation">{{city}}</div>
             
-            <div class="img_classification" > 
+            <div class="img_classification" @change="updateStatusOption()"> 
                 <label class="cl_fiquei" title="Já Fiquei">
-                    <input type="radio" value="fiquei" id="fiquei" v-model="option">
+                    <input type="radio" value="fiquei" id="optionclassificada" v-model="optiondata">
                     <span class="cl_fiquei"></span>
                 </label>
                 <label class="cl_ficaria2" title="Ficaria Novamente">
-                    <input type="radio" value="ficariaNovamente" id="ficariaNovamente" v-model="option">
+                    <input type="radio" value="ficariaNovamente" id="optionclassificada" v-model="optiondata">
                     <span class="cl_ficaria2"></span>
                 </label>
                 <label class="cl_picante" title="Relação Picante">
-                    <input type="radio"  value="relacaoPicante" id="relacaoPicante" v-model="option">
+                    <input type="radio"  value="relacaoPicante" id="optionclassificada" v-model="optiondata">
                     <span class="cl_picante"></span>
                 </label>
                 <label class="cl_fico" title="Ficaria">
-                    <input type="radio"  value="ficaria" id="ficaria" v-model="option">
+                    <input type="radio"  value="ficaria" id="optionclassificada" v-model="optiondata">
                     <span class="cl_fico"></span>
                 </label>
                 <label class="cl_Ninteresse" title="Sem Interesse">
-                    <input type="radio"  value="semInteresse" id="semInteresse" v-model="option">
+                    <input type="radio"  value="semInteresse" id="optionclassificada" v-model="optiondata">
                     <span class="cl_Ninteresse"></span>
                 </label>
+
             </div>
         </div>
-        <div v-if="option != null" v-on:click="starClickOff()"  class=" starClassification classificationTrue pull-right"></div>
+        <div v-if="optiondata != null" v-on:click="starClickOff()" class=" starClassification classificationTrue pull-right"></div>
         <div v-else class=" starClassification starClassificationFalse pull-right"></div>       			
+        <!--<span class="optionShow">{{optiondata}}</span>-->  			
     </form>					
 </li>
 </template>
 
 <script>
 export default{
-  props:['name','imagem','link', 'city','nationality','option','gender'],
+  props:['id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb'],
   data(){
      return{
         efeitoClick: null,
         genderPreference: null,
-   
+        optiondata: this.option               
     } 
   },
   methods:{
-        clickEfeito: function(){
+        mauseEfeito: function(){
             this.efeitoClick = 'transform: scale(1.1); box-shadow: -0px 1px 15px 0px #cdd2d8;  z-index: 999;'
         },
-        removeClickEfeito: function(){
+        removemauseEfeito: function(){
             this.efeitoClick = null;
         },
         starClickOff: function(){
-            this.option = null;
-            console.log("Opção Selecionada = " +option)
+            this.optiondata = null;
+            const fdOption = {option:  this.optiondata}
+            console.log(" |optionNull: "+this.optiondata)
+            var friendId = this.id_fb_friends;
+            $.ajax({
+                url: "http://localhost:9096/wsrepeteco/friends/opcao/"+friendId,
+                method: "PUT",
+                headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                'dataType': 'json'
+                },
+                dataType: 'json',
+                crossDomain : true,
+                origin: "*",
+                processData: true,
+                data: JSON.stringify(fdOption)
+            });
+
+            this.efeitoClick = 'transition: opacity .5s; color: red; transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);'
+        },
+        updateStatusOption: function(){             
+            const fdOption = {option:  this.optiondata}
+            console.log(" |optionNew: "+this.optiondata)
+            var friendId = this.id_fb_friends;
+            $.ajax({
+                url: "http://localhost:9096/wsrepeteco/friends/opcao/"+friendId,
+                method: "PUT",
+                headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                'dataType': 'json'
+                },
+                dataType: 'json',
+                crossDomain : true,
+                origin: "*",
+                processData: true,
+                data: JSON.stringify(fdOption)
+            });
         }
     }
 }
 
 
 </script>
-
 <style lang="scss">
-.ListFriends li .LfPicture img:hover{
-    border: 4px solid rgba(85, 169, 247, 0.54) !important;
-}
-
+.ListFriends li .LfPicture img:hover{border: 4px solid rgba(85, 169, 247, 0.54) !important;}
+.optionShow{color: #c0bebe}
 </style>

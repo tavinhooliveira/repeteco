@@ -1,31 +1,27 @@
 <template >
 <div>
-<div v-if="!authorized">
-  <section class="error-message ">
-    <img src="/src/assets/img/loading.gif" style='height: 90px; width: 90px; border-radius: 100px; border: 2px solid rgba(73, 158, 223, 0.144)'/>
-    <h5 class="error-description text-danger">Verificando Autorização...</h5>
-    <a class="error-link" onclick="location.href='/'">login</a>
-  </section>
-</div>
-<div v-else id="ListFriends" class="ListFriends container">
-    <div id="searchClassification" class="container searchClassification navbar-fixed-top">
-      <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">      
-    </div>
-    <div class="row container">
-      <div class="btnNotification" >
-            <userProfile :profile="profile"></userProfile>      
-          <div class="btn-group pull-right" role="group" aria-label="...">
-            <button type="button" class="btn btn-default active" data-toggle="tooltip" data-placement="bottom" title="Todos" onclick="location.href='/classification'"><i class="fa fa-star-half-o"> </i></button>
-            <button type="button" class="btn btn-default " data-toggle="tooltip" data-placement="bottom" title="Classificados" onclick="location.href='classificationOn'" data-transition="slide"><i class="fa fa-star"> </i></button>
-            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Não Classificados" onclick="location.href='/classificationOff'"><i class="fa fa-star-o"> </i></button>
-          </div>        
-      </div>     
-    </div> 
-    <div v-if="this.users != null" class="list-group" id="searchUL">
-      <userComponet v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"></userComponet>
-    </div>
-    <div v-else><reload></reload></div>    
-</div>
+  <div v-if="!authorized">
+    <ReloadAuthorizedComponent></ReloadAuthorizedComponent>
+  </div>
+  <div v-else id="ListFriends" class="ListFriends container">
+      <div id="searchClassification" class="container searchClassification navbar-fixed-top">
+        <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">      
+      </div>
+      <div class="row container">
+        <div class="btnNotification" >
+              <userProfile :profile="profile"></userProfile>      
+            <div class="btn-group pull-right" role="group" aria-label="...">
+              <button type="button" class="btn btn-default active" data-toggle="tooltip" data-placement="bottom" title="Todos" onclick="location.href='/classification'"><i class="fa fa-star-half-o"> </i></button>
+              <button type="button" class="btn btn-default " data-toggle="tooltip" data-placement="bottom" title="Classificados" onclick="location.href='classificationOn'" data-transition="slide"><i class="fa fa-star"> </i></button>
+              <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Não Classificados" onclick="location.href='/classificationOff'"><i class="fa fa-star-o"> </i></button>
+            </div>        
+        </div>     
+      </div> 
+      <div v-if="this.users != null" class="list-group" id="searchUL">
+        <userComponet v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"></userComponet>
+      </div>
+      <div v-else><reload></reload></div>    
+  </div>
 </div>
 </template>
 
@@ -33,6 +29,7 @@
 import UserComponet from "../components/UserComponet.vue";
 import UserProfile from "../components/UserProfile.vue";
 import Reload from "../components/Reload.vue";
+import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
 
 export default {
   name: "ClassificationAPP",
@@ -40,7 +37,8 @@ export default {
   components: {
     UserComponet,
     UserProfile,
-    Reload
+    Reload,
+    ReloadAuthorizedComponent
   },
   data() {
     return {
@@ -105,39 +103,3 @@ mounted () {
  //Facebook - End 
 };
 </script>
-
-<style lang="scss">
-
-.btnLoginFb {
-    margin-bottom: -28px;
-    padding-top: 14px;
-    }
-/*Css Para Error*/
-.error-message {
-  text-align: center;
-  margin-top: 60px;
-}
-.error-code {
-  margin: 0;
-  color: #979797;
-  font-size: 7.8rem;
-  line-height: 0.9em;
-}
-a {
-  color: #5ba4e5;
-  text-decoration: none;
-  margin-top: 100px;
-}
-.links {
-  margin-top: 50px;
-}
-.links a {
-  padding-left: 10px;
-}
-
-.error-message img {
-  width: 320px;
-  height: 210px;
-}
-/*Css Para Error - END*/
-</style>
