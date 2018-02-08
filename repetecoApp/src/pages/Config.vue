@@ -26,6 +26,11 @@
                         <input class="w3-radio " type="radio" name="preferencia" id="Ambos" value="" v-model="user.preference">
                         <label for="Ambos" class="fa fa-venus-mars"> Ambos</label>
                      </div>
+                    <div id="msgPreference" class="w3-panel w3-pale-green w3-display-container" style="display:none">
+                        <span onclick="this.parentElement.style.display='none'"
+                        class="pull-right fa fa-close" style="font-size:24px"></span>
+                        <h6>Preferencia Registrada!</h6>
+                    </div>
                   </form>
                </div>
                <ul class="list-group">
@@ -98,7 +103,8 @@ data(){
 	return{
 		user: {},
 		profile: {},
-		statusAPIAPP: false             
+		statusAPIAPP: false,
+        preference: null            
 	} 
 },
 components:{
@@ -148,6 +154,7 @@ methods:{
 			processData: true,
 			data: JSON.stringify(setPreference)
 		});
+        document.getElementById("msgPreference").style.display = "block";
 	},
 	statusChangeCallback (response) {
 		let vm = this
