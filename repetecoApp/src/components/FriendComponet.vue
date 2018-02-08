@@ -29,6 +29,7 @@
                     <input type="radio"  value="semInteresse" id="optionclassificada" v-model="optiondata">
                     <span class="cl_Ninteresse"></span>
                 </label>
+
             </div>                  
         </div>
         <div v-if="optiondata != null" v-on:click="starClickOff()" class=" starClassification classificationTrue pull-right"></div>
@@ -58,7 +59,6 @@ export default{
         starClickOff: function(){
             this.optiondata = null;
             const fdOption = {option:  this.optiondata}
-            console.log(" |optionNull: "+this.optiondata)
             var friendId = this.id_fb_friends;
             $.ajax({
                 url: "http://localhost:9096/wsrepeteco/friends/opcao/"+friendId,
@@ -78,7 +78,6 @@ export default{
         },
         updateStatusOption: function(){             
             const fdOption = {option:  this.optiondata}
-            console.log(" |optionNew: "+this.optiondata)
             var friendId = this.id_fb_friends;
             $.ajax({
                 url: "http://localhost:9096/wsrepeteco/friends/opcao/"+friendId,

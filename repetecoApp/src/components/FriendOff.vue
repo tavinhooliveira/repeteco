@@ -1,5 +1,5 @@
 <template>
-<li v-if="(genderPreference === gender || genderPreference === null) && option === null" class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
+<li v-if="(genderPreference === gender || genderPreference === '') && option === null" class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
     <form class="statusForm">
         <div class="media-left col-md-4 LfPicture" >
             <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
@@ -59,7 +59,6 @@ export default{
         starClickOff: function(){
             this.optiondata = null;
             const fdOption = {option:  this.optiondata}
-            console.log(" |optionNull: "+this.optiondata)
             var friendId = this.id_fb_friends;
             $.ajax({
                 url: "http://localhost:9096/wsrepeteco/friends/opcao/"+friendId,
@@ -79,7 +78,6 @@ export default{
         },
         updateStatusOption: function(){             
             const fdOption = {option:  this.optiondata}
-            console.log(" |optionNew: "+this.optiondata)
             var friendId = this.id_fb_friends;
             $.ajax({
                 url: "http://localhost:9096/wsrepeteco/friends/opcao/"+friendId,

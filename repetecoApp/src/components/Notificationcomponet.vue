@@ -1,6 +1,6 @@
 <template>
-    <section  v-if="option === 'fiquei' || option === 'ficariaNovamente'">                        
-        <li v-if="option === 'fiquei'"  class="list-group-item col-md-4 notification" >
+    <section  v-if="option === 'ficaria' || option === 'ficariaNovamente'">                        
+        <li v-if="option === 'ficaria'"  class="list-group-item col-md-4 notification" >
             <div class="media-left LfPicture">
                 <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
             </div>
@@ -29,16 +29,16 @@
                 <span class="Nfdate">1min</span>
                 </div>
             </div>
-        </li>
-    </section>
+        </li>		
+    </section>   
 </template>
 
 <script>
 export default{
-  props:['name','imagem','link','option'],
+  props:['name','imagem','link','option','user_id'],
   data(){
      return{
- 
+    
     } 
   },
   methods:{
@@ -47,6 +47,3 @@ export default{
 }
 </script>
 
-<style lang="scss">
-
-</style>

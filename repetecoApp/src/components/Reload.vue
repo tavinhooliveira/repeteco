@@ -1,9 +1,10 @@
 <template >
 <div>
   <section class="error-message">
-    <img src="/src/assets/img/loading.gif"/>
+    <img src="/src/assets/img/loading2.gif"/>
     <section class="links">
         <a class="error-link" onclick="window.history.go(-1);" href="#">☚ Volte</a>
+        <h5 class="error-description">Erro 500 – Internal Server Error</h5>
     </section>  
     <section class="links">
         <a href="/">Classificações</a>
@@ -32,7 +33,7 @@ export default {
 /*Css Para Error*/
 .error-message {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 10px;
 }
 .error-code {
   margin: 0;
@@ -43,7 +44,7 @@ export default {
 a {
   color: #5ba4e5;
   text-decoration: none;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 .links {
   margin-top: 15px;
@@ -55,7 +56,8 @@ a {
 .error-message img {
   width: 320px;
   height: 210px;
-  margin-bottom: 130px;
+  margin-bottom: 60px;
 }
+.error-description{color: #a29d9d}
 /*Css Para Error - END*/
 </style>

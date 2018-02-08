@@ -18,7 +18,6 @@
 </template>
 
 <script>
-
 import Profileinfo from '../components/Profileinfo.vue';
 import UserComponet from '../components/UserComponet.vue';
 import FriendComponet from '../components/FriendComponet.vue';

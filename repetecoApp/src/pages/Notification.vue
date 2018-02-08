@@ -30,12 +30,11 @@
 									<li role="separator" class="divider"></li>
 									<li><a onclick="location.href='/notification'">Todos</a></li>
 								</ul>
-					</div>						   
+					</div>				   
 			  </div>
 				<ul class="list-group" id="searchUL">
-					<userid v-for="usersid in users" v-if="usersid.id_fb_users === profile.id" v-bind:key="usersid.id" v-bind:id="usersid.id" v-bind:city="usersid.city" v-bind:name="usersid.name" v-bind:imagem="usersid.imagem" v-bind:link="usersid.link" v-bind:id_fb_users="usersid.id_fb_users" v-bind:friendsTotalFb="usersid.friendsTotalFb"  v-bind:friends="usersid.friends"></userid>													
+          <notificationcomponet v-bind:friend="friends" v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:user_id="friend.user_id"></notificationcomponet>
 				</ul>
-
 			</div>
 		</section>
 </div>	
@@ -43,67 +42,66 @@
 
 <script>
 
-import Notification from '../components/Notification.vue';
+import Notificationcomponet from '../components/Notificationcomponet.vue';
 import UserComponet from '../components/UserComponet.vue';
-import UserProfile from '../components/UserProfile.vue';
-import Profileinfo from '../components/Profileinfo.vue';
-import Userid from '../components/Userid.vue';
+import UserProfile from "../components/UserProfile.vue";
+import Reload from "../components/Reload.vue";
+import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
 
 
 export default{
-	name: 'app',
-  props:['name','imagem','link','option','friends'],
+  name: "Notificatiob",
+  props: ["name", "imagem", "option", "user_id"],
   components:{
-		Notification,
+		Notificationcomponet,
 		UserComponet,
 		UserProfile,
-		Profileinfo,
-		Userid
-  },
-  created(){
-
+    Reload,
+    ReloadAuthorizedComponent
   },
   data () {
     return {
-      nomeProjeto: 'Notification',
-			users:[],
-			profile: [],
+      nomeProjeto: "Notification",
+      profile: {},
 			authorized: false,
-			
-
-    }
+      friends: {},
+      statusAPIAPP: false
+    };
 	},
 methods: {
-//Facebook - Begin
-getApiRepeteco(){
-this.$http.get("http://localhost:9096/wsrepeteco/users").then(res => {
-      if (res.body.length > 0) {
-        return (this.users = res.body);
-      } else {
-        console.log("Erro na chamada da API - Repeteco");
-      }
-    });
-},
-getFacebook () {
+//Facebook - API GET
+getFacebook (callback) {
     let vm = this
-    FB.api('/me?fields=id,name,link,email,gender,location,picture{url},friends{id,name,link,email,gender,picture{url}}', function (response) {
+    FB.api('/me?fields=id,name,link,picture{url},friends{id}', function (response) {
       vm.$set(vm, 'profile', response)
-      console.log(response);     
+      console.log("API Facebook: OK!");     
+      let userid = response.id
+      callback(response.id)
+    })    
+  },
+//WsRepeteco - API GET
+getApiRepeteco(profileId){
+			this.$http.get(`http://localhost:9096/wsrepeteco/users/${profileId}/friends`).then(response => {				
+      this.friends = response.data
+      if (this.friends.length > 0) {
+        console.log("API Repeteco: OK!")
+        this.statusAPIAPP = true;
+      } else {
+        this.statusAPIAPP = false;
+        console.log("Erro na chamada da API - Repeteco");
+      }    
     })
 	},
 statusChangeCallback (response) {
       let vm = this
       if (response.status === 'connected') {
         console.log("Usuario Autorizado!");
-        console.log("API Facebook! - Ok");
-        console.log("API Repeteco! - Ok");
         vm.authorized = true
         //Chamada API Facebok e Repeteco
-        vm.getFacebook()
-				vm.getApiRepeteco()
-        console.log("Connectado")
+        vm.getFacebook(vm.getApiRepeteco)
+        console.log("Status: Connectado!")
       } else if (response.status === 'not_authorized') {
-        console.log("Não Autorizado!");
+        console.log("Status: Não Autorizado!");
         vm.authorized = false
       } else if (response.status === 'unknown') {
         vm.profile = {}
@@ -129,10 +127,5 @@ mounted () {
     };
   }
  //Facebook - End 
-
-}
+};
 </script>
-
-<style lang="scss">
-
-</style>

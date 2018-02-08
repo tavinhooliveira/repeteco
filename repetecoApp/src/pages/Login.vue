@@ -125,11 +125,7 @@ methods: {
             imagem: fdlist[i].picture.data.url
           }          
           friendslist.push(listFB)           
-          }        
-        //logs
-        console.log("API-FB",response);
-        console.log("API-RP-Users",users);
-        console.log("API-RP-Friends",friendslist);        
+          }               
         //Inserir User Na Basse Via Ajax
         $.ajax({
           url: "http://localhost:9096/wsrepeteco/users",
@@ -181,12 +177,12 @@ methods: {
   statusChangeCallback (response) {
     let vm = this
     if (response.status === 'connected') {
-      console.log("Usuario Autorizado!");
-      console.log("API Facebook! - Ok");
+      console.log("Autorizando Usuario...");
       vm.authorized = true
       //Chamada API Facebok e Repeteco
       vm.getFacebook()
-      console.log("Connectado")
+      console.log("Usuario Connectado")
+      console.log("API Facebook: - Ok!");
     } else if (response.status === 'not_authorized') {
       console.log("Não Autorizado!");
       vm.authorized = false

@@ -5,7 +5,6 @@
  			<div id="searchClassification" class="container searchClassification navbar-fixed-top">
 			 	<input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">
 			</div>		
-
 			<div id="ListFriends" class="ListFriends container notification">
 				<div class="btnNotification" role="group" >
 					<span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>
@@ -23,7 +22,7 @@
 					</div>						   
 			  </div>	
 				<ul class="list-group" id="searchUL">
-						<notificationOldMatch v-for="notification in notification" v-bind:key="notification.id" v-bind:name="notification.name" v-bind:imagem="notification.imagem" v-bind:link="notification.link" v-bind:friendsTotalFb="notification.friendsTotalFb" v-bind:option="notification.option" v-bind:friends="notification.friends"></notificationOldMatch>											
+						<notificationOldMatchComponent v-bind:friend="friends" v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" ></notificationOldMatchComponent>											
 				</ul>
 
 			</div>
@@ -33,36 +32,90 @@
 
 <script>
 
-import NotificationOldMatch from '../components/NotificationOldMatch.vue';
+import NotificationOldMatchComponent from '../components/NotificationOldMatchComponent.vue';
 import UserComponet from '../components/UserComponet.vue';
+import UserProfile from "../components/UserProfile.vue";
+import Reload from "../components/Reload.vue";
+import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
 
 
 export default{
-	name: 'app',
-  props:['name','imagem','link','option','friends'],
+  name: "NotificationOldMatch",
+  props: ["name", "imagem", "option"],
   components:{
-		NotificationOldMatch,
-    UserComponet
-  },
-  created(){
-   this.$http.get('http://localhost:9096/wsrepeteco/friends').then(res =>{
-     this.notification = res.body;
-	 });
-	 this.$http.get('http://localhost:9096/wsrepeteco/users').then(res =>{
-     this.users = res.body;
-   });
+		NotificationOldMatchComponent,
+    UserComponet,
+    UserProfile,
+    Reload,
+    ReloadAuthorizedComponent
   },
   data () {
     return {
-      nomeProjeto: 'Social Classification',
-			notification:[],
-			users:[],
+      nomeProjeto: "NotificationOldMatch",
+      profile: {},
+      authorized: false,
+      friends: {},
+      statusAPIAPP: false
+    };
+  },
+methods: {
+//Facebook - API GET
+getFacebook (callback) {
+    let vm = this
+    FB.api('/me?fields=id,name,link,picture{url},friends{id}', function (response) {
+      vm.$set(vm, 'profile', response)
+      console.log("API Facebook: OK!")     
+      let userid = response.id
+      callback(response.id)
+    })    
+  },
+//WsRepeteco - API GET
+getApiRepeteco(profileId){
+			this.$http.get(`http://localhost:9096/wsrepeteco/users/${profileId}/friends`).then(response => {				
+      this.friends = response.data
+      if (this.friends.length > 0) {
+        console.log("API Repeteco: OK!")
+        this.statusAPIAPP = true;
+      } else {
+        this.statusAPIAPP = false;
+        console.log("Erro na chamada da API - Repeteco");
+      }
+  })
+},
+statusChangeCallback (response) {
+      let vm = this
+      if (response.status === 'connected') {
+        console.log("Usuario Autorizado!");       
+        vm.authorized = true
+        //Chamada API Facebok e Repeteco
+        vm.getFacebook(vm.getApiRepeteco)
+        console.log("Status: Connectado!")
+      } else if (response.status === 'not_authorized') {
+        console.log("Status: Não Autorizado!");
+        vm.authorized = false
+      } else if (response.status === 'unknown') {
+        vm.profile = {}
+        vm.authorized = false
+      } else {
+        vm.authorized = false
     }
   }
-
+  },
+mounted () {
+    let vm = this    
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: '175578203007671',
+        cookie: true,
+        xfbml: true,
+        version: 'v2.10'
+      });
+      FB.AppEvents.logPageView();
+      FB.getLoginStatus(response => {
+        vm.statusChangeCallback(response)
+      })
+    };
 }
+ //Facebook - End 
+};
 </script>
-
-<style lang="scss">
-
-</style>

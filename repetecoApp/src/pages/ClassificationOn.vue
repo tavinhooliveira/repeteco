@@ -17,7 +17,7 @@
                </div>
             </div>
          </div>
-         <div v-if="this.users != null" class="list-group" id="searchUL">
+         <div v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
             <userOn v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb" v-bind:preference="user.preference"></userOn>
          </div>
          <div v-else>
@@ -46,7 +46,8 @@
          nomeProjeto: "ClassificationOn",
          profile: {},
          authorized: false,
-         users: {}
+         users: {},
+         statusAPIAPP: false
        };
      },
    methods: {
@@ -55,7 +56,7 @@
        let vm = this
        FB.api('/me?fields=id,name,link,picture{url},friends{id}', function (response) {
          vm.$set(vm, 'profile', response)
-         console.log("API Facebook: ",response);     
+          console.log("API Facebook: OK!")    
          let userid = response.id
          callback(response.id)
        })    
@@ -64,7 +65,13 @@
    getApiRepeteco(profileId){
    this.$http.get(`http://localhost:9096/wsrepeteco/users/${profileId}`).then(response => {   
        this.users = [response.data]
-       console.log("API APP",this.users)
+          if (this.users.length > 0) {
+            console.log("API Repeteco: OK!")
+            this.statusAPIAPP = true;
+          } else {
+            this.statusAPIAPP = false;
+            console.log("Erro na chamada da API - Repeteco");
+          }
        })
      },
    statusChangeCallback (response) {

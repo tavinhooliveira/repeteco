@@ -16,7 +16,6 @@ import NotFound from './pages/NotFound.vue'
 import ErrorCall from './pages/ErrorCall.vue'
 import ClassificationOn from './pages/ClassificationOn.vue'
 import ClassificationOff from './pages/ClassificationOff.vue'
-import ClassificationTeste from './pages/ClassificationTeste.vue'
 
 
 const login = Login
@@ -31,7 +30,6 @@ const notFound = NotFound
 const errorCall = ErrorCall
 const classificationOn = ClassificationOn
 const classificationOff = ClassificationOff
-const classificationteste = ClassificationTeste
 
 
 const rotas = {
@@ -46,8 +44,7 @@ const rotas = {
   '/config': config,
   '/error' : errorCall,
   '/classificationOn' : classificationOn,
-  '/classificationOff' : classificationOff,
-  '/classificationteste' : classificationteste
+  '/classificationOff' : classificationOff
 
 }
 
