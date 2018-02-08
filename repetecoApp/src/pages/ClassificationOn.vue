@@ -18,7 +18,7 @@
             </div>
          </div>
          <div v-if="this.users != null" class="list-group" id="searchUL">
-            <userOn v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"></userOn>
+            <userOn v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb" v-bind:preference="user.preference"></userOn>
          </div>
          <div v-else>
             <reload></reload>

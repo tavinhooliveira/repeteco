@@ -105,7 +105,7 @@ methods: {
           imagem: response.picture.data.url,
           city: response.locale,
           nationality: response.locale,
-          preference: "null",
+          preference: "",
           friendsTotalFb: response.friends.summary.total_count,
           friendsTotalApp: response.friends.data.length
         }

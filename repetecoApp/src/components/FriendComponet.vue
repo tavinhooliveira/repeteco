@@ -1,5 +1,5 @@
 <template>
-<li v-if="genderPreference === gender || genderPreference === null"  class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
+<li v-if="genderPreference === gender || genderPreference === ''"  class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
     <form class="statusForm" >
         <div class="media-left col-md-4 LfPicture" >
             <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
@@ -29,8 +29,7 @@
                     <input type="radio"  value="semInteresse" id="optionclassificada" v-model="optiondata">
                     <span class="cl_Ninteresse"></span>
                 </label>
-
-            </div>        
+            </div>                  
         </div>
         <div v-if="optiondata != null" v-on:click="starClickOff()" class=" starClassification classificationTrue pull-right"></div>
         <div v-else class=" starClassification starClassificationFalse pull-right"></div>
@@ -41,11 +40,11 @@
 
 <script>
 export default{
-  props:['id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb'],
+  props:['id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb', 'preference'],
   data(){
      return{
         efeitoClick: null,
-        genderPreference: null,
+        genderPreference: this.preference,
         optiondata: this.option               
     } 
   },

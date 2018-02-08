@@ -41,11 +41,11 @@
 
 <script>
 export default{
-  props:['id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb'],
+  props:['id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb', 'preference'],
   data(){
      return{
         efeitoClick: null,
-        genderPreference: null,
+        genderPreference: this.preference,
         optiondata: this.option               
     } 
   },
