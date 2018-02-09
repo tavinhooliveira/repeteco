@@ -18,7 +18,7 @@
             </div>
          </div>
          <div v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
-            <userOn v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb" v-bind:preference="user.preference"></userOn>
+            <userComponentOn v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb" v-bind:preference="user.preference"></userComponentOn>
          </div>
          <div v-else>
             <reload></reload>
@@ -27,7 +27,7 @@
    </div>
 </template>
 <script>
-   import UserOn from "../components/UserOn.vue";
+   import UserComponentOn from "../components/UserComponentOn.vue";
    import UserProfile from "../components/UserProfile.vue";
    import Reload from "../components/Reload.vue";
    import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
@@ -36,7 +36,7 @@
      name: "ClassificationOff",
      props: ["name", "imagem","friends"],
      components:{
-       UserOn,
+       UserComponentOn,
        UserProfile,
        Reload,
        ReloadAuthorizedComponent
@@ -52,18 +52,18 @@
      },
    methods: {
    //Facebook - API GET
-   getFacebook (callback) {
+   getFacebook (callbackGetApiRepeteco) {
        let vm = this
        FB.api('/me?fields=id,name,link,picture{url},friends{id}', function (response) {
          vm.$set(vm, 'profile', response)
           console.log("API Facebook: OK!")    
          let userid = response.id
-         callback(response.id)
+         callbackGetApiRepeteco(userid)
        })    
      },
    //WsRepeteco - API GET
-   getApiRepeteco(profileId){
-   this.$http.get(`http://localhost:9096/wsrepeteco/users/${profileId}`).then(response => {   
+   getApiRepeteco(userid){
+   this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {   
        this.users = [response.data]
           if (this.users.length > 0) {
             console.log("API Repeteco: OK!")

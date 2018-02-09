@@ -43,7 +43,7 @@
 <script>
 
 import Notificationcomponet from '../components/Notificationcomponet.vue';
-import UserComponet from '../components/UserComponet.vue';
+import UserComponent from '../components/UserComponent.vue';
 import UserProfile from "../components/UserProfile.vue";
 import Reload from "../components/Reload.vue";
 import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
@@ -54,7 +54,7 @@ export default{
   props: ["name", "imagem", "option", "user_id"],
   components:{
 		Notificationcomponet,
-		UserComponet,
+		UserComponent,
 		UserProfile,
     Reload,
     ReloadAuthorizedComponent

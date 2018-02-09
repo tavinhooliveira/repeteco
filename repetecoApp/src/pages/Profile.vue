@@ -19,8 +19,8 @@
 
 <script>
 import Profileinfo from '../components/Profileinfo.vue';
-import UserComponet from '../components/UserComponet.vue';
-import FriendComponet from '../components/FriendComponet.vue';
+import UserComponent from '../components/UserComponent.vue';
+import FriendComponent from '../components/FriendComponent.vue';
 import RecentFriends from '../components/RecentFriends.vue';
 import Reload from '../components/Reload.vue';
 
@@ -30,9 +30,9 @@ export default {
   props:['name','imagem','link','friends', 'city', 'id_fb_users'],
   components:{
     Profileinfo,
-    FriendComponet,
+    FriendComponent,
     RecentFriends,
-    UserComponet,
+    UserComponent,
     Reload
   },
   created(){

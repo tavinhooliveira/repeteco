@@ -92,15 +92,15 @@
 
 
 <script>
-import FriendComponet from '../components/FriendComponet.vue';
-import UserComponet from '../components/UserComponet.vue';
+import FriendComponent from '../components/FriendComponent.vue';
+import UserComponent from '../components/UserComponent.vue';
 import RecentFriends from './RecentFriends.vue';	
 
 export default{
   props:['name','imagem','link','friendsTotalFb','friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp'],
   components:{
-    FriendComponet,
-		UserComponet,
+    FriendComponent,
+		UserComponent,
 		RecentFriends
   },
 	data () {

@@ -33,7 +33,7 @@
 <script>
 
 import NotificationOldMatchComponent from '../components/NotificationOldMatchComponent.vue';
-import UserComponet from '../components/UserComponet.vue';
+import UserComponent from '../components/UserComponent.vue';
 import UserProfile from "../components/UserProfile.vue";
 import Reload from "../components/Reload.vue";
 import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
@@ -44,7 +44,7 @@ export default{
   props: ["name", "imagem", "option"],
   components:{
 		NotificationOldMatchComponent,
-    UserComponet,
+    UserComponent,
     UserProfile,
     Reload,
     ReloadAuthorizedComponent

@@ -33,8 +33,7 @@
             </div>
         </div>
         <div v-if="optiondata != null" v-on:click="starClickOff()" class=" starClassification classificationTrue pull-right"></div>
-        <div v-else class=" starClassification starClassificationFalse pull-right"></div>       			
-        <!--<span class="optionShow">{{optiondata}}</span>-->  			
+        <div v-else class=" starClassification starClassificationFalse pull-right"></div>       					
     </form>					
 </li>
 </template>

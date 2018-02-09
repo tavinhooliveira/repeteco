@@ -28,8 +28,8 @@
                      </div>
                     <div id="msgPreference" class="w3-panel w3-pale-green w3-display-container" style="display:none">
                         <span onclick="this.parentElement.style.display='none'"
-                        class="pull-right fa fa-close" style="font-size:24px"></span>
-                        <h6>Preferencia Registrada!</h6>
+                        class="pull-right text-success"> ✘</span>
+                        <span class="label label-success">Preferência Registrada! ✔</span>
                     </div>
                   </form>
                </div>
@@ -103,8 +103,7 @@ data(){
 	return{
 		user: {},
 		profile: {},
-		statusAPIAPP: false,
-        preference: null            
+		statusAPIAPP: false                   
 	} 
 },
 components:{

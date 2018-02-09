@@ -126,7 +126,7 @@ methods: {
           }          
           friendslist.push(listFB)           
           }               
-        //Inserir User Na Basse Via Ajax
+        //Inserir User Na Basse Via Ajax.
         $.ajax({
           url: "http://localhost:9096/wsrepeteco/users",
           method: "POST",

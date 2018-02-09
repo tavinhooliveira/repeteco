@@ -1,3 +1,4 @@
+<!--
 <template>   
 <div class="row well small">
     <p>Id: {{id}}</p>
@@ -28,7 +29,7 @@ export default{
 }
 
 </script>
-
+-->
 
 
 

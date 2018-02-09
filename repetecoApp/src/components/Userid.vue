@@ -1,3 +1,4 @@
+<!--
 <template>
 <div>
     <notification v-for="notification in friends" v-bind:key="notification.id" v-bind:name="notification.name" v-bind:imagem="notification.imagem" v-bind:link="notification.link" v-bind:friendsTotalFb="notification.friendsTotalFb" v-bind:option="notification.option" v-bind:friends="notification.friends"></notification>
@@ -20,3 +21,4 @@ export default {
 
 <style lang="scss" scoped>
 </style>
+-->

@@ -6,7 +6,6 @@
      	console.log(notification);
     })
  })
-/*Funçao Preferencia sexual Return true/false*/
 
 /*Funcao Search*/
 function functionSearch() {
@@ -35,27 +34,6 @@ window.location.reload();
 //setTimeout('location.reload();', 5000);
 }
 
-
-/*Funcao Star Classification true */
-// $(document).ready(function(){
-// $("input:radio").on("click", function(){
-// var classificacaoId = null;
-// var classificacaoId = $(this).attr("id");
-// var statusClassification = false;
-
-//   if (classificacaoId != null) {    
-//     $(this).parent().parent().parent().parent().find('.starClassification').addClass('classificationTrue');
-//     statusClassification = true;
-//     /*unCheked*/
-//     $(".classificationTrue").on("click", function(){
-//       $(this).removeClass('classificationTrue').prev().find("input:radio").attr('checked', false);
-//       statusClassification = false;
-//       classificacaoId = null;
-//     });
-//   }
-// });
-// });
-
 $('#exampleModal').on('shown.bs.modal', function () {
   $('#myInput').focus()
 })
@@ -69,12 +47,10 @@ $(function() {
     })
 });
 
-
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 });
-
-    
+   
 /*funcao Modal*/
 $(function () {
     $('#exampleModal').modal('toggle')

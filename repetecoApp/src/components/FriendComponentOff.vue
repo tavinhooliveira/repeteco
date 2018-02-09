@@ -1,6 +1,6 @@
 <template>
-<li v-if="genderPreference === gender || genderPreference === ''"  class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
-    <form class="statusForm" >
+<li v-if="(genderPreference === gender || genderPreference === '') && option === null" class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
+    <form class="statusForm">
         <div class="media-left col-md-4 LfPicture" >
             <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
         </div>
@@ -30,12 +30,11 @@
                     <span class="cl_Ninteresse"></span>
                 </label>
 
-            </div>                  
+            </div>
         </div>
         <div v-if="optiondata != null" v-on:click="starClickOff()" class=" starClassification classificationTrue pull-right"></div>
-        <div v-else class=" starClassification starClassificationFalse pull-right"></div>
-        <!--<span class="optionShow">{{optiondata}}</span>-->  			
-    </form>   				
+        <div v-else class=" starClassification starClassificationFalse pull-right"></div>       					
+    </form>					
 </li>
 </template>
 
@@ -49,7 +48,7 @@ export default{
         optiondata: this.option               
     } 
   },
-  methods:{        
+  methods:{
         mauseEfeito: function(){
             this.efeitoClick = 'transform: scale(1.1); box-shadow: -0px 1px 15px 0px #cdd2d8;  z-index: 999;'
         },
