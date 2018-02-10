@@ -1,13 +1,12 @@
 <template>
 <div>
-  <div id="perfil" class="perfil col-md-6 container panel col-md-offset-3">
-			<div class="perfilPrincipal panel-body" id="perfilPrincipal">
+  <div id="perfil" class="perfil  col-md-6 container panel col-md-offset-3">
+			<div class="perfilPrincipal panel-body well" id="perfilPrincipal">
 			  	<div class="row perfilPicture">
-            <a v-bind:href="link" target="_blank"><img v-bind:src="imagem"></a>
+            <a v-bind:href="link" target="_blank"><img class="media-object" :src="profilePicture"></a>
 			  	</div>
 			  	<div>
 			    	<h4 class="perfilName"><a v-bind:href="link" target="_blank">{{name}}</a>
-							<h6 class="small">{{city}}</h6>
 						</h4>			  		
 			  	</div>
 			    <div class="row perfilbrprogress">
@@ -44,7 +43,7 @@
 				</ul>
 			</div>
 
-      <div id="perfilMatch" class="perfilMatch panel-body">
+      <div id="perfilMatch" class="well perfilMatch panel-body">
 				<div class="row">
 					<div class="row  perfilMatchList col-md-12 container">
 						<div class="perfilMatchListInfo">
@@ -74,11 +73,11 @@
 					<span class="badge pull-right">76</span>
 				</span>
 			</div>
-      <div id="perfilNewFriends" class="perfilNewFriends panel-body">
+      <div id="perfilNewFriends" class="well perfilNewFriends panel-body">
 				<small><i class="fa fa-users"></i>Amigos Recentes no APP</small>				
 				<div id=""  ref="scroller">			
 					<ul class="row__inner">					
-						<recentFriends v-for="friend in friends" v-if="friend.option != null && friend.user_id === id" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:option="friend.option"></recentFriends>											
+						<recentFriends v-for="friend in friends" v-if="friend.option != null" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:option="friend.option"></recentFriends>											
 					</ul>
 				</div>
 				<nav id="menu-carrossel">
@@ -98,7 +97,20 @@ import RecentFriends from './RecentFriends.vue';
 
 export default{
   props:['name','imagem','link','friendsTotalFb','friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp'],
-  components:{
+  computed: {
+    profileName () {
+      if (this.id) {
+        return `${this.name}`
+        console.log('User Conectado', this.name);
+      } else {
+        return '<h6 onclick="Refresh();">Buscando... <a>Atualizar</a></h6>'
+      }
+    },
+    profilePicture () {
+        return (this.id) ? `https://graph.facebook.com/${this.id}/picture?width=300` : `/src/assets/img/man.gif`
+    },
+  },
+	components:{
     FriendComponent,
 		UserComponent,
 		RecentFriends

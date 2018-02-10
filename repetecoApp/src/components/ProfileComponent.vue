@@ -26,7 +26,7 @@
 <script>
 export default {
   props: ['profile'],
-  name: 'userProfile',
+  name: 'ProfileComponent',
   computed: {
     profileName () {
       if (this.profile.id) {

@@ -89,7 +89,9 @@
             </div>
          </div>
       </div>
-	  <div v-else><reload></reload></div>  
+	  <div v-else>
+      <br><br><br><br><br><br>
+      <reload></reload></div>  
   	</div>
    </section>
 </template>

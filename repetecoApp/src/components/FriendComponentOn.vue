@@ -1,5 +1,5 @@
 <template>
-<li v-if="(genderPreference === gender || genderPreference === '') && option != null" class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
+<li v-if="(genderPreference === gender || genderPreference === '')" class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
     <form class="statusForm">
         <div class="media-left col-md-4 LfPicture" >
             <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
@@ -33,7 +33,8 @@
             </div>
         </div>
         <div v-if="optiondata != null" v-on:click="starClickOff()" class=" starClassification classificationTrue pull-right"></div>
-        <div v-else class=" starClassification starClassificationFalse pull-right"></div>       					
+        <div v-else class=" starClassification starClassificationFalse pull-right"></div>
+        <div v-show="optiondata === null" class="text-center msgClamigos">Desclassificado! 👎</div>      					
     </form>					
 </li>
 </template>
@@ -100,4 +101,5 @@ export default{
 <style lang="scss">
 .ListFriends li .LfPicture img:hover{border: 4px solid rgba(85, 169, 247, 0.54) !important;}
 .optionShow{color: #c0bebe}
+.msgClamigos {font-size: 10px; color: #cecdcd;}
 </style>

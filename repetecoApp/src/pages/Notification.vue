@@ -1,15 +1,9 @@
 <template>
 <div>
   <section>
-			<div class="text-center" v-if="!authorized">
-        <br><br><br>
-        <section class="error-message ">
-          <img src="/src/assets/img/loading.gif" style='height: 90px; width: 90px; border-radius: 100px; border: 2px solid rgba(73, 158, 223, 0.144)'/>
-          <br><br>
-          <h5 class="error-description text-danger">not authorized</h5>
-          <a class="error-link" onclick="location.href='/'">login</a>
-        </section>
-      </div>
+      <div v-if="!authorized">
+        <ReloadAuthorizedComponent></ReloadAuthorizedComponent>
+    </div>
 
 			<div v-else  id="ListFriends" class="ListFriends container notification">
       <!--Search -->
@@ -32,9 +26,10 @@
 								</ul>
 					</div>				   
 			  </div>
-				<ul class="list-group" id="searchUL">
+				<ul v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
           <notificationcomponet v-bind:friend="friends" v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:user_id="friend.user_id"></notificationcomponet>
 				</ul>
+        <div v-else><reload></reload></div> 
 			</div>
 		</section>
 </div>	
@@ -44,7 +39,6 @@
 
 import Notificationcomponet from '../components/Notificationcomponet.vue';
 import UserComponent from '../components/UserComponent.vue';
-import UserProfile from "../components/UserProfile.vue";
 import Reload from "../components/Reload.vue";
 import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
 
@@ -55,7 +49,6 @@ export default{
   components:{
 		Notificationcomponet,
 		UserComponent,
-		UserProfile,
     Reload,
     ReloadAuthorizedComponent
   },

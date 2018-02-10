@@ -1,7 +1,8 @@
 <template >
 <div>
     <section class="error-message ">
-        <img src="/src/assets/img/loading.gif" style='height: 90px; width: 90px; border-radius: 100px; border: 2px solid rgba(73, 158, 223, 0.144)'/>
+        <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
         <h5 class="error-description text-danger">Verificando Autorização...</h5>
         <a class="error-link" onclick="location.href='/'">login</a>
     </section>

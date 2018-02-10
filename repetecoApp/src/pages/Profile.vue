@@ -9,16 +9,18 @@
     <a class="error-link" onclick="location.href='/'">login</a>
   </section>
 </div>
-<div>
+<div v-if="this.statusAPIAPP === true">
 	<section>
-		<profileinfo v-for="profileinfo in users" v-if="profileinfo.id_fb_users === profile.id" v-bind:key="profileinfo.id" v-bind:id="profileinfo.id" v-bind:city="profileinfo.city" v-bind:name="profileinfo.name" v-bind:imagem="profileinfo.imagem" v-bind:link="profileinfo.link" v-bind:id_fb_users="profileinfo.id_fb_users" v-bind:friendsTotalFb="profileinfo.friendsTotalFb" v-bind:friendsTotalApp="profileinfo.friendsTotalApp" v-bind:friends="profileinfo.friends"></profileinfo>
+	<perfilComponent v-for="profileinfo in users" v-bind:key="profileinfo.id" v-bind:id="profileinfo.id" v-bind:city="profileinfo.city" v-bind:name="profileinfo.name" v-bind:imagem="profileinfo.imagem" v-bind:link="profileinfo.link" v-bind:id_fb_users="profileinfo.id_fb_users" v-bind:friendsTotalFb="profileinfo.friendsTotalFb" v-bind:friendsTotalApp="profileinfo.friendsTotalApp" v-bind:friends="profileinfo.friends"></perfilComponent>
+        
   </section>
 </div>
+<div v-else><reload></reload></div> 
 </div>
 </template>
 
 <script>
-import Profileinfo from '../components/Profileinfo.vue';
+import PerfilComponent from '../components/PerfilComponent.vue';
 import UserComponent from '../components/UserComponent.vue';
 import FriendComponent from '../components/FriendComponent.vue';
 import RecentFriends from '../components/RecentFriends.vue';
@@ -27,15 +29,13 @@ import Reload from '../components/Reload.vue';
 
 export default {
   name: 'app',
-  props:['name','imagem','link','friends', 'city', 'id_fb_users'],
+  props:['id','name','imagem','link','friends', 'city', 'id_fb_users'],
   components:{
-    Profileinfo,
+    PerfilComponent,
     FriendComponent,
     RecentFriends,
     UserComponent,
     Reload
-  },
-  created(){
   },
   data () {
     return {
@@ -43,41 +43,44 @@ export default {
       users:[],
       profile: [],
       authorized: false,
+      statusAPIAPP: false
       
     }
   },
 methods: {
-//Facebook - Begin
-
-getApiRepeteco(){
-this.$http.get("http://localhost:9096/wsrepeteco/users").then(res => {
-      if (res.body.length > 0) {
-        return (this.users = res.body);
+//Facebook - API GET
+getFacebook (callbackGetApiRepeteco) {
+    let vm = this
+    FB.api('/me?fields=id,name,link,picture{url},friends{id}', function (response) {
+      vm.$set(vm, 'profile', response)
+      console.log("API Facebook: OK!")     
+      let userid = response.id
+      callbackGetApiRepeteco(userid)
+    })    
+  },
+//WsRepeteco - API GET
+getApiRepeteco(userid){
+this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {   
+    this.users = [response.data]
+      if (this.users.length > 0) {
+        console.log("API Repeteco: OK!")
+        this.statusAPIAPP = true;
       } else {
+        this.statusAPIAPP = false;
         console.log("Erro na chamada da API - Repeteco");
       }
-    });
+  })
 },
-getFacebook () {
-    let vm = this
-    FB.api('/me?fields=id,name,link,email,gender,location,picture{url},friends{id,name,link,email,gender,picture.type(large)}', function (response) {
-      vm.$set(vm, 'profile', response)
-      console.log(response);     
-    })
-  },
 statusChangeCallback (response) {
       let vm = this
       if (response.status === 'connected') {
-        console.log("Usuario Autorizado!");
-        console.log("API Facebook! - Ok");
-        console.log("API Repeteco! - Ok");
+        console.log("Usuario Autorizado!");       
         vm.authorized = true
         //Chamada API Facebok e Repeteco
-        vm.getFacebook()
-        vm.getApiRepeteco()
-        console.log("Connectado")
+        vm.getFacebook(vm.getApiRepeteco)
+        console.log("Status: Connectado!")
       } else if (response.status === 'not_authorized') {
-        console.log("Não Autorizado!");
+        console.log("Status: Não Autorizado!");
         vm.authorized = false
       } else if (response.status === 'unknown') {
         vm.profile = {}
@@ -103,8 +106,7 @@ mounted () {
     };
   }
  //Facebook - End 
-
-}
+};
 </script>
 
 <style lang="scss">
