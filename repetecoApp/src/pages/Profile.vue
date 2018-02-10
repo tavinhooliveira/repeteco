@@ -1,41 +1,35 @@
 <template>
 <div>
-<div class="text-center" v-if="!authorized">
-<br><br><br>
-  <section class="error-message ">
-    <img src="/src/assets/img/loading.gif" style='height: 90px; width: 90px; border-radius: 100px; border: 2px solid rgba(73, 158, 223, 0.144)'/>
-    <br><br>
-    <h5 class="error-description text-danger">not authorized</h5>
-    <a class="error-link" onclick="location.href='/'">login</a>
-  </section>
-</div>
-<div v-if="this.statusAPIAPP === true">
-	<section>
-	<perfilComponent v-for="profileinfo in users" v-bind:key="profileinfo.id" v-bind:id="profileinfo.id" v-bind:city="profileinfo.city" v-bind:name="profileinfo.name" v-bind:imagem="profileinfo.imagem" v-bind:link="profileinfo.link" v-bind:id_fb_users="profileinfo.id_fb_users" v-bind:friendsTotalFb="profileinfo.friendsTotalFb" v-bind:friendsTotalApp="profileinfo.friendsTotalApp" v-bind:friends="profileinfo.friends"></perfilComponent>
-        
-  </section>
-</div>
-<div v-else><reload></reload></div> 
+  <div v-if="this.statusAPIAPP === true">
+    <section>
+      <profileComponent v-for="profileinfo in users" v-bind:key="profileinfo.id" v-bind:id="profileinfo.id" v-bind:city="profileinfo.city" v-bind:name="profileinfo.name" v-bind:imagem="profileinfo.imagem" v-bind:link="profileinfo.link" v-bind:id_fb_users="profileinfo.id_fb_users" v-bind:friendsTotalFb="profileinfo.friendsTotalFb" v-bind:friendsTotalApp="profileinfo.friendsTotalApp" v-bind:friends="profileinfo.friends"></profileComponent>       
+    </section>
+  </div>
+  <div v-else>
+    </br></br></br></br></br>
+    <reload></reload>
+  </div> 
 </div>
 </template>
 
 <script>
-import PerfilComponent from '../components/PerfilComponent.vue';
+import ProfileComponent from '../components/ProfileComponent.vue';
 import UserComponent from '../components/UserComponent.vue';
 import FriendComponent from '../components/FriendComponent.vue';
 import RecentFriends from '../components/RecentFriends.vue';
 import Reload from '../components/Reload.vue';
-
+import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
 
 export default {
-  name: 'app',
+  name: 'Profile',
   props:['id','name','imagem','link','friends', 'city', 'id_fb_users'],
   components:{
-    PerfilComponent,
+    ProfileComponent,
     FriendComponent,
     RecentFriends,
     UserComponent,
-    Reload
+    Reload,
+    ReloadAuthorizedComponent
   },
   data () {
     return {
@@ -43,8 +37,7 @@ export default {
       users:[],
       profile: [],
       authorized: false,
-      statusAPIAPP: false
-      
+      statusAPIAPP: false      
     }
   },
 methods: {
@@ -108,7 +101,3 @@ mounted () {
  //Facebook - End 
 };
 </script>
-
-<style lang="scss">
-
-</style>

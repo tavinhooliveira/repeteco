@@ -1,6 +1,6 @@
 <template>
     <section>                        
-        <li v-if="option === optionOld" class="list-group-item col-md-4 notification" >
+        <li v-if="option === optionNew" class="list-group-item col-md-4 notification" >
             <div class="media-left LfPicture">
                 <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
             </div>
@@ -23,7 +23,7 @@ export default{
   props:['name','imagem','link','option'],
   data(){
     return{
-        optionOld: 'ficaria'
+        optionNew: 'ficaria'
     } 
   },
 }

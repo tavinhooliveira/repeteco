@@ -23,7 +23,7 @@
                         <label for="female" class="fa fa-female"> Mulher</label>
                      </div>
                      <div>
-                        <input class="w3-radio " type="radio" name="preferencia" id="Ambos" value="" v-model="user.preference">
+                        <input class="w3-radio" type="radio" name="preferencia" id="Ambos" value="" v-model="user.preference">
                         <label for="Ambos" class="fa fa-venus-mars"> Ambos</label>
                      </div>
                     <div id="msgPreference" class="w3-panel w3-pale-green w3-display-container" style="display:none">
@@ -39,14 +39,14 @@
                      <div class="well">
                         <li class="list-group-item">
                            <label>
+                           <input class="w3-radio" type="checkbox" name="NtMatch" id="NtMatch" v-model="user.flagNotificationMatch"/>
                            <i class="fa fa-heartbeat" aria-hidden="true"></i> <span>Notificações de Match</span>
-                           <input type="checkbox" name="NtMatch" id="NtMatch" value="NtMatch"/>
                            </label>
                         </li>
                         <li class="list-group-item">
                            <label>
+                           <input class="w3-radio" type="checkbox" name="NtNnovoAmigo" id="NtNnovoAmigo" v-model="user.flagNotificationFriends"/>
                            <i class="fa fa-users" aria-hidden="true"></i> <span>Novo Amigo</span>
-                           <input type="checkbox" name="NtNnovoAmigo" id="NtNnovoAmigo" value="NtNnovoAmigo"/>
                            </label>
                         </li>
                      </div>
@@ -56,14 +56,14 @@
                      <div class="well">
                         <li class="list-group-item">
                            <label>
+                           <input class="w3-radio" type="checkbox" name="ExPicante" id="ExPicante" v-model="user.flagDisplayCount"/>
                            <i class="fa fa-calculator" aria-hidden="true"></i> <span>Exibir Contagem no Perfil</span>
-                           <input type="checkbox" name="ExPicante" id="ExPicante" value="ExPicante"/>
                            </label>
                         </li>
                         <li class="list-group-item">
                            <label>
+                           <input class="w3-radio" type="checkbox" name="ExPicante" id="ExPicante" v-model="user.flagDisplayHot"/>
                            <i class="fa fa-fire" aria-hidden="true"></i> <span>Exibir Opção Picante</span>
-                           <input type="checkbox" name="ExPicante" id="ExPicante" value="ExPicante"/>
                            </label>
                         </li>
                      </div>
@@ -71,8 +71,9 @@
                   <div class="panel-heading">
                      <h4>Política</h4>
                      <li class="list-group-item well">
-                        <div><i class="fa fa-link" aria-hidden="true"></i><a href="#"> Termo de Serviço</a>
-                           <a href="#"  class="pull-right"><i class="fa fa-link" aria-hidden="true"></i> Privacidade</a>
+                        <div>                            
+                            <span><a href="#"><i class="fa fa-link" aria-hidden="true"></i> Termo de Serviço</a></span>
+                            <span class="pull-right"><a href="#"><i class="fa fa-link" aria-hidden="true"></i> Privacidade</a></span>
                         </div>
                      </li>
                   </div>
@@ -80,8 +81,8 @@
                      <h4>Conta</h4>
                      <li class="list-group-item well">
                         <div>
-                           <i class="fa fa-sign-out" aria-hidden="true"></i><a href="#"> Sair</a>
-                           <a href="#" class="pull-right"> <i class="fa fa-times-circle-o" aria-hidden="true"></i> Apagar Conta</a>
+                           <span><i class="fa fa-sign-out" aria-hidden="true"></i><a href="/" @click="logout">Sair</a></span>
+                           <span class="pull-right"><a href="#"> <i class="fa fa-times-circle-o" aria-hidden="true"></i> Apagar Conta</a></span>
                         </div>
                      </li>
                   </div>
@@ -138,6 +139,14 @@ methods:{
 		}    
 		})
 		},
+    //Logout
+    logout () {
+        let vm = this
+        FB.logout(function (response) {
+        vm.statusChangeCallback(response)
+        console.log("logout Efetuado")
+        })
+    },
 	//PUT API APP Set Preferencia Sexual
 	updatePreferencia: function(){				
 		const setPreference = {preference:  this.user.preference}

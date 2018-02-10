@@ -1,57 +1,162 @@
 <template>
-<div  class="col-md-3 profile">
-    <div v-if="profile.id" class="media">
-        <div class="media-left">
-            <a v-bind:href="profile.link" target="_blank" title="Perfil Facebook">
-                <img class="media-object" :src="profilePicture">
-            </a>
-        </div>
-        <div class="media-body">
-            <h6 class=""><a v-bind:href="profile.link" target="_blank" title="Perfil Facebook">{{this.profile.name}}</a>
-             <p id="friendsCount"><i class="fa fa-users"></i><b> {{profile.friends.data.length}} de {{profile.friends.summary.total_count}} </b>Amigos</p> 
-            </h6>
-        </div>
-    </div>
-    <div v-else class="media">
-        <div class="media-left">
-            <img class="media-object" :src="profilePicture">
-        </div>
-        <div class="media-body">
-            <h1 v-html="profileName"></h1>
-        </div>
-    </div>
-</div> 
+<div>
+  <div id="perfil" class="perfil  col-md-6 container panel col-md-offset-3">
+			<div class="perfilPrincipal panel-body well" id="perfilPrincipal">
+			  	<div class="row perfilPicture">
+            <a v-bind:href="link" target="_blank"><img class="media-object" :src="profilePicture"></a>
+			  	</div>
+			  	<div>
+			    	<h4 class="perfilName"><a v-bind:href="link" target="_blank">{{name}}</a>
+						</h4>			  		
+			  	</div>
+			    <div class="row perfilbrprogress">
+			    	<p class="pull-right" id="friendsCount"><b>{{friendsTotalApp}}</b> de {{friendsTotalFb}} <i class="fa fa-users"></i> </p>
+			    	<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+						    70%
+						 </div>
+					</div>
+			    </div>
+          <ul class="row list-group panel-body">
+						<li class="">						
+						  <div class="classification">
+						   	<ul class="img_classification col-md-12">
+									<li class="cl_fiquei" data-toggle="tooltip" data-placement="top" title="Já Fiquei">
+										<span class="badge" id="cont_cl_fiquei">15</span>
+									</li>
+									<li class="cl_ficaria2" data-toggle="tooltip" data-placement="top" title="Ficaria Novamente">
+										<span class="badge" id="cont_cl_ficaria2">8</span>
+									</li>
+									<li class="cl_picante" data-toggle="tooltip" data-placement="top" title="Relação Picante">
+										<span class="badge" id="cont_cl_picante">2</span>
+									</li>
+									<li class="cl_fico" data-toggle="tooltip" data-placement="top" title="Ficaria">
+										<span class="badge" id="cont_cl_fico">6</span>
+									</li>
+									<li class="cl_Ninteresse" data-toggle="tooltip" data-placement="top" title="Sem Interesse">
+										<span class="badge" id="cont_cl_Ninteresse">60</span>
+									</li>
+								</ul>
+						  </div>
+						</li>			
+					</ul>
+			</div>
+
+      <div id="perfilMatch" class="well perfilMatch panel-body">
+				<div class="row">
+					<div class="row  perfilMatchList col-md-12 container">
+						<div class="perfilMatchListInfo">
+							<a href="/notificationNewMatch">
+								<i class="cl_ficaria2">  </i>
+								<span><b>Match</b> Iai Rola?</span>
+								<span class="badge pull-right">4</span>
+							</a>
+						</div>
+					</div>
+					<div class="row  perfilMatchList col-md-12 container">
+						<div class="perfilMatchListInfo">
+								<a href="/notificationOldMatch">
+								<i class="cl_fico">  </i>
+								<span><b>Macth</b> Alerta de Flash Back!</span>
+								<span class="badge pull-right">5</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="well">
+				<span>
+					<span class="pull-left staricon fa fa-star fa-2x"></span>
+					<span>Você Foi Classificado</span>
+					<span class="badge pull-right">76</span>
+				</span>
+			</div>
+      <div id="perfilNewFriends" class="well perfilNewFriends panel-body">
+				<small><i class="fa fa-users"></i>Amigos Recentes no APP</small>				
+				<div id=""  ref="scroller">			
+					<ul class="row__inner">					
+						<recentFriends v-for="friend in friends" v-if="friend.option != null" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:option="friend.option"></recentFriends>											
+					</ul>
+				</div>
+				<nav id="menu-carrossel">
+					<span v-on:mouseover="scrollEsquerda()" v-on:mouseout="clearScroll()" class="prev glyphicon glyphicon-chevron-left pull-left handle handlePrev active" ></span>
+					<span v-on:mouseover="scrollDireita()" v-on:mouseout="clearScroll()" class="next glyphicon glyphicon-chevron-right pull-right handle handleNext active"></span>
+				</nav>				
+			</div>
+  </div> 
+  </div>
 </template>
 
+
 <script>
-export default {
-  props: ['profile'],
-  name: 'ProfileComponent',
+import FriendComponent from '../components/FriendComponent.vue';
+import UserComponent from '../components/UserComponent.vue';
+import RecentFriends from './RecentFriends.vue';	
+
+export default{
+  props:['name','imagem','link','friendsTotalFb','friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp'],
   computed: {
     profileName () {
-      if (this.profile.id) {
-        return `${this.profile.name}`
-        console.log('User Conectado', this.profile.name);
+      if (this.id) {
+        return `${this.name}`
+        console.log('User Conectado', this.name);
       } else {
         return '<h6 onclick="Refresh();">Buscando... <a>Atualizar</a></h6>'
       }
     },
     profilePicture () {
-        return (this.profile.id) ? `https://graph.facebook.com/${this.profile.id}/picture?width=300` : `/src/assets/img/man.gif`
+        return (this.id) ? `https://graph.facebook.com/${this.id}/picture?width=300` : `/src/assets/img/man.gif`
     },
+  },
+	components:{
+    FriendComponent,
+		UserComponent,
+		RecentFriends
+  },
+	data () {
+    return {
+      max: 50,
+      value: 33.333333333
+    }
+  },
+  methods:{
+    scrollDireita(){
+      this.intervalo = setInterval(() => { this.$refs.scroller.scrollLeft += 1 }  , 5);
+    },
+    scrollEsquerda(){
+      this.intervalo = setInterval(() => { this.$refs.scroller.scrollLeft -= 1 }  , 5);
+    },
+    clearScroll(){
+      clearInterval(this.intervalo);
+    }
   }
 }
+
 </script>
 
-<style lang="scss" scoped>
-.profile img {
-    width: 35px;
-    height: 38px;
-    border-radius: 41px;
-    border: 2px solid rgba(73, 158, 223, 0.144) !important;
+
+<style lang="scss">
+
+.perfilNewFriends {
+ margin-bottom: 50px;
 }
-.profile h6 a{
-    margin-top: 10px !important;
+
+.perfilNewFriends ul li {
+	display: inline-block;
+	padding-left: 12px;
+	width: 38px !important;
 }
-#friendsCount {font-size: 10px}
+
+.perfilNewFriends ul li a img:hover{
+    zoom: 1.2;
+    position: relative;
+    border-radius: 86px;
+		border: 2px solid #6961e2;
+}
+
+#menu-carrossel {
+    margin-top: -40px;
+}
+
 </style>

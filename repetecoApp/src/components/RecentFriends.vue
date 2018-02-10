@@ -1,5 +1,7 @@
 <template>				
-  <li><a v-bind:href="link" target="_blank"><img v-bind:src="imagem" v-bind:title="name"></a></li>
+  <li>
+    <a v-bind:href="link" target="_blank"><img v-bind:src="imagem" v-bind:title="name"></a>
+  </li>
 </template>
 <script>
 export default{
@@ -14,9 +16,7 @@ export default{
     }
 }
 </script>
-
-<style lang="scss">
-</style>
+<style lang="scss"> </style>
      
      
      

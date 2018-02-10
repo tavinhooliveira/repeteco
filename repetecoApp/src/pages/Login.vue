@@ -51,12 +51,12 @@
 
 <script>
 
-import ProfileComponent from "../components/ProfileComponent.vue";
+import ProfileHeaderComponent from "../components/ProfileHeaderComponent.vue";
 
 export default {
 name: 'login',
 components: {
-  ProfileComponent
+  ProfileHeaderComponent
 },
 data () {
   return {

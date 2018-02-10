@@ -9,7 +9,7 @@
       </div>
       <div class="row container">
         <div class="btnNotification">
-          <profileComponent :profile="profile"></profileComponent>
+          <profileHeaderComponent :profile="profile"></profileHeaderComponent>
             <div class="btn-group pull-right" role="group" aria-label="...">
               <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Todos" onclick="location.href='/classification'"><i class="fa fa-star-half-o"> </i></button>
               <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Classificados" onclick="location.href='classificationOn'" data-transition="slide"><i class="fa fa-star"> </i></button>
@@ -29,14 +29,14 @@
 import UserComponentOff from "../components/UserComponentOff.vue";
 import Reload from "../components/Reload.vue";
 import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
-import ProfileComponent from "../components/ProfileComponent.vue";
+import ProfileHeaderComponent from "../components/ProfileHeaderComponent.vue";
 
 export default {
   name: "ClassificationOff",
   props: ["name", "imagem","friends"],
   components:{
     UserComponentOff,
-    ProfileComponent,
+    ProfileHeaderComponent,
     Reload,
     ReloadAuthorizedComponent   ,
     

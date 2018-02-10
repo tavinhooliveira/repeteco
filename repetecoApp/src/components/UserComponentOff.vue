@@ -1,24 +1,20 @@
 <template>
-<div>
   <div>
-    <friendComponentOff v-if="friend.option === null" v-bind:isNull="null" v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:city="friend.city" v-bind:nationality="friend.nationality" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:gender="friend.gender" v-bind:friendsTotalFb="friend.friendsTotalFb" v-bind:preference="preference"></friendComponentOff>
-  </div>
+    <div>
+      <friendComponentOff v-if="friend.option === null" v-bind:isNull="null" v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:city="friend.city" v-bind:nationality="friend.nationality" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:gender="friend.gender" v-bind:friendsTotalFb="friend.friendsTotalFb" v-bind:preference="preference"></friendComponentOff>
+    </div>
     <!-- <p class="text-center">Nenhum amigo encontrado! ✋</p> --> 
-</div>  
+  </div>  
 </template>
-
 <script>
 import FriendComponentOff from './FriendComponentOff.vue';
-import Reload from "../components/Reload.vue";
 export default{
   props:['name','imagem','link','nationality','friendsTotalFb','friends', 'preference'],
   components:{
-    FriendComponentOff,
-    Reload
+    FriendComponentOff
   }
 }
 </script>
-
 <style lang="scss">
 .userProfile a{text-decoration: none; padding-right: 10px; }
 .userProfile img{width: 40px;height: 40px;border-radius: 41px;border: 4px solid rgba(163, 173, 183, 0.54) !important;background: #fff;margin-left: 10px;}
