@@ -7,7 +7,6 @@
         <div class="col-md-8 classification">
             <h4 class="media-heading"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
             <div class="LfLocation">{{city}}</div>
-            
             <div class="img_classification" @change="updateStatusOption()"> 
                 <label class="cl_fiquei" title="Já Fiquei">
                     <input type="radio" value="fiquei" id="optionclassificada" v-model="optiondata">
@@ -17,7 +16,7 @@
                     <input type="radio" value="ficariaNovamente" id="optionclassificada" v-model="optiondata">
                     <span class="cl_ficaria2"></span>
                 </label>
-                <label class="cl_picante" title="Relação Picante">
+                <label v-show="flagDisplayHot === true" class="cl_picante" title="Relação Picante">
                     <input type="radio"  value="relacaoPicante" id="optionclassificada" v-model="optiondata">
                     <span class="cl_picante"></span>
                 </label>
@@ -29,7 +28,6 @@
                     <input type="radio"  value="semInteresse" id="optionclassificada" v-model="optiondata">
                     <span class="cl_Ninteresse"></span>
                 </label>
-
             </div>                  
         </div>
         <div v-if="optiondata != null" v-on:click="starClickOff()" class=" starClassification classificationTrue pull-right"></div>
@@ -40,7 +38,7 @@
 
 <script>
 export default{
-  props:['id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb', 'preference'],
+  props:['id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb', 'preference', 'flagDisplayHot'],
   data(){
      return{
         efeitoClick: null,

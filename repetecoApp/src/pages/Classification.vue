@@ -10,7 +10,7 @@
       <div class="row container">
         <div class="btnNotification" >
               <profileHeaderComponent :profile="profile"></profileHeaderComponent>      
-            <div class="btn-group pull-right" role="group" aria-label="...">
+            <div class="btn-group pull-right btnclassifications" role="group" aria-label="...">
               <button type="button" class="btn btn-default active" data-toggle="tooltip" data-placement="bottom" title="Todos" onclick="location.href='/classification'"><i class="fa fa-star-half-o"> </i></button>
               <button type="button" class="btn btn-default " data-toggle="tooltip" data-placement="bottom" title="Classificados" onclick="location.href='classificationOn'" data-transition="slide"><i class="fa fa-star"> </i></button>
               <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Não Classificados" onclick="location.href='/classificationOff'"><i class="fa fa-star-o"> </i></button>
@@ -18,7 +18,10 @@
         </div>     
       </div>      
       <div v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
-        <userComponent v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb" v-bind:preference="user.preference"></userComponent>
+        <userComponent v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem"
+          v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"
+          v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot">
+        </userComponent>
       </div>
       <div v-else><reload></reload></div>  
   </div>

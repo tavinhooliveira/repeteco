@@ -1,7 +1,12 @@
 <template>
   <div>
     <div>
-      <friendComponentOff v-if="friend.option === null" v-bind:isNull="null" v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:city="friend.city" v-bind:nationality="friend.nationality" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:gender="friend.gender" v-bind:friendsTotalFb="friend.friendsTotalFb" v-bind:preference="preference"></friendComponentOff>
+      <friendComponentOff v-if="friend.option === null" v-bind:isNull="null" v-for="friend in friends" v-bind:key="friend.id"
+        v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:city="friend.city"
+        v-bind:nationality="friend.nationality" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends"
+        v-bind:gender="friend.gender" v-bind:friendsTotalFb="friend.friendsTotalFb" v-bind:preference="preference"
+        v-bind:flagDisplayHot="flagDisplayHot">
+      </friendComponentOff>
     </div>
     <!-- <p class="text-center">Nenhum amigo encontrado! ✋</p> --> 
   </div>  
@@ -9,7 +14,7 @@
 <script>
 import FriendComponentOff from './FriendComponentOff.vue';
 export default{
-  props:['name','imagem','link','nationality','friendsTotalFb','friends', 'preference'],
+  props:['name','imagem','link','nationality','friendsTotalFb','friends', 'preference', 'flagDisplayHot'],
   components:{
     FriendComponentOff
   }

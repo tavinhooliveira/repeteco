@@ -1,6 +1,10 @@
 <template>
    <section>
    <div>
+     <div v-if="!authorized">
+        <ReloadAuthorizedComponent></ReloadAuthorizedComponent>
+    </div>
+    <div v-else>
       <div v-if="this.statusAPIAPP === true" id="configuracao" class="configuracao col-md-6 container col-md-offset-3 ">
          <div class="panel panel-default">
             <div class="panel-heading">
@@ -13,7 +17,7 @@
             <div id="msgPreference" class="alert w3-panel w3-pale-green w3-display-container" style="display:none">
                 <span onclick="this.parentElement.style.display='none'"
                 class="pull-right text-success"> ✘</span>
-                <strong>OK!</strong> Suas Preferências foram registradas com Sucesso!.
+                <strong>OK!</strong> Suas Preferências foram registradas com Sucesso!
             </div>
             <div class="" >
                <div class="panel-heading">
@@ -31,11 +35,6 @@
                         <input class="w3-radio" type="radio" name="preferencia" id="Ambos" value="" v-model="user.preference">
                         <label for="Ambos" class="fa fa-venus-mars"> Ambos</label>
                      </div>
-                    <div id="msgPreference" class="w3-panel w3-pale-green w3-display-container" style="display:none">
-                        <span onclick="this.parentElement.style.display='none'"
-                        class="pull-right text-success"> ✘</span>
-                        <span class="label label-success">Preferência Registrada! ✔</span>
-                    </div>
                   </form>
                </div>
                <ul class="list-group" @change="updatePreferencia()">
@@ -99,23 +98,26 @@
       <br><br><br><br><br><br>
       <reload></reload></div>  
   	</div>
+      </div>
    </section>
 </template>
 <script>
 
 import Reload from "../components/Reload.vue";
-
+import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
 export default{
 props:['preference'],
 data(){
 	return{
 		user: {},
 		profile: {},
-		statusAPIAPP: false                   
+		statusAPIAPP: false,
+        authorized: false,                
 	} 
 },
 components:{
-	Reload
+	Reload,
+    ReloadAuthorizedComponent
 },
 created(){	
 

@@ -1,7 +1,9 @@
 
 /*Responsivo Tablet*/
 @media (min-width : 430px) and (max-width: 1198px) {
-	
+    
+    .btnclassifications{margin-top: -40px}
+    
 	#logar .classificationInfo {
     width: 100%;
     margin-left: 0px;
@@ -191,6 +193,8 @@
 /*Responsivo Modile Android*/
 @media (min-width : 320px) and (max-width : 480px){
 
+    .btnclassifications{margin-top: -40px}
+
     #logar .classificationInfo {
     width: 330px;
     margin-left: 0px;
@@ -354,6 +358,7 @@
     padding-left: 6px !important;
 }
   */  
+  .btnclassifications{margin-top: -40px}
 
   .searchClassification input {
     width: 102%;}

@@ -17,7 +17,7 @@
                     <input type="radio" value="ficariaNovamente" id="optionclassificada" v-model="optiondata">
                     <span class="cl_ficaria2"></span>
                 </label>
-                <label class="cl_picante" title="Relação Picante">
+                <label v-show="flagDisplayHot === true" class="cl_picante" title="Relação Picante">
                     <input type="radio"  value="relacaoPicante" id="optionclassificada" v-model="optiondata">
                     <span class="cl_picante"></span>
                 </label>
@@ -41,7 +41,7 @@
 
 <script>
 export default{
-  props:['id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb', 'preference', 'isNull'],
+  props:['id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb', 'preference', 'isNull', 'flagDisplayHot'],
   data(){
      return{
         efeitoClick: null,

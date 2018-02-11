@@ -34,10 +34,6 @@ window.location.reload();
 //setTimeout('location.reload();', 5000);
 }
 
-$('#exampleModal').on('shown.bs.modal', function () {
-  $('#myInput').focus()
-})
-
 /*Corrosel newFriends*/
 $(function() {
     $("#carrossel"). jCarouselLite({

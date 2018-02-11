@@ -17,7 +17,7 @@
 						 </div>
 					</div>
 			    </div>
-          <ul class="row list-group panel-body">
+          <ul v-show="flagDisplayCount === true" class="row list-group panel-body">
 						<li class="">						
 						  <div class="classification">
 						   	<ul class="img_classification col-md-12">
@@ -27,7 +27,7 @@
 									<li class="cl_ficaria2" data-toggle="tooltip" data-placement="top" title="Ficaria Novamente">
 										<span class="badge" id="cont_cl_ficaria2">8</span>
 									</li>
-									<li class="cl_picante" data-toggle="tooltip" data-placement="top" title="Relação Picante">
+									<li v-show="flagDisplayHot === true"class="cl_picante" data-toggle="tooltip" data-placement="top" title="Relação Picante">
 										<span class="badge" id="cont_cl_picante">2</span>
 									</li>
 									<li class="cl_fico" data-toggle="tooltip" data-placement="top" title="Ficaria">
@@ -77,12 +77,13 @@
 				<div id=""  ref="scroller">			
 					<ul class="row__inner">					
 						<recentFriends v-for="friend in friends" v-if="friend.option != null" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:option="friend.option"></recentFriends>											
-					</ul>
+					</ul>	
 				</div>
 				<nav id="menu-carrossel">
 					<span v-on:mouseover="scrollEsquerda()" v-on:mouseout="clearScroll()" class="prev glyphicon glyphicon-chevron-left pull-left handle handlePrev active" ></span>
 					<span v-on:mouseover="scrollDireita()" v-on:mouseout="clearScroll()" class="next glyphicon glyphicon-chevron-right pull-right handle handleNext active"></span>
-				</nav>				
+				</nav>
+				</br></br>				
 			</div>
   </div> 
   </div>
@@ -95,7 +96,7 @@ import UserComponent from '../components/UserComponent.vue';
 import RecentFriends from './RecentFriends.vue';	
 
 export default{
-  props:['name','imagem','link','friendsTotalFb','friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp'],
+  props:['name','imagem','link','friendsTotalFb','friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp', 'flagDisplayCount', 'flagDisplayHot'],
   computed: {
     profileName () {
       if (this.id) {

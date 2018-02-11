@@ -1,37 +1,34 @@
 <template>
 <div>
   <section>
-    <!--Search -->
+      <div v-if="!authorized">
+        <ReloadAuthorizedComponent></ReloadAuthorizedComponent>
+    </div>
+			<div v-else  id="ListFriends" class="ListFriends container notification">
+      <!--Search -->
  			<div id="searchClassification" class="container searchClassification navbar-fixed-top">
 			 	<input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">
-			</div>		
-			<div id="ListFriends" class="ListFriends container notification">
+			</div>
 				<div class="btnNotification" role="group" >
-					<span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>
-					<div class="btn-group pull-right" role="group">
-					      <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					        <i class="glyphicon glyphicon-bell"></i>
-					        <span class="caret"></span>
-					      </div>
-								<ul class="dropdown-menu">                
-									<li><a onclick="location.href='/notificationNewMatch'" data-transition="slide">Novo Lance</a></li>
-									<li><a onclick="location.href='/notificationOldMatch'">Flash Back</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a onclick="location.href='/notification'">Todos</a></li>
-								</ul>
-					</div>						   
-			  </div>	
-				<ul class="list-group" id="searchUL">
-						<notificationOldMatchComponent v-bind:friend="friends" v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" ></notificationOldMatchComponent>											
+					<span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
+					<div class="btn-group pull-right">
+            <div>					        
+              <a href="/notification" class="active" title="Todos" ><i class="glyphicon glyphicon-bell"> </i>Todos</a> |
+              <a href="/notificationNewMatch" title="Novos Matchs" >Novos Matchs</a> | 
+              <a href="/notificationOldMatch" title="Flash Backs" >Flash Backs</a>
+            </div>								
+					</div>	 				   
+			  </div>
+				<ul v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
+          <notificationOldMatchComponent v-bind:friend="friends" v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:user_id="friend.user_id"></notificationOldMatchComponent>
 				</ul>
-
+        <div v-else><reload></reload></div> 
 			</div>
 		</section>
 </div>	
 </template>
 
 <script>
-
 import NotificationOldMatchComponent from '../components/NotificationOldMatchComponent.vue';
 import UserComponent from '../components/UserComponent.vue';
 import Reload from "../components/Reload.vue";
