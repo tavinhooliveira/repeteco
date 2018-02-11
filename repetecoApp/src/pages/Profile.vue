@@ -25,7 +25,6 @@
 import ProfileComponent from '../components/ProfileComponent.vue';
 import UserComponent from '../components/UserComponent.vue';
 import FriendComponent from '../components/FriendComponent.vue';
-import RecentFriends from '../components/RecentFriends.vue';
 import Reload from '../components/Reload.vue';
 import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
 
@@ -35,7 +34,6 @@ export default {
   components:{
     ProfileComponent,
     FriendComponent,
-    RecentFriends,
     UserComponent,
     Reload,
     ReloadAuthorizedComponent

@@ -76,7 +76,7 @@
 				<small><i class="fa fa-users"></i>Amigos Recentes no APP</small>				
 				<div id=""  ref="scroller">			
 					<ul class="row__inner">					
-						<recentFriends v-for="friend in friends" v-if="friend.option != null" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:option="friend.option"></recentFriends>											
+						<recentFriendsComponent v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:option="friend.option"></recentFriendsComponent>											
 					</ul>	
 				</div>
 				<nav id="menu-carrossel">
@@ -93,7 +93,7 @@
 <script>
 import FriendComponent from '../components/FriendComponent.vue';
 import UserComponent from '../components/UserComponent.vue';
-import RecentFriends from './RecentFriends.vue';	
+import RecentFriendsComponent from './RecentFriendsComponent.vue';	
 
 export default{
   props:['name','imagem','link','friendsTotalFb','friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp', 'flagDisplayCount', 'flagDisplayHot'],
@@ -113,7 +113,7 @@ export default{
 	components:{
     FriendComponent,
 		UserComponent,
-		RecentFriends
+		RecentFriendsComponent
   },
 	data () {
     return {

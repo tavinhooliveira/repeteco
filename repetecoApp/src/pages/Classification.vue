@@ -5,7 +5,7 @@
   </div>
   <div v-else id="ListFriends" class="ListFriends container">
       <div id="searchClassification" class="container searchClassification navbar-fixed-top">
-        <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">      
+        <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar..." class="fa fa-search">     
       </div>
       <div class="row container">
         <div class="btnNotification" >
