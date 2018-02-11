@@ -44,7 +44,8 @@ export default {
       users:[],
       profile: [],
       authorized: false,
-      statusAPIAPP: false      
+      statusAPIAPP: false,
+      intervalo:null,
     }
   },
 methods: {
@@ -108,3 +109,5 @@ mounted () {
  //Facebook - End 
 };
 </script>
+
+

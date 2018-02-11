@@ -11,7 +11,7 @@
 			  	</div>
 			    <div class="row perfilbrprogress">
 			    	<p class="pull-right" id="friendsCount"><b>{{friendsTotalApp}}</b> de {{friendsTotalFb}} <i class="fa fa-users"></i> </p>
-			    	<div class="progress">
+			    	<div class="progress progress-striped ">
 						<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
 						    70%
 						 </div>
@@ -64,7 +64,7 @@
 					</div>
 				</div>
 			</div>
-
+			
 			<div class="well">
 				<span>
 					<span class="pull-left staricon fa fa-star fa-2x"></span>
@@ -72,28 +72,30 @@
 					<span class="badge pull-right">76</span>
 				</span>
 			</div>
-      <div id="perfilNewFriends" class="well perfilNewFriends panel-body">
-				<small><i class="fa fa-users"></i>Amigos Recentes no APP</small>				
-				<div id=""  ref="scroller">			
-					<ul class="row__inner">					
-						<recentFriendsComponent v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:option="friend.option"></recentFriendsComponent>											
-					</ul>	
-				</div>
-				<nav id="menu-carrossel">
-					<span v-on:mouseover="scrollEsquerda()" v-on:mouseout="clearScroll()" class="prev glyphicon glyphicon-chevron-left pull-left handle handlePrev active" ></span>
-					<span v-on:mouseover="scrollDireita()" v-on:mouseout="clearScroll()" class="next glyphicon glyphicon-chevron-right pull-right handle handleNext active"></span>
-				</nav>
-				</br></br>				
+			<div id="perfilNewFriends" class="slider perfilNewFriends well  panel-body">
+				<small> <i class="fa fa-users"></i> Amigos Recentes no APP</small>
+				<span v-on:mouseover="scrollEsquerda()" v-on:mouseout="clearScroll()" class="handle handlePrev active">
+					<i class="setasScroller glyphicon glyphicon-triangle-left"></i>
+				</span>
+					<div ref="scroller" class="row">
+						<ul class="row__inner" >
+							<carroselComponent v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link"></carroselComponent>	
+						</ul>
+					</div>
+				<span v-on:mouseover="scrollDireita()" v-on:mouseout="clearScroll()"  class="handle handleNext active">
+					<i class="setasScroller glyphicon glyphicon-triangle-right" ></i>
+				</span>
 			</div>
-  </div> 
+			</br>
+
+  	</div>
   </div>
 </template>
-
 
 <script>
 import FriendComponent from '../components/FriendComponent.vue';
 import UserComponent from '../components/UserComponent.vue';
-import RecentFriendsComponent from './RecentFriendsComponent.vue';	
+import CarroselComponent from '../components/CarroselComponent.vue';
 
 export default{
   props:['name','imagem','link','friendsTotalFb','friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp', 'flagDisplayCount', 'flagDisplayHot'],
@@ -113,13 +115,7 @@ export default{
 	components:{
     FriendComponent,
 		UserComponent,
-		RecentFriendsComponent
-  },
-	data () {
-    return {
-      max: 50,
-      value: 33.333333333
-    }
+		CarroselComponent
   },
   methods:{
     scrollDireita(){
