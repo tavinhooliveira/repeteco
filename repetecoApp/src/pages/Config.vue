@@ -10,9 +10,14 @@
                   <span class="pull-right"> Config. <i class="glyphicon glyphicon-cog"></i> </span>	   
                </div>
             </div>
+            <div id="msgPreference" class="alert w3-panel w3-pale-green w3-display-container" style="display:none">
+                <span onclick="this.parentElement.style.display='none'"
+                class="pull-right text-success"> ✘</span>
+                <strong>OK!</strong> Suas Preferências foram registradas com Sucesso!.
+            </div>
             <div class="" >
                <div class="panel-heading">
-                  <h4>Preferências</h4>
+                  <h4>Interesses</h4>
                   <form class="well" @change="updatePreferencia()">
                      <div>
                         <input class="w3-radio" type="radio" name="preferencia" id="male" value="male" v-model="user.preference">
@@ -33,19 +38,19 @@
                     </div>
                   </form>
                </div>
-               <ul class="list-group">
+               <ul class="list-group" @change="updatePreferencia()">
                   <div class="panel-heading">
                      <h4>Notificações</h4>
                      <div class="well">
                         <li class="list-group-item">
                            <label>
-                           <input class="w3-radio" type="checkbox" name="NtMatch" id="NtMatch" v-model="user.flagNotificationMatch"/>
+                           <input class="w3-radio" type="checkbox" name="flagNotificationMatch" id="flagNotificationMatch" v-model="user.flagNotificationMatch"/>
                            <i class="fa fa-heartbeat" aria-hidden="true"></i> <span>Notificações de Match</span>
                            </label>
                         </li>
                         <li class="list-group-item">
                            <label>
-                           <input class="w3-radio" type="checkbox" name="NtNnovoAmigo" id="NtNnovoAmigo" v-model="user.flagNotificationFriends"/>
+                           <input class="w3-radio" type="checkbox" name="flagNotificationFriends" id="flagNotificationFriends" v-model="user.flagNotificationFriends"/>
                            <i class="fa fa-users" aria-hidden="true"></i> <span>Novo Amigo</span>
                            </label>
                         </li>
@@ -56,13 +61,13 @@
                      <div class="well">
                         <li class="list-group-item">
                            <label>
-                           <input class="w3-radio" type="checkbox" name="ExPicante" id="ExPicante" v-model="user.flagDisplayCount"/>
+                           <input class="w3-radio" type="checkbox" name="flagDisplayCount" id="flagDisplayCount" v-model="user.flagDisplayCount"/>
                            <i class="fa fa-calculator" aria-hidden="true"></i> <span>Exibir Contagem no Perfil</span>
                            </label>
                         </li>
                         <li class="list-group-item">
                            <label>
-                           <input class="w3-radio" type="checkbox" name="ExPicante" id="ExPicante" v-model="user.flagDisplayHot"/>
+                           <input class="w3-radio" type="checkbox" name="flagDisplayHot" id="flagDisplayHot" v-model="user.flagDisplayHot"/>
                            <i class="fa fa-fire" aria-hidden="true"></i> <span>Exibir Opção Picante</span>
                            </label>
                         </li>
@@ -149,7 +154,12 @@ methods:{
     },
 	//PUT API APP Set Preferencia Sexual
 	updatePreferencia: function(){				
-		const setPreference = {preference:  this.user.preference}
+		const setPreference = {preference:  this.user.preference,
+                               flagNotificationMatch: this.user.flagNotificationMatch,
+                               flagNotificationFriends: this.user.flagNotificationFriends,
+                               flagDisplayCount: this.user.flagDisplayCount,
+                               flagDisplayHot: this.user.flagDisplayHot
+                              }
 		var userId = this.user.id
 		$.ajax({
 			url: (`http://localhost:9096/wsrepeteco/users/${userId}/preference`),
