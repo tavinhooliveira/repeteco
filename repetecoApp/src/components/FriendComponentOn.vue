@@ -101,5 +101,5 @@ export default{
 <style lang="scss">
 .ListFriends li .LfPicture img:hover{border: 4px solid rgba(85, 169, 247, 0.54) !important;}
 .optionShow{color: #c0bebe}
-.msgClamigos {font-size: 10px; color: #cecdcd;}
+.msgClamigos {font-size: 10px; color: #cecdcd; position: absolute; margin-top: 33px; margin-left: 9px;}
 </style>

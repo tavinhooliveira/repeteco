@@ -2,25 +2,24 @@
 <div>
   <div id="perfil" class="perfil  col-md-6 container panel col-md-offset-3">
 			<div class="perfilPrincipal panel-body well" id="perfilPrincipal">
-			  	<div class="row perfilPicture">
+			  	<div class="row perfilPicture center-block">
             <a v-bind:href="link" target="_blank"><img class="media-object" :src="profilePicture"></a>
 			  	</div>
 			  	<div>
-			    	<h4 class="perfilName"><a v-bind:href="link" target="_blank">{{name}}</a>
+			    	<h4 class="perfilName center-block"><a v-bind:href="link" target="_blank">{{name}}</a>
 						</h4>			  		
 			  	</div>
 			    <div class="row perfilbrprogress">
 			    	<p class="pull-right" id="friendsCount"><b>{{friendsTotalApp}}</b> de {{friendsTotalFb}} <i class="fa fa-users"></i> </p>
+						
 			    	<div class="progress progress-striped ">
-						<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-						    70%
-						 </div>
-					</div>
+							<div class="bar" role="progressbar" :style="'height:30px;background:#1E8BC3;width:' + friendsTotalApp + '%'"><b class="text-secondary">{{progress()}}%</b></div>
+						</div>
 			    </div>
           <ul v-show="flagDisplayCount === true" class="row list-group panel-body">
 						<li class="">						
-						  <div class="classification">
-						   	<ul class="img_classification col-md-12">
+						  <div class="classification center-block">
+						   	<ul class="img_classification col-md-12 center-block">
 									<li class="cl_fiquei" data-toggle="tooltip" data-placement="top" title="Já Fiquei">
 										<span class="badge" id="cont_cl_fiquei">15</span>
 									</li>
@@ -118,6 +117,10 @@ export default{
 		CarroselComponent
   },
   methods:{
+		progress(){
+			//return (this.friendsTotalFb  * this.friendsTotalApp) / 100
+			return Math.round(this.friendsTotalFb  - this.friendsTotalApp) / 100
+		},
     scrollDireita(){
       this.intervalo = setInterval(() => { this.$refs.scroller.scrollLeft += 1 }  , 5);
     },

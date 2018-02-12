@@ -17,7 +17,7 @@
             </div>        
         </div>     
       </div>      
-      <div v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
+      <div v-if="this.statusAPIAPP === true" class="list-group center-block" id="searchUL">
         <userComponent v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem"
           v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"
           v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot">

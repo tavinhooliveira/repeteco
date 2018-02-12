@@ -1,13 +1,13 @@
 <template>
 <li v-if="genderPreference === gender || genderPreference === ''"  class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
-    <form class="statusForm" >
+    <form class="statusForm center-block" >
         <div class="media-left col-md-4 LfPicture" >
             <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
         </div>
-        <div class="col-md-8 classification">
-            <h4 class="media-heading"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
+        <div class="col-md-8 classification center-block">
+            <h4 class="media-heading center-block"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
             <div class="LfLocation">{{city}}</div>
-            <div class="img_classification" @change="updateStatusOption()"> 
+            <div class="img_classification center-block" @change="updateStatusOption()"> 
                 <label class="cl_fiquei" title="Já Fiquei">
                     <input type="radio" value="fiquei" id="optionclassificada" v-model="optiondata">
                     <span class="cl_fiquei"></span>
@@ -16,7 +16,7 @@
                     <input type="radio" value="ficariaNovamente" id="optionclassificada" v-model="optiondata">
                     <span class="cl_ficaria2"></span>
                 </label>
-                <label v-show="flagDisplayHot === true" class="cl_picante" title="Relação Picante">
+                <label v-show="flagDisplayHot === true" class="cl_picante" style="padding-left: 0px;" title="Relação Picante">
                     <input type="radio"  value="relacaoPicante" id="optionclassificada" v-model="optiondata">
                     <span class="cl_picante"></span>
                 </label>
@@ -98,4 +98,8 @@ export default{
 <style lang="scss">
 .ListFriends li .LfPicture img:hover{border: 4px solid rgba(85, 169, 247, 0.54) !important;}
 .optionShow{color: #c0bebe}
+.ListFriends .img_classification label {
+    margin-left: 5px;
+    padding-left: 5px;
+}
 </style>

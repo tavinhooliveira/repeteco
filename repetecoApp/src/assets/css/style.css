@@ -77,9 +77,10 @@ header #logotipo {
     position: absolute;
     margin-top: -12px;
 }
+/*
 .ListFriends .classification {
     margin-left: -10px;
-}
+}*/
 .ListFriends .media-heading {
     text-align: left;
     width: 245px;
@@ -147,8 +148,8 @@ header #logotipo {
 
 /*List Friends img option*/
 .ListFriends .img_classification{
-    width: 220px;
-    margin-top: 10px;
+    width: 236px;
+    margin-top: 20px;
 }
 .ListFriends .img_classification label{
     margin-left: 5px
@@ -224,7 +225,7 @@ footer .col-links .fa {
 
 /*====================================Perfil======================*/
 .perfil{margin-top: 50px;}
-.perfil ul.img_classification {width: 298px;margin-left: -10px;}
+.perfil ul.img_classification {width: 298px;margin-left: 5px;}
 .perfil .classification {margin-left: 62%;}
 .perfil .perfilPicture {margin-top: 10px;margin-left: 237px;}
 .perfil .perfilPicture img { width: 150px;height: 150px;border-radius: 86px; border: 5px solid #e8e8e8;background-color: #fff;}
@@ -254,7 +255,7 @@ footer .col-links .fa {
 .perfilMatch{margin-top: 10px;}
 .perfilMatch .perfilMatchList{color: #8a8989; border-bottom: 1px solid #dad2d2; margin-bottom: 20px; margin-left: 0px;}
 .perfilMatch .perfilMatchListInfo{margin-bottom: 10px;}
-.perfil .classification .badge{margin-top: 36px; margin-left: 3px;}
+.perfil .classification .badge{margin-top: 36px; margin-left: 3px; margin-bottom: 10px;}
 .perfil .classification #cont_cl_fico{margin-left: 6px;}
 .perfil .classification #cont_cl_picante{margin-left: 6px;}
 .perfilNewFriends small{color: #8a8989;}
