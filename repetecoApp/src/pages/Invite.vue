@@ -29,7 +29,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -49,32 +48,24 @@ export default {
     }
   },
 methods: {
-//Facebook - API GET
-getFacebook () {
-    let vm = this
-    FB.api('/me?fields=id,name,link,picture{url},friends{id}', function (response) {
-      vm.$set(vm, 'profile', response)
-      console.log("API Facebook: OK!")     
-      let userid = response.id
-    })    
-  },
+
 statusChangeCallback (response) {
       let vm = this
       if (response.status === 'connected') {
         console.log("Usuario Autorizado!");       
         vm.authorized = true
-        //Chamada API Facebok
-        vm.getFacebook()
+        console.log("teste userID: ",response.authResponse.userID)
         console.log("Status: Connectado!")
       } else if (response.status === 'not_authorized') {
         console.log("Status: Não Autorizado!");
         vm.authorized = false
       } else if (response.status === 'unknown') {
-        vm.profile = {}
+        vm.profile = []
         vm.authorized = false
       } else {
         vm.authorized = false
       }
+    console.log(response);
     }
   },
 mounted () {

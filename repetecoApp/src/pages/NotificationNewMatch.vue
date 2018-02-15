@@ -53,19 +53,8 @@ export default{
     };
   },
 methods: {
-//Facebook - API GET
-getFacebook (callback) {
-    let vm = this
-    FB.api('/me?fields=id,name,link,picture{url},friends{id}', function (response) {
-      vm.$set(vm, 'profile', response)
-      console.log("API Facebook: OK!")    
-      let userid = response.id
-      callback(response.id)
-    })    
-  },
-//WsRepeteco - API GET
-getApiRepeteco(profileId){
-			this.$http.get(`http://localhost:9096/wsrepeteco/users/${profileId}/friends`).then(response => {				
+getApiRepeteco(userid){
+			this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}/friends`).then(response => {				
       this.friends = response.data
       if (this.friends.length > 0) {
         console.log("API Repeteco: OK!")
@@ -73,17 +62,16 @@ getApiRepeteco(profileId){
       } else {
         this.statusAPIAPP = false;
         console.log("Erro na chamada da API - Repeteco");
-      }
-  })
-},
+      }    
+    })
+	},
 statusChangeCallback (response) {
       let vm = this
       if (response.status === 'connected') {
         console.log("Usuario Autorizado!");       
-        vm.authorized = true
-        //Chamada API Facebok e Repeteco
-        vm.getFacebook(vm.getApiRepeteco)
         console.log("Status: Connectado!")
+        vm.authorized = true
+        vm.getApiRepeteco(response.authResponse.userID)
       } else if (response.status === 'not_authorized') {
         console.log("Status: Não Autorizado!");
         vm.authorized = false
@@ -92,8 +80,8 @@ statusChangeCallback (response) {
         vm.authorized = false
       } else {
         vm.authorized = false
+      }
     }
-  }
   },
 mounted () {
     let vm = this    
@@ -104,12 +92,10 @@ mounted () {
         xfbml: true,
         version: 'v2.10'
       });
-      FB.AppEvents.logPageView();
       FB.getLoginStatus(response => {
         vm.statusChangeCallback(response)
       })
     };
-}
- //Facebook - End 
+  }
 };
 </script>

@@ -10,7 +10,7 @@
 						</h4>			  		
 			  	</div>
 			    <div class="row perfilbrprogress">
-			    	<p class="pull-right" id="friendsCount"><b>{{friendsTotalApp}}</b> de {{friendsTotalFb}} <i class="fa fa-users"></i> </p>
+			    	<p class="pull-right" id="friendsCount">{{friendsTotalApp}} de {{friendsTotalFb}} <i class="fa fa-users"></i> </p>
 						
 			    	<div class="progress progress-striped ">
 							<div class="bar" role="progressbar" :style="'height:30px;background:#1E8BC3;width:' + friendsTotalApp + '%'"><b class="text-secondary">{{progress()}}%</b></div>
@@ -137,10 +137,8 @@ export default{
 
 
 <style lang="scss">
-.perfil b {color:#f5f5f5}
-.perfilNewFriends {
- margin-bottom: 50px;
-}
+.perfil b {color:#f5f5f5; font-size: 9px; margin-left: 5px;}
+.perfilNewFriends {margin-bottom: 50px;}
 
 .perfilNewFriends ul li {
 	display: inline-block;
