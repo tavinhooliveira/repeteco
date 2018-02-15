@@ -9,13 +9,13 @@
       </div>
       <div class="row container">
         <div class="btnNotification" >
-              <profileHeaderComponent :profile="profile"></profileHeaderComponent>      
+              <profileHeaderComponent v-bind:user="users" v-bind:name="user.name" v-bind:link="user.link" v-bind:imagem="user.imagem"></profileHeaderComponent>      
             <div class="btn-group pull-right btnclassifications" role="group" aria-label="...">
               <button type="button" class="btn btn-default active" data-toggle="tooltip" data-placement="bottom" title="Todos" onclick="location.href='/classification'"><i class="fa fa-star-half-o"> </i></button>
               <button type="button" class="btn btn-default " data-toggle="tooltip" data-placement="bottom" title="Classificados" onclick="location.href='classificationOn'" data-transition="slide"><i class="fa fa-star"> </i></button>
               <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Não Classificados" onclick="location.href='/classificationOff'"><i class="fa fa-star-o"> </i></button>
             </div>        
-        </div>     
+        </div> 
       </div>      
       <div v-if="this.statusAPIAPP === true" class="list-group center-block" id="searchUL">
         <userComponent v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem"
@@ -37,7 +37,7 @@ import ProfileHeaderComponent from "../components/ProfileHeaderComponent.vue";
 
 export default {
   name: "ClassificationAPP",
-  props: ["name", "imagem","preference","friends"],
+  props: ["name", "imagem","preference", "link", "friends"],
   components: {
     UserComponent,
     Reload,
@@ -56,7 +56,8 @@ export default {
 methods: {
 
 getApiRepeteco(userid){
-this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {   
+this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
+    this.useerProfile = response.data  
     this.users = [response.data]
       if (this.users.length > 0) {
         console.log("API Repeteco: OK!")

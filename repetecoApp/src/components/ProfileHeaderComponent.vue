@@ -1,5 +1,24 @@
 <template>
 <div  class="col-md-3 profile">
+    <div  class="media">
+        <div class="media-left">
+            <a v-bind:href="link" target="_blank" title="Perfil Facebook">
+                <img class="media-object" :src="imagem">
+            </a>
+        </div>
+        <div class="media-body">
+            <h6 class=""><a v-bind:href="link" target="_blank" title="Perfil Facebook">{{name}} nome</a>
+             
+            </h6>
+        </div>
+    </div>
+</div> 
+</template>
+
+
+<!--
+<template>
+<div  class="col-md-3 profile">
     <div v-if="profile.id" class="media">
         <div class="media-left">
             <a v-bind:href="profile.link" target="_blank" title="Perfil Facebook">
@@ -22,10 +41,11 @@
     </div>
 </div> 
 </template>
+-->
 
 <script>
 export default {
-  props: ['profile'],
+  props: ['profile','id','name','link','imagem'],
   name: 'ProfileComponent',
   computed: {
     profileName () {
