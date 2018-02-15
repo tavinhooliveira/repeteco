@@ -137,7 +137,7 @@ export default{
 
 
 <style lang="scss">
-
+.perfil b {color:#f5f5f5}
 .perfilNewFriends {
  margin-bottom: 50px;
 }

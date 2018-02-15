@@ -46,12 +46,12 @@ header #logotipo {
 .perfilPrincipal #friendsCount{margin-right: 10px;}
 
 .searchClassification {
-    margin-top: 50px !important;
+     margin-top: 50px !important;
     width: 85% !important;
     margin: 10px;
 }
 .searchClassification input {
-    background-color: #dadada;
+    background-color: #f5f5f5;
     color: #000;
     border: none;
     height: 35px;

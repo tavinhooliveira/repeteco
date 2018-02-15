@@ -6,7 +6,7 @@
         v-bind:id_fb_friends="friend.id_fb_friends" v-bind:gender="friend.gender" v-bind:preference="preference" v-bind:flagDisplayHot="flagDisplayHot">
       </friendComponent>
     </div>
-    <!-- <p class="text-center">Nenhum amigo encontrado! ✋</p> --> 
+    <p v-if="friends.length <= 0"class="text-center">Nenhum amigo encontrado! ☹</p> 
   </div>  
 </template>
 <script>

@@ -5,6 +5,7 @@
     <br><br><br>
     <span class="sr-only">Loading...</span>
     <section class="links">
+        <a class="error-link" onclick="Refresh();" href="#">🔃 Atualizar</a>
         <a class="error-link" onclick="window.history.go(-1);" href="#">☚ Volte</a>
         <h5 class="error-description">Erro 500 – Internal Server Error</h5>
     </section>  
@@ -33,6 +34,7 @@ export default {
 
 <style lang="scss">
 /*Css Para Error*/
+.refreshIcon {margin-top: -84px; margin-left: -9px; position: absolute;}  
 .error-message {
   text-align: center;
   margin-top: 10px;
