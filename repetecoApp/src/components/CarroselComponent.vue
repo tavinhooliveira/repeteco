@@ -15,7 +15,7 @@ export default{
 
 </script>
 
-<style lang="scss">
+<style>
 .slider {
     height: 100px;
     position: relative;
@@ -48,7 +48,7 @@ export default{
 }
 
 .slider .handle {
-    background: rgba(20, 20, 20, 0.26);
+    /*background: rgba(20, 20, 20, 0.26);*/
     position: absolute;
     top: 0;
     height: 100%;

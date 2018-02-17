@@ -9,8 +9,8 @@
         <h5 class="error-description">Erro 500 – Internal Server Error</h5>
     </section>  
     <section class="links">
-        <a href="/">Classificações</a>
-        <a href="/profile">Perfil</a>
+        <a href="/">Login</a>
+        <a href="/classification">Classificações</a>
         <a href="/config">Configurações</a>
         <a href="/politicas">Politicas</a>
     </section>

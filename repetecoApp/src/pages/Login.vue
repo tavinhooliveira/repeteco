@@ -3,7 +3,7 @@
 <!--Login-->
 <section>
     <div class="container" id="logar">
-        <div class="row col-md-6 col-md-offset-3">
+        <div class="row col-md-6 col-md-offset-3 ">
             <div v-if="!authorized" class="well text-center">
                 <div><img src="/src/assets/img/repeteco.png" style='height: 100px; width: 100px;'>
                 </div>
@@ -32,8 +32,8 @@
                 </div>
             </div>
             <div class="row col-md-6 text-center classificationInfo container">
-                <a class="btn btn-default fa fa-question-circle" role="button" data-toggle="collapse" href="#collapseclassificationInfo" aria-expanded="false" aria-controls="collapseclassificationInfo">
-                    <span>Como Funciona</span>
+                <a class="btn btn-default " role="button" data-toggle="collapse" href="#collapseclassificationInfo" aria-expanded="false" aria-controls="collapseclassificationInfo">
+                    <span>Como Funciona <i class="fa fa-question-circle"></i></span>
                 </a>
                 <a v-show="authorized"  class="btn btn-default fa fa-sign-out" @click="logout">Logout</a>
                 <div class="collapse" id="collapseclassificationInfo">
@@ -214,7 +214,9 @@ mounted () {
 }
 </script>
 
-<style lang="scss" scoped>
+<style>
+/* body {background-color: #333 !important;} */
+body {background-image: url("/src/assets/img/bg.png") !important;} 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -222,6 +224,8 @@ mounted () {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background-color: #333 !important;
+  
 }
 button {
   cursor: pointer;

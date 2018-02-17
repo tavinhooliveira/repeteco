@@ -1,6 +1,6 @@
 <template>
 <div>
-  <section class="error-message">
+  <section class="error-message well">
     <h1 class="error-code">404</h1>
     <h2 class="error-description">Not Found</h2>
     <a class="error-link" onclick="window.history.go(-1);" href="#">☚ Volte</a>
