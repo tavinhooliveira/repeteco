@@ -1,11 +1,10 @@
 <template >
 <div>
-  <section class="error-message">
+  <section class="error-message" onclick="Refresh();">
     <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
     <br><br><br>
     <span class="sr-only">Loading...</span>
     <section class="links">
-        <a class="error-link" onclick="Refresh();" href="#">🔃 Atualizar</a>
         <a class="error-link" onclick="window.history.go(-1);" href="#">☚ Volte</a>
         <h5 class="error-description">Erro 500 – Internal Server Error</h5>
     </section>  

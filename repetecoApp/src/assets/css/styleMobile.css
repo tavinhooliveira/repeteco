@@ -90,7 +90,14 @@
     margin-top: -33px !important;
     margin-left: 7px !important;
 }
-	
+
+.msgClamigos {
+    font-size: 10px;
+    color: #cecdcd;
+    position: absolute;
+    margin-top: -57px;
+    margin-left: 113px;
+}
 	
 }/*END Responsivo Tablet*/
 
@@ -185,7 +192,14 @@
     margin-top: -33px !important;
     margin-left: 7px !important;
 }
-	
+
+.msgClamigos {
+    font-size: 10px;
+    color: #cecdcd;
+    position: absolute;
+    margin-top: -57px;
+    margin-left: 113px;
+}
 	
 }/*END Responsivo Tablet*/
 
@@ -332,6 +346,14 @@
 .ListFriends .notification .Nfdate {
     margin-top: -33px !important;
     margin-left: 7px !important;
+}
+
+.msgClamigos {
+    font-size: 10px;
+    color: #cecdcd;
+    position: absolute;
+    margin-top: -57px !important;
+    margin-left: 113px !important;
 }
 
 
@@ -482,7 +504,13 @@
 }
 
 
-
+.msgClamigos {
+    font-size: 10px;
+    color: #cecdcd;
+    position: absolute;
+    margin-top: -57px;
+    margin-left: 113px;
+}
 
 
 }/*END - Responsivo Iphone 5*/
