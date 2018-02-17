@@ -11,7 +11,7 @@
                 <h6>Para Entar! é Obrigatório o login no Facebook!</h6>
                 <div class="">
                     <div class="col-2">
-                        <button type="button" class="btn btn-primary" @click="login"><b> f  </b>Login Facebook</button>                        
+                        <button type="button" class="btn btn-primary" @click="login"><b> f    </b>Login Facebook</button>                        
                     </div>
 
                 </div>
