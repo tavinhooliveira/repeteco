@@ -37,8 +37,18 @@
                 </a>
                 <a v-show="authorized"  class="btn btn-default fa fa-sign-out" @click="logout">Logout</a>
                 <div class="collapse" id="collapseclassificationInfo">
-                    <div class="">
-                    <img src="/src/assets/img/info1.png">						   
+                    <div class="well">
+                        <!-- <img src="/src/assets/img/info1.png"> -->
+                        <p>Para entrar no APP Repeteco,  é obrigatório o Login no Facebook!</br>
+                        O repeteco listará os seus amigos do Facebook que tambem entraram no APP</br>
+                        para cada amigo, classifique o secretamente com uma das 4 opções de relacionamento.
+                        
+                        <p>Apenas duas opções são passivas de MATCH!</br>
+                        FICARIA NOVAMENTE (flash back)</br> FICARIA (novo relacionamento),</br>
+                        O aplicativo mandará uma notificação, apenas se houver classificação mútua.
+                        </p>
+                        
+                        </p>                        
                     </div>
                 </div>						
             </div>
@@ -123,9 +133,9 @@ methods: {
             link: fdlist[i].link,
             gender: fdlist[i].gender,
             imagem: fdlist[i].picture.data.url
-          }          
+            }          
           friendslist.push(listFB)           
-          }               
+          }             
         //Inserir User Na Basse Via Ajax.
         $.ajax({
           url: "http://localhost:9096/wsrepeteco/users",
