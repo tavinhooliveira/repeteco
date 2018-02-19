@@ -35,20 +35,22 @@
                 <a class="btn btn-default " role="button" data-toggle="collapse" href="#collapseclassificationInfo" aria-expanded="false" aria-controls="collapseclassificationInfo">
                     <span>Como Funciona <i class="fa fa-question-circle"></i></span>
                 </a>
-                <a v-show="authorized"  class="btn btn-default fa fa-sign-out" @click="logout">Logout</a>
-                <div class="collapse" id="collapseclassificationInfo">
-                    <div class="well">
+                
+                <a v-show="authorized"  class="btn btn-default " @click="logout">Logout
+                  <i class="fa fa-sign-out"></i>
+                </a>
+                </br>
+                <div class="well collapse" id="collapseclassificationInfo">
+                    <div class="">
                         <!-- <img src="/src/assets/img/info1.png"> -->
-                        <p>Para entrar no APP Repeteco,  é obrigatório o Login no Facebook!</br>
-                        O repeteco listará os seus amigos do Facebook que tambem entraram no APP</br>
-                        para cada amigo, classifique o secretamente com uma das 4 opções de relacionamento.
-                        
-                        <p>Apenas duas opções são passivas de MATCH!</br>
-                        FICARIA NOVAMENTE (flash back)</br> FICARIA (novo relacionamento),</br>
-                        O aplicativo mandará uma notificação, apenas se houver classificação mútua.
-                        </p>
-                        
-                        </p>                        
+                        <carroselLoginComponet></carroselLoginComponet></br></br>
+                        <p>
+                          O repeteco listará os seus amigos do Facebook que tambem entraram no APP!,
+                          Para cada amigo, classifique o secretamente com uma das 5 opções de relacionamento.</br>
+                          As opções escolhidas pelo o usuario será secreta, podendo ser revelada apenas em caso de Match!</br>
+                          Apenas duas opções do aplicativo serão passivas de match: </br>FICARIA NOVAMENTE (flash back) e FICARIA (Novo lance).</br>
+
+                        </p>                          
                     </div>
                 </div>						
             </div>
@@ -62,11 +64,14 @@
 <script>
 
 import ProfileHeaderComponent from "../components/ProfileHeaderComponent.vue";
+import CarroselLoginComponet from "../components/CarroselLoginComponet.vue";
+
 
 export default {
 name: 'login',
 components: {
-  ProfileHeaderComponent
+  ProfileHeaderComponent,
+  CarroselLoginComponet
 },
 data () {
   return {
