@@ -132,7 +132,7 @@ methods: {
         let listFB = null;             
         for (let i = 0; i < fdlist.length; i++) {
           listFB = {
-            id: fdlist[i].id,
+            id: userid+fdlist[i].id,
             id_fb_friends: fdlist[i].id,
             name: fdlist[i].name,
             link: fdlist[i].link,

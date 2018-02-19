@@ -29,7 +29,6 @@
                     <input type="radio"  value="semInteresse" id="optionclassificada" v-model="optiondata">
                     <span class="cl_Ninteresse"></span>
                 </label>
-
             </div>
         </div>
         <div v-if="optiondata != null" v-on:click="starClickOff()" class=" starClassification classificationTrue pull-right"></div>
@@ -41,7 +40,7 @@
 
 <script>
 export default{
-  props:['id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb', 'preference', 'isNull', 'flagDisplayHot'],
+  props:['id','id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb', 'preference', 'isNull', 'flagDisplayHot'],
   data(){
      return{
         efeitoClick: null,
@@ -59,7 +58,7 @@ export default{
         starClickOff: function(){
             this.optiondata = null;
             const fdOption = {option:  this.optiondata}
-            var friendId = this.id_fb_friends;
+            var friendId = this.id;
             $.ajax({
                 url: "http://localhost:9096/wsrepeteco/friends/opcao/"+friendId,
                 method: "PUT",
@@ -78,7 +77,7 @@ export default{
         },
         updateStatusOption: function(){             
             const fdOption = {option:  this.optiondata}
-            var friendId = this.id_fb_friends;
+            var friendId = this.id;
             $.ajax({
                 url: "http://localhost:9096/wsrepeteco/friends/opcao/"+friendId,
                 method: "PUT",

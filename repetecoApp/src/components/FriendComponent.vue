@@ -38,7 +38,7 @@
 
 <script>
 export default{
-  props:['id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb', 'preference', 'flagDisplayHot'],
+  props:['id','id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb', 'preference', 'flagDisplayHot'],
   data(){
      return{
         efeitoClick: null,
@@ -56,7 +56,7 @@ export default{
         starClickOff: function(){
             this.optiondata = null;
             const fdOption = {option:  this.optiondata}
-            var friendId = this.id_fb_friends;
+            var friendId = this.id;
             $.ajax({
                 url: "http://localhost:9096/wsrepeteco/friends/opcao/"+friendId,
                 method: "PUT",
@@ -75,7 +75,7 @@ export default{
         },
         updateStatusOption: function(){             
             const fdOption = {option:  this.optiondata}
-            var friendId = this.id_fb_friends;
+            var friendId = this.id;
             $.ajax({
                 url: "http://localhost:9096/wsrepeteco/friends/opcao/"+friendId,
                 method: "PUT",
