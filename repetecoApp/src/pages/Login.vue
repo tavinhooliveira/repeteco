@@ -40,19 +40,11 @@
                   <i class="fa fa-sign-out"></i>
                 </a>
                 </br>
-                <div class="well collapse" id="collapseclassificationInfo">
-                    <div class="">
-                        <!-- <img src="/src/assets/img/info1.png"> -->
-                        <carroselLoginComponet></carroselLoginComponet></br></br>
-                        <p>
-                          O repeteco listará os seus amigos do Facebook que tambem entraram no APP!,
-                          Para cada amigo, classifique o secretamente com uma das 5 opções de relacionamento.</br>
-                          As opções escolhidas pelo o usuario será secreta, podendo ser revelada apenas em caso de Match!</br>
-                          Apenas duas opções do aplicativo serão passivas de match: </br>FICARIA NOVAMENTE (flash back) e FICARIA (Novo lance).</br>
-
-                        </p>                          
-                    </div>
+                <div class="well collapse" id="collapseclassificationInfo">                    
+                  	<aboutComponent></aboutComponent>                                                 
                 </div>						
+                </br>
+                    <carroselLoginComponet></carroselLoginComponet></br></br>
             </div>
         </div>				
     </div>
@@ -65,13 +57,15 @@
 
 import ProfileHeaderComponent from "../components/ProfileHeaderComponent.vue";
 import CarroselLoginComponet from "../components/CarroselLoginComponet.vue";
+import AboutComponent from "../components/AboutComponent.vue";
 
 
 export default {
 name: 'login',
 components: {
   ProfileHeaderComponent,
-  CarroselLoginComponet
+  CarroselLoginComponet,
+  AboutComponent
 },
 data () {
   return {
@@ -230,8 +224,32 @@ mounted () {
 </script>
 
 <style>
+/*Inibir botoes do menu e footer- Begin */
+.menu a {
+    display: none;
+}
+footer {
+    display: none;
+}
+header #logotipo {
+    width: 94px;
+    height: 35px;
+    margin-top: -11px;
+    margin-left: 485px;
+}
+
+@media (max-width: 480px) and (min-width: 320px){
+header #logotipo {
+    width: 94px;
+    height: 35px;
+    margin-top: -11px;
+    margin-left: 92px;
+    }
+}
+
+/*Inibir botoes do menu - END*/
 /* body {background-color: #333 !important;} */
-body {background-image: url("/src/assets/img/bg.png") !important;} 
+body {background-image: url("/src/assets/img/bg.png") !important; background-repeat: no-repeat; background-size: 100%;} 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

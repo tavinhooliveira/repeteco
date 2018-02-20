@@ -1,7 +1,9 @@
 
 /*Responsivo Tablet*/
 @media (min-width : 430px) and (max-width: 1198px) {
-    
+    .CarouselLogin img {
+        margin-left: 0px !important;
+    }
     .btnclassifications{margin-top: -40px}
     
 	#logar .classificationInfo {
@@ -105,7 +107,9 @@
 
 /*Responsivo Tablet*/
 @media (min-width : 480px) and (max-width: 768px) {
-	
+	.CarouselLogin img {
+        margin-left: 0px !important;
+    }
 	#logar .classificationInfo {
     width: 100%;
     margin-left: 0px;
@@ -206,7 +210,9 @@
 
 /*Responsivo Modile Android*/
 @media (min-width : 320px) and (max-width : 480px){
-
+    .CarouselLogin img {
+        margin-left: 0px !important;
+    }
     
     .btnclassifications{margin-top: -40px}
 
@@ -362,7 +368,9 @@
 
 /*Responsivo Iphone 5*/
 @media (min-width: 200px) and (max-width: 320px) {
-
+    .CarouselLogin img {
+        margin-left: 0px;
+    }
   .btnNotification .profile .media {margin-left: -30px !important;}
 
   .btnclassifications{margin-top: -40px}

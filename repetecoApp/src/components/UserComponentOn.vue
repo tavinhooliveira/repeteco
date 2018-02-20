@@ -7,7 +7,7 @@
         v-bind:preference="preference" v-bind:flagDisplayHot="flagDisplayHot">
       </friendComponentOn>
     </div>
-    <p v-if="friends.length <= 0"class="text-center">Nenhum amigo encontrado! ☹</p> 
+    <p v-if="friends == null"class="text-center"></br>Nenhum amigo encontrado! ☹</p> 
   </div>
 </template>
 <script>

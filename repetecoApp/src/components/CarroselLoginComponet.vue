@@ -15,45 +15,38 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
 
-      <div class="item active">
-        <img src="/src/assets/img/slaider/slaider01.png" alt="Chania">
-        <div class="carousel-caption">
-      
-        </div>
+      <div class="item active"></br></br>
+          <b> e se você podesse classificar todos os seus amigos do Facebook?</b>
+          <p>Secretamente</p>
       </div>
 
-      <div class="item">
-        <img src="/src/assets/img/slaider/slaider02.png" alt="Chania" >
-        <div class="carousel-caption">
- 
-        </div>
+      <div class="item"></br></br>
+          <p> que tal um <b>Flash Backs</b> ou um <b>novo Lance</b></p>
+          <p>com pessoas da sua bolha social</p>
       </div>
+
+      <div class="item ">        
+        <img src="/src/assets/img/slaider/slaider01.png">
+      </div>
+
     
       <div class="item">
-        <img src="/src/assets/img/slaider/slaider03.png" alt="Flower" >
-        <div class="carousel-caption">
- 
-        </div>
+        <img src="/src/assets/img/slaider/slaider03.png" >
+        <div class="carousel-caption"> </div>
+      </div>
+
+
+      <div class="item">
+        <img src="/src/assets/img/slaider/slaider02.png" >
       </div>
 
       <div class="item">
-        <img src="/src/assets/img/slaider/slaider01.png" alt="Flower" >
-        <div class="carousel-caption">
-
-        </div>
+        <h3>Curta nosa fampage</h3>
+          <div class="fb-page" data-href="https://www.facebook.com/Repeteco-490925014612889/" data-height="50px" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Repeteco-490925014612889/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Repeteco-490925014612889/">Repeteco</a></blockquote></div>
       </div>
 
-      <div class="item">
-        <img src="/src/assets/img/slaider/slaider02.png" alt="Flower" >
-        <div class="carousel-caption">
-
-        </div>
-      </div>
-
-      <div class="item">
-        <img src="/src/assets/img/slaider/slaider01.png" alt="Flower" >
-        <div class="carousel-caption">
-        </div>
+      <div class="item"></br>
+        <b>Faça o Login e Confira: </br>Repeteco APP</b>
       </div>
   
     </div>
@@ -83,6 +76,9 @@ export default{
 </script>
 
 <style>
+
+.CarouselLogin {height: 195px;}
+.CarouselLogin img {margin-left: 20px;}
 
 .CarouselLogin .handle.handlePrev {
     left: 0;
@@ -121,7 +117,8 @@ export default{
 }
 
 .CarouselLogin .carousel-indicators {
-    display: none;
+      margin-bottom: -50px;
+    
 }
 
 
@@ -136,6 +133,7 @@ export default{
     color: #ffffff;
     text-decoration: none;
 }
+
 </style>
 
 
