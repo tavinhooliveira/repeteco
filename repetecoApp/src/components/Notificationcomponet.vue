@@ -29,13 +29,15 @@
                 <span class="Nfdate">1min</span>
                 </div>
             </div>
+            </br>
+            id_fb_friends: {{id_fb_friends}}            
         </li>		
     </section>   
 </template>
 
 <script>
 export default{
-  props:['name','imagem','link','option','user_id'],
+  props:['name','imagem','link','option','user_id', 'id_fb_friends'],
   data(){
      return{
     
