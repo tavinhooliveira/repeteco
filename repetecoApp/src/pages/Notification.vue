@@ -17,15 +17,25 @@
               <a href="/notificationNewMatch" title="Novos Matchs" >Novos Matchs</a> | 
               <a href="/notificationOldMatch" title="Flash Backs" >Flash Backs</a>
             </div>								
-					</div>	 				   
-			  </div>
-				<ul v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
-          <notificationcomponet v-bind:friend="friends" v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:user_id="friend.user_id"  v-bind:friendsAll="friendsAll" ></notificationcomponet>			        
-        </ul>
-        <div v-else><reload></reload></div>
-        </br> 
+					</div>				   
+			  </div>        
+          <ul v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
+            <notificationcomponet v-bind:friend="friends"  v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:user_id="friend.user_id" v-bind:friendsAll="friendsAll"></notificationcomponet>
+          </ul>
+        <div v-else><reload></reload></div>        
+        </br>
 			</div>
-        <div class="well">Teste: <friendsTeste v-bind:friendMatch="friendMatch" v-for="friendMatch in friendsAll" v-if="friendMatch.id_fb_friends === '1893438167339291'" v-bind:key="friendMatch.id" v-bind:user_id="friendMatch.user_id" v-bind:match_id_fb_friends="friendMatch.id_fb_friends" v-bind:option="friendMatch.option"></friendsTeste></div>
+      </br>
+      <!--
+      <div class="well">
+        id dos usuarios que me curtiram       
+        <div v-for="item in friendsAll">
+            <div v-if="(item.option === 'ficaria' || item.option === 'ficariaNovamente') && item.id_fb_friends === idUserFbSession">
+              User_id: {{ item.user_id}}
+            </div>
+        </div>
+      </div>
+      --> 
 		</section>
 </div>	
 </template>
@@ -35,17 +45,15 @@ import Notificationcomponet from '../components/Notificationcomponet.vue';
 import UserComponent from '../components/UserComponent.vue';
 import Reload from "../components/Reload.vue";
 import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
-import FriendsTeste from "../components/FriendsTeste.vue";
 
 export default{
   name: "Notificatiob",
-  props: ["name", "imagem", "option", "user_id"],
+  props: ["name", "imagem", "option", "user_id", 'item'],
   components:{
 		Notificationcomponet,
 		UserComponent,
     Reload,
-    ReloadAuthorizedComponent,
-    FriendsTeste
+    ReloadAuthorizedComponent
   },
   data () {
     return {
@@ -54,7 +62,8 @@ export default{
 			authorized: false,
       friends: {},
       friendsAll: {},
-      statusAPIAPP: false
+      statusAPIAPP: false,
+      idUserFbSession: null
     };
 	},
 methods: {
@@ -85,11 +94,13 @@ getApiRepeteco(userid){
 	},
 statusChangeCallback (response) {
       let vm = this
+      var idFb = response.authResponse.userID
       if (response.status === 'connected') {
         console.log("Usuario Autorizado!");       
         console.log("Status: Connectado!")
         vm.authorized = true
-        vm.getApiRepeteco(response.authResponse.userID)
+        vm.idUserFbSession = idFb
+        vm.getApiRepeteco(idFb)
         vm.getApiRepetecoFriendsAll()
       } else if (response.status === 'not_authorized') {
         console.log("Status: Não Autorizado!");

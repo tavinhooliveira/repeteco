@@ -21,10 +21,10 @@
       </div>
 
       <div class="item"></br></br>
-          <p> que tal um <b>Flash Backs</b> ou um <b>novo Lance</b></p>
+          que tal um <b>Flash Backs</b> ou um <b>novo Lance</b>
           <p>com pessoas da sua bolha social</p>
       </div>
-
+      <!--
       <div class="item ">        
         <img src="/src/assets/img/slaider/slaider01.png">
       </div>
@@ -39,6 +39,7 @@
       <div class="item">
         <img src="/src/assets/img/slaider/slaider02.png" >
       </div>
+      -->
 
       <div class="item">
         <h3>Curta nosa fampage</h3>
