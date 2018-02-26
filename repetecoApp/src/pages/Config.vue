@@ -179,24 +179,25 @@ methods:{
         document.getElementById("msgPreference").style.display = "block";
 	},
 	statusChangeCallback (response) {
-		let vm = this
-		if (response.status === 'connected') {
-		console.log("Usuario Autorizado!");
-		vm.authorized = true
-		//Chamada API Facebok e Repeteco
-		vm.getFacebook(vm.getApiRepeteco)
-		console.log("Status: Connectado!")
-		} else if (response.status === 'not_authorized') {
-		console.log("Status: Não Autorizado!");
-		vm.authorized = false
-		} else if (response.status === 'unknown') {
-		vm.profile = {}
-		vm.authorized = false
-		} else {
-		vm.authorized = false
-		}
-	}
-},
+      let vm = this
+      var idFb = response.authResponse.userID
+      if (response.status === 'connected') {
+        console.log("Usuario Autorizado!");       
+        console.log("Status: Connectado!")
+        vm.authorized = true
+        vm.idUserFbSession = idFb
+        vm.getApiRepeteco(idFb)
+      } else if (response.status === 'not_authorized') {
+        console.log("Status: Não Autorizado!");
+        vm.authorized = false
+      } else if (response.status === 'unknown') {
+        vm.profile = {}
+        vm.authorized = false
+      } else {
+        vm.authorized = false
+      }
+    }
+  },
 mounted () {
 	let vm = this    
 	window.fbAsyncInit = function() {

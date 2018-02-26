@@ -132,9 +132,9 @@ methods: {
             link: fdlist[i].link,
             gender: fdlist[i].gender,
             imagem: fdlist[i].picture.data.url
-            }          
+          }          
           friendslist.push(listFB)           
-          }             
+        }             
         //Inserir User Na Basse Via Ajax.
         $.ajax({
           url: "http://localhost:9096/wsrepeteco/users",
@@ -164,7 +164,6 @@ methods: {
           processData: true,
           data: JSON.stringify(friendslist)
         });
-
     })
   },  
   login () {

@@ -50,36 +50,27 @@ export default {
   },
 methods: {
 //Facebook - API GET
-getFacebook (callbackGetApiRepeteco) {
-    let vm = this
-    FB.api('/me?fields=id,name,link,picture{url},friends{id}', function (response) {
-      vm.$set(vm, 'profile', response)
-      console.log("API Facebook: OK!")     
-      let userid = response.id
-      callbackGetApiRepeteco(userid)
-    })    
-  },
-//WsRepeteco - API GET
 getApiRepeteco(userid){
-this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {   
-    this.users = [response.data]
+			this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {				
+      this.users = [response.data]
       if (this.users.length > 0) {
         console.log("API Repeteco: OK!")
         this.statusAPIAPP = true;
       } else {
         this.statusAPIAPP = false;
         console.log("Erro na chamada da API - Repeteco");
-      }
-  })
-},
+      }    
+    })
+	},
 statusChangeCallback (response) {
       let vm = this
+      var idFb = response.authResponse.userID
       if (response.status === 'connected') {
         console.log("Usuario Autorizado!");       
-        vm.authorized = true
-        //Chamada API Facebok e Repeteco
-        vm.getFacebook(vm.getApiRepeteco)
         console.log("Status: Connectado!")
+        vm.authorized = true
+        vm.idUserFbSession = idFb
+        vm.getApiRepeteco(idFb)
       } else if (response.status === 'not_authorized') {
         console.log("Status: Não Autorizado!");
         vm.authorized = false
