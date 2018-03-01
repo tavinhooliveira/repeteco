@@ -9,7 +9,7 @@
          <div class="panel panel-default">
             <div class="panel-heading">
                <div class="" role="group" >
-                  <p class="text-center"><i class="fa fa-user"></i> {{user.name}}</p>
+                  <!-- <p class="text-center"><i class="fa fa-user"></i> {{user.name}}</p> -->
                   <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>
                   <span class="pull-right"> Config. <i class="glyphicon glyphicon-cog"></i> </span>	   
                </div>
@@ -19,24 +19,33 @@
                 class="pull-right text-success"> ✘</span>
                 <strong>OK!</strong> Suas Preferências foram registradas com Sucesso!
             </div>
+
             <div class="" >
-               <div class="panel-heading">
-                  <h4>Interesses</h4>
-                  <form class="well" @change="updatePreferencia()">
-                     <div>
-                        <input class="w3-radio" type="radio" name="preferencia" id="male" value="male" v-model="user.preference">
-                        <label for="male" class="fa fa-male"> Homem</label>
-                     </div>
-                     <div>
-                        <input class="w3-radio " type="radio" name="preferencia" id="female" value="female" v-model="user.preference">
-                        <label for="female" class="fa fa-female"> Mulher</label>
-                     </div>
-                     <div>
-                        <input class="w3-radio" type="radio" name="preferencia" id="Ambos" value="" v-model="user.preference">
-                        <label for="Ambos" class="fa fa-venus-mars"> Ambos</label>
-                     </div>
-                  </form>
-               </div>
+                </br>
+                <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapseInteresse" aria-expanded="false" aria-controls="collapseInteresse">Interesses</button>
+                <div class="collapse" id="collapseInteresse">                                                                 
+                  <div class="panel-heading">
+                      <h4>Interesses</h4>
+                      <form class="well" @change="updatePreferencia()">
+                        <div>
+                            <input class="w3-radio" type="radio" name="preferencia" id="male" value="male" v-model="user.preference">
+                            <label for="male" class="fa fa-male"> Homem</label>
+                        </div>
+                        <div>
+                            <input class="w3-radio " type="radio" name="preferencia" id="female" value="female" v-model="user.preference">
+                            <label for="female" class="fa fa-female"> Mulher</label>
+                        </div>
+                        <div>
+                            <input class="w3-radio" type="radio" name="preferencia" id="Ambos" value="" v-model="user.preference">
+                            <label for="Ambos" class="fa fa-venus-mars"> Ambos</label>
+                        </div>
+                      </form>
+                  </div>
+                </div>
+
+                </br>
+                <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapseNotification" aria-expanded="false" aria-controls="collapseNotification">Notificações</button>
+                <div class="collapse" id="collapseNotification">   
                <ul class="list-group" @change="updatePreferencia()">
                   <div class="panel-heading">
                      <h4>Notificações</h4>
@@ -55,23 +64,34 @@
                         </li>
                      </div>
                   </div>
-                  <div class="panel-heading">
-                     <h4>Privacidade</h4>
-                     <div class="well">
-                        <li class="list-group-item">
-                           <label>
-                           <input class="w3-radio" type="checkbox" name="flagDisplayCount" id="flagDisplayCount" v-model="user.flagDisplayCount"/>
-                           <i class="fa fa-calculator" aria-hidden="true"></i> <span>Exibir Contagem no Perfil</span>
-                           </label>
-                        </li>
-                        <li class="list-group-item">
-                           <label>
-                           <input class="w3-radio" type="checkbox" name="flagDisplayHot" id="flagDisplayHot" v-model="user.flagDisplayHot"/>
-                           <i class="fa fa-fire" aria-hidden="true"></i> <span>Exibir Opção Picante</span>
-                           </label>
-                        </li>
-                     </div>
-                  </div>
+                  </ul>                  
+                </div>
+                </br>
+                <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapsePrivacy" aria-expanded="false" aria-controls="collapsePrivacy">Privacidade</button>
+                <div class="collapse" id="collapsePrivacy"> 
+                  <ul class="list-group" @change="updatePreferencia()">
+                      <div class="panel-heading">
+                        <h4>Privacidade</h4>
+                        <div class="well">
+                            <li class="list-group-item">
+                              <label>
+                              <input class="w3-radio" type="checkbox" name="flagDisplayCount" id="flagDisplayCount" v-model="user.flagDisplayCount"/>
+                              <i class="fa fa-calculator" aria-hidden="true"></i> <span>Exibir Contagem no Perfil</span>
+                              </label>
+                            </li>
+                            <li class="list-group-item">
+                              <label>
+                              <input class="w3-radio" type="checkbox" name="flagDisplayHot" id="flagDisplayHot" v-model="user.flagDisplayHot"/>
+                              <i class="fa fa-fire" aria-hidden="true"></i> <span>Exibir Opção Picante</span>
+                              </label>
+                            </li>
+                        </div>
+                      </div>
+                  </ul>
+                </div>
+                </br>
+                <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapsePolicies" aria-expanded="false" aria-controls="collapsePolicies">Política</button>
+                <div class="collapse" id="collapsePolicies"> 
                   <div class="panel-heading">
                      <h4>Política</h4>
                      <li class="list-group-item well">
@@ -81,6 +101,10 @@
                         </div>
                      </li>
                   </div>
+                </div>
+                </br>
+                <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapseAccount" aria-expanded="false" aria-controls="collapseAccount">Conta</button>
+                <div class="collapse" id="collapseAccount">
                   <div class="panel-heading">
                      <h4>Conta</h4>
                      <li class="list-group-item well">
@@ -90,7 +114,8 @@
                         </div>
                      </li>
                   </div>
-               </ul>
+                </div>
+
             </div>
          </div>
       </div>

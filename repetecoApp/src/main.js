@@ -62,14 +62,12 @@ new Vue ({
   },
 })
   export default {
-  data () {
-    return {
-      profile: {},
-      authorized: false
-    }
-  },
+    data() {
+      return {
+        
+      };
+    },
   methods: {
-    
-  }
 
+  }
 }
