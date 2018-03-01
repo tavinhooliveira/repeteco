@@ -258,9 +258,12 @@
     height: 83px;
     border-radius: 76px;
     border: 2px solid rgba(163, 173, 183, 0.54);
-    margin-left: 50%;
-    margin-right: 101px;
     margin-bottom: 6px;
+    }
+
+    .ListFriends .classification {
+        margin-left: 19%;
+        margin-top: -20%;
     }
 
     .notification li img {
@@ -300,20 +303,20 @@
     }
     .ListFriends .starClassification {
     background-position: -4px -4px;
-    margin-top: -155px;
+    margin-top: -110px;
     margin-right: -44px;
     }
     .ListFriends .classificationTrue {
     background-position: -4px -43px;
-    margin-top: -158px;
+    margin-top: -110px;
     margin-right: -44px;
     z-index: 9999;
     }
-    .ListFriends .starClassification:hover {
+    /* .ListFriends .starClassification:hover {
         background-position: -4px -43px;
         margin-top: -155px;
         margin-right: -44px;
-    }
+    } */
     .ListFriends .list-group {
         margin-left: 0px;
     }
