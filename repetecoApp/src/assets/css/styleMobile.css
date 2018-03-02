@@ -262,8 +262,8 @@
     }
 
     .ListFriends .classification {
-        margin-left: 19%;
-        margin-top: -20%;
+    margin-left: 25%;
+    margin-top: -30%;
     }
 
     .notification li img {
@@ -293,7 +293,8 @@
         margin-top: 0px;
     }
     .ListFriends .media-heading {
-        text-align: center;
+    text-align: left;
+    margin-left: 20px;
     }
     .ListFriends .LfLocation {
         text-align: center;
@@ -303,13 +304,13 @@
     }
     .ListFriends .starClassification {
     background-position: -4px -4px;
-    margin-top: -110px;
-    margin-right: -44px;
+    margin-top: -85px;
+    margin-right: -53px;
     }
     .ListFriends .classificationTrue {
     background-position: -4px -43px;
-    margin-top: -110px;
-    margin-right: -44px;
+    margin-top: -85px;
+    margin-right: -53px;
     z-index: 9999;
     }
     /* .ListFriends .starClassification:hover {
@@ -325,7 +326,7 @@
     width: 287px !important;
 }
     .ListFriends .img_classification label{
-        margin-left: 15px !important;
+        margin-left: 11px !important;
     }
 
     footer .row-creditos-footer {

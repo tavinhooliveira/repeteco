@@ -5,8 +5,8 @@
         <div class="media-left col-md-4 LfPicture" >
             <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
         </div>
-        <div class="col-md-8 classification center-block">
-            <h4 class="media-heading center-block"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
+        <div class="col-md-8 classification">
+            <h4 class="media-heading "><a v-bind:href="link" target="_blank">{{name}}</a></h4>
             <div class="LfLocation">{{city}}</div>
             <div class="img_classification center-block" @change="updateStatusOption()"> 
                 <label class="cl_fiquei" title="Já Fiquei">

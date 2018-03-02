@@ -163,7 +163,7 @@ header #logotipo {
     width: 30px;
     height: 35px;
     margin-bottom: -2px;
-    margin-right: 5px;
+    margin-right: 1px;
     background: url("../img/imgclassificationm.png") no-repeat center bottom;
     background-position: -5px -1px;
 }
