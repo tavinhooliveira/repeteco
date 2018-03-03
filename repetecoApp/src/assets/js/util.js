@@ -46,7 +46,15 @@ $(function() {
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 });
-   
+
+/*funcaoLightbox*/
+$(function () { 
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });
+});
+
 /*funcao Modal*/
 $(function () {
     $('#exampleModal').modal('toggle')

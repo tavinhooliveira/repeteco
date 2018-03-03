@@ -2,9 +2,11 @@
 
 <li v-if="genderPreference === gender || genderPreference === ''"  class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
     <form class="statusForm center-block" >
-        <div class="media-left col-md-4 LfPicture" >
-            <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
-        </div>
+        <a v-bind:href="pictureLarge" data-toggle="lightbox" data-title="..." v-bind:data-footer="name">
+            <div class="media-left col-md-4 LfPicture" >
+                <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
+            </div>
+        </a>
         <div class="col-md-8 classification">
             <h4 class="media-heading "><a v-bind:href="link" target="_blank">{{name}}</a></h4>
             <div class="LfLocation">{{city}}</div>
@@ -36,43 +38,13 @@
     </form>   				
 </li>
 
-<!--
- <li class="list-group-item col-md-4 classification" >
-    <div class="media-left LfPicture">
-        <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
-    </div>
-    <div class="media-body  ">
-        <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
-        <div class="img_classification center-block" @change="updateStatusOption()"> 
-                <label class="cl_fiquei" title="Já Fiquei">
-                    <input type="radio" value="fiquei" id="optionclassificada" v-model="optiondata">
-                    <span class="cl_fiquei"></span>
-                </label>
-                <label class="cl_ficaria2" title="Ficaria Novamente">
-                    <input type="radio" value="ficariaNovamente" id="optionclassificada" v-model="optiondata">
-                    <span class="cl_ficaria2"></span>
-                </label>
-                <label v-show="flagDisplayHot === true" class="cl_picante" style="padding-left: 0px;" title="Relação Picante">
-                    <input type="radio"  value="relacaoPicante" id="optionclassificada" v-model="optiondata">
-                    <span class="cl_picante"></span>
-                </label>
-                <label class="cl_fico" title="Ficaria">
-                    <input type="radio"  value="ficaria" id="optionclassificada" v-model="optiondata">
-                    <span class="cl_fico"></span>
-                </label>
-                <label class="cl_Ninteresse" title="Sem Interesse">
-                    <input type="radio"  value="semInteresse" id="optionclassificada" v-model="optiondata">
-                    <span class="cl_Ninteresse"></span>
-                </label>
-            </div>    
-    <div v-if="optiondata != null" v-on:click="starClickOff()" class=" starClassification classificationTrue pull-right"></div>
-    <div v-else class=" starClassification starClassificationFalse pull-right"></div> 
-    </div>
-</li>
--->
 </template>
 
 <script>
+
+
+
+
 export default{
   props:['id','id_fb_friends','name','imagem','link', 'city','nationality','option','gender','option', 'friendsTotalFb', 'preference', 'flagDisplayHot'],
   data(){
@@ -81,6 +53,12 @@ export default{
         genderPreference: this.preference,
         optiondata: this.option               
     } 
+  },
+   computed:{
+   pictureLarge () {
+        return (this.id_fb_friends) ? `https://graph.facebook.com/${this.id_fb_friends}/picture?width=350` : `/src/assets/img/man.gif`
+    } 
+
   },
   methods:{        
         mauseEfeito: function(){
