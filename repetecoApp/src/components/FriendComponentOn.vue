@@ -1,9 +1,11 @@
 <template>
 <li v-if="(genderPreference === gender || genderPreference === '')" class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
     <form class="statusForm">
-        <div class="media-left col-md-4 LfPicture" >
-            <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
-        </div>
+        <a v-bind:href="pictureLarge" data-toggle="lightbox" data-title="..." v-bind:data-footer="name" >
+            <div class="media-left col-md-4 LfPicture" >
+                <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
+            </div>
+        </a>        
         <div class="col-md-8 classification">
             <h4 class="media-heading"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
             <div class="LfLocation">{{city}}</div>
@@ -48,6 +50,12 @@ export default{
         genderPreference: this.preference,
         optiondata: this.option               
     } 
+  },
+  computed:{
+   pictureLarge () {
+        return (this.id_fb_friends) ? `https://graph.facebook.com/${this.id_fb_friends}/picture?width=350` : `/src/assets/img/man.gif`
+    } 
+
   },
   methods:{
         mauseEfeito: function(){
@@ -96,9 +104,8 @@ export default{
     }
 }
 
-
 </script>
-<style lang="scss">
+<style>
 .ListFriends li .LfPicture img:hover{border: 4px solid rgba(85, 169, 247, 0.54) !important;}
 .optionShow{color: #c0bebe}
 .msgClamigos {font-size: 10px; color: #cecdcd; position: absolute; margin-top: 25px; margin-left: 102px;}

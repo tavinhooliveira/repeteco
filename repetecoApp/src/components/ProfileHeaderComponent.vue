@@ -7,7 +7,9 @@
         </div>
         <div class="media-body">
             <h6 class=""><a v-bind:href="link" target="_blank" title="Perfil Facebook">{{name}}</a>
-                <p id="friendsCount"><i class="fa fa-users"></i><b> {{friendsTotalApp}} de {{friendsTotalFb}} </b>Amigos</p> 
+                <p id="friendsCount"><i class="fa fa-users"></i><b> {{friendsTotalApp}} de {{friendsTotalFb}} </b>Amigos 
+                <i class="glyphicon glyphicon-refresh" onclick="Refresh();" title="Atualizar"></i>
+                </p> 
             </h6>
         </div>
     </div>
