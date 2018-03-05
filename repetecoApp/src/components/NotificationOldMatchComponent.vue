@@ -10,7 +10,7 @@
             </div>
             <div class="notification pull-right">
                 <div class="img_classification">
-                    <i class="imgficaria2" data-toggle="tooltip" data-placement="top" title="Ficaria Novamente"></i>
+                    <i class="imgficaria2" v-tooltip.top-start="'Ficaria Novamente'"></i>
                 </div>
                 <span class="Nfdate">3min</span>
             </div>

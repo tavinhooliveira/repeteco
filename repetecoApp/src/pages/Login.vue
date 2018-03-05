@@ -21,7 +21,7 @@
                   <img :src="profilePicture" style='height: 100px; width: 100px; border-radius: 75px; border: 2px solid rgba(73, 158, 223, 0.144)'>
                 </div>
                 <div>
-                  <a v-bind:href="profile.link" target="_blank">{{profile.name}}</a>                  
+                  <a v-bind:href="profile.link" v-tooltip.bottom-start="'Perfil Facebook'" target="_blank">{{profile.name}}</a>                  
                 </div>
                 <br>     
                 <div class="well">

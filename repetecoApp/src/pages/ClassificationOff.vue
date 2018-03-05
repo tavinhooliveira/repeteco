@@ -14,9 +14,9 @@
                 v-bind:link="user.link" v-bind:friendsTotalFb="user.friendsTotalFb" v-bind:friendsTotalApp="user.friendsTotalApp">
               </profileHeaderComponent>
             <div class="btn-group pull-right btnclassifications" role="group" aria-label="...">
-              <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Todos" onclick="location.href='/classification'"><i class="fa fa-star-half-o"> </i></button>
-              <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Classificados" onclick="location.href='classificationOn'" data-transition="slide"><i class="fa fa-star"> </i></button>
-              <button type="button" class="btn btn-default active" data-toggle="tooltip" data-placement="bottom" title="Não Classificados" onclick="location.href='/classificationOff'"><i class="fa fa-star-o"> </i></button>
+              <button type="button" class="btn btn-default" v-tooltip.bottom-start="'Todos'" onclick="location.href='/classification'"><i class="fa fa-star-half-o"> </i></button>
+              <button type="button" class="btn btn-default" v-tooltip.bottom-start="'Classificados'" onclick="location.href='classificationOn'" data-transition="slide"><i class="fa fa-star"> </i></button>
+              <button type="button" class="btn btn-default active" v-tooltip.bottom-start="'Não Classificados'" onclick="location.href='/classificationOff'"><i class="fa fa-star-o"> </i></button>
             </div>          
         </div>      
       </div> 

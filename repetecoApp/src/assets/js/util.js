@@ -34,8 +34,14 @@ window.location.reload();
 //setTimeout('location.reload();', 5000);
 }
 
+/*Modal*/
 $('#myModal').on('shown.bs.modal', function () {
 })
+
+/*popover*/
+$(function () {
+    $('[data-toggle="popover"]').popover()
+  })
 
 /*Corrosel newFriends*/
 $(function() {

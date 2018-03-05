@@ -9,32 +9,30 @@
         <div class="col-md-8 classification">
             <h4 class="media-heading"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
             <div class="LfLocation">{{city}}</div>
-            
-            <div class="img_classification" @change="updateStatusOption()"> 
-                <label class="cl_fiquei" title="Já Fiquei">
+            <div class="img_classification center-block" @change="updateStatusOption()"> 
+                <label class="cl_fiquei" v-tooltip.top-start="'Já Fiquei'">
                     <input type="radio" value="fiquei" id="optionclassificada" v-model="optiondata">
                     <span class="cl_fiquei"></span>
                 </label>
-                <label class="cl_ficaria2" title="Ficaria Novamente">
+                <label class="cl_ficaria2" v-tooltip.top-start="'Ficaria Novamente'">
                     <input type="radio" value="ficariaNovamente" id="optionclassificada" v-model="optiondata">
                     <span class="cl_ficaria2"></span>
                 </label>
-                <label v-show="flagDisplayHot === true" class="cl_picante" title="Relação Picante">
+                <label v-show="flagDisplayHot === true" class="cl_picante" style="padding-left: 0px;" v-tooltip.left-start="'Tivemos um Relação Picante'">
                     <input type="radio"  value="relacaoPicante" id="optionclassificada" v-model="optiondata">
                     <span class="cl_picante"></span>
                 </label>
-                <label class="cl_fico" title="Ficaria">
+                <label class="cl_fico" v-tooltip.top-start="'Ficaria'">
                     <input type="radio"  value="ficaria" id="optionclassificada" v-model="optiondata">
                     <span class="cl_fico"></span>
                 </label>
-                <label class="cl_Ninteresse" title="Sem Interesse">
+                <label class="cl_Ninteresse" v-tooltip.left-start="'Sem Interesse'">
                     <input type="radio"  value="semInteresse" id="optionclassificada" v-model="optiondata">
                     <span class="cl_Ninteresse"></span>
                 </label>
-
-            </div>
+            </div>   
         </div>
-        <div v-if="optiondata != null" v-on:click="starClickOff()" class=" starClassification classificationTrue pull-right"></div>
+        <div v-if="optiondata != null" v-on:click="starClickOff()" class=" starClassification classificationTrue pull-right" v-tooltip.left-start="'Desclassificar'"></div>
         <div v-else class=" starClassification starClassificationFalse pull-right"></div>
         <div v-show="optiondata === null" class="text-center msgClamigos">Desclassificado! 👎</div>      					
     </form>					

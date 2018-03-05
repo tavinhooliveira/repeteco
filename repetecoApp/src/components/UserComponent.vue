@@ -6,19 +6,25 @@
         v-bind:id_fb_friends="friend.id_fb_friends" v-bind:gender="friend.gender" v-bind:preference="preference" v-bind:flagDisplayHot="flagDisplayHot">
       </friendComponent>
     </div>
-    <p v-if="friends == null"class="text-center"></br>Nenhum amigo encontrado! ☹</p> 
+    <p v-if="friends == null"class="text-center"></br>Nenhum amigo encontrado! ☹</p>
+
   </div>  
 </template>
 <script>
 import FriendComponent from './FriendComponent.vue';
+
 export default{
   props:['id','name','imagem','link','nationality','friendsTotalFb','friends','preference','flagDisplayHot'],
   components:{
     FriendComponent
+    
   }
 }
 </script>
-<style lang="scss">
+<style>
 .userProfile a{text-decoration: none; padding-right: 10px; }
 .userProfile img{width: 40px;height: 40px;border-radius: 41px;border: 4px solid rgba(163, 173, 183, 0.54) !important;background: #fff;margin-left: 10px;}
+
+
+
 </style>

@@ -2,9 +2,11 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import FBSignInButton from 'vue-facebook-signin-button'
 import VueRouter from 'vue-router'
+import VTooltip from 'v-tooltip'
 Vue.use(VueResource)
 Vue.use(FBSignInButton)
 Vue.use(VueRouter)
+Vue.use(VTooltip)
 
 import Login from './pages/Login.vue'
 import Classification from './pages/Classification.vue'

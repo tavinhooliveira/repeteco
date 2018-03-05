@@ -15,6 +15,8 @@
     margin-left: 72px;
     margin-right: 75px;
     }
+
+    .searchClassification input {width: 94% !important;}
 	
     /*Perfil*/
 	.perfil .perfilPicture {
@@ -119,6 +121,8 @@
     margin-left: 72px;
     margin-right: 75px;
     }
+
+    .searchClassification input {width: 94% !important;}
 	
     /*Perfil*/
 	.perfil .perfilPicture {
@@ -234,6 +238,10 @@
         margin-top: 50px !important;
         width: 100% !important;
     }
+
+    .searchClassification input {width: 94% !important;}
+
+
     .perfil .perfilPicture {
         margin-left: 73px !important;
     }
@@ -379,8 +387,7 @@
 
   .btnclassifications{margin-top: -40px}
 
-  .searchClassification input {
-    width: 102%;}
+  .searchClassification input {width: 94% !important;}
     
     #logar .classificationInfo {
     width: 100%;
