@@ -17,9 +17,9 @@
             <div id="msgPreference" class="alert w3-panel w3-pale-green w3-display-container" style="display:none">
                 <span onclick="this.parentElement.style.display='none'"
                 class="pull-right text-success"> ✘</span>
-                <strong>OK!</strong> Suas Preferências foram registradas com Sucesso!
+                <strong>OK!</strong> Suas Preferências foram registradas!
             </div>
-
+          </div>
             <div class="" >
                 </br>
                 <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapseInteresse" aria-expanded="false" aria-controls="collapseInteresse">Interesses</button>
@@ -116,7 +116,7 @@
                   </div>
                 </div>
 
-            </div>
+            
          </div>
       </div>
 	  <div v-else>

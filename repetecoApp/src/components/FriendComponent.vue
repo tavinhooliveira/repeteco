@@ -2,32 +2,36 @@
 
 <li v-if="genderPreference === gender || genderPreference === ''"  class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
     <form class="statusForm center-block" >
-        <a v-bind:href="pictureLarge" data-toggle="lightbox" data-title="..." v-bind:data-footer="name" >
+        
+        
+        <a v-bind:href="pictureLarge" data-toggle="lightbox" role="document" data-title="..." v-bind:data-footer="name" >
             <div class="media-left col-md-4 LfPicture" >
                 <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
             </div>
         </a>
+
+
         <div class="col-md-8 classification">
             <h4 class="media-heading "><a v-bind:href="link" target="_blank">{{name}}</a></h4>
             <div class="LfLocation">{{city}}</div>
             <div class="img_classification center-block" @change="updateStatusOption()"> 
-                <label class="cl_fiquei" title="Já Fiquei">
+                <label class="cl_fiquei" title="Já Fiquei"  data-toggle="tooltip" data-placement="top">
                     <input type="radio" value="fiquei" id="optionclassificada" v-model="optiondata">
                     <span class="cl_fiquei"></span>
                 </label>
-                <label class="cl_ficaria2" title="Ficaria Novamente">
+                <label class="cl_ficaria2" title="Ficaria Novamente"  data-toggle="tooltip" data-placement="top">
                     <input type="radio" value="ficariaNovamente" id="optionclassificada" v-model="optiondata">
                     <span class="cl_ficaria2"></span>
                 </label>
-                <label v-show="flagDisplayHot === true" class="cl_picante" style="padding-left: 0px;" title="Relação Picante">
+                <label v-show="flagDisplayHot === true" class="cl_picante" style="padding-left: 0px;" title="Relação Picante"  data-toggle="tooltip" data-placement="top">
                     <input type="radio"  value="relacaoPicante" id="optionclassificada" v-model="optiondata">
                     <span class="cl_picante"></span>
                 </label>
-                <label class="cl_fico" title="Ficaria">
+                <label class="cl_fico" title="Ficaria"  data-toggle="tooltip" data-placement="top">
                     <input type="radio"  value="ficaria" id="optionclassificada" v-model="optiondata">
                     <span class="cl_fico"></span>
                 </label>
-                <label class="cl_Ninteresse" title="Sem Interesse">
+                <label class="cl_Ninteresse" title="Sem Interesse"  data-toggle="tooltip" data-placement="top">
                     <input type="radio"  value="semInteresse" id="optionclassificada" v-model="optiondata">
                     <span class="cl_Ninteresse"></span>
                 </label>
@@ -56,8 +60,8 @@ export default{
   },
    computed:{
    pictureLarge () {
-        return (this.id_fb_friends) ? `https://graph.facebook.com/${this.id_fb_friends}/picture?width=350` : `/src/assets/img/man.gif`
-    } 
+        return (this.id_fb_friends) ? `https://graph.facebook.com/${this.id_fb_friends}/picture?type=normal&width=330&height=270` : `/src/assets/img/man.gif`
+    }
 
   },
   methods:{        
@@ -103,7 +107,7 @@ export default{
                 processData: true,
                 data: JSON.stringify(fdOption)
             });
-        }
+        }    
     }
 }
 
@@ -112,8 +116,8 @@ export default{
 <style lang="scss">
 .ListFriends li .LfPicture img:hover{border: 4px solid rgba(85, 169, 247, 0.54) !important;}
 .optionShow{color: #c0bebe}
-.ListFriends .img_classification label {
-    margin-left: 5px;
-    padding-left: 5px;
-}
+.ListFriends .img_classification label {margin-left: 5px; padding-left: 5px;}
+
+.modal-dialog{max-width: 450px !important;}
+.modal-dialog img{margin-left: 25px !important;}
 </style>

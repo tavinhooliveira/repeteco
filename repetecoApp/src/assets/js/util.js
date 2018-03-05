@@ -34,6 +34,9 @@ window.location.reload();
 //setTimeout('location.reload();', 5000);
 }
 
+$('#myModal').on('shown.bs.modal', function () {
+})
+
 /*Corrosel newFriends*/
 $(function() {
     $("#carrossel"). jCarouselLite({

@@ -7,7 +7,7 @@
             </div>
             <div class="media-body  notification">
                 <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
-                <small class="Nfmensagem">Disse que rola um possivel... <br> <b>Lance</b> </small>
+                <small class="Nfmensagem">Disse que rola um possivel... <br> <b>Lance!</b> </small>
             </div>
             <div class="notification pull-right">
                 <div class="img_classification">

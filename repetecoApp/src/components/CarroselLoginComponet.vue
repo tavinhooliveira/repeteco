@@ -127,7 +127,7 @@ export default{
     width: 12px;
     height: 12px;
     margin: 0;
-    background-color: #f5f5f5;
+    background-color: #10101029;
 }
 
 .CarouselLogin a {
