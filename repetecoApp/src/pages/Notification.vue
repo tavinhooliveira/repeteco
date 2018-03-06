@@ -1,11 +1,11 @@
 <template>
 <div>
   <section>
+    <!-- Test
       <div v-if="!authorized">
         <ReloadAuthorizedComponent></ReloadAuthorizedComponent>
       </div>
 			<div v-else  id="ListFriends" class="ListFriends container notification">
-      <!--Search -->
  			<div id="searchClassification" class="container searchClassification navbar-fixed-top">
 			 	<input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">
 			</div>
@@ -25,7 +25,12 @@
         <div v-else><reload></reload></div>        
         </br>
 			</div>
-      </br>
+          END Test -->
+      </br></br></br></br></br></br></br>
+      Eu Curtir: {{MyMatchs}}
+      </br></br></br>
+      Me Curtiram: {{YouMatchs}}
+      </br></br></br>
       <!--
       <div class="well">
         id dos usuarios que me curtiram       
@@ -63,9 +68,45 @@ export default{
       friends: {},
       friendsAll: {},
       statusAPIAPP: false,
-      idUserFbSession: null
+      idUserFbSession: null,
+      a: this.friendslist
     };
 	},
+computed:{
+  MyMatchs () {
+    let fdlist = this.friends;
+    let friendslist = [];
+    let listFB = null;           
+    for (let i = 0; i < fdlist.length; i++) {
+      listFB = {
+        name: fdlist[i].name,
+        id_fb_friends: fdlist[i].id_fb_friends,
+        user_id: fdlist[i].user_id
+      }
+      if(fdlist[i].option === 'ficaria' || fdlist[i].option === 'ficariaNovamente'){
+        friendslist.push(listFB)      
+      }         
+    }
+    return friendslist;
+  },
+  YouMatchs () {
+    let fdlist = this.friendsAll;
+    let friendslist = [];
+    let listFB = null;             
+    for (let i = 0; i < fdlist.length; i++) {
+      listFB = {
+        user_id: fdlist[i].user_id
+      }
+      if((fdlist[i].option === 'ficaria' || fdlist[i].option === 'ficariaNovamente')&& fdlist[i].id_fb_friends === this.idUserFbSession) {
+        friendslist.push(listFB)      
+      }         
+    }
+    return friendslist;
+  },
+
+//select distinct f2.name, f2.id_fb_friends, f1.user_id from friends f1, friends f2 WHERE f1.user_id=f2.id_fb_friends AND f1.id_fb_friends=1893438167339291
+
+},
 methods: {
 getApiRepeteco(userid){
 			this.$http.get(`http://localhost:9096/wsrepeteco/notification/${userid}/friends`).then(response => {				
