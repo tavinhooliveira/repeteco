@@ -20,19 +20,19 @@
 						<li class="">						
 						  <div class="classification center-block">
 						   	<ul class="img_classification col-md-12 center-block">
-									<li class="cl_fiquei" data-toggle="tooltip" data-placement="top" title="Já Fiquei">
+									<li class="cl_fiquei" v-tooltip.top-start="'Já Fiquei'" >
 										<span class="badge" id="cont_cl_fiquei">15</span>
 									</li>
-									<li class="cl_ficaria2" data-toggle="tooltip" data-placement="top" title="Ficaria Novamente">
+									<li class="cl_ficaria2" v-tooltip.top-start="'Ficaria Novamente'">
 										<span class="badge" id="cont_cl_ficaria2">8</span>
 									</li>
-									<li v-show="flagDisplayHot === true"class="cl_picante" data-toggle="tooltip" data-placement="top" title="Relação Picante">
+									<li v-show="flagDisplayHot === true"class="cl_picante" v-tooltip.top-start="'Relação Picante'">
 										<span class="badge" id="cont_cl_picante">2</span>
 									</li>
-									<li class="cl_fico" data-toggle="tooltip" data-placement="top" title="Ficaria">
+									<li class="cl_fico" v-tooltip.top-start="'Ficaria'">
 										<span class="badge" id="cont_cl_fico">6</span>
 									</li>
-									<li class="cl_Ninteresse" data-toggle="tooltip" data-placement="top" title="Sem Interesse">
+									<li class="cl_Ninteresse" v-tooltip.top-start="'Sem Interesse'">
 										<span class="badge" id="cont_cl_Ninteresse">60</span>
 									</li>
 								</ul>
@@ -47,7 +47,7 @@
 						<div class="perfilMatchListInfo">
 							<a href="/notificationNewMatch">
 								<i class="cl_ficaria2">  </i>
-								<span><b>Match</b> Iai Rola?</span>
+								<span> Match Iai Rola?</span>
 								<span class="badge pull-right">4</span>
 							</a>
 						</div>
@@ -55,8 +55,8 @@
 					<div class="row  perfilMatchList col-md-12 container">
 						<div class="perfilMatchListInfo">
 								<a href="/notificationOldMatch">
-								<i class="cl_fico">  </i>
-								<span><b>Macth</b> Alerta de Flash Back!</span>
+								<i class="cl_fico"></i>
+								<span>Macth Alerta de Flash Back!</span>
 								<span class="badge pull-right">5</span>
 							</a>
 						</div>
@@ -147,7 +147,7 @@ export default{
 }
 
 .perfilNewFriends ul li a img:hover{
-    zoom: 1.2;
+    // zoom: 1.2;
     position: relative;
     border-radius: 86px;
 		border: 2px solid #6961e2;

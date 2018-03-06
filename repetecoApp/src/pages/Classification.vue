@@ -28,8 +28,7 @@
       </div>
       </div>
       <div v-else><reload></reload></div>
-  </div>
-  
+  </div>     
 </div>
 </template>
 
@@ -106,3 +105,7 @@ mounted () {
  //Facebook - End 
 };
 </script>
+
+<style>
+.paginationDiv{color: red;}
+</style>

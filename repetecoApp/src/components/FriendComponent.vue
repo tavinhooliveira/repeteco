@@ -107,8 +107,8 @@ export default{
     }
 }
 
-
 </script>
+
 <style lang="scss">
 .ListFriends li .LfPicture img:hover{border: 4px solid rgba(85, 169, 247, 0.54) !important;}
 .optionShow{color: #c0bebe}

@@ -26,7 +26,9 @@
           v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot"></userComponentOff>
       </div>
       </div>
-      <div v-else><reload></reload></div>   
+      <div v-else>
+        <reload></reload>
+      </div>   
   </div>
 </div>
 </template>

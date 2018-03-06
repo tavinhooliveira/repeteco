@@ -1,4 +1,4 @@
- 
+
 /*Funçao Notificacao Return true/false*/
  $(function() {
     $('#toggle-event-notification').change(function() {
