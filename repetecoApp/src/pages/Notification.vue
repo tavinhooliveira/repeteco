@@ -25,27 +25,10 @@
                <reload></reload>
             </div>
             </br>
-         </div>
-         <!-- Test
-            </br></br></br></br></br></br></br>
-            Eu Curtir: {{MyMatchs}}
-            </br></br></br>
-            Me Curtiram: {{YouMatchs}}
-            
-            </br></br></br></br></br></br></br>
-            matchs {{matchs}}
-            </br></br></br>
-                    END Test -->   
-         <!--
-            <div class="well">
-              id dos usuarios que me curtiram       
-              <div v-for="item in friendsAll">
-                  <div v-if="(item.option === 'ficaria' || item.option === 'ficariaNovamente') && item.id_fb_friends === idUserFbSession">
-                    User_id: {{ item.user_id}}
-                  </div>
-              </div>
-            </div>
-            --> 
+         </div>         
+        </br></br></br></br></br></br></br>
+                Retorno: {{matchsList}}
+        </br></br></br></br></br></br></br>
       </section>
    </div>
 </template>
@@ -72,12 +55,12 @@ export default {
       friends: {},
       friendsAll: {},
       statusAPIAPP: false,
-      idUserFbSession: null,
-      a: this.friendslist
+      idUserFbSession: null
     };
   },
   computed: {
-    MyMatchs() {
+    matchsList (){
+        //myMatch - return list: id_fb_friends
         let fdlist = this.friends;
         let friendslist = [];
         let listFB = null;
@@ -85,27 +68,35 @@ export default {
             listFB = {
                 name: fdlist[i].name,
                 id_fb_friends: fdlist[i].id_fb_friends,
-                user_id: fdlist[i].user_id
+                user_id: fdlist[i].user_id,
+                option: fdlist[i].option
             }
             if (fdlist[i].option === 'ficaria' || fdlist[i].option === 'ficariaNovamente') {
                 friendslist.push(listFB)
             }
         }
-        return friendslist;
-    },
-    YouMatchs() {
-        let fdlist = this.friendsAll;
-        let friendslist = [];
-        let listFB = null;
-        for (let i = 0; i < fdlist.length; i++) {
-            listFB = {
-                user_id: fdlist[i].user_id
+        //youMatchs - return list: user_id
+        let fdlistAll = this.friendsAll;
+        let friendslistAll = [];
+        let listFbAll = null;
+        for (let i = 0; i < fdlistAll.length; i++) {
+            listFbAll = {
+                user_id: fdlistAll[i].user_id,
+                option: fdlistAll[i].option
             }
-            if ((fdlist[i].option === 'ficaria' || fdlist[i].option === 'ficariaNovamente') && fdlist[i].id_fb_friends === this.idUserFbSession) {
-                friendslist.push(listFB)
+            if ((fdlistAll[i].option === 'ficaria' || fdlistAll[i].option === 'ficariaNovamente') && fdlistAll[i].id_fb_friends === this.idUserFbSession) {
+                friendslistAll.push(listFbAll)
             }
         }
-        return friendslist;
+        //Comparação das duas listas - Return:
+        //Ex listMy:  [ { "name": "Angela Caroline", "id_fb_friends": "1873066066343179", "user_id": 1893438167339291, "option": "ficariaNovamente" }, { "name": "Edgard Barbosa", "id_fb_friends": "1341014052712069", "user_id": 1893438167339291, "option": "ficariaNovamente" }, { "name": "Arioston Jaerger", "id_fb_friends": "1768258099913370", "user_id": 1893438167339291, "option": "ficaria" }, { "name": "Usuario Antigo", "id_fb_friends": "1952913858311706", "user_id": 1893438167339291, "option": "ficaria" } ] 
+        //Ex listYou: [ { "user_id": 1873066066343179, "option": "ficariaNovamente" }, { "user_id": 1952913858311706, "option": "ficaria" } ] 
+        //WHERE listMy.id_fb_friends = listYou.user_id && listMy.option = listYou.option
+        var matchs = [];
+        var listMy = friendslist;
+        var listYou = friendslistAll;        
+
+        return listMy
     }
     //select distinct f2.name, f2.id_fb_friends, f1.user_id from friends f1, friends f2 WHERE f1.user_id=f2.id_fb_friends AND f1.id_fb_friends=1893438167339291
   },
