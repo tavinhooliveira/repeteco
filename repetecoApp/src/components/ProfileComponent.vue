@@ -69,7 +69,7 @@
             <span>
             <span class="pull-left staricon fa fa-star fa-2x"></span>
             <span>Você Foi Classificado</span>
-            <span class="badge pull-right">76</span>
+            <span class="badge pull-right">{{contYouAllClassification}}</span>
             </span>
          </div>
          <div id="perfilNewFriends" class="slider perfilNewFriends well  panel-body">
@@ -97,8 +97,13 @@ import UserComponent from '../components/UserComponent.vue';
 import CarroselComponent from '../components/CarroselComponent.vue';
 
 export default {
-	props: ['name', 'imagem', 'link', 'friendsTotalFb', 'friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp', 'flagDisplayCount', 'flagDisplayHot'],
-	computed: {
+	props: ['name', 'imagem', 'link', 'friendsTotalFb', 'friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp', 'flagDisplayCount', 'flagDisplayHot', 'friendsAll'],
+	components: {
+			FriendComponent,
+			UserComponent,
+			CarroselComponent
+	},
+    computed: {
 		profileName() {
 				if (this.id) {
 						return `${this.name}`
@@ -186,14 +191,20 @@ export default {
                         }
                     }
 		    return litrs.length           
+		},
+        contYouAllClassification() { 
+            let litrs =[];           
+            let list = [];
+                for (let i = 0; i < this.friendsAll.length; i++) {
+                    if(this.friendsAll[i].option != null && this.friendsAll[i].id_fb_friends === this.id_fb_users){
+                        list = {option: this.friendsAll[i].option}
+                        litrs.push(list)
+                        }
+                    }
+		    return litrs.length           
 		}
         
-	},
-	components: {
-			FriendComponent,
-			UserComponent,
-			CarroselComponent
-	},
+	},	
 	methods: {
 		progress() {
 				//return (this.friendsTotalFb  * this.friendsTotalApp) / 100

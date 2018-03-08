@@ -9,8 +9,8 @@
                <profileComponent v-for="profileinfo in users" v-bind:key="profileinfo.id" v-bind:id="profileinfo.id" v-bind:city="profileinfo.city"
                   v-bind:name="profileinfo.name" v-bind:imagem="profileinfo.imagem" v-bind:link="profileinfo.link" v-bind:id_fb_users="profileinfo.id_fb_users"
                   v-bind:friendsTotalFb="profileinfo.friendsTotalFb" v-bind:friendsTotalApp="profileinfo.friendsTotalApp" v-bind:flagDisplayHot="profileinfo.flagDisplayHot"
-                  v-bind:flagDisplayCount="profileinfo.flagDisplayCount" v-bind:friends="profileinfo.friends">
-               </profileComponent>
+                  v-bind:flagDisplayCount="profileinfo.flagDisplayCount" v-bind:friends="profileinfo.friends" v-bind:friendsAll="friendsAll">
+               </profileComponent>               
             </section>
          </div>
          <div v-else>
@@ -45,10 +45,24 @@ export default {
         profile: [],
         authorized: false,
         statusAPIAPP: false,
-        intervalo: null
+        intervalo: null,
+        friendsAll: []
       }
   },
   methods: {
+    //usado para extrair o id dos amigos que deram match!
+    getApiRepetecoFriendsAll() {
+        this.$http.get(`http://localhost:9096/wsrepeteco/friends`).then(response => {
+            this.friendsAll = response.data
+            if (this.friendsAll.length > 0) {
+                console.log("API Repeteco AllFriends: OK!")
+                this.statusAPIAPP = true;
+            } else {
+                this.statusAPIAPP = false;
+                console.log("Erro na chamada da API - Repeteco");
+            }
+        })
+    },
     //Facebook - API GET
     getApiRepeteco(userid) {
         this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
@@ -71,6 +85,7 @@ export default {
             vm.authorized = true
             vm.idUserFbSession = idFb
             vm.getApiRepeteco(idFb)
+            vm.getApiRepetecoFriendsAll()
         } else if (response.status === 'not_authorized') {
             console.log("Status: Não Autorizado!");
             vm.authorized = false
