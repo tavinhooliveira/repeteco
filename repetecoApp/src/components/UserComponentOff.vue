@@ -8,7 +8,7 @@
         v-bind:flagDisplayHot="flagDisplayHot">
       </friendComponentOff>
     </div>
-    <p v-if="friends == null"class="text-center"></br>Nenhum amigo encontrado! ☹</p>
+    <p v-if="contNotClassification <= 0"class="text-center"></br>Nenhum amigo encontrado! ☹</p>
   </div>  
 </template>
 <script>
@@ -17,7 +17,20 @@ export default{
   props:['name','imagem','link','nationality','friendsTotalFb','friends', 'preference', 'flagDisplayHot'],
   components:{
     FriendComponentOff
-  }
+  },
+  computed: {
+    contNotClassification() { 
+        let litrs =[];           
+        let list = [];
+            for (let i = 0; i < this.friends.length; i++) {
+                if(this.friends[i].option === null){
+                    list = {option: this.friends[i].option}
+                    litrs.push(list)
+                    }
+                }
+    return litrs.length           
+		}       
+	}
 }
 </script>
 <style lang="scss">

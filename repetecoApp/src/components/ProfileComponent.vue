@@ -20,19 +20,19 @@
                   <div class="classification center-block">
                      <ul class="img_classification col-md-12 center-block">
                         <li class="cl_fiquei" v-tooltip.top-start="'Já Fiquei'" >
-                           <span class="badge" id="cont_cl_fiquei">15</span>
+                           <span class="badge" id="cont_cl_fiquei">{{contFiquei}}</span>
                         </li>
                         <li class="cl_ficaria2" v-tooltip.top-start="'Ficaria Novamente'">
-                           <span class="badge" id="cont_cl_ficaria2">8</span>
+                           <span class="badge" id="cont_cl_ficaria2">{{contFicariaNovamente}}</span>
                         </li>
                         <li v-show="flagDisplayHot === true"class="cl_picante" v-tooltip.top-start="'Relação Picante'">
-                           <span class="badge" id="cont_cl_picante">2</span>
+                           <span class="badge" id="cont_cl_picante">{{contRelacaoPicante}}</span>
                         </li>
                         <li class="cl_fico" v-tooltip.top-start="'Ficaria'">
-                           <span class="badge" id="cont_cl_fico">6</span>
+                           <span class="badge" id="cont_cl_fico">{{contFicaria}}</span>
                         </li>
                         <li class="cl_Ninteresse" v-tooltip.top-start="'Sem Interesse'">
-                           <span class="badge" id="cont_cl_Ninteresse">60</span>
+                           <span class="badge" id="cont_cl_Ninteresse">{{contSemInteresse}}</span>
                         </li>
                      </ul>
                   </div>
@@ -59,6 +59,10 @@
                      </a>
                   </div>
                </div>
+            </div>
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Você Classificou</strong> {{contAllClassification}} amigos(as), {{contNotClassification}} ainda espera por você!
             </div>
          </div>
          <div class="well">
@@ -106,6 +110,84 @@ export default {
 		profilePicture() {
 				return (this.id) ? `https://graph.facebook.com/${this.id}/picture?width=300` : `/src/assets/img/man.gif`
 		},
+        contFiquei() { 
+            let litrs =[];           
+            let list = [];
+                for (let i = 0; i < this.friends.length; i++) {
+                    if(this.friends[i].option === 'fiquei'){
+                        list = {option: this.friends[i].option}
+                        litrs.push(list)
+                        }
+                    }
+		    return litrs.length           
+		},
+        contFicariaNovamente() { 
+            let litrs =[];           
+            let list = [];
+                for (let i = 0; i < this.friends.length; i++) {
+                    if(this.friends[i].option === 'ficariaNovamente'){
+                        list = {option: this.friends[i].option}
+                        litrs.push(list)
+                        }
+                    }
+		    return litrs.length           
+		},
+        contRelacaoPicante() { 
+            let litrs =[];           
+            let list = [];
+                for (let i = 0; i < this.friends.length; i++) {
+                    if(this.friends[i].option === 'relacaoPicante'){
+                        list = {option: this.friends[i].option}
+                        litrs.push(list)
+                        }
+                    }
+		    return litrs.length           
+		},
+        contFicaria() { 
+            let litrs =[];           
+            let list = [];
+                for (let i = 0; i < this.friends.length; i++) {
+                    if(this.friends[i].option === 'ficaria'){
+                        list = {option: this.friends[i].option}
+                        litrs.push(list)
+                        }
+                    }
+		    return litrs.length           
+		},
+        contSemInteresse() { 
+            let litrs =[];           
+            let list = [];
+                for (let i = 0; i < this.friends.length; i++) {
+                    if(this.friends[i].option === 'semInteresse'){
+                        list = {option: this.friends[i].option}
+                        litrs.push(list)
+                        }
+                    }
+		    return litrs.length           
+		},
+        contAllClassification() { 
+            let litrs =[];           
+            let list = [];
+                for (let i = 0; i < this.friends.length; i++) {
+                    if(this.friends[i].option != null){
+                        list = {option: this.friends[i].option}
+                        litrs.push(list)
+                        }
+                    }
+		    return litrs.length           
+		},
+        contNotClassification() { 
+            let litrs =[];           
+            let list = [];
+                for (let i = 0; i < this.friends.length; i++) {
+                    if(this.friends[i].option === null){
+                        list = {option: this.friends[i].option}
+                        litrs.push(list)
+                        }
+                    }
+		    return litrs.length           
+		}
+        
 	},
 	components: {
 			FriendComponent,
@@ -115,7 +197,7 @@ export default {
 	methods: {
 		progress() {
 				//return (this.friendsTotalFb  * this.friendsTotalApp) / 100
-				return Math.round(this.friendsTotalFb - this.friendsTotalApp) / 100
+				return Math.round( this.contAllClassification * this.friendsTotalApp ) / 100
 		},
 		scrollDireita() {
 				this.intervalo = setInterval(() => {

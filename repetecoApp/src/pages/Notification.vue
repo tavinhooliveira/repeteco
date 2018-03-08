@@ -96,7 +96,7 @@ export default {
         var listMy = friendslist;
         var listYou = friendslistAll;        
 
-        return listMy
+        return listYou
     }
     //select distinct f2.name, f2.id_fb_friends, f1.user_id from friends f1, friends f2 WHERE f1.user_id=f2.id_fb_friends AND f1.id_fb_friends=1893438167339291
   },

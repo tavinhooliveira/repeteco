@@ -15,6 +15,7 @@
                   <span class="Nfdate">1min</span>
                </div>
             </div>
+               {{id_fb_friends}}
          </li>
          <li v-else class="list-group-item col-md-4 notification" >
             <div class="media-left LfPicture">
@@ -30,6 +31,7 @@
                   <span class="Nfdate">1min</span>
                </div>
             </div>
+               {{id_fb_friends}}
          </li>
       </section>
    </div>
