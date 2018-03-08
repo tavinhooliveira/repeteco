@@ -4,7 +4,6 @@
     <h1 class="error-code">404</h1>
     <h2 class="error-description">Not Found</h2>
     <a class="error-link" onclick="window.history.go(-1);" href="#">☚ Volte</a>
-
     <section class="links">
       <a href="/">Login</a>
       <a href="/classification">Classificações</a>
@@ -13,15 +12,8 @@
       <a href="/politicas">Politicas</a>
     </section>
   </section>
-
 </div>
 </template>
-
-<script>
-export default {
- 
-}
-</script>
 
 <style lang="scss">
 #navmenu{display:none;}

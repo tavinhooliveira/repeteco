@@ -1,12 +1,12 @@
 <template >
-<div>
+  <div>
     <section class="error-message ">
-        <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
-        <span class="sr-only">Loading...</span>
-        <h5 class="error-description text-danger">Verificando Autorização...</h5>
-        <a class="error-link" onclick="location.href='/'">login</a>
+      <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+      <span class="sr-only">Loading...</span>
+      <h5 class="error-description text-danger">Verificando Autorização...</h5>
+      <a class="error-link" onclick="location.href='/'">login</a>
     </section>
-</div>
+  </div>
 </template>
 
 <script>

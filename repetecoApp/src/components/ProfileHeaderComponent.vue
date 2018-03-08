@@ -29,12 +29,12 @@ export default {
     props: ['user','name','link','imagem', 'friendsTotalFb','friendsTotalApp'],
     name: 'ProfileComponent',
     computed: {
-    profileName () {      
-        return '<h6 onclick="Refresh();">Buscando... <a>Atualizar</a></h6>'
-    },
-    profilePicture () {
-        return `/src/assets/img/man.gif`
-    },
+        profileName () {      
+            return '<h6 onclick="Refresh();">Buscando... <a>Atualizar</a></h6>'
+        },
+        profilePicture () {
+            return `/src/assets/img/man.gif`
+        }
     }
 }
 </script>
