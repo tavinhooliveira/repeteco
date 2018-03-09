@@ -331,7 +331,7 @@
     }
 
     .ListFriends .img_classification{
-    width: 287px !important;
+        width: 251px !important;
 }
     .ListFriends .img_classification label{
         margin-left: 11px !important;

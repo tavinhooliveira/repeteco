@@ -15,7 +15,6 @@
                   <span class="Nfdate">1min</span>
                </div>
             </div>
-               {{id_fb_friends}}
          </li>
          <li v-else class="list-group-item col-md-4 notification" >
             <div class="media-left LfPicture">
@@ -31,7 +30,6 @@
                   <span class="Nfdate">1min</span>
                </div>
             </div>
-               {{id_fb_friends}}
          </li>
       </section>
    </div>
@@ -39,7 +37,7 @@
 
 <script>
 export default{
-  props:['name','imagem','link','option','user_id', 'id_fb_friends', 'friendsAll'],
+  props:['name','imagem','link','option','user_id','id_fb_friends'],
     components:{
   }
 }

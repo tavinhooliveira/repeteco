@@ -26,11 +26,11 @@
                   v-bind:friendsTotalApp="user.friendsTotalApp" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot">
                </userComponent>
             </div>
-            {{contNotClassification}}
          </div>
          <div v-else>
             <reload></reload>
          </div>
+         <reload v-if="this.users <= 0"></reload>
       </div>
    </div>
 </template>

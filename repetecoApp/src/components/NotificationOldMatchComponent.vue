@@ -20,7 +20,7 @@
 
 <script>
 export default{
-  props:['name','imagem','link','option'],
+  props:['name','imagem','link','option','user_id','id_fb_friends'],
   data(){
     return{
         optionOld: 'ficariaNovamente'

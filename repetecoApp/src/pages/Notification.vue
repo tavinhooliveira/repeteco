@@ -12,23 +12,21 @@
                <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
                <div class="btn-group pull-right">
                   <div>					        
-                     <a href="/notification" class="active" title="Todos" ><i class="glyphicon glyphicon-bell"> </i>Todos</a> |
-                     <a href="/notificationNewMatch" title="Novos Matchs" >Novos Matchs</a> | 
-                     <a href="/notificationOldMatch" title="Flash Backs" >Flash Backs</a>
+                     <a href="/notification" class="active" title="Todos" ><i class="glyphicon glyphicon-bell"> </i>Todos |</a> 
+                     <a v-show="matchsList.length > 0" href="/notificationNewMatch" title="Novos Matchs" >Novos Matchs |</a>  
+                     <a v-show="matchsList.length > 0" href="/notificationOldMatch" title="Flash Backs" >Flash Backs</a>
                   </div>
                </div>
             </div>
             <ul v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
-               <notificationcomponet v-bind:friend="friends"  v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:user_id="friend.user_id" v-bind:friendsAll="friendsAll"></notificationcomponet>
+               <notificationcomponet v-bind:friend="matchsList"  v-for="friend in matchsList" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:user_id="friend.user_id" v-bind:friendsAll="friendsAll"></notificationcomponet>
             </ul>
             <div v-else>
                <reload></reload>
             </div>
+             <p v-if="matchsList.length <= 0"class="text-center"></br>Você ainda não tem Matchs! ☹</p>
             </br>
          </div>         
-        </br></br></br></br></br></br></br>
-                Retorno: {{matchsList}}
-        </br></br></br></br></br></br></br>
       </section>
    </div>
 </template>
@@ -69,7 +67,9 @@ export default {
                 name: fdlist[i].name,
                 id_fb_friends: fdlist[i].id_fb_friends,
                 user_id: fdlist[i].user_id,
-                option: fdlist[i].option
+                option: fdlist[i].option,
+                link: fdlist[i].link,
+                imagem: fdlist[i].imagem
             }
             if (fdlist[i].option === 'ficaria' || fdlist[i].option === 'ficariaNovamente') {
                 friendslist.push(listFB)
@@ -81,22 +81,29 @@ export default {
         let listFbAll = null;
         for (let i = 0; i < fdlistAll.length; i++) {
             listFbAll = {
-                user_id: fdlistAll[i].user_id,
+                user_id: fdlistAll[i].user_id+"",
                 option: fdlistAll[i].option
             }
             if ((fdlistAll[i].option === 'ficaria' || fdlistAll[i].option === 'ficariaNovamente') && fdlistAll[i].id_fb_friends === this.idUserFbSession) {
                 friendslistAll.push(listFbAll)
             }
         }
-        //Comparação das duas listas - Return:
-        //Ex listMy:  [ { "name": "Angela Caroline", "id_fb_friends": "1873066066343179", "user_id": 1893438167339291, "option": "ficariaNovamente" }, { "name": "Edgard Barbosa", "id_fb_friends": "1341014052712069", "user_id": 1893438167339291, "option": "ficariaNovamente" }, { "name": "Arioston Jaerger", "id_fb_friends": "1768258099913370", "user_id": 1893438167339291, "option": "ficaria" }, { "name": "Usuario Antigo", "id_fb_friends": "1952913858311706", "user_id": 1893438167339291, "option": "ficaria" } ] 
-        //Ex listYou: [ { "user_id": 1873066066343179, "option": "ficariaNovamente" }, { "user_id": 1952913858311706, "option": "ficaria" } ] 
-        //WHERE listMy.id_fb_friends = listYou.user_id && listMy.option = listYou.option
+        //Match myMatch + you Match
         var matchs = [];
         var listMy = friendslist;
-        var listYou = friendslistAll;        
-
-        return listYou
+        var listYou = friendslistAll;
+        listMy.forEach(
+            function myfunction(my){
+                listYou.forEach(
+                    function youFunction(you){
+                        if(my.id_fb_friends === you.user_id && my.option === you.option){
+                            matchs.push(my);
+                        }
+                    }
+                )     
+            }
+        )
+        return matchs;
     }
     //select distinct f2.name, f2.id_fb_friends, f1.user_id from friends f1, friends f2 WHERE f1.user_id=f2.id_fb_friends AND f1.id_fb_friends=1893438167339291
   },

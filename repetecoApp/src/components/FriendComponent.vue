@@ -18,7 +18,7 @@
                <input type="radio" value="ficariaNovamente" id="optionclassificada" v-model="optiondata">
                <span class="cl_ficaria2"></span>
                </label>
-               <label v-show="flagDisplayHot === true" class="cl_picante" style="padding-left: 0px;" v-tooltip.left-start="'Tivemos um Relação Picante'">
+               <label v-show="flagDisplayHot === true" class="cl_picante" v-tooltip.left-start="'Tivemos um Relação Picante'">
                <input type="radio"  value="relacaoPicante" id="optionclassificada" v-model="optiondata">
                <span class="cl_picante"></span>
                </label>
@@ -109,7 +109,7 @@ export default {
 <style lang="scss">
 .ListFriends li .LfPicture img:hover{border: 4px solid rgba(85, 169, 247, 0.54) !important;}
 .optionShow{color: #c0bebe}
-.ListFriends .img_classification label {margin-left: 5px; padding-left: 5px;}
+.ListFriends .img_classification label {margin-left: 5px; padding-left: 2px;}
 .modal-dialog{max-width: 450px !important;}
 .modal-dialog img{margin-left: 25px !important;}
 </style>
