@@ -3,6 +3,7 @@ import VueResource from 'vue-resource'
 import FBSignInButton from 'vue-facebook-signin-button'
 import VueRouter from 'vue-router'
 import VTooltip from 'v-tooltip'
+
 Vue.use(VueResource)
 Vue.use(FBSignInButton)
 Vue.use(VueRouter)
@@ -80,3 +81,29 @@ new Vue ({
 
   }
 }
+
+
+
+//import http from 'http';
+
+// const server = http.createServer(() => {});
+// server.listen(3000, () => {});
+
+// http.createServer(function(req,res){
+//   res.writeHead(200);
+//   res.end("Hello world");
+// });
+// http.listen(3000);
+
+// let app = require('express')();
+// let http = require('http').createServer(app);
+// let io = require('socket.io').listen(http);
+
+// connnections = []
+// app.get('/', function(req, res){
+//   res.sendFile(_dirname + 'index.html');
+// });
+
+// http.listen(3000, function(){
+//   console.log('app: running...');
+// });

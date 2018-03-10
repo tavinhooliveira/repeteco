@@ -10,6 +10,8 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4",
     "v-tooltip": "^2.0.0-rc.31",
     "vue": "^2.4.4",
     "vue-facebook-signin-button": "^1.0.1",
