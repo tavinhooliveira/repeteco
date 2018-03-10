@@ -1,7 +1,7 @@
 <template>
    <li v-if="genderPreference === gender || genderPreference === ''"  class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
       <form class="statusForm center-block" >
-         <a v-bind:href="pictureLarge" data-toggle="lightbox" role="document" data-title="..." v-bind:data-footer="name" >
+         <a v-bind:href="pictureLarge" data-toggle="lightbox" style="width: 100% !important;" role="document" data-title="..." v-bind:data-footer="name" >
             <div class="media-left col-md-4 LfPicture" >
          <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
          </div>
@@ -112,4 +112,9 @@ export default {
 .ListFriends .img_classification label {margin-left: 5px; padding-left: 2px;}
 .modal-dialog{max-width: 450px !important;}
 .modal-dialog img{margin-left: 25px !important;}
+.modal-dialog .ekko-lightbox-container img{
+    width: 100% !important;
+    height: 100% !important;
+    -webkit-user-select: none;
+}
 </style>

@@ -81,7 +81,7 @@ export default {
         let listFbAll = null;
         for (let i = 0; i < fdlistAll.length; i++) {
             listFbAll = {
-                user_id: fdlistAll[i].user_id+"",
+                user_id: (fdlistAll[i].user_id).toString(),
                 option: fdlistAll[i].option
             }
             if ((fdlistAll[i].option === 'ficaria' || fdlistAll[i].option === 'ficariaNovamente') && fdlistAll[i].id_fb_friends === this.idUserFbSession) {
@@ -109,7 +109,7 @@ export default {
   },
   methods: {
     getApiRepeteco(userid) {
-        this.$http.get(`http://localhost:9096/wsrepeteco/notification/${userid}/friends`).then(response => {
+        this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}/friends`).then(response => {
             this.friends = response.data
             if (this.friends.length > 0) {
                 console.log("API Repeteco: OK!")

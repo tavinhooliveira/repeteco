@@ -26,6 +26,7 @@
                   v-bind:friendsTotalFb="user.friendsTotalFb" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot">
                </userComponentOn>
             </div>
+            </br>
          </div>
          <div v-else>
             <reload></reload>

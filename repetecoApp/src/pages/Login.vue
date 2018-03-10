@@ -75,7 +75,7 @@ export default {
   },
   computed: {
     profilePicture() {
-      return (this.profile.id) ? `https://graph.facebook.com/${this.profile.id}/picture?width=300` : `/src/assets/img/loading.gif`
+      return (this.profile.id) ? `https://graph.facebook.com/${this.profile.id}/picture?width=300` : `/src/assets/img/loading3.gif`
     },
     totalFriendsApp() {
       if (this.profile.id) {

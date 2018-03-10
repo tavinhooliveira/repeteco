@@ -26,6 +26,7 @@
                   v-bind:friendsTotalApp="user.friendsTotalApp" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot">
                </userComponent>
             </div>
+            </br>
          </div>
          <div v-else>
             <reload></reload>

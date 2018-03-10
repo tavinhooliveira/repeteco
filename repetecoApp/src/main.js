@@ -11,7 +11,7 @@ Vue.use(VTooltip)
 import Login from './pages/Login.vue'
 import Classification from './pages/Classification.vue'
 import Profile from './pages/Profile.vue'
-import Invite from './pages/Invite.vue'
+import Share from './pages/Share.vue'
 import Notification from './pages/Notification.vue'
 import NotificationNewMatch from './pages/NotificationNewMatch.vue'
 import NotificationOldMatch from './pages/NotificationOldMatch.vue'
@@ -19,12 +19,14 @@ import Config from './pages/Config.vue'
 import NotFound from './pages/NotFound.vue'
 import ClassificationOn from './pages/ClassificationOn.vue'
 import ClassificationOff from './pages/ClassificationOff.vue'
+import Policies from './pages/Policies.vue'
+import ServiceTerms from './pages/ServiceTerms.vue'
 
 
 const login = Login
 const classification = Classification
 const profile = Profile
-const invite = Invite
+const share = Share
 const notification = Notification
 const notificationNewMatch = NotificationNewMatch
 const notificationOldMatch = NotificationOldMatch
@@ -32,6 +34,9 @@ const config = Config
 const notFound = NotFound
 const classificationOn = ClassificationOn
 const classificationOff = ClassificationOff
+const policies = Policies
+const serviceTerms = ServiceTerms
+
 
 
 const rotas = {
@@ -39,13 +44,15 @@ const rotas = {
   '/classification': classification,
   '/profile': profile,
   '/config': config,
-  '/invite': invite,
+  '/share': share,
   '/notification': notification,
   '/notificationNewMatch': notificationNewMatch,
   '/notificationOldMatch': notificationOldMatch,
   '/config': config,
   '/classificationOn' : classificationOn,
-  '/classificationOff' : classificationOff
+  '/classificationOff' : classificationOff,
+  '/policies' : policies,
+  '/serviceTerms' : serviceTerms
 
 }
 

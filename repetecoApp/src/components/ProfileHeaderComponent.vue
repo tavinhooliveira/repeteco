@@ -33,7 +33,7 @@ export default {
             return '<h6 onclick="Refresh();">Buscando... <a>Atualizar</a></h6>'
         },
         profilePicture () {
-            return `/src/assets/img/man.gif`
+            return `/src/assets/img/man.jpg`
         }
     }
 }

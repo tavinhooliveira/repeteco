@@ -1,3 +1,4 @@
+body{background-color: #f5f7fa8c !important}
 .navbar-default {z-index: 1032 !important;}
 
 .perfil .ui-link {color: #3498db !important;}
@@ -227,7 +228,7 @@ footer .col-links .fa {
 .perfil{margin-top: 50px;}
 .perfil ul.img_classification {width: 298px;margin-left: 5px;}
 .perfil .classification {margin-left: 62%;}
-.perfil .perfilPicture {margin-top: 10px;margin-left: 244px;}
+.perfil .perfilPicture {margin-top: 10px;margin-left: 225px;}
 .perfil .perfilPicture img { width: 150px;height: 150px;border-radius: 86px; border: 5px solid #e8e8e8;background-color: #fff;}
 .perfil .perfilName{margin-bottom: 10px;text-align: center;}
 .perfil .perfilbrprogress {margin-bottom: -15px;}

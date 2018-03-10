@@ -34,17 +34,17 @@
                  <div class="carousel-caption"> </div>
                </div>
                
-               
-               <div class="item">
-                 <img src="/src/assets/img/slaider/slaider02.png" >
-               </div>
-               -->
             <div class="item">
                <h3>Curta nosa fampage</h3>
                <div class="fb-page" data-href="https://www.facebook.com/Repeteco-490925014612889/" data-height="50px" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true">
                   <blockquote cite="https://www.facebook.com/Repeteco-490925014612889/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Repeteco-490925014612889/">Repeteco</a></blockquote>
                </div>
             </div>
+                -->
+               <div class="item">
+                 <div class="fb-like" data-href="https://www.facebook.com/Repeteco-490925014612889/?ref=settings" data-layout="standard" data-action="like" width="200px" data-size="small" data-show-faces="true" data-share="true"></div>
+               </div>
+              
             <div class="item"></br>
                <b>Faça o Login e Confira: </br>Repeteco APP</b>
             </div>

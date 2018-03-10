@@ -25,6 +25,7 @@
                   v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"
                   v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot"></userComponentOff>
             </div>
+            </br>
          </div>
          <div v-else>
             <reload></reload>

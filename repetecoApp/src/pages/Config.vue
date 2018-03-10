@@ -43,6 +43,7 @@
                     </div>
                 </div>
                 </br>
+                <!--
                 <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapseNotification" aria-expanded="false" aria-controls="collapseNotification">Notificações</button>
                 <div class="collapse" id="collapseNotification">
                     <ul class="list-group" @change="updatePreferencia()">
@@ -66,6 +67,7 @@
                     </ul>
                 </div>
                 </br>
+                -->
                 <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapsePrivacy" aria-expanded="false" aria-controls="collapsePrivacy">Privacidade</button>
                 <div class="collapse" id="collapsePrivacy">
                     <ul class="list-group" @change="updatePreferencia()">
@@ -95,8 +97,8 @@
                       <h4>Política</h4>
                       <li class="list-group-item well">
                           <div>                            
-                            <span><a href="#"><i class="fa fa-link" aria-hidden="true"></i> Termo de Serviço</a></span>
-                            <span class="pull-right"><a href="#"><i class="fa fa-link" aria-hidden="true"></i> Privacidade</a></span>
+                            <span><a href="/serviceTerms"><i class="fa fa-link" aria-hidden="true"></i> Termo de Serviço</a></span>
+                            <span class="pull-right"><a href="/policies"><i class="fa fa-link" aria-hidden="true"></i> Políticas</a></span>
                           </div>
                       </li>
                     </div>
