@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+  db:
+    image: orientdb:latest
+    environment:
+      name: repeteco
+      ORIENTDB_ROOT_PASSWORD: '1234'
+    ports:
+      - 2424:2424
+      - 2480:2480
+    volumes:
+      - /home/arioston.j.junior/orientdb/config:/opt/orientdb/config
+      - /home/arioston.j.junior/orientdb/databases:/opt/orientdb/databases
+      - /home/arioston.j.junior/orientdb/backup:/opt/orientdb/backup

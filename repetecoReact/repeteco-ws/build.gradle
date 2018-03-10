@@ -1,0 +1,84 @@
+buildscript {
+	ext {
+		kotlinVersion = '1.2.20'
+		springBootVersion = '2.0.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+	}
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-spring'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.repeteco'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+compileKotlin {
+	kotlinOptions {
+		freeCompilerArgs = ["-Xjsr305=strict"]
+		jvmTarget = "1.8"
+	}
+}
+compileTestKotlin {
+	kotlinOptions {
+		freeCompilerArgs = ["-Xjsr305=strict"]
+		jvmTarget = "1.8"
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-webflux')
+    compile('org.springframework.boot:spring-boot-starter-tomcat')
+
+	compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+
+    compile('org.springframework.session:spring-session-core')
+
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	compile("org.jetbrains.kotlin:kotlin-reflect")
+
+    compile 'org.springframework.social:spring-social-facebook:2.0.3.RELEASE'
+
+    compile("io.projectreactor.ipc:reactor-netty")
+
+    compile 'io.github.cdimascio:swagger-spring-functional:0.8.2'
+
+    // https://mvnrepository.com/artifact/com.orientechnologies/orientdb-core
+    compile group: 'com.orientechnologies', name: 'orientdb-core', version: '3.0.0RC2'
+    // https://mvnrepository.com/artifact/com.orientechnologies/orientdb-graphdb
+    compile group: 'com.orientechnologies', name: 'orientdb-graphdb', version: '3.0.0RC2'
+    // https://mvnrepository.com/artifact/com.tinkerpop.blueprints/blueprints-core
+    compile group: 'com.tinkerpop.blueprints', name: 'blueprints-core', version: '2.6.0'
+    // https://mvnrepository.com/artifact/net.java.dev.jna/jna
+    compile group: 'net.java.dev.jna', name: 'jna', version: '4.5.1'
+    // https://mvnrepository.com/artifact/net.java.dev.jna/jna-platform
+    compile group: 'net.java.dev.jna', name: 'jna-platform', version: '4.5.1'
+    // https://mvnrepository.com/artifact/com.googlecode.concurrentlinkedhashmap/concurrentlinkedhashmap-lru
+    compile group: 'com.googlecode.concurrentlinkedhashmap', name: 'concurrentlinkedhashmap-lru', version: '1.4.2'
+    // https://mvnrepository.com/artifact/com.orientechnologies/orientdb-client
+    compile group: 'com.orientechnologies', name: 'orientdb-client', version: '3.0.0RC2'
+    // https://mvnrepository.com/artifact/com.orientechnologies/orientdb-enterprise
+    compile group: 'com.orientechnologies', name: 'orientdb-enterprise', version: '2.1.25'
+
+
+    runtime('org.springframework.boot:spring-boot-devtools')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('io.projectreactor:reactor-test')
+	testCompile('org.springframework.security:spring-security-test')
+}
