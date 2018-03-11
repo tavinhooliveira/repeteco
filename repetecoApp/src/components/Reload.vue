@@ -18,19 +18,6 @@
 </div>
 </template>
 
-<script>
-export default {
-  name: "Reload",
-  props: [],
-  components: {
-
-  },
-  methods: {
-
-  }
-};
-</script>
-
 <style lang="scss">
 /*Css Para Error*/
 .refreshIcon {margin-top: -84px; margin-left: -9px; position: absolute;}  

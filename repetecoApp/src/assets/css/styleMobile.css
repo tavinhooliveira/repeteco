@@ -109,6 +109,11 @@
 
 /*Responsivo Tablet*/
 @media (min-width : 480px) and (max-width: 768px) {
+
+    .socailIcons {
+        margin-left: 21%;
+        margin-right: auto;
+    }
 	.CarouselLogin img {
         margin-left: 0px !important;
     }
@@ -214,6 +219,10 @@
 
 /*Responsivo Modile Android*/
 @media (min-width : 320px) and (max-width : 480px){
+    .socailIcons {
+        margin-left: 21%;
+        margin-right: auto;
+    }
     .CarouselLogin img {
         margin-left: 0px !important;
     }
@@ -239,7 +248,7 @@
         width: 100% !important;
     }
 
-    .searchClassification input {width: 94% !important;}
+    .searchClassification input {width: 99% !important;}
 
 
     .perfil .perfilPicture {
@@ -331,7 +340,7 @@
     }
 
     .ListFriends .img_classification{
-    width: 287px !important;
+        width: 251px !important;
 }
     .ListFriends .img_classification label{
         margin-left: 11px !important;
