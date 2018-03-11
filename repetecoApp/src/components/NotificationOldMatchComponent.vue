@@ -8,8 +8,12 @@
             <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
             <small class="Nfmensagem">Disse que rola um possivel... <br> <b>Flash Back!</b> </small>
          </div>
+
          <div class="notification pull-right">
             <div class="img_classification">
+              <button type="button btnMatchFalse" v-on:click="Refresh(); starClickOff();" class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">          
+                <span aria-hidden="true">&times;</span>          
+              </button>
                <i class="imgficaria2" v-tooltip.top-start="'Ficaria Novamente'"></i>
             </div>
             <span class="Nfdate">3min</span>
@@ -20,12 +24,54 @@
 
 <script>
 export default{
-  props:['name','imagem','link','option','user_id','id_fb_friends'],
-  data(){
-    return{
-        optionOld: 'ficariaNovamente'
-    } 
+  props:['name','id','imagem','link','option','user_id','id_fb_friends'],
+    components:{
   },
+  data() {
+    return {
+      efeitoClick: null,
+      genderPreference: this.preference,
+      optiondata: this.option,
+      click: null,
+      optionOld: 'ficariaNovamente'
+    }
+  }, 
+  methods: {
+    starClickOff: function() {
+      this.optiondata = null;
+      const fdOption = {
+        option: this.optiondata
+      }
+      var click = true;
+      var friendId = this.id;
+      $.ajax({
+        url: "http://localhost:9096/wsrepeteco/friends/opcao/" + friendId,
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          'dataType': 'json'
+        },
+        dataType: 'json',
+        crossDomain: true,
+        origin: "*",
+        processData: true,
+        data: JSON.stringify(fdOption)
+      });
+
+      this.efeitoClick = 'transition: opacity .5s; color: red; transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);'
+    },
+    Refresh: function (){
+    window.location.reload();
+    //setTimeout('location.reload();', 5000);
+    }
+  }
 }
 </script>
 
+<style>
+.btnMatchFalse {
+    margin-top: -72px;
+    margin-right: -38px;
+}
+.msgClamigos{margin-top: -17px; margin-left: 16px;}
+</style>

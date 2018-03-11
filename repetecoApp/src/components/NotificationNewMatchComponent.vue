@@ -10,6 +10,9 @@
          </div>
          <div class="notification pull-right">
             <div class="img_classification">
+            <button type="button btnMatchFalse"  v-on:click="Refresh(); starClickOff();" class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">          
+                <span aria-hidden="true">&times;</span>          
+            </button>
                <i class="imgficaria" v-tooltip.top-start="'Ficaria'"></i>
             </div>
             <span class="Nfdate">1min</span>
@@ -20,12 +23,55 @@
 
 <script>
 export default{
-  props:['name','imagem','link','option','user_id','id_fb_friends'],
-  data(){
-    return{
-        optionNew: 'ficaria'
-    } 
+  props:['name','id','imagem','link','option','user_id','id_fb_friends'],
+    components:{
   },
+  data() {
+    return {
+      efeitoClick: null,
+      genderPreference: this.preference,
+      optiondata: this.option,
+      click: null,
+      optionNew: 'ficaria'
+    }
+  }, 
+  methods: {
+    starClickOff: function() {
+      this.optiondata = null;
+      const fdOption = {
+        option: this.optiondata
+      }
+      var click = true;
+      var friendId = this.id;
+      $.ajax({
+        url: "http://localhost:9096/wsrepeteco/friends/opcao/" + friendId,
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          'dataType': 'json'
+        },
+        dataType: 'json',
+        crossDomain: true,
+        origin: "*",
+        processData: true,
+        data: JSON.stringify(fdOption)
+      });
+
+      this.efeitoClick = 'transition: opacity .5s; color: red; transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);'
+    },
+    Refresh: function (){
+    window.location.reload();
+    //setTimeout('location.reload();', 5000);
+    }
+  }
 }
 </script>
+
+<style>
+.btnMatchFalse {
+    margin-top: -72px;
+    margin-right: -38px;
+}
+.msgClamigos{margin-top: -17px; margin-left: 16px;}
+</style>
 

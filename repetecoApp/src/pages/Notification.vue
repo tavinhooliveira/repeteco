@@ -11,15 +11,15 @@
             <div class="btnNotification" role="group" >
                <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
                <div class="btn-group pull-right">
-                  <div>					        
+                  <div v-show="matchsList.length > 0">					        
                      <a href="/notification" class="active" title="Todos" ><i class="glyphicon glyphicon-bell"> </i>Todos |</a> 
-                     <a v-show="matchsList.length > 0" href="/notificationNewMatch" title="Novos Matchs" >Novos Matchs |</a>  
-                     <a v-show="matchsList.length > 0" href="/notificationOldMatch" title="Flash Backs" >Flash Backs</a>
+                     <a href="/notificationNewMatch" title="Novos Matchs" >Novos Matchs |</a>  
+                     <a href="/notificationOldMatch" title="Flash Backs" >Flash Backs</a>
                   </div>
                </div>
             </div>
             <ul v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
-               <notificationcomponet v-bind:friend="matchsList"  v-for="friend in matchsList" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:user_id="friend.user_id" v-bind:friendsAll="friendsAll"></notificationcomponet>
+               <notificationcomponet v-bind:friend="matchsList"  v-for="friend in matchsList" v-bind:key="friend.id" v-bind:id="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:user_id="friend.user_id" v-bind:friendsAll="friendsAll"></notificationcomponet>
             </ul>
             <div v-else>
                <reload></reload>
@@ -38,7 +38,7 @@ import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.v
 
 export default {
   name: "Notificatiob",
-  props: ["name", "imagem", "option", "user_id", 'item'],
+  props: ["name", "imagem", "option", "user_id", 'item', 'id'],
   components: {
     Notificationcomponet,
     UserComponent,
@@ -64,6 +64,7 @@ export default {
         let listFB = null;
         for (let i = 0; i < fdlist.length; i++) {
             listFB = {
+                id: fdlist[i].id,
                 name: fdlist[i].name,
                 id_fb_friends: fdlist[i].id_fb_friends,
                 user_id: fdlist[i].user_id,

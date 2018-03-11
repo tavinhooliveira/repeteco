@@ -19,12 +19,12 @@
                </div>
             </div>
             <ul v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
-              <notificationOldMatchComponent v-bind:friend="matchsList" v-for="friend in matchsList" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:user_id="friend.user_id" v-bind:friendsAll="friendsAll"></notificationOldMatchComponent>
+              <notificationOldMatchComponent v-bind:friend="matchsList" v-for="friend in matchsList" v-bind:key="friend.id" v-bind:id="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:user_id="friend.user_id" v-bind:friendsAll="friendsAll"></notificationOldMatchComponent>
             </ul>
             <div v-else>
               <reload></reload>
             </div>
-            <p v-if="contMatchOldMacth <= 0"class="text-center"></br>Você ainda não tem Match! ☹</p>
+            <p v-if="contMatchOldMacth <= 0"class="text-center"></br>Você ainda não tem Flash Back! ☹</p>
             </br>
          </div>
       </section>
@@ -66,6 +66,7 @@ computed: {
         let listFB = null;
         for (let i = 0; i < fdlist.length; i++) {
             listFB = {
+                id: fdlist[i].id,
                 name: fdlist[i].name,
                 id_fb_friends: fdlist[i].id_fb_friends,
                 user_id: fdlist[i].user_id,
