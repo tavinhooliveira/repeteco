@@ -26,8 +26,8 @@
                      <h3><i class="fa fa-star">Pronto!</i></h3>
                      <h6>Você tem <b v-html="totalFriendsApp"></b> amigos no APP de <b v-html="totalFriendsFB"></b> no facebook!</h6>
                      <h6>Agora é só Classificar Seus Amigos!</h6>
-                     <p onclick="location.href='/classification'" class="btn btn-success">Classificar</p>
                      <br>
+                     <router-link to="/classification" class="btn btn-success" onclick="Refresh();">Classificar</router-link>
                   </div>
                </div>
                <div class="row col-md-6 text-center classificationInfo container">
@@ -225,6 +225,6 @@ header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:485px}
   header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:92px}
 }
 body{background-image:url(/src/assets/img/bg.png)!important;background-repeat:no-repeat;background-size:100%}
-#app{font-family:Avenir,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-align:center;color:#2c3e50;margin-top:60px;background-color:#333!important}
+#app{font-family:Avenir,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-align:center;color:#2c3e50;margin-top:60px;}
 button{cursor:pointer}
 </style>

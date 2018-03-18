@@ -17,70 +17,65 @@ import Notification from './pages/Notification.vue'
 import NotificationNewMatch from './pages/NotificationNewMatch.vue'
 import NotificationOldMatch from './pages/NotificationOldMatch.vue'
 import Config from './pages/Config.vue'
-import NotFound from './pages/NotFound.vue'
+// import NotFound from './pages/NotFound.vue'
 import ClassificationOn from './pages/ClassificationOn.vue'
 import ClassificationOff from './pages/ClassificationOff.vue'
 import Policies from './pages/Policies.vue'
 import ServiceTerms from './pages/ServiceTerms.vue'
-
-
-const login = Login
-const classification = Classification
-const profile = Profile
-const share = Share
-const notification = Notification
-const notificationNewMatch = NotificationNewMatch
-const notificationOldMatch = NotificationOldMatch
-const config = Config
-const notFound = NotFound
-const classificationOn = ClassificationOn
-const classificationOff = ClassificationOff
-const policies = Policies
-const serviceTerms = ServiceTerms
+const Contato = {template: '<p>Página de Contato</p>'}
 
 
 
-const rotas = {
-  '/': login,
-  '/classification': classification,
-  '/profile': profile,
-  '/config': config,
-  '/share': share,
-  '/notification': notification,
-  '/notificationNewMatch': notificationNewMatch,
-  '/notificationOldMatch': notificationOldMatch,
-  '/config': config,
-  '/classificationOn' : classificationOn,
-  '/classificationOff' : classificationOff,
-  '/policies' : policies,
-  '/serviceTerms' : serviceTerms
+const routes = [
+  { path: '/', component: Login },
+  { path: '/classification', component: Classification },
+  { path: '/profile', component: Profile },
+  { path: '/share', component: Share },
+  { path: '/notification', component: Notification },
+  { path: '/notificationNewMatch', component: NotificationNewMatch },
+  { path: '/notificationOldMatch', component: NotificationOldMatch },
+  { path: '/config', component: Config },
+  // { path: '/classification', component: NotFound },
+  { path: '/classificationOn', component: ClassificationOn },
+  { path: '/classificationOff', component: ClassificationOff },
+  { path: '/policies', component: Policies },
+  { path: '/serviceTerms', component: ServiceTerms },
+  { path: '/contato', component: Contato }
+]
 
-}
-
-new Vue ({
-  el: '#app',
-  data:{
-    currentRota: window.location.pathname
-  },
-  computed:{
-    routesVariable  (){
-      return rotas[this.currentRota] || notFound      
-    }
-  },
-  render (h) {
-    return h(this.routesVariable)
-  },
+const router = new VueRouter({
+  routes
 })
-  export default {
-    data() {
-      return {
-        
-      };
-    },
-  methods: {
 
-  }
-}
+const app = new Vue({
+  router
+}).$mount('#app')
+
+
+// new Vue ({
+//   el: '#app',
+//   data:{
+//     currentRota: window.location.pathname
+//   },
+//   computed:{
+//     routesVariable  (){
+//       return rotas[this.currentRota] || notFound      
+//     }
+//   },
+//   render (h) {
+//     return h(this.routesVariable)
+//   },
+// })
+//   export default {
+//     data() {
+//       return {
+        
+//       };
+//     },
+//   methods: {
+
+//   }
+// }
 
 
 
