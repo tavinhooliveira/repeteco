@@ -227,8 +227,8 @@ footer .col-links .fa {
 /*====================================Perfil======================*/
 .perfil{margin-top: 50px;}
 .perfil ul.img_classification {width: 298px;margin-left: 5px;}
-.perfil .classification {margin-left: 62%;}
-.perfil .perfilPicture {margin-top: 10px;margin-left: 225px;}
+.perfil .classification {margin-left: 75%;}
+.perfil .perfilPicture {margin-top: 10px;margin-left: 265px;}
 .perfil .perfilPicture img { width: 150px;height: 150px;border-radius: 86px; border: 5px solid #e8e8e8;background-color: #fff;}
 .perfil .perfilName{margin-bottom: 10px;text-align: center;}
 .perfil .perfilbrprogress {margin-bottom: -15px;}

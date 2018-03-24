@@ -6,9 +6,9 @@
     <a class="error-link" onclick="window.history.go(-1);" href="#">☚ Volte</a>
     <section class="links">
       <a href="/">Login</a>
-      <a href="/classification">Classificações</a>
       <a href="/profile">Perfil</a>
       <a href="/config">Configurações</a>
+      <a href="/termos">Termos</a>
       <a href="/politicas">Politicas</a>
     </section>
   </section>

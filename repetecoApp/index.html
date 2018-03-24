@@ -21,35 +21,11 @@
    
   </head>
   <body>
-<header class="navbar-fixed-top navbar-default" id="navmenu">
-    <div class="container">
-        <div class="menu col-md-12 btn btn-navbar">
-            <a href="/#/profile" onclick="Refresh();"><span class="headerIcon fa fa-user col-md-4" data-toggle="tooltip" data-placement="bottom" title="Perfil"></span></a>             
-            <span href="#" onclick="Refresh();"><span class="headerIcon col-md-4"><img id="logotipo" src="/src/assets/img/logo.png" data-toggle="tooltip" data-placement="bottom" title="Refresh"></span></span> 
-            <a href="/#/classification" onclick="Refresh();"><span class="headerIcon fa fa-star-half-o col-md-4" data-toggle="tooltip" data-placement="bottom" title="Classificação"></span></a>  
-        </div>
-    </div>
-</header>
+
 <!--Body-->
-<div class="bgimg" id="app">
-        <transition>
-                <keep-alive>
-                  <router-view></router-view>
-                </keep-alive>
-              </transition>
-    <!-- <router-view></router-view> -->
-</div>
+<div class="bgimg" id="app"></div>
 <!--Body END-->
-<footer class="footer navbar-fixed-bottom navbar-default">
-    <div class="container">
-        <div class="col-md-12 btn btn-navbar">              
-            <a href="/#/share" onclick="Refresh();"><span class="footerIcon fa fa-share-alt fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Compartilhar"></span></a>       
-            <a href="/#/notification" onclick="Refresh();"><span class="footerIcon fa fa-bell fa-1x col-md-3" data-transition="pop" data-toggle="tooltip" data-placement="top" title="Notificação"></span></a> 
-            <a href="/#/config" onclick="Refresh();"><span class="footerIcon fa fa-sun-o fa-1x col-md-3" data-transition="pop" data-toggle="tooltip" data-placement="top" title="Configuração"></span></a>
-            <a href="/#/" onclick="Refresh();"><span class="footerIcon fa fa-sign-out fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Sair"></span></a>
-        </div>
-    </div>
-</footer>
+
 <script src="/dist/build.js"></script>
 <script src="./src/assets/js/jquery.min.js"></script>
 <script src="./src/assets/js/jquery.jcarousellite.js"></script>
