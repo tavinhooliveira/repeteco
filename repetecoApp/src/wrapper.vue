@@ -24,12 +24,16 @@
         </footer>
 
         <!-- Botão Match Flutuante -->
-        <div v-if="isMatch === true" class="btnPesquisar">            
-            <div class="col-3 btnPesquisarBtn">
-                <button href="/config" class="btnCircular btnPrincipal " name="1"><i class="">42</i></button>
+        <div v-if="isMatch === true" class="btnNotificationNewMatch">            
+            <div class="col-3 btnNotificationNewMatchBtn">
+                <!-- <a href="/notification" class="btn btnCircular btnPrincipal btnColor" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>42</b></i></a> -->
+                <a v-on:click="notifyNewMatch();" class="btn btnCircular btnPrincipal btnColor" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>42</b></i></a>
             </div>
         </div>
-
+        {{notifyCountMatch}}
+        
+        
+        <!--  <button type="button" class="btn btn-lg btn-block " data-toggle="collapse" href="#collapsePolicies" aria-expanded="false" aria-controls="collapsePolicies" v-show="matchsList > 0" ><img src="/src/assets/img/heart00.gif" width="25px" height="25px" v-tooltip.top-start="'Click!'"></br> Você tem {{matchsList}} Match!  </button></br> -->
     </div>
 </template>
 
@@ -41,21 +45,74 @@ export default {
     },
     data() {
         return {
-        isMatch: true
+        isMatch: true,
         }
-    }, 
+    },
+    computed: {
+                
+        notifyNewMatch(){
+            var data ={
+                type: "Novo Match",
+                date: "05/04/2018 - 21:30",
+                name: "Camila Lima",
+                msgPrefix: "Você e ",
+                msgSufix: " tem Interesses em comum!",
+                weapon: "Tome a iniciativa!"
+
+            }            
+            var e = new Notification ("RepetecoWEB", {
+                body: data.msgPrefix + data.name + data.msgSufix + "\n" + data.type + " - " + data.date,
+                icon: "/src/assets/img/repeteco.png",
+                tag: "NEVERGRIND-CHAT-ALERT",
+                silent: false,
+                vibrate: [200, 100, 200]
+            });            
+            e.onclick = function (){
+                location.href = "/notification";
+            }
+        return e;
+        },
+        notifyCountMatch(){
+            var data ={
+                msg: "Você Tem ",
+                countMatchrs: "2",
+                date: "20/04/2018 - 21:30"            
+
+            }
+            var currentTime = new Date().toLocaleString();            
+            var e = new Notification ("RepetecoWEB", {
+                body: data.msg + data.countMatchrs +" Matchrs!"+ "\n" + currentTime,
+                icon: "/src/assets/img/repeteco.png",
+                tag: "NEVERGRIND-CHAT-ALERT",
+                silent: false,
+                vibrate: [200, 100, 200]
+            });            
+            e.onclick = function (){
+                location.href = "/notification";
+            }
+        }
+
+
+    },
+    methods: {
+
+  }
+
 }
 </script>
 
+
+
+
 <style>
-.btnPesquisar{
+.btnNotificationNewMatch{
 	position: fixed;
 	float: bottom;
 	bottom: 15px;
 	right: 15px;
 	z-index: 100;
 }
-.btnPesquisarInput, .btnPesquisarBtn {
+.btnNotificationNewMatchInput, .btnNotificationNewMatchBtn {
 	display: inline-block;
 }
 .btnCircular{
@@ -66,4 +123,17 @@ export default {
     padding: 15px;
     margin-bottom: 30px;
 }
+.btnColor {
+    background-color: #f33634;
+    color: #fff;
+    border: 4px;
+    font-size: 8px
+}
+.btnColor:hover {
+    background-color: #f31d1b;
+    color: #fff;
+    font-size: 14px;
+    border: 4px solid rgba(163, 173, 183, 0.54);
+}
+
 </style>

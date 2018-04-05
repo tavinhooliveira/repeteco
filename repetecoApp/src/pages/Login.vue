@@ -27,7 +27,7 @@
                      <h6>Você tem <b v-html="totalFriendsApp"></b> amigos no APP de <b v-html="totalFriendsFB"></b> no facebook!</h6>
                      <h6>Agora é só Classificar Seus Amigos!</h6>
                      <br>
-                     <router-link to="/classification" class="btn btn-success" onclick="Refresh();">Classificar</router-link>
+                     <a href="/classification"  class="btn btn-success" >Classificar</a>
                   </div>
                </div>
                <div class="row col-md-6 text-center classificationInfo container">
@@ -219,6 +219,7 @@ export default {
 
 <style>
 /*Inibir botoes do menu e footer- Begin */
+.btnNotificationNewMatch{display:none}
 .menu a,footer{display:none}
 header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:485px}
 @media (max-width:480px) and (min-width:320px){

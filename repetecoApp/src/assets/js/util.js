@@ -33,7 +33,6 @@ function Refresh(){
 window.location.reload();
 //setTimeout('location.reload();', 5000);
 }
-
 /*Modal*/
 $('#myModal').on('shown.bs.modal', function () {
 })

@@ -80,14 +80,9 @@ export default new Router({
             component: ServiceTerms
         },
         {
-            path: '/notfound',
-            name: 'NotFound',
-            component: NotFound
-        },
-        {
             path: '*',
             name: 'NotFound',
-            redirect: '/notfound'
+            component: NotFound
         }
     ],
     mode: 'history'
