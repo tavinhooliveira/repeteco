@@ -21,9 +21,9 @@
                </div>
             </div>
             <div class="list-group center-block" id="searchUL">
-               <userComponent v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem"
+               <userComponent v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:id_fb_users="user.id_fb_users" v-bind:name="user.name" v-bind:imagem="user.imagem"
                   v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"
-                  v-bind:friendsTotalApp="user.friendsTotalApp" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot">
+                  v-bind:friendsTotalApp="user.friendsTotalApp" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot" v-bind:friendsAll="friendsAll">
                </userComponent>
             </div>
             </br>
@@ -44,7 +44,7 @@ import ProfileHeaderComponent from "../components/ProfileHeaderComponent.vue";
 
 export default {
   name: "ClassificationAPP",
-  props: ["id", "name", "imagem", "preference", "link", "friends", "userProfile"],
+  props: ["id", "id_fb_users", "name", "imagem", "preference", "link", "friends", "userProfile"],
   components: {
       UserComponent,
       Reload,
@@ -57,10 +57,24 @@ export default {
       profile: {},
       authorized: false,
       users: {},
-      statusAPIAPP: false
+      statusAPIAPP: false,
+       friendsAll: []
     };
   },
   methods: {
+    //usado para extrair o id dos amigos que deram match!
+    getApiRepetecoFriendsAll() {
+        this.$http.get(`http://localhost:9096/wsrepeteco/friends`).then(response => {
+            this.friendsAll = response.data
+            if (this.friendsAll.length > 0) {
+                console.log("API Repeteco AllFriends: OK!")
+                this.statusAPIAPP = true;
+            } else {
+                this.statusAPIAPP = false;
+                console.log("Erro na chamada da API - Repeteco");
+            }
+        })
+    },
     getApiRepeteco(userid) {
         this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
             this.users = [response.data]
@@ -80,6 +94,7 @@ export default {
             console.log("Status: Connectado!")
             vm.authorized = true
             vm.getApiRepeteco(response.authResponse.userID)
+            vm.getApiRepetecoFriendsAll()
         } else if (response.status === 'not_authorized') {
             console.log("Status: Não Autorizado!");
             vm.authorized = false

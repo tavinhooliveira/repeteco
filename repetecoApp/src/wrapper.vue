@@ -30,7 +30,7 @@
                 <a v-on:click="notifyNewMatch();" class="btn btnCircular btnPrincipal btnColor" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>42</b></i></a>
             </div>
         </div>
-        {{notifyCountMatch}}
+       <!-- {{notifyCountMatch}} -->
         
         
         <!--  <button type="button" class="btn btn-lg btn-block " data-toggle="collapse" href="#collapsePolicies" aria-expanded="false" aria-controls="collapsePolicies" v-show="matchsList > 0" ><img src="/src/assets/img/heart00.gif" width="25px" height="25px" v-tooltip.top-start="'Click!'"></br> Você tem {{matchsList}} Match!  </button></br> -->
@@ -71,28 +71,28 @@ export default {
                 location.href = "/notification";
             }
         return e;
-        },
-        notifyCountMatch(){
-            var data ={
-                msg: "Você Tem ",
-                countMatchrs: "2",
-                date: "20/04/2018 - 21:30"            
-
-            }
-            var currentTime = new Date().toLocaleString();            
-            var e = new Notification ("RepetecoWEB", {
-                body: data.msg + data.countMatchrs +" Matchrs!"+ "\n" + currentTime,
-                icon: "/src/assets/img/repeteco.png",
-                tag: "NEVERGRIND-CHAT-ALERT",
-                silent: false,
-                vibrate: [200, 100, 200]
-            });            
-            e.onclick = function (){
-                location.href = "/notification";
-            }
         }
+        // ,
+        // notifyCountMatch(){
+        //     var data ={
+        //         msg: "Você Tem ",
+        //         countMatchrs: "2",
+        //         date: "20/04/2018 - 21:30"            
 
-
+        //     }
+        //     var currentTime = new Date().toLocaleString();            
+        //     var e = new Notification ("RepetecoWEB", {
+        //         body: data.msg + data.countMatchrs +" Matchrs!"+ "\n" + currentTime,
+        //         icon: "/src/assets/img/repeteco.png",
+        //         tag: "NEVERGRIND-CHAT-ALERT",
+        //         silent: false,
+        //         vibrate: [200, 100, 200]
+        //     });            
+        //     e.onclick = function (){
+        //         location.href = "/notification";
+        //     }
+        // }
+        
     },
     methods: {
 
