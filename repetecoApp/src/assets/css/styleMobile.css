@@ -1,6 +1,9 @@
 
 /*Responsivo Tablet*/
-@media (min-width : 430px) and (max-width: 1198px) {
+/* @media (min-width : 430px) and (max-width: 1198px) { */
+
+@media (min-width : 430px) and (max-width: 1120px) {
+
     .CarouselLogin img {
         margin-left: 0px !important;
     }
@@ -21,11 +24,8 @@
     /*Perfil*/
 	.perfil .perfilPicture {
     margin-top: 10px;
-    margin-left: 266px !important;
-	}
-    .perfil .classification {
-    margin-left: 76%;
     }
+    .perfil .classification {float: left; margin-left: 30%;}
     .perfil #carrossel{
         width: 665px !important;
     }
@@ -42,7 +42,7 @@
 
     /*Lista de Amigos*/
     .ListFriends .col-md-4 {
-    width: 100% !important;
+    width: 31.333333% !important;
     }
     .ListFriends .classification {
     margin-left: 100px;
@@ -252,10 +252,10 @@
 
 
     .perfil .perfilPicture {
-        margin-left: 73px !important;
+        margin-left: -73px !important;
     }
     .perfil .classification {
-    margin-left: 7%!important;
+    margin-left: -7%!important;
     }
     .perfil .perfilbrprogress p {
     margin-left: 70% !important;
@@ -371,8 +371,8 @@
     margin-top: -26px;
 }
 .ListFriends .notification .Nfdate {
-    margin-top: -15px !important;
-    margin-left: -44px !important;
+    margin-top: -33px !important;
+    margin-left: 7px !important;
 }
 
 .msgClamigos {

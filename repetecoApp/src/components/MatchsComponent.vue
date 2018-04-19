@@ -63,6 +63,8 @@ export default{
       }
       var click = true;
       var friendId = this.id;
+      var idUserYouMatchs = this.id_fb_friends +  this.user_id;
+      console.log("id idUserYouMatchs"+idUserYouMatchs);
       $.ajax({
         url: "http://localhost:9096/wsrepeteco/friends/opcao/" + friendId,
         method: "PUT",
@@ -79,6 +81,15 @@ export default{
 
        $.ajax({
         url: "http://localhost:9096/wsrepeteco/matchs/" + friendId,
+        method: "DELETE",
+        dataType: 'json',
+        crossDomain: true,
+        origin: "*",
+        processData: true,
+      });
+
+      $.ajax({
+        url: "http://localhost:9096/wsrepeteco/matchs/" + idUserYouMatchs,
         method: "DELETE",
         dataType: 'json',
         crossDomain: true,

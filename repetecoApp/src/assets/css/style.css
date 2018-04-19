@@ -6,6 +6,10 @@ body{background-color: #f5f7fa8c !important}
 .glyphicon {color: #989191!important}
 .fa {color: #989191!important}
 
+.center{margin-left: auto !important;
+    margin-right: auto !important;
+    width: 50px !important;}
+
 .ui-page-theme-a a, html .ui-bar-a a, html .ui-body-a a, html body .ui-group-theme-a a {
     color: #3388cc /*{a-link-color}*/;
     font-weight: normal !important}
@@ -226,10 +230,10 @@ footer .col-links .fa {
 
 /*====================================Perfil======================*/
 .perfil{margin-top: 50px;}
-.perfil ul.img_classification {width: 298px;margin-left: 5px;}
-.perfil .classification {margin-left: 75%;}
-.perfil .perfilPicture {margin-top: 10px;margin-left: 265px;}
-.perfil .perfilPicture img { width: 150px;height: 150px;border-radius: 86px; border: 5px solid #e8e8e8;background-color: #fff;}
+.perfil ul.img_classification {display: inline-flex;}
+.perfil .classification {float: left; margin-left: 50%;}
+.perfil .perfilPicture {margin-top: 10px;}
+.perfil .perfilPicture img { width: 150px;height: 150px;border-radius: 86px; border: 5px solid #e8e8e8;background-color: #fff; margin-left: 38%;}
 .perfil .perfilName{margin-bottom: 10px;text-align: center;}
 .perfil .perfilbrprogress {margin-bottom: -15px;}
 .perfil .perfilbrprogress p{position: absolute;margin-left: 84%;margin-top: -14px;font-size: 10px;color: #8a8989;}

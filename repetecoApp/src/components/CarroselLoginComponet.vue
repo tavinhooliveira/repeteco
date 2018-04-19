@@ -83,6 +83,7 @@ export default{
     right: 0;
     margin-right: 0%;
 }
+
 .CarouselLogin .handle.active {
     cursor: pointer;
 }
@@ -120,6 +121,13 @@ export default{
 .CarouselLogin a {
     color: #ffffff;
     text-decoration: none;
+}
+
+.CarouselLogin .carousel-inner b {
+    color: #ececec;
+}
+.CarouselLogin .carousel-inner p {
+    color: #ececec;
 }
 
 </style>

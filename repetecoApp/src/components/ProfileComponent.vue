@@ -19,10 +19,10 @@
                </div>
             </div>
             -->
-            <ul v-show="flagDisplayCount === true" class="row list-group panel-body">
+            <ul v-show="flagDisplayCount === true" class="list-group panel-body">
                <li class="">
-                  <div class="classification center-block">
-                     <ul class="img_classification col-md-12 center-block">
+                  <div class="classification">
+                     <ul class="img_classification">
                         <li class="cl_fiquei" v-tooltip.top-start="'Já Fiquei'" >
                            <span class="badge" id="cont_cl_fiquei">{{contFiquei}}</span>
                         </li>
