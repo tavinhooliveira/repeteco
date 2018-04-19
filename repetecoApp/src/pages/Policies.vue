@@ -1,8 +1,11 @@
 <template>
-   <div id="termos" class="well">
+
+   <div id="politicas" class="well">
+         </br></br>
       <h2 class="text-center">Políticas do Aplicativo</h2></br></br>
       <p class="container well"></br></br>
-
+<span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>
+</br></br>
 Importante: O uso desse site e todas as disputas legais relacionadas estão sujeitas aos termos e condições seguintes, de acordo com as leis da Alemanha.
 
 Essa versão traduzida dos Termos e Condições abaixo é fornecida apenas por conveniência. A versão com vínculos jurídicos e legais dos Termos de Serviço é a alemã (Allgemeine Geschäftsbedingungen AGB) que pode ser lida aqui.
@@ -97,7 +100,12 @@ AppYourself tem especialmente o direito de divulgar dados pessoais para processa
 Todas as relações legais entre as partes envolvidas estão sob as leis da República Federativa da Alemanha.
 Todas as disputas decorrentes de ou em conexão com este contrato estão sob jurisdição do local da sede da AppYourself GmbH
 All disputes arising out of or in connection with this Agreement, the parties try initially as part of a mediation to settle out of court by a mediator. Only then, when the mediation will not be made ​​or completed without the dispute is resolved in its entirety, is open to the parties of the way the courts. The parties are not prevented to submit applications in proceedings for interim relief or other emergency procedures. Treatment in all other cases, a party to the other party prior to the initiation of a dispute the possibility of mediation. Can not the parties agree on a mediator, it will be determined at the request of a party by EUCON, European Institute for Conflict Research Management, Schack Strasse 1, 80539 Munich Phone: +49 / 089 / 57 95 18 34, Fax +49 / 089 / 57 86 95 38 info@eucon-institut.de, www.eucon-institut.de
-      </P>
+</br></br>
+<span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>
+<span class="pull-right"> <a href="#politicas">Topo<i class="glyphicon glyphicon-menu-up"></i></a></span>
+
+</br></br>
+</P>
    </div>
 </template>
 <style>

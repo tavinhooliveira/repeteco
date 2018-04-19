@@ -160,6 +160,7 @@ export default {
               processData: true,
               data: JSON.stringify(friendslist)
           });
+          
         })
     },
   login() {

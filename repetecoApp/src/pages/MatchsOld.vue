@@ -11,52 +11,54 @@
             <div class="btnNotification" role="group" >
                <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
                <div class="btn-group pull-right">
-                  <div v-show="matchsList.length > 0">					        
-                     <a href="/notification" class="active" title="Todos" ><i class="glyphicon glyphicon-bell"> </i>Todos |</a> 
-                     <a href="/notificationNewMatch" title="Novos Matchs" >Novos Matchs |</a>  
-                     <a href="/notificationOldMatch" title="Flash Backs" >Flash Backs</a>
+                  <div>					        
+                     <a href="/matchs" title="Todos" >Todos |</a> 
+                     <a href="/matchsNew" title="Novos Matchs" >Novos Matchs |</a>  
+                     <a href="/matchsOld" title="Flash Backs" >Flash Backs</a>
                   </div>
                </div>
             </div>
             <ul v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
-               <notificationcomponet v-bind:friend="matchsList"  v-for="friend in matchsList" v-bind:key="friend.id" v-bind:id="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:user_id="friend.user_id" v-bind:friendsAll="friendsAll"></notificationcomponet>
+              <notificationOldMatchComponent v-bind:friend="matchsList" v-for="friend in matchsList" v-bind:key="friend.id" v-bind:id="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:user_id="friend.user_id" v-bind:friendsAll="friendsAll"></notificationOldMatchComponent>
             </ul>
             <div v-else>
-               <reload></reload>
+              <reload></reload>
             </div>
-             <p v-if="matchsList.length <= 0"class="text-center"></br>Você ainda não tem Matchs! ☹</p>
+            <p v-if="contMatchOldMacth <= 0"class="text-center"></br>Você ainda não tem Flash Back! ☹</p>
             </br>
-         </div>      
+         </div>
       </section>
    </div>
 </template>
+
 <script>
-import Notificationcomponet from '../components/Notificationcomponet.vue';
+import NotificationOldMatchComponent from '../components/NotificationOldMatchComponent.vue';
 import UserComponent from '../components/UserComponent.vue';
 import Reload from "../components/Reload.vue";
 import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
 
+
 export default {
-  name: "Notificatiob",
-  props: ["name", "imagem", "option", "user_id", 'item', 'id'],
-  components: {
-    Notificationcomponet,
-    UserComponent,
-    Reload,
-    ReloadAuthorizedComponent
-  },
-  data() {
-    return {
-      nomeProjeto: "Notification",
-      profile: {},
-      authorized: false,
-      friends: {},
-      friendsAll: {},
-      statusAPIAPP: false,
-      idUserFbSession: null
-    };
-  },
-  computed: {
+name: "NotificationOldMatch",
+props: ["name", "imagem", "option","user_id"],
+components: {
+  NotificationOldMatchComponent,
+  UserComponent,
+  Reload,
+  ReloadAuthorizedComponent
+},
+data() {
+  return {
+    nomeProjeto: "NotificationOldMatch",
+    profile: {},
+    authorized: false,
+    friends: {},
+    friendsAll: {},
+    statusAPIAPP: false,
+    idUserFbSession: null
+  };
+},
+computed: {
     matchsList (){
         //myMatch - return list: id_fb_friends
         let fdlist = this.friends;
@@ -105,23 +107,33 @@ export default {
             }
         )
         return matchs;
-    }
-    //select distinct f2.name, f2.id_fb_friends, f1.user_id from friends f1, friends f2 WHERE f1.user_id=f2.id_fb_friends AND f1.id_fb_friends=1893438167339291
-  },
-  methods: {
-    getApiRepeteco(userid) {
-        this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}/friends`).then(response => {
-            this.friends = response.data
-            if (this.friends.length > 0) {
-                console.log("API Repeteco: OK!")
-                this.statusAPIAPP = true;
-            } else {
-                this.statusAPIAPP = false;
-                console.log("Erro na chamada da API - Repeteco");
-            }
-        })
     },
-    //usado para extrair o id dos amigos que deram match!
+    contMatchOldMacth() { 
+        let litrs =[];           
+        let list = [];
+            for (let i = 0; i < this.matchsList.length; i++) {
+                if(this.matchsList[i].option === 'ficariaNovamente'){
+                    list = {option: this.matchsList[i].option}
+                    litrs.push(list)
+                    }
+                }
+        return litrs.length           
+    }
+  },
+methods: {
+  getApiRepeteco(userid) {
+    this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}/friends`).then(response => {
+      this.friends = response.data
+      if (this.friends.length > 0) {
+          console.log("API Repeteco: OK!")
+          this.statusAPIAPP = true;
+      } else {
+          this.statusAPIAPP = false;
+          console.log("Erro na chamada da API - Repeteco");
+      }
+    })
+  },
+  //usado para extrair o id dos amigos que deram match!
     getApiRepetecoFriendsAll() {
         this.$http.get(`http://localhost:9096/wsrepeteco/friends`).then(response => {
             this.friendsAll = response.data
@@ -134,40 +146,40 @@ export default {
             }
         })
     },
-    statusChangeCallback(response) {
-        let vm = this
-        var idFb = response.authResponse.userID
-        if (response.status === 'connected') {
-            console.log("Usuario Autorizado!");
-            console.log("Status: Connectado!")
-            vm.authorized = true
-            vm.idUserFbSession = idFb
-            vm.getApiRepeteco(idFb)
-            vm.getApiRepetecoFriendsAll()
-        } else if (response.status === 'not_authorized') {
-            console.log("Status: Não Autorizado!");
-            vm.authorized = false
-        } else if (response.status === 'unknown') {
-            vm.profile = {}
-            vm.authorized = false
-        } else {
-            vm.authorized = false
-        }
+  statusChangeCallback(response) {
+    let vm = this
+    var idFb = response.authResponse.userID
+    if (response.status === 'connected') {
+      console.log("Usuario Autorizado!");       
+      console.log("Status: Connectado!")
+      vm.authorized = true
+      vm.idUserFbSession = idFb
+      vm.getApiRepeteco(idFb)
+      vm.getApiRepetecoFriendsAll()
+    } else if (response.status === 'not_authorized') {
+        console.log("Status: Não Autorizado!");
+        vm.authorized = false
+    } else if (response.status === 'unknown') {
+        vm.profile = {}
+        vm.authorized = false
+    } else {
+        vm.authorized = false
     }
-  },
-  mounted() {
-      let vm = this
-      window.fbAsyncInit = function() {
-          FB.init({
-              appId: '175578203007671',
-              cookie: true,
-              xfbml: true,
-              version: 'v2.10'
-          });
-          FB.getLoginStatus(response => {
-              vm.statusChangeCallback(response)
-          })
-      };
   }
+},
+mounted() {
+  let vm = this
+  window.fbAsyncInit = function() {
+    FB.init({
+        appId: '175578203007671',
+        cookie: true,
+        xfbml: true,
+        version: 'v2.10'
+    });
+    FB.getLoginStatus(response => {
+        vm.statusChangeCallback(response)
+    })
+  };
+}
 };
 </script>

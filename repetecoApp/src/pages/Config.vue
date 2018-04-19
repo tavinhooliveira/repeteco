@@ -97,8 +97,8 @@
                       <h4>Política</h4>
                       <li class="list-group-item well">
                           <div>                            
-                            <span><a href="/serviceTerms"><i class="fa fa-link" aria-hidden="true"></i> Termo de Serviço</a></span>
-                            <span class="pull-right"><a href="/policies"><i class="fa fa-link" aria-hidden="true"></i> Políticas</a></span>
+                            <span><a href="/termos"><i class="fa fa-link" aria-hidden="true"></i> Termo de Serviço</a></span>
+                            <span class="pull-right"><a href="/politicas"><i class="fa fa-link" aria-hidden="true"></i> Políticas</a></span>
                           </div>
                       </li>
                     </div>

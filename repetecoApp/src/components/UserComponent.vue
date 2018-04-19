@@ -6,17 +6,21 @@
         v-bind:id_fb_friends="friend.id_fb_friends" v-bind:gender="friend.gender" v-bind:preference="preference" v-bind:flagDisplayHot="flagDisplayHot">
       </friendComponent>
     </div>
-      <p v-if="contFriendsAll <= 0"class="text-center"></br>Nenhum amigo encontrado! ☹</p>
+      <p v-if="contFriendsAll <= 0" class="text-center"></br>Nenhum amigo encontrado! ☹</p>
 
       <span v-if="matchsList.length > 0">{{notifyCountMatch}}</span>
       {{getStatusNotification}}
+      {{postMacts}}
+      <!-- </br>{{matchs}}</br> -->
+      <!-- {{this.matchsList}} -->
+
   </div>  
 </template>
 <script>
 import FriendComponent from './FriendComponent.vue';
 
 export default{
-  props:['id','id_fb_users','name','imagem','link','nationality','friendsTotalFb','friends','preference','flagDisplayHot', 'friendsAll'],
+  props:['id','id_fb_users','name','imagem','link','nationality','friendsTotalFb','friends','preference','flagDisplayHot', 'matchs', 'friendsAll'],
   components:{
     FriendComponent    
   },
@@ -26,17 +30,17 @@ export default{
         }
     },
   computed: {
-		profileName() {
-				if (this.id) {
-						return `${this.name}`
-						console.log('User Conectado', this.name);
-				} else {
-						return '<h6 onclick="Refresh();">Buscando... <a>Atualizar</a></h6>'
-				}
-		},
-		profilePicture() {
-				return (this.id) ? `https://graph.facebook.com/${this.id}/picture?width=300` : `/src/assets/img/man.gif`
-		},    
+    profileName() {
+            if (this.id) {
+                    return `${this.name}`
+                    console.log('User Conectado', this.name);
+            } else {
+                    return '<h6 onclick="Refresh();">Buscando... <a>Atualizar</a></h6>'
+            }
+    },
+    profilePicture() {
+            return (this.id) ? `https://graph.facebook.com/${this.id}/picture?width=300` : `/src/assets/img/man.gif`
+    },    
     contAllClassification() { 
         let litrs =[];           
         let list = [];
@@ -76,6 +80,7 @@ export default{
         let listFB = null;
         for (let i = 0; i < fdlist.length; i++) {
             listFB = {
+                id: fdlist[i].id,
                 name: fdlist[i].name,
                 id_fb_friends: fdlist[i].id_fb_friends,
                 user_id: fdlist[i].user_id,
@@ -118,15 +123,21 @@ export default{
         return matchs;
     },
     notifyCountMatch(){
-            var data ={
+            //Data corrente
+            var today = new Date();
+            var dd = today.getDate(); 
+            var mm = today.getMonth()+1; 
+            var yyyy = today.getFullYear();
+            var currentTime = today.toLocaleString('pt-BR');
+            //Atributos de MSG
+            var dataAtribute ={
                 msg: "Você Tem ",
                 countMatchrs: this.matchsList.length,
-                date: "20/04/2018 - 21:30"            
+                date: currentTime        
             }
-            var currentTime = new Date().toLocaleString();
 
             var e = new Notification ("RepetecoWEB", {
-                body: data.msg + data.countMatchrs +" Matchrs!"+ "\n" + currentTime,
+                body: dataAtribute.msg + dataAtribute.countMatchrs +" Matchrs!"+ "\n" + "Atualizado em: " + dataAtribute.date,
                 icon: "/src/assets/img/repeteco.png",
                 tag: "NEVERGRIND-CHAT-ALERT",
                 silent: false,
@@ -153,8 +164,26 @@ export default{
           });
 
         },
+        postMacts(){
+        //[TESTE] Inserir Matcrs Na Basse Via Ajax
+            let userid =  this.id_fb_users;
+            let listMatchs = this.matchsList;
+            $.ajax({
+                url: "http://localhost:9096/wsrepeteco/users/" + userid + "/matchs",
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'dataType': 'json'
+                },
+                dataType: 'json',
+                crossDomain: true,
+                origin: "*",
+                processData: true,
+                data: JSON.stringify(listMatchs)
+            });
+        },
             
-	}
+	},
 }
 </script>
 <style>

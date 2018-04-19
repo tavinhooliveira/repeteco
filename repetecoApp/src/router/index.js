@@ -16,6 +16,10 @@ import ClassificationOn from '../pages/ClassificationOn.vue'
 import ClassificationOff from '../pages/ClassificationOff.vue'
 import Policies from '../pages/Policies.vue'
 import ServiceTerms from '../pages/ServiceTerms.vue'
+import Matchs from '../pages/Matchs.vue'
+import MatchsNew from '../pages/MatchsNew.vue'
+import MatchsOld from '../pages/MatchsOld.vue'
+
 
 export default new Router({
     routes: [
@@ -38,6 +42,21 @@ export default new Router({
             path: '/share',
             name: 'Share',
             component: Share
+        },
+        {
+            path: '/matchs',
+            name: 'Matchs',
+            component: Matchs
+        },
+        {
+            path: '/matchsNew',
+            name: 'MatchsNew',
+            component: MatchsNew
+        },
+        {
+            path: '/matchsOld',
+            name: 'MatchsOld',
+            component: MatchsOld
         },
         {
             path: '/notification',

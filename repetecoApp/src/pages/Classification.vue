@@ -23,7 +23,7 @@
             <div class="list-group center-block" id="searchUL">
                <userComponent v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:id_fb_users="user.id_fb_users" v-bind:name="user.name" v-bind:imagem="user.imagem"
                   v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"
-                  v-bind:friendsTotalApp="user.friendsTotalApp" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot" v-bind:friendsAll="friendsAll">
+                  v-bind:friendsTotalApp="user.friendsTotalApp" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot" v-bind:matchs="user.matchs"  v-bind:friendsAll="friendsAll">
                </userComponent>
             </div>
             </br>
@@ -44,7 +44,7 @@ import ProfileHeaderComponent from "../components/ProfileHeaderComponent.vue";
 
 export default {
   name: "ClassificationAPP",
-  props: ["id", "id_fb_users", "name", "imagem", "preference", "link", "friends", "userProfile"],
+  props: ["id", "id_fb_users", "name", "imagem", "preference", "link", "friends", "matchs", "userProfile"],
   components: {
       UserComponent,
       Reload,
