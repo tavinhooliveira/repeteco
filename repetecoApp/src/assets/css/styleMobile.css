@@ -1,8 +1,19 @@
 
 /*Responsivo Tablet*/
-/* @media (min-width : 430px) and (max-width: 1198px) { */
+@media (min-width : 430px) and (max-width: 1198px) {
+    .ListFriends .col-md-4 {
+        width: 31.333333% !important;
+    }
 
-@media (min-width : 430px) and (max-width: 1120px) {
+    .ListFriends .classification {
+        margin-left: 71px !important;
+        margin-top: -82px !important;
+    }
+
+    .btnclassifications {
+        margin-top: 4px !important;
+        margin-right: 20px !important;
+    }
 
     .CarouselLogin img {
         margin-left: 0px !important;
@@ -109,7 +120,9 @@
 
 /*Responsivo Tablet*/
 @media (min-width : 480px) and (max-width: 768px) {
-
+    .ListFriends .col-md-4 {
+        width: 31.333333% !important;
+    }
     .socailIcons {
         margin-left: 21%;
         margin-right: auto;
