@@ -11,6 +11,7 @@
       <span v-if="matchsList.length > 0">{{notifyCountMatch}}</span>
       {{getStatusNotification}}
       {{postMacts}}
+      {{time}}
       <!-- </br>{{matchs}}</br> -->
       <!-- {{this.matchsList}} -->
 
@@ -31,12 +32,12 @@ export default{
     },
   computed: {
     profileName() {
-            if (this.id) {
-                    return `${this.name}`
-                    console.log('User Conectado', this.name);
-            } else {
-                    return '<h6 onclick="Refresh();">Buscando... <a>Atualizar</a></h6>'
-            }
+        if (this.id) {
+                return `${this.name}`
+                console.log('User Conectado', this.name);
+        } else {
+                return '<h6 onclick="Refresh();">Buscando... <a>Atualizar</a></h6>'
+        }
     },
     profilePicture() {
             return (this.id) ? `https://graph.facebook.com/${this.id}/picture?width=300` : `/src/assets/img/man.gif`
@@ -181,8 +182,7 @@ export default{
                 processData: true,
                 data: JSON.stringify(listMatchs)
             });
-        },
-            
+        }        
 	},
 }
 </script>

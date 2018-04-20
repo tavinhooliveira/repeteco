@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="col-md-12 btn btn-navbar">              
                     <a href="/notification"><span class="footerIcon fa fa-bell fa-red  text-red fa-1x col-md-3" data-transition="pop" data-toggle="tooltip" data-placement="top" title="Notificação"></span></a>                     
-                    <a href="/matchs"><span class="footerIcon fa fa-heartbeat fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Matchs"></span></a>       
+                    <a href="/matchs" onclick="Refresh();"><span class="footerIcon fa fa-heartbeat fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Matchs"></span></a>       
                     <a href="/config"><span class="footerIcon fa fa-sun-o fa-1x col-md-3 " data-transition="pop" data-toggle="tooltip" data-placement="top" title="Configuração"></span></a>
                     <a href="/" onclick="Refresh();"><span class="footerIcon fa fa-sign-out fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Sair"></span></a>
                 </div>
@@ -30,10 +30,6 @@
                 <a v-on:click="notifyNewMatch();" class="btn btnCircular btnPrincipal btnColor" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>42</b></i></a>
             </div>
         </div>
-       <!-- {{notifyCountMatch}} -->
-        
-        
-        <!--  <button type="button" class="btn btn-lg btn-block " data-toggle="collapse" href="#collapsePolicies" aria-expanded="false" aria-controls="collapsePolicies" v-show="matchsList > 0" ><img src="/src/assets/img/heart00.gif" width="25px" height="25px" v-tooltip.top-start="'Click!'"></br> Você tem {{matchsList}} Match!  </button></br> -->
     </div>
 </template>
 
@@ -72,26 +68,6 @@ export default {
             }
         return e;
         }
-        // ,
-        // notifyCountMatch(){
-        //     var data ={
-        //         msg: "Você Tem ",
-        //         countMatchrs: "2",
-        //         date: "20/04/2018 - 21:30"            
-
-        //     }
-        //     var currentTime = new Date().toLocaleString();            
-        //     var e = new Notification ("RepetecoWEB", {
-        //         body: data.msg + data.countMatchrs +" Matchrs!"+ "\n" + currentTime,
-        //         icon: "/src/assets/img/repeteco.png",
-        //         tag: "NEVERGRIND-CHAT-ALERT",
-        //         silent: false,
-        //         vibrate: [200, 100, 200]
-        //     });            
-        //     e.onclick = function (){
-        //         location.href = "/notification";
-        //     }
-        // }
         
     },
     methods: {

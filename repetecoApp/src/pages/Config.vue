@@ -16,7 +16,7 @@
                 </div>
                 <div id="msgPreference" class="alert w3-panel w3-pale-green w3-display-container" style="display:none">
                     <span onclick="this.parentElement.style.display='none'"
-                      class="pull-right text-success"> ✘</span>
+                      class="pull-right text-success"> <i class="glyphicon glyphicon-remove-circle"></i></span>
                     <strong>OK!</strong> Suas Preferências foram registradas!
                 </div>
               </div>

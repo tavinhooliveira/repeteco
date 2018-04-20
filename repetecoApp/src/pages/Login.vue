@@ -17,7 +17,7 @@
                <div v-else class="well text-center">
                   <div>
                      <img :src="profilePicture" style='height: 100px; width: 100px; border-radius: 75px; border: 2px solid rgba(73, 158, 223, 0.144)'>
-                  </div>
+                  </div>                  
                   <div>
                      <a v-bind:href="profile.link" v-tooltip.bottom-start="'Perfil Facebook'" target="_blank">{{profile.name}}</a>                  
                   </div>
@@ -75,7 +75,7 @@ export default {
   },
   computed: {
     profilePicture() {
-      return (this.profile.id) ? `https://graph.facebook.com/${this.profile.id}/picture?width=300` : `/src/assets/img/loading3.gif`
+      return (this.profile.id) ? this.profile.picture.data.url : `/src/assets/img/loading3.gif`
     },
     totalFriendsApp() {
       if (this.profile.id) {

@@ -3,24 +3,16 @@
       <div id="perfil" class="perfil  col-md-6 container panel col-md-offset-3">
          <div class="perfilPrincipal panel-body well" id="perfilPrincipal">
             <div class="row perfilPicture center-block">
-               <a v-bind:href="link" target="_blank"><img class="media-object" :src="profilePicture"></a>
+               <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
             </div>
             <div>
                <h4 class="perfilName center-block"><a v-bind:href="link" target="_blank">{{name}}</a>
                <h6 class="small">{{friendsTotalApp}} de {{friendsTotalFb}} <i class="fa fa-users"></i> </h6>
                </h4>
-            </div>
-            
-           <!-- 
-            <div class="row perfilbrprogress">
-               <p class="" id="friendsCount">{{friendsTotalApp}} de {{friendsTotalFb}} <i class="fa fa-users"></i> </p>
-               <div class="progress progress-striped ">
-                  <div class="bar" role="progressbar" :style="'height:30px;background:#1E8BC3;width:' + friendsTotalApp + '%'"><b class="text-secondary">{{progress()}}%</b></div>
-               </div>
-            </div>
-            -->
-            <ul v-show="flagDisplayCount === true" class="list-group panel-body">
-               <li class="">
+            </div>                       
+                      
+            <ul v-show="flagDisplayCount === true">
+               <li class="centroDiv">
                   <div class="classification">
                      <ul class="img_classification">
                         <li class="cl_fiquei" v-tooltip.top-start="'Já Fiquei'" >
@@ -29,8 +21,11 @@
                         <li class="cl_ficaria2" v-tooltip.top-start="'Ficaria Novamente'">
                            <span class="badge" id="cont_cl_ficaria2">{{contFicariaNovamente}}</span>
                         </li>
-                        <li v-show="flagDisplayHot === true"class="cl_picante" v-tooltip.top-start="'Relação Picante'">
+                        <li v-if="flagDisplayHot === true" class="cl_picante" v-tooltip.top-start="'Relação Picante'">
                            <span class="badge" id="cont_cl_picante">{{contRelacaoPicante}}</span>
+                        </li>
+                        <li v-else class="cl_picante" style="" v-tooltip.top-start="'Opção Inativa'">
+                           <span class="badge" id="cont_cl_picante">X</span>
                         </li>
                         <li class="cl_fico" v-tooltip.top-start="'Ficaria'">
                            <span class="badge" id="cont_cl_fico">{{contFicaria}}</span>
@@ -54,7 +49,7 @@
                                 <span class="progress-right">
                                     <span class="progress-bar"></span>
                                 </span>
-                                <div class="progress-value">{{friendsTotalApp}} </div>
+                                <div class="progress-value" :value="progress()" :max="friendsTotalApp">{{friendsTotalApp}}  </div>                                 
                                  <p class="labelCount text-center"><i class="fa fa-users" aria-hidden="true"></i></p>
                             </div>
                         </div>
