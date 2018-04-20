@@ -19,20 +19,24 @@
                </div>
             </div>
             <ul v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
-               <matchscomponent v-bind:matchs="matchs"  v-for="matchs in matchs" v-bind:key="matchs.id" v-bind:id="matchs.id" v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender" v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id" v-bind:dataMatch="matchs.dataMatch"></matchscomponent>
+               <matchesRecordComponent v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:id_fb_users="user.id_fb_users" v-bind:name="user.name" v-bind:imagem="user.imagem"
+                  v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"
+                  v-bind:friendsTotalApp="user.friendsTotalApp" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot" v-bind:matchs="user.matchs"  v-bind:friendsAll="friendsAll">
+               </matchesRecordComponent>
             </ul>
             <div v-else>
                <reload></reload>
             </div>
-             <p v-if="matchs.length <= 0" class="text-center"></br>Você ainda não tem Matchs! ☹</p>
-            </br>
-            <!-- {{matchs}} -->
+             <p v-if="users.matchs == '[]'" class="text-center"></br>Você ainda não tem Matchs! ☹</p>
+            </br>{{users.matchs}}
+ 
          </div>      
       </section>
    </div>
 </template>
 <script>
 import Matchscomponent from '../components/Matchscomponent.vue';
+import MatchesRecordComponent from '../components/MatchesRecordComponent.vue';
 import UserComponent from '../components/UserComponent.vue';
 import Reload from "../components/Reload.vue";
 import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
@@ -44,7 +48,8 @@ export default {
     Matchscomponent,
     UserComponent,
     Reload,
-    ReloadAuthorizedComponent
+    ReloadAuthorizedComponent,
+    MatchesRecordComponent
   },
   data() {
     return {
@@ -53,22 +58,39 @@ export default {
       authorized: false,
       matchs: {},
       statusAPIAPP: false,
-      idUserFbSession: null
+      idUserFbSession: null,
+      friendsAll: [],
+      users: [],
+      matchs: []
+
     };
   },
-  computed: {
   //select distinct f2.name, f2.id_fb_friends, f1.user_id from friends f1, friends f2 WHERE f1.user_id=f2.id_fb_friends AND f1.id_fb_friends=1893438167339291
+  computed: {
+  
   },
-  methods: {
-    getApiRepetecoMatchs(userid) {
-        this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}/matchs`).then(response => {
-            this.matchs = response.data
-            if (this.matchs.length >= 0) {
-                console.log("API getApiRepetecoMatchs: OK!")
+  methods: {    
+    getApiRepetecoFriendsAll() {
+      this.$http.get(`http://localhost:9096/wsrepeteco/friends`).then(response => {
+          this.friendsAll = response.data
+          if (this.friendsAll.length > 0) {
+              console.log("API Repeteco AllFriends: OK!")
+              this.statusAPIAPP = true;
+          } else {
+              this.statusAPIAPP = false;
+              console.log("Erro na chamada da API - Repeteco");
+          }
+      })
+    },
+    getApiRepeteco(userid) {
+        this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
+            this.users = [response.data]
+            if (this.users.length > 0) {
+                console.log("API Repeteco: OK!")
                 this.statusAPIAPP = true;
             } else {
                 this.statusAPIAPP = false;
-                console.log("Erro na chamada da API - getApiRepetecoMatchs");
+                console.log("Erro na chamada da API - Repeteco");
             }
         })
     },
@@ -80,7 +102,8 @@ export default {
             console.log("Status: Connectado!")
             vm.authorized = true
             vm.idUserFbSession = idFb
-            vm.getApiRepetecoMatchs(idFb)
+            vm.getApiRepeteco(idFb)
+            vm.getApiRepetecoFriendsAll()
         } else if (response.status === 'not_authorized') {
             console.log("Status: Não Autorizado!");
             vm.authorized = false
