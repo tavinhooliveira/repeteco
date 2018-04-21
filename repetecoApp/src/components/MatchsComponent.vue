@@ -54,6 +54,10 @@ export default{
       optiondata: this.option,
       click: null
     }
+  },
+  computed:{
+ 
+
   }, 
   methods: {
     starClickOff: function() {

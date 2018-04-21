@@ -10,6 +10,7 @@
 </div>
 <div v-if="CoutMatches == 0"> 
   <p class="text-center"></br>Você ainda não tem Matchs! ☹</p>
+  {{readyReloadTemp}}
 </div>
  </div>  
 </template>
@@ -21,19 +22,30 @@ export default{
   components:{
       Matchscomponent
   },
+   beforeCreate() {
+    console.log('Teste Creating aquiiii !')
+  },
    data() {
         return {
         isMatch: true,
         friendslist: []
+        
         }
     },
+  method: {
+      
+  },
   computed: {
+    readyReloadTemp() {    
+        window.setTimeout('Refresh()', 1000);
+    
+    },    
     CoutMatches() {
-    if(this.matchs){
-        return this.matchs           
-    }else{
-        return 0;
-    }
+        if(this.matchs){
+            return this.matchs           
+        }else{
+            return 0;
+        }
 
 	},   
     matchsList (){
