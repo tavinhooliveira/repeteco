@@ -23,13 +23,14 @@
             </div>
         </footer>
 
-        <!-- Botão Match Flutuante -->
-        <div v-if="isMatch === true" class="btnNotificationNewMatch">            
-            <div class="col-3 btnNotificationNewMatchBtn">
-                <!-- <a href="/notification" class="btn btnCircular btnPrincipal btnColor" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>42</b></i></a> -->
-                <a v-on:click="notifyNewMatch();" class="btn btnCircular btnPrincipal btnColor" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>42</b></i></a>
+        <!-- Botão Match Flutuante
+            <div v-if="isMatch === true" class="btnNotificationNewMatch">            
+                <div class="col-3 btnNotificationNewMatchBtn">
+                    <a href="/notification" class="btn btnCircular btnPrincipal btnColor" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>42</b></i></a> 
+                    <a v-on:click="notifyNewMatch();" class="btn btnCircular btnPrincipal btnColor" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>42</b></i></a>
+                </div>
             </div>
-        </div>
+         -->
     </div>
 </template>
 

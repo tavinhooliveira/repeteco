@@ -8,29 +8,17 @@
             <div id="searchClassification" class="container searchClassification navbar-fixed-top">
                <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">
             </div>
-            <div class="btnNotification" role="group" >
-               <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
-               <div class="btn-group pull-right">
-                  <div v-show="matchs.length > 0">					        
-                     <a href="/matchs" class="active" title="Todos" >Todos |</a> 
-                     <a href="/matchsNew" title="Novos Matchs" >Novos Matchs |</a>  
-                     <a href="/matchsOld" title="Flash Backs" >Flash Backs</a>
-                  </div>
-               </div>
-            </div>
+            
             <ul v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
-               <matchesRecordComponent v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:id_fb_users="user.id_fb_users" v-bind:name="user.name" v-bind:imagem="user.imagem"
+               <matchesRecordComponent v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:id_fb_users="user.id_fb_users" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:user_id="user.user_id"
                   v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"
                   v-bind:friendsTotalApp="user.friendsTotalApp" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot" v-bind:matchs="user.matchs"  v-bind:friendsAll="friendsAll">
                </matchesRecordComponent>
             </ul>
             <div v-else>
                <reload></reload>
-            </div>
-             <p v-if="users.matchs == '[]'" class="text-center"></br>Você ainda não tem Matchs! ☹</p>
-            </br>{{users.matchs}}
- 
-         </div>      
+            </div>   
+          </div>     
       </section>
    </div>
 </template>
@@ -65,8 +53,14 @@ export default {
 
     };
   },
-  //select distinct f2.name, f2.id_fb_friends, f1.user_id from friends f1, friends f2 WHERE f1.user_id=f2.id_fb_friends AND f1.id_fb_friends=1893438167339291
   computed: {
+    isMatch() {
+        if(this.users.matchs){
+            return true;         
+        }else{
+            return false;
+        }
+    }
   
   },
   methods: {    

@@ -27,7 +27,7 @@
                      <h6>Você tem <b v-html="totalFriendsApp"></b> amigos no APP de <b v-html="totalFriendsFB"></b> no facebook!</h6>
                      <h6>Agora é só Classificar Seus Amigos!</h6>
                      <br>
-                     <a href="/classification"  class="btn btn-success" >Classificar</a>
+                     <a href="/classification"  class="btn btn-success" >Entrar <span id="iconEntrar" class="glyphicon glyphicon-log-in"></span></a>
                   </div>
                </div>
                <div class="row col-md-6 text-center classificationInfo container">
@@ -229,4 +229,5 @@ header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:485px}
 body{background-image:url(/src/assets/img/bg.png)!important;background-repeat:no-repeat;background-size:100%}
 #app{font-family:Avenir,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-align:center;color:#2c3e50;margin-top:60px;}
 button{cursor:pointer}
+#iconEntrar {color: #FFF !important;}
 </style>
