@@ -18,47 +18,44 @@
                 <button type="button" onclick="Refresh();" class="btn btn-default"><i class="footerIcon fa fa-heartbeat fa-1x"></i> Verificar Matchs <i class="badge" id="cont_cl_fico">{{coutMatchs}}</i></button>
             </div>
         </div>
-        <matchscomponent v-bind:matchs="matchs" v-for="matchs in matchs" v-bind:key="matchs.id" v-bind:id="matchs.id" v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender" v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id" v-bind:dataMatch="matchs.dataMatch">
+        <matchscomponent v-bind:matchs="matchsData" v-for="matchs in matchsData" v-bind:key="matchs.id" v-bind:id="matchs.id" v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender" v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id" v-bind:dataMatch="matchs.dataMatch">
         </matchscomponent>
         <div v-if="isMatch == false">
-            <p class="text-center">
-                </br>Você ainda não tem Matchs! ☹</p>
-            <!-- {{readyReloadTemp}} -->
+            <br><p class="text-center">Você ainda não tem Matchs! ☹</p>
         </div>
     </div>
 </template>
 <script>
 import Matchscomponent from './Matchscomponent.vue';
+import axios from 'axios';
 
 export default{
   props:['id','id_fb_users','user_id','name','imagem','link','nationality','friendsTotalFb','friends','preference','flagDisplayHot', 'matchs', 'friendsAll'],
   components:{
-      Matchscomponent
+      Matchscomponent,
+      axios
   },
    beforeCreate() {
-    console.log('Teste Creating aquiiii !')
+    
   },
    data() {
         return {
         friendslist: [],
-        myMatchList: []        
+        myMatchList: [],
+        matchsData: []      
         }
     },
-  computed: {
-    readyReloadTemp() {    
-        window.setTimeout('Refresh()', 1000);
-    
-    },    
+  computed: {  
     isMatch() {
-        if(this.matchs){
+        if(this.matchsData.length > 0){
             return true;         
         }else{
             return false;
         }
     },
     coutMatchs() {
-        if(this.matchs){
-            return this.matchs.length;         
+        if(this.matchsData){
+            return this.matchsData.length;         
         }else{
             return 0;
         }
@@ -113,7 +110,7 @@ export default{
         return matchs;
     },
     postMacts(){
-    //[TESTE] Inserir Matcrs Na Basse Via Ajax
+        //Inserir Matcrs Na Basse Via Ajax
         let userid =  this.id_fb_users;
         let listMatchs = this.matchsList;
         $.ajax({
@@ -128,12 +125,24 @@ export default{
             origin: "*",
             processData: true,
             data: JSON.stringify(listMatchs)
-        });       
+        });        
+        //Recuperado os Matchs
+        axios.get(`http://localhost:9096/wsrepeteco/users/${userid}/matchs/`)
+        .then(response => {
+            this.matchsData = response.data
+            if (this.matchsData.length > 0) {
+                console.log("API matchsData: OK!")
+            } else {
+                console.log("API matchsData: - Not Matchs");
+            }
+        })
     }   
               
 	},
     method: {
-     
+     testeChama: function(){
+            console.log("teste chamando a API Created!")
+        }
   },
 }
 </script>

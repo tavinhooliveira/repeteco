@@ -1,5 +1,7 @@
 <template>
    <div>
+    
+         {{postMacts}} 
       <div id="perfil" class="perfil  col-md-6 container panel col-md-offset-3">
          <div class="perfilPrincipal panel-body well" id="perfilPrincipal">
             <div class="row perfilPicture center-block">
@@ -10,7 +12,6 @@
                <h6 class="small">{{friendsTotalApp}} de {{friendsTotalFb}} <i class="fa fa-users"></i> </h6>
                </h4>
             </div>                       
-                      
             <ul v-show="flagDisplayCount === true">
                <li class="centroDiv">
                   <div class="classification">
@@ -25,7 +26,7 @@
                            <span class="badge" id="cont_cl_picante">{{contRelacaoPicante}}</span>
                         </li>
                         <li v-else class="cl_picante" style="" v-tooltip.top-start="'Opção Inativa'">
-                           <span class="badge" id="cont_cl_picante">X</span>
+                            <span class="badge" id="cont_cl_picante">✗</span>                           
                         </li>
                         <li class="cl_fico" v-tooltip.top-start="'Ficaria'">
                            <span class="badge" id="cont_cl_fico">{{contFicaria}}</span>
@@ -37,7 +38,6 @@
                   </div>
                </li>
             </ul>
-
             <div>
                 <div class="center-block well progressBarCirculos">
                     <div class="row center-block centroDiv">
@@ -81,14 +81,13 @@
                 </div>
             </div>
          </div>
-
-        <div id="perfilMatch" class="well perfilMatch panel-body">
+        <div v-if="contAllClassification != 0" id="perfilMatch" class="well perfilMatch panel-body">
             <div class="row">            
-             <button type="button" class="btn btn-lg btn-block " data-toggle="collapse" href="#collapsePolicies" aria-expanded="false" aria-controls="collapsePolicies" v-show="matchsList.length > 0" ><img src="/src/assets/img/heart00.gif" width="25px" height="25px" v-tooltip.top-start="'Click!'"></br> Você tem {{matchsList.length}} Match!  </button></br>
+             <button type="button" class="btn btn-lg btn-block " data-toggle="collapse" href="#collapsePolicies" aria-expanded="false" aria-controls="collapsePolicies" v-show="countMatch > 0" ><img src="/src/assets/img/heart00.gif" width="25px" height="25px" v-tooltip.top-start="'Click!'"></br> Você tem {{countMatch}} Match!  </button></br>
                 <div class="collapse" id="collapsePolicies">
                     <div v-show="contMatchNewMatch != 0" class="row  perfilMatchList col-md-12 container">
                         <div class="perfilMatchListInfo">
-                            <a href="/notificationNewMatch">
+                            <a href="/matchsNew">
                             <i class="cl_ficaria2">  </i>
                             <span> Match Iai Rola?</span>
                             <span class="badge pull-right">{{contMatchNewMatch}}</span>
@@ -97,7 +96,7 @@
                     </div>
                     <div v-show="contMatchOldMacth != 0" class="row  perfilMatchList col-md-12 container">
                         <div class="perfilMatchListInfo">
-                            <a href="/notificationOldMatch">
+                            <a href="/matchsOld">
                             <i class="cl_fico"></i>
                             <span>Macth Alerta de Flash Back!</span>
                             <span class="badge pull-right">{{contMatchOldMacth}}</span>
@@ -107,7 +106,7 @@
             </div>
         </div>
 
-            <div v-show="contAllClassification != 0" class="alert alert-info alert-dismissible" role="alert">
+            <div v-if="contAllClassification != 0" class="alert alert-info alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <strong>Você Classificou</strong> {{contAllClassification}} amigos(as) <span v-show="contNotClassification != 0">{{contNotClassification}} ainda espera por você!</span>
             </div>
@@ -144,14 +143,21 @@
 import FriendComponent from '../components/FriendComponent.vue';
 import UserComponent from '../components/UserComponent.vue';
 import CarroselComponent from '../components/CarroselComponent.vue';
+import axios from 'axios';
 
 export default {
 	props: ['name', 'imagem', 'link', 'friendsTotalFb', 'friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp', 'flagDisplayCount', 'flagDisplayHot', 'friendsAll'],
 	components: {
-			FriendComponent,
-			UserComponent,
-			CarroselComponent
-	},
+        FriendComponent,
+        UserComponent,
+        CarroselComponent,
+        axios
+    },
+    data() {
+        return {
+        matchsData: []    
+        }
+    },
     computed: {
 		profileName() {
 				if (this.id) {
@@ -252,13 +258,14 @@ export default {
                     }
 		    return litrs.length           
 		},
-         matchsList (){
-        //myMatch - return list: id_fb_friends
+        //myMatch - return list: matchsList
+        matchsList (){
         let fdlist = this.friends;
         let friendslist = [];
         let listFB = null;
         for (let i = 0; i < fdlist.length; i++) {
             listFB = {
+                id: fdlist[i].id,
                 name: fdlist[i].name,
                 id_fb_friends: fdlist[i].id_fb_friends,
                 user_id: fdlist[i].user_id,
@@ -270,7 +277,7 @@ export default {
                 friendslist.push(listFB)
             }
         }
-        //youMatchs - return list: user_id
+        //youMatchs - return list: friendslistAll
         let fdlistAll = this.friendsAll;
         let friendslistAll = [];
         let listFbAll = null;
@@ -300,28 +307,68 @@ export default {
         )
         return matchs;
     },
+    //Inserir e Recuperar Matcrs
+    postMacts(){
+        //Inserir Matcrs Na Basse Via Ajax
+        let userid =  this.id_fb_users;
+        let listMatchs = this.matchsList;
+        $.ajax({
+            url: "http://localhost:9096/wsrepeteco/users/" + userid + "/matchs",
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                'dataType': 'json'
+            },
+            dataType: 'json',
+            crossDomain: true,
+            origin: "*",
+            processData: true,
+            data: JSON.stringify(listMatchs)
+        });        
+        //Recuperado os Matchs (LISTA) retur: matchsData
+        axios.get(`http://localhost:9096/wsrepeteco/users/${userid}/matchs/`)
+        .then(response => {
+            this.matchsData = response.data
+            if (this.matchsData.length > 0) {
+                console.log("API matchsData: OK!")
+            } else {
+                console.log("API matchsData: - Not Matchs");
+            }
+        })
+    },
+    //Recuperado a quantidade de todos os Matchs!
+    countMatch(){
+       let cout = this.matchsData;
+       if(cout.length > 0){
+           return cout.length;
+       }else{
+           return 0;
+       }
+    },
+    //Recuperado a quantidade de Matchs (ficaria)!
     contMatchNewMatch() { 
         let litrs =[];           
         let list = [];
-            for (let i = 0; i < this.matchsList.length; i++) {
-                if(this.matchsList[i].option === 'ficaria'){
-                    list = {option: this.matchsList[i].option}
+            for (let i = 0; i < this.matchsData.length; i++) {
+                if(this.matchsData[i].option === 'ficaria'){
+                    list = {option: this.matchsData[i].option}
                     litrs.push(list)
                     }
                 }
         return litrs.length           
     },
+    //Recuperado a quantidade de Matchs (ficaria novamente)!
     contMatchOldMacth() { 
         let litrs =[];           
         let list = [];
-            for (let i = 0; i < this.matchsList.length; i++) {
-                if(this.matchsList[i].option === 'ficariaNovamente'){
-                    list = {option: this.matchsList[i].option}
+            for (let i = 0; i < this.matchsData.length; i++) {
+                if(this.matchsData[i].option === 'ficariaNovamente'){
+                    list = {option: this.matchsData[i].option}
                     litrs.push(list)
                     }
                 }
         return litrs.length           
-    }
+    },
    
         
 	},	

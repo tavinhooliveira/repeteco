@@ -41,6 +41,7 @@ import UserComponent from "../components/UserComponent.vue";
 import Reload from "../components/Reload.vue";
 import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
 import ProfileHeaderComponent from "../components/ProfileHeaderComponent.vue";
+import Axios from 'axios';
 
 export default {
   name: "ClassificationAPP",
