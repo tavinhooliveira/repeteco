@@ -23,14 +23,13 @@
             </div>
         </footer>
 
-        <!-- Botão Match Flutuante
-            <div v-if="isMatch === true" class="btnNotificationNewMatch">            
+            <div class="btnNotificationNewMatch">            
                 <div class="col-3 btnNotificationNewMatchBtn">
-                    <a href="/notification" class="btn btnCircular btnPrincipal btnColor" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>42</b></i></a> 
-                    <a v-on:click="notifyNewMatch();" class="btn btnCircular btnPrincipal btnColor" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>42</b></i></a>
+                    <a href="/matchs"  class="btn btnCircular btnPrincipal btnColor fa fa-heartbeat" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>42</b></i></a> 
+                    <!-- <a href="/matchs" class="btn btnCircular btnPrincipal btnColor" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>42</b></i></a>  -->
                 </div>
             </div>
-         -->
+         
     </div>
 </template>
 
@@ -42,34 +41,11 @@ export default {
     },
     data() {
         return {
-        isMatch: true,
+
         }
     },
     computed: {
-                
-        notifyNewMatch(){
-            var data ={
-                type: "Novo Match",
-                date: "05/04/2018 - 21:30",
-                name: "Camila Lima",
-                msgPrefix: "Você e ",
-                msgSufix: " tem Interesses em comum!",
-                weapon: "Tome a iniciativa!"
 
-            }            
-            var e = new Notification ("RepetecoWEB", {
-                body: data.msgPrefix + data.name + data.msgSufix + "\n" + data.type + " - " + data.date,
-                icon: "/src/assets/img/repeteco.png",
-                tag: "NEVERGRIND-CHAT-ALERT",
-                silent: false,
-                vibrate: [200, 100, 200]
-            });            
-            e.onclick = function (){
-                location.href = "/notification";
-            }
-        return e;
-        }
-        
     },
     methods: {
 
@@ -78,39 +54,9 @@ export default {
 }
 </script>
 
-
-
-
 <style>
-.btnNotificationNewMatch{
-	position: fixed;
-	float: bottom;
-	bottom: 15px;
-	right: 15px;
-	z-index: 100;
-}
-.btnNotificationNewMatchInput, .btnNotificationNewMatchBtn {
-	display: inline-block;
-}
-.btnCircular{
-	border-radius: 50%;
-}
-.btnPrincipal{
-	font-size: 10px;
-    padding: 15px;
-    margin-bottom: 30px;
-}
-.btnColor {
-    background-color: #f33634;
-    color: #fff;
-    border: 4px;
-    font-size: 8px
-}
-.btnColor:hover {
-    background-color: #f31d1b;
-    color: #fff;
-    font-size: 14px;
-    border: 4px solid rgba(163, 173, 183, 0.54);
-}
-
+.btnNotificationNewMatch{position:fixed;float:bottom;bottom:15px;right:15px;z-index:100}
+.btnNotificationNewMatchBtn .btnNotificationNewMatchInput{display:inline-block}
+.btnPrincipal{font-size:18px;padding:15px;margin-bottom:30px}
+.btnColor:hover{color:#f31d1b;font-size:24px}
 </style>

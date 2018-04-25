@@ -134,6 +134,7 @@ export default {
           //Inserir User Na Basse Via Ajax.
           $.ajax({
               url: "http://localhost:9096/wsrepeteco/users",
+              async: false,
               method: "POST",
               headers: {
                   'Content-Type': 'application/json;charset=UTF-8',
@@ -149,6 +150,7 @@ export default {
           //Inserir Friends Na Basse Via Ajax
           $.ajax({
               url: "http://localhost:9096/wsrepeteco/users/" + userid + "/friends",
+              async: false,
               method: "POST",
               headers: {
                   'Content-Type': 'application/json;charset=UTF-8',
