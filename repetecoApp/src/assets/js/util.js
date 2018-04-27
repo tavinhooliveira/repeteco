@@ -27,6 +27,22 @@ function functionSearch() {
     }
 }
 
+/*Solicitar Permissão de notificação*/
+function solicitationNotification(){
+    if (!window.Notification) {
+        return "unsupported";
+    }
+    Notification.requestPermission().then(status => {
+        if (status == 'granted') {
+            console.log('permissão de Notificação concedida: '+status);
+        }else{
+            console.log('Sem permissão de Notificação: '+status);
+        }
+    });
+    
+
+  }
+
 
 /*Refresh na pagina*/
 function Refresh(){

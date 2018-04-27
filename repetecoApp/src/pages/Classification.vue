@@ -26,7 +26,7 @@
                   v-bind:friendsTotalApp="user.friendsTotalApp" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot" v-bind:matchs="user.matchs"  v-bind:friendsAll="friendsAll">
                </userComponent>
             </div>
-            </br>
+            <br>
          </div>
          <div v-else>
             <reload></reload>
@@ -91,10 +91,11 @@ export default {
     statusChangeCallback(response) {
         let vm = this
         if (response.status === 'connected') {
+        var idFb = response.authResponse.userID
             console.log("Usuario Autorizado!");
             console.log("Status: Connectado!")
             vm.authorized = true
-            vm.getApiRepeteco(response.authResponse.userID)
+            vm.getApiRepeteco(idFb)
             vm.getApiRepetecoFriendsAll()
         } else if (response.status === 'not_authorized') {
             console.log("Status: Não Autorizado!");
@@ -104,7 +105,7 @@ export default {
             vm.authorized = false
         } else {
             vm.authorized = false
-        }
+        }       
     }
   },
   mounted() {

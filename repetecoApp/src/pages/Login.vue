@@ -180,16 +180,19 @@ export default {
           vm.statusChangeCallback(response)
           console.log("logout Efetuado")
       })
+      window.localStorage.removeItem('idFBStorage');
   },
   statusChangeCallback(response) {
       let vm = this
       if (response.status === 'connected') {
+          var idFb = response.authResponse.userID
           console.log("Autorizando Usuario...");
           vm.authorized = true
           //Chamada API Facebok e Repeteco
           vm.getFacebook()
           console.log("Usuario Connectado")
           console.log("API Facebook: - Ok!");
+        window.localStorage.setItem('idFBStorage', idFb);
       } else if (response.status === 'not_authorized') {
           console.log("Não Autorizado!");
           vm.authorized = false
