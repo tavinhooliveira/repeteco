@@ -57,14 +57,16 @@ export default {
       nomeProjeto: "Classification",
       authorized: false,
       statusAPIAPP: false,
-      users: {}
+      users: {},
+      ApiRepetecoStatus: false
     };
   },
   methods: {
     getApiRepeteco(userid) {
         this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
             this.users = [response.data]
-            if (this.users.length > 0) {
+            this.ApiRepetecoStatus = response.status;
+            if (this.ApiRepetecoStatus === 200) {
                 console.log("API Repeteco: OK!")
                 this.statusAPIAPP = true;
             } else {

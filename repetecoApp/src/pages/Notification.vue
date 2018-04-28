@@ -14,10 +14,18 @@
         <div id="notify" class="col-md-6 container panel col-md-offset-3">
             <div class="list-group">
                 <div class="panel-heading">
-                    <h4>Notificações:</h4>                   
-                    <NotificationComponent v-bind:notification="notificationData" v-for="notification in notificationData" v-bind:key="notification.id" v-bind:id="notification.id" v-bind:name="notification.name" v-bind:link="notification.link"
-                        v-bind:imagem="notification.imagem" v-bind:type="notification.type" v-bind:text="notification.text" v-bind:status="notification.status" v-bind:dateNotify="notification.dateNotify">
-                    </NotificationComponent>                 
+                    <h4>Notificações:</h4>
+                    <div v-if="this.statusNotification === true">
+                        <NotificationComponent v-bind:notification="notificationData" v-for="notification in notificationData" v-bind:key="notification.id" v-bind:id="notification.id" v-bind:name="notification.name" v-bind:link="notification.link"
+                            v-bind:imagem="notification.imagem" v-bind:type="notification.type" v-bind:text="notification.text" v-bind:status="notification.status" v-bind:dateNotify="notification.dateNotify">
+                        </NotificationComponent>                 
+                    <div v-show="coutNotification === 0">
+                        <p class="text-center">Nehuma Notificação no momento!</p>
+                    </div>
+                    </div>
+                    <div v-else>
+                        <reload></reload>
+                    </div>                   
                 </div>
             </div>
 
@@ -28,7 +36,7 @@
 
 <script>
 import NotificationComponent from "../components/NotificationComponent.vue";
-import ReloadAuthorizedComponent from "../components/NotificationComponent.vue";
+import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
 import Reload from "../components/Reload.vue";
 import axios from 'axios';
 
@@ -44,10 +52,20 @@ export default {
   data() {
     return {
       authorized: false,
-      notificationData: []
+      notificationData: [],
+      statusNotification: null,
+      notificationDataStatus: null
     };
   },
   computed:{
+
+    coutNotification() {
+        if(this.notificationData){
+            return this.notificationData.length;         
+        }else{
+            return 0;
+        }
+    }
  
   }, 
   methods: {
@@ -67,16 +85,18 @@ export default {
         } else {
             vm.authorized = false
         }       
-    },
-          //Recuperado os Matchs
+    },          //Recuperado os Matchs
     getNotificationAPI(userid){
     axios.get(`http://localhost:9096/wsrepeteco/users/${userid}/notification`)
     .then(response => {
         this.notificationData = response.data
-        if (this.notificationData.length > 0) {
+        this.notificationDataStatus = response.status
+        if (this.notificationDataStatus === 200) {
             console.log("API notificationData: OK!")
+            this.statusNotification = true;
         } else {
             console.log("API notificationData: - Not notificationData");
+            this.notificationData = false
         }
     })
     } 
