@@ -14,7 +14,7 @@
                      v-bind:link="user.link" v-bind:friendsTotalFb="user.friendsTotalFb" v-bind:friendsTotalApp="user.friendsTotalApp">
                   </profileHeaderComponent>
                   <div class="btn-group pull-right btnclassifications" role="group" aria-label="...">
-                     <button type="button" class="btn btn-default active" v-tooltip.bottom-start="'Todos'" onclick="location.href='/classification'"><i class="fa fa-star-half-o"> </i></button>
+                     <button type="button" class="btn btn-default active" v-tooltip.bottom-start="'Todos'" onclick="location.href='/classification'"><i class="fa fa-star-half-o"></i></button>
                      <button type="button" class="btn btn-default " v-tooltip.bottom-start="'Classificados'" onclick="location.href='classificationOn'" data-transition="slide"><i class="fa fa-star"> </i></button>
                      <button type="button" class="btn btn-default" v-tooltip.bottom-start="'Não Classificados'" onclick="location.href='/classificationOff'"><i class="fa fa-star-o"> </i></button>
                   </div>
@@ -23,15 +23,15 @@
             <div class="list-group center-block" id="searchUL">
                <userComponent v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:id_fb_users="user.id_fb_users" v-bind:name="user.name" v-bind:imagem="user.imagem"
                   v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"
-                  v-bind:friendsTotalApp="user.friendsTotalApp" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot" v-bind:matchs="user.matchs"  v-bind:friendsAll="friendsAll">
+                  v-bind:friendsTotalApp="user.friendsTotalApp" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot" v-bind:matchs="user.matchs">
                </userComponent>
             </div>
             <br>
+            <reload v-if="this.users <= 0"></reload>
          </div>
          <div v-else>
             <reload></reload>
          </div>
-         <reload v-if="this.users <= 0"></reload>
       </div>
    </div>
 </template>
@@ -55,27 +55,12 @@ export default {
   data() {
     return {
       nomeProjeto: "Classification",
-      profile: {},
       authorized: false,
-      users: {},
       statusAPIAPP: false,
-       friendsAll: []
+      users: {}
     };
   },
   methods: {
-    //usado para extrair o id dos amigos que deram match!
-    getApiRepetecoFriendsAll() {
-        this.$http.get(`http://localhost:9096/wsrepeteco/friends`).then(response => {
-            this.friendsAll = response.data
-            if (this.friendsAll.length > 0) {
-                console.log("API Repeteco AllFriends: OK!")
-                this.statusAPIAPP = true;
-            } else {
-                this.statusAPIAPP = false;
-                console.log("Erro na chamada da API - Repeteco");
-            }
-        })
-    },
     getApiRepeteco(userid) {
         this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
             this.users = [response.data]
@@ -96,12 +81,10 @@ export default {
             console.log("Status: Connectado!")
             vm.authorized = true
             vm.getApiRepeteco(idFb)
-            vm.getApiRepetecoFriendsAll()
         } else if (response.status === 'not_authorized') {
             console.log("Status: Não Autorizado!");
             vm.authorized = false
         } else if (response.status === 'unknown') {
-            vm.profile = {}
             vm.authorized = false
         } else {
             vm.authorized = false
@@ -122,10 +105,6 @@ export default {
         })
     };
   }
-  //Facebook - End 
+
 };
 </script>
-
-<style>
-.paginationDiv{color: red;}
-</style>

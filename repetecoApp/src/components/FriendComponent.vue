@@ -110,13 +110,8 @@ export default {
 <style lang="scss">
 .ListFriends li .LfPicture img:hover{border: 4px solid rgba(85, 169, 247, 0.54) !important;}
 .optionShow{color: #c0bebe}
-//.ListFriends .img_classification label {margin-left: 5px; padding-left: 2px;}
 .ListFriends .img_classification label {padding-left: 2px;}
 .modal-dialog{max-width: 450px !important;}
 .modal-dialog img{margin-left: 25px !important;}
-.modal-dialog .ekko-lightbox-container img{
-    width: 100% !important;
-    height: 100% !important;
-    -webkit-user-select: none;
-}
+.modal-dialog .ekko-lightbox-container img{width: 100% !important;height: 100% !important;-webkit-user-select: none;}
 </style>

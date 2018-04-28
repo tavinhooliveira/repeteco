@@ -8,8 +8,6 @@ import Classification from '../pages/Classification.vue'
 import Profile from '../pages/Profile.vue'
 import Share from '../pages/Share.vue'
 import Notification from '../pages/Notification.vue'
-import NotificationNewMatch from '../pages/NotificationNewMatch.vue'
-import NotificationOldMatch from '../pages/NotificationOldMatch.vue'
 import Config from '../pages/Config.vue'
 import NotFound from '../pages/NotFound.vue'
 import ClassificationOn from '../pages/ClassificationOn.vue'
@@ -19,7 +17,6 @@ import ServiceTerms from '../pages/ServiceTerms.vue'
 import Matchs from '../pages/Matchs.vue'
 import MatchsNew from '../pages/MatchsNew.vue'
 import MatchsOld from '../pages/MatchsOld.vue'
-
 
 export default new Router({
     routes: [
@@ -62,16 +59,6 @@ export default new Router({
             path: '/notification',
             name: 'Notification',
             component: Notification
-        },
-        {
-            path: '/notificationNewMatch',
-            name: 'NotificationNewMatch',
-            component: NotificationNewMatch
-        },
-        {
-            path: '/notificationOldMatch',
-            name: 'NotificationOldMatch',
-            component: NotificationOldMatch
         },
         {
             path: '/classificationOn',

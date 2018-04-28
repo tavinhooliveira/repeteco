@@ -8,18 +8,17 @@
           <div v-if="this.statusAPIAPP === true" id="configuracao" class="configuracao col-md-6 container col-md-offset-3 ">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="" role="group" >
-                      <!-- <p class="text-center"><i class="fa fa-user"></i> {{user.name}}</p> -->
+                    <div class="" role="group" >                     
                       <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>
                       <span class="pull-right"> Config. <i class="glyphicon glyphicon-cog"></i> </span>	   
                     </div>
                 </div>
-                <div id="msgPreference" class="alert w3-panel w3-pale-green w3-display-container" style="display:none">
+              </div>
+                <div id="msgPreference" class="" style="display:none">
                     <span onclick="this.parentElement.style.display='none'"
                       class="pull-right text-success"> <i class="glyphicon glyphicon-remove-circle"></i></span>
                     <strong>OK!</strong> Suas Preferências foram registradas!
                 </div>
-              </div>
               <div class="" >
                 </br>
                 <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapseInteresse" aria-expanded="false" aria-controls="collapseInteresse">Interesses</button>
@@ -43,37 +42,12 @@
                     </div>
                 </div>
                 </br>
-                <!--
-                <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapseNotification" aria-expanded="false" aria-controls="collapseNotification">Notificações</button>
-                <div class="collapse" id="collapseNotification">
-                    <ul class="list-group" @change="updatePreferencia()">
-                      <div class="panel-heading">
-                          <h4>Notificações</h4>
-                          <div class="well">
-                            <li class="list-group-item">
-                                <label>
-                                <input class="w3-radio" type="checkbox" name="flagNotificationMatch" id="flagNotificationMatch" v-model="user.flagNotificationMatch"/>
-                                <i class="fa fa-heartbeat" aria-hidden="true"></i> <span>Notificações de Match</span>
-                                </label>
-                            </li>
-                            <li class="list-group-item">
-                                <label>
-                                <input class="w3-radio" type="checkbox" name="flagNotificationFriends" id="flagNotificationFriends" v-model="user.flagNotificationFriends"/>
-                                <i class="fa fa-users" aria-hidden="true"></i> <span>Novo Amigo</span>
-                                </label>
-                            </li>
-                          </div>
-                      </div>
-                    </ul>
-                </div>
-                </br>
-                -->
                 <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapsePrivacy" aria-expanded="false" aria-controls="collapsePrivacy">Privacidade</button>
                 <div class="collapse" id="collapsePrivacy">
                     <ul class="list-group" @change="updatePreferencia()">
                       <div class="panel-heading">
                           <h4>Privacidade</h4>
-                          <div class="well">
+                          <div class="">
                             <li class="list-group-item">
                                 <label>
                                 <input class="w3-radio" type="checkbox" name="flagDisplayCount" id="flagDisplayCount" v-model="user.flagDisplayCount"/>
@@ -83,7 +57,30 @@
                             <li class="list-group-item">
                                 <label>
                                 <input class="w3-radio" type="checkbox" name="flagDisplayHot" id="flagDisplayHot" v-model="user.flagDisplayHot"/>
-                                <i class="fa fa-fire" aria-hidden="true"></i> <span>Exibir Opção Picante</span>
+                                <i class="glyphicon glyphicon-fire" aria-hidden="true"></i> <span>Exibir Opção Picante</span>
+                                </label>
+                            </li>
+                          </div>
+                      </div>
+                    </ul>
+                </div>
+                </br>
+                <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapseNotify" aria-expanded="false" aria-controls="collapsePrivacy">Notificação</button>
+                <div class="collapse" id="collapseNotify">
+                    <ul class="list-group" @change="updatePreferencia()">
+                      <div class="panel-heading">
+                          <h4>Alertas de Notificação</h4>
+                          <div class="">
+                            <li class="list-group-item">
+                                <label>
+                                    <input class="w3-radio" type="checkbox" name="flagDisplayCount" id="flagDisplayCount"/>
+                                    <i class="fa fa-heartbeat" aria-hidden="true"></i> <span>Alerta: Novo Match!</span>
+                                </label>
+                            </li>
+                            <li class="list-group-item">
+                                <label>
+                                    <input class="w3-radio" type="checkbox" name="localNewFriend" id="flagDisplayHot" />
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i> <span>Alerta novo Amigo no APP</span>
                                 </label>
                             </li>
                           </div>
@@ -241,3 +238,6 @@ export default {
   //Facebook - End 
 }
 </script>
+<style>
+#msgPreference{padding: 0px 20px;}
+</style>

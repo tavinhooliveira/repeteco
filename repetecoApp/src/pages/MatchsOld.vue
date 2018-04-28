@@ -19,7 +19,7 @@
                </div>
             </div>
             <ul v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
-              <notificationOldMatchComponent v-bind:friend="matchsList" v-for="friend in matchsList" v-bind:key="friend.id" v-bind:id="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:user_id="friend.user_id" v-bind:friendsAll="friendsAll"></notificationOldMatchComponent>
+              <matchOldComponent v-bind:friend="matchsList" v-for="friend in matchsList" v-bind:key="friend.id" v-bind:id="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:user_id="friend.user_id" v-bind:friendsAll="friendsAll"></matchOldComponent>
             </ul>
             <div v-else>
               <reload></reload>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import NotificationOldMatchComponent from '../components/NotificationOldMatchComponent.vue';
+import MatchOldComponent from '../components/MatchOldComponent.vue';
 import UserComponent from '../components/UserComponent.vue';
 import Reload from "../components/Reload.vue";
 import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
@@ -42,7 +42,7 @@ export default {
 name: "NotificationOldMatch",
 props: ["name", "imagem", "option","user_id"],
 components: {
-  NotificationOldMatchComponent,
+  MatchOldComponent,
   UserComponent,
   Reload,
   ReloadAuthorizedComponent

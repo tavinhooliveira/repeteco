@@ -9,7 +9,7 @@
                <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">
             </div>
             
-            <ul v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
+            <ul v-if="this.statusApiRepeteco === true && this.statusApiRepetecoAll === true" class="list-group" id="searchUL">
                <matchesRecordComponent v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:id_fb_users="user.id_fb_users" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:user_id="user.user_id"
                   v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"
                   v-bind:friendsTotalApp="user.friendsTotalApp" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot" v-bind:matchs="user.matchs"  v-bind:friendsAll="friendsAll">
@@ -45,7 +45,8 @@ export default {
       profile: {},
       authorized: false,
       matchs: {},
-      statusAPIAPP: false,
+      statusApiRepeteco: false,
+      statusApiRepetecoAll: false,
       idUserFbSession: null,
       friendsAll: [],
       users: [],
@@ -69,10 +70,10 @@ export default {
           this.friendsAll = response.data
           if (this.friendsAll.length > 0) {
               console.log("API Repeteco AllFriends: OK!")
-              this.statusAPIAPP = true;
+              this.statusApiRepetecoAll = true;
           } else {
-              this.statusAPIAPP = false;
-              console.log("Erro na chamada da API - Repeteco");
+              this.statusApiRepetecoAll = false;
+              console.log("Erro na chamada da API - AllFriends");
           }
       })
     },
@@ -81,9 +82,9 @@ export default {
             this.users = [response.data]
             if (this.users.length > 0) {
                 console.log("API Repeteco: OK!")
-                this.statusAPIAPP = true;
+                this.statusApiRepeteco = true;
             } else {
-                this.statusAPIAPP = false;
+                this.statusApiRepeteco = false;
                 console.log("Erro na chamada da API - Repeteco");
             }
         })

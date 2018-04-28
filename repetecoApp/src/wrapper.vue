@@ -8,10 +8,8 @@
                     <a href="/classification"><span class="headerIcon fa fa-star-half-o col-md-4" data-toggle="tooltip" data-placement="bottom" title="Classificação"></span></a>  
                 </div>
             </div>
-        </header>    
-
-        <router-view> </router-view>        
-
+        </header>
+            <router-view> </router-view>
         <footer class="footer navbar-fixed-bottom navbar-default">
             <div class="container">
                 <div class="col-md-12 btn btn-navbar">              
@@ -23,21 +21,14 @@
             </div>
         </footer>
 
-        {{localStoreFuntion}}
+        {{localStoregeFuntion}}
         <div v-if="coutMatchs > 0" class="btnNotificationNewMatch">            
             <div class="col-3 btnNotificationNewMatchBtn">
                 <a  href="/matchs"  class="btn btnCircular btnPrincipal btnColor fa fa-heartbeat" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>{{coutMatchs}}</b></i></a> 
             </div>
         </div>
-
-          
-        <div class="btn footer pull-left"><a onclick="solicitationNotification();" data-toggle="tooltip" data-placement="right" title="Notify" class="glyphicon glyphicon-bell"><i><b></b></i></a></div>
-
-
         <!-- Receber Notificações -->
-        <span v-if="coutMatchs > 0">{{notifyCountMatch}}</span>
-        
-         
+        <span v-if="coutMatchs > 0">{{notifyCountMatch}}</span>                 
     </div>
 </template>
 
@@ -54,12 +45,14 @@ export default {
         }
     },
     computed: {
-        localStoreFuntion(){
+        localStoregeFuntion(){
             let ch = this
             var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
-            console.log("wrapper id: "+idFBStoragelogado);
             if(idFBStoragelogado != null){
+            console.log("wrapper id: OK!");
                 ch.matchsNotify(idFBStoragelogado)
+            }else{
+            console.log("wrapper id: NOK!");
             }
         },
         coutMatchs() {
