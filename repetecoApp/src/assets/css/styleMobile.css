@@ -113,6 +113,14 @@
     margin-top: -57px;
     margin-left: 113px;
 }
+
+#mtPiscadinhas {
+    margin-top: -36px;
+    margin-left: -128px;
+    font-size: 11px;
+    z-index: 999;
+    position: absolute;
+}
 	
 }/*END Responsivo Tablet*/
 
@@ -227,6 +235,14 @@
     position: absolute;
     margin-top: -57px;
     margin-left: 113px;
+}
+
+#mtPiscadinhas {
+    margin-top: -36px;
+    margin-left: -128px;
+    font-size: 11px;
+    z-index: 999;
+    position: absolute;
 }
 	
 }/*END Responsivo Tablet*/
@@ -358,7 +374,7 @@
 
     .ListFriends .img_classification{
         width: 251px !important;
-}
+    }
     .ListFriends .img_classification label{
         margin-left: 11px !important;
     }
@@ -398,6 +414,14 @@
     position: absolute;
     margin-top: -57px !important;
     margin-left: 113px !important;
+}
+
+#mtPiscadinhas {
+    margin-top: -36px;
+    margin-left: -128px;
+    font-size: 11px;
+    z-index: 999;
+    position: absolute;
 }
 
 
@@ -555,6 +579,14 @@
     position: absolute;
     margin-top: -57px;
     margin-left: 113px;
+}
+
+#mtPiscadinhas {
+    margin-top: -36px;
+    margin-left: -128px;
+    font-size: 11px;
+    z-index: 999;
+    position: absolute;
 }
 
 

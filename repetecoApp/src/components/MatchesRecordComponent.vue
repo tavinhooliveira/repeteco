@@ -15,7 +15,7 @@
         </br>
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group">
-                <button type="button" onclick="Refresh();" class="btn btn-default"><i class="footerIcon fa fa-heartbeat fa-1x"></i> Verificar Matchs <i class="badge" id="cont_cl_fico">{{coutMatchs}}</i></button>
+                <button type="button" onclick="Refresh();" class="btn btn-default"><i class="footerIcon fa fa-heartbeat fa-1x"></i> Verificar Matchs <i class="footerIcon fa fa-heartbeat fa-1x"></i></button>
             </div>
         </div>
         <matchscomponent v-bind:matchs="matchsData" v-for="matchs in matchsData" v-bind:key="matchs.id" v-bind:id="matchs.id" v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender" v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id" v-bind:dataMatch="matchs.dataMatch">

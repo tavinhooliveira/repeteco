@@ -65,7 +65,7 @@
                     </ul>
                 </div>
                 </br>
-                <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapseNotify" aria-expanded="false" aria-controls="collapsePrivacy">Notificação</button>
+                <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapseNotify" aria-expanded="false" aria-controls="collapsePrivacy">Alertas</button>
                 <div class="collapse" id="collapseNotify">
                     <ul class="list-group" @change="updatePreferencia()">
                       <div class="panel-heading">

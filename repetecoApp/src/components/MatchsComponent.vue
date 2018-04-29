@@ -17,6 +17,7 @@
                   </button>
                   <i class="imgficaria" v-tooltip.top-start="'Ficaria'"></i>
                   <span class="Nfdate">{{dataMatch}}</span>
+                  <span id="mtPiscadinhas" class="btn pull-right" v-on:click="picadinhaNotify();" v-tooltip.top-start="'Enviar uma Piscadinha'">😉 Piscadinha</span>
                </div>
             </div>
          </li>
@@ -35,6 +36,7 @@
                   </button>
                   <i class="imgficaria2" v-tooltip.top-start="'Ficaria Novamente'"></i>
                   <span class="Nfdate">{{dataMatch}}</span>
+                  <span id="mtPiscadinhas" class="btn pull-right" v-on:click="picadinhaNotify();" v-tooltip.top-start="'Enviar uma Piscadinha'">😉 Piscadinha</span>
                </div>
             </div>
          </li>
@@ -103,19 +105,20 @@ export default{
 
       this.efeitoClick = 'transition: opacity .5s; color: red; transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);'
     },
+    picadinhaNotify: function(){
+      console.log("Piscadinha clicou");
+
+    },
     Refresh: function (){
     window.location.reload();
     //setTimeout('location.reload();', 5000);
-    }
+    },
   }
 }
 </script>
 
 <style>
-.btnMatchFalse {
-    margin-top: -72px;
-    margin-right: -38px;
-}
+.btnMatchFalse { margin-top: -72px; margin-right: -38px;}
 .msgClamigos{margin-top: -17px; margin-left: 16px;}
 </style>
 

@@ -293,6 +293,14 @@ footer .col-links .fa {
     margin-left: -5px;
 }
 
+#mtPiscadinhas {
+    margin-top: -33px;
+    margin-left: -50px;
+    font-size: 12px;
+    z-index: 999;
+    position: absolute;
+}
+
 /*===============================Notificacao=====================*/
 .notification li ul li {
     background-image: url("../img/imgclassificationm.png");
