@@ -3,7 +3,7 @@
         <header class="navbar-fixed-top navbar-default" id="navmenu">
             <div class="container">
                 <div class="menu col-md-12 btn btn-navbar">
-                    <a href="/profile"><span class="headerIcon fa fa-user col-md-4" data-toggle="tooltip" data-placement="bottom" title="Perfil"></span></a>             
+                    <a href="/profile" onclick="Refresh();"><span class="headerIcon fa fa-user col-md-4" data-toggle="tooltip" data-placement="bottom" title="Perfil"></span></a>             
                     <span href="#" onclick="Refresh();"><span class="headerIcon col-md-4"><img id="logotipo" src="/src/assets/img/logo.png" data-toggle="tooltip" data-placement="bottom" title="Refresh"></span></span> 
                     <a href="/classification"><span class="headerIcon fa fa-star-half-o col-md-4" data-toggle="tooltip" data-placement="bottom" title="Classificação"></span></a>  
                 </div>
@@ -13,7 +13,7 @@
         <footer class="footer navbar-fixed-bottom navbar-default">
             <div class="container">
                 <div class="col-md-12 btn btn-navbar">              
-                    <a href="/notification"><span class="footerIcon fa fa-bell fa-red  text-red fa-1x col-md-3" data-transition="pop" data-toggle="tooltip" data-placement="top" title="Notificação"></span></a>                     
+                    <a href="/notification"><span class="footerIcon fa fa-bell fa-red  text-red fa-1x col-md-3" data-transition="pop" data-toggle="tooltip" data-placement="top" title="Notificação"><i v-show="coutNotificationNotRead != 0" class="badge btnNotify" id="cont_cl_fico">{{coutNotificationNotRead}}</i></span></a>                     
                     <a href="/matchs"><span class="footerIcon fa fa-heartbeat fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Matchs"><i v-show="coutMatchs != 0" class="badge btnNotify" id="cont_cl_fico">{{coutMatchs}}</i></span></a>       
                     <a href="/config"><span class="footerIcon fa fa-sun-o fa-1x col-md-3 " data-transition="pop" data-toggle="tooltip" data-placement="top" title="Configuração"></span></a>
                     <a href="/" onclick="Refresh();"><span class="footerIcon fa fa-sign-out fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Sair"></span></a>
@@ -22,11 +22,17 @@
         </footer>
 
         {{localStoregeFuntion}}
-        <div v-if="coutMatchs > 0" class="btnNotificationNewMatch">            
+        <div class="btnNotificationNewMatch">            
+            <div class="col-3 btnNotificationNewMatchBtn">
+                <i  href="#"  class="btn btnCircular btnPrincipal btnColor fa fa-bell" data-toggle="tooltip" data-placement="top" title="Alertas"></i> 
+            </div>
+        </div>
+
+        <!-- <div v-if="coutMatchs > 0" class="btnNotificationNewMatch">            
             <div class="col-3 btnNotificationNewMatchBtn">
                 <a  href="/matchs"  class="btn btnCircular btnPrincipal btnColor fa fa-heartbeat" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>{{coutMatchs}}</b></i></a> 
             </div>
-        </div>
+        </div> -->
         <!-- Receber Notificações -->
         <span v-if="coutMatchs > 0">{{notifyCountMatch}}</span>                 
     </div>
@@ -41,7 +47,9 @@ export default {
     },
     data() {
         return {
-            matchsData: [] 
+            matchsData: [],
+            notificationData: [],
+            matchsNotifyStatus: 500
         }
     },
     computed: {
@@ -50,7 +58,8 @@ export default {
             var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
             if(idFBStoragelogado != null){
             console.log("wrapper id: OK!");
-                ch.matchsNotify(idFBStoragelogado)
+                ch.matchsNotify(idFBStoragelogado);
+                ch.getNotificationAPI(idFBStoragelogado);
             }else{
             console.log("wrapper id: NOK!");
             }
@@ -61,6 +70,26 @@ export default {
             }else{
                 return 0;
             }
+        },
+        coutNotification() {
+            if(this.notificationData){
+                return this.notificationData.length;         
+            }else{
+                return 0;
+            }
+        },
+
+        //Recuperado a quantidade de Matchs (ficaria novamente)!
+        coutNotificationNotRead() { 
+            let litrs =[];           
+            let list = [];
+                for (let i = 0; i < this.notificationData.length; i++) {
+                    if(this.notificationData[i].status === '0'){
+                        list = {status: this.notificationData[i].status}
+                        litrs.push(list)
+                        }
+                    }
+            return litrs.length           
         },
         notifyCountMatch(){
             //Data corrente
@@ -93,16 +122,33 @@ export default {
         matchsNotify(userid){
             axios.get(`http://localhost:9096/wsrepeteco/users/${userid}/matchs/`)
             .then(response => {
-                this.matchsData = response.data
-                if (this.matchsData.length > 0) {
+                this.matchsNotifyStatus = response.status;
+                if (this.matchsNotifyStatus === 200) {
+                    this.matchsData = response.data
                     console.log("Yes Matchs")
                 } else {
+                    this.matchsData = []
                     console.log("Not Matchs");
+                }
+            })
+        },
+        getNotificationAPI(userid){
+            axios.get(`http://localhost:9096/wsrepeteco/users/${userid}/notification`)
+            .then(response => {
+                this.notificationDataStatus = response.status
+                if (this.notificationDataStatus === 200) {
+                    this.notificationData = response.data
+                    this.statusNotification = true;
+                    console.log("API notificationData: OK!")
+                } else {
+                    this.notificationData = [];
+                    console.log("API notificationData: - Not notificationData");
                 }
             })
         }  
 
     }
+ 
 }
 </script>
 

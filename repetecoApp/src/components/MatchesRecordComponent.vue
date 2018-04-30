@@ -18,7 +18,10 @@
                 <button type="button" onclick="Refresh();" class="btn btn-default"><i class="footerIcon fa fa-heartbeat fa-1x"></i> Verificar Matchs <i class="footerIcon fa fa-heartbeat fa-1x"></i></button>
             </div>
         </div>
-        <matchscomponent v-bind:matchs="matchsData" v-for="matchs in matchsData" v-bind:key="matchs.id" v-bind:id="matchs.id" v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender" v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id" v-bind:dataMatch="matchs.dataMatch">
+        <matchscomponent v-bind:matchs="matchsData" v-for="matchs in matchsData" v-bind:key="matchs.id" v-bind:id="matchs.id"
+        v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender"
+        v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id"
+        v-bind:dataMatch="matchs.dataMatch" v-bind:userName="name" v-bind:userLink="link" v-bind:userImagem="imagem"> 
         </matchscomponent>
         <div v-if="isMatch == false">
             <br><p class="text-center">Você ainda não tem Matchs! ☹</p>

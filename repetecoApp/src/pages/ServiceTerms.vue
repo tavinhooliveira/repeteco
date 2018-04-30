@@ -107,5 +107,15 @@ All disputes arising out of or in connection with this Agreement, the parties tr
    </div>
 </template>
 <style>
-#termos{margin-top: 50px}
+/*Inibir botoes do menu e footer- Begin */
+.btnNotificationNewMatch{display:none}
+.menu a,footer{display:none}
+header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:485px}
+@media (max-width:480px) and (min-width:320px){
+  header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:92px}
+}
+body{background-image:url(/src/assets/img/bg.png)!important;background-repeat:no-repeat;background-size:100%}
+#app{font-family:Avenir,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-align:center;color:#2c3e50;margin-top:30px;}
+button{cursor:pointer}
+#iconEntrar {color: #FFF !important;}
 </style>

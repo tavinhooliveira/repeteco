@@ -46,7 +46,8 @@ export default {
         authorized: false,
         statusAPIAPP: false,
         intervalo: null,
-        friendsAll: []
+        friendsAll: [],
+        getApiRepetecoStatus: 500
       }
   },
   methods: {
@@ -63,14 +64,16 @@ export default {
             }
         })
     },
-    //Facebook - API GET
+    //API repeteco lista de user corrente                    
     getApiRepeteco(userid) {
         this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
-            this.users = [response.data]
-            if (this.users.length > 0) {
-                console.log("API Repeteco: OK!")
+            this.getApiRepetecoStatus = response.status
+            if (this.getApiRepetecoStatus === 200) {
+                this.users = [response.data];
                 this.statusAPIAPP = true;
+                console.log("API Repeteco: OK!")
             } else {
+                this.users = 0;
                 this.statusAPIAPP = false;
                 console.log("Erro na chamada da API - Repeteco");
             }

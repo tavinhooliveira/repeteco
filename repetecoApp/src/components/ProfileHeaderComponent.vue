@@ -1,12 +1,12 @@
 <template>
-<div  class="col-md-3 profile">
+<div  class="col-md-3 profile" v-tooltip.top-start="'Perfil Facebook'">
     <div v-if="name != null" class="media">
         <div class="media-left">
-            <a v-bind:href="link" target="_blank" title="Perfil Facebook">
+            <a v-bind:href="link" target="_blank" >
             <img class="media-object" :src="imagem"></a>
         </div>
         <div class="media-body">
-            <h6 class=""><a v-bind:href="link" target="_blank" title="Perfil Facebook">{{name}}</a>
+            <h6 class=""><a v-bind:href="link" target="_blank" >{{name}}</a>
                 <p id="friendsCount"><i class="fa fa-users"></i><b> {{friendsTotalApp}} de {{friendsTotalFb}} </b>Amigos 
                 <i class="glyphicon glyphicon-refresh" onclick="Refresh();" title="Atualizar"></i>
                 </p> 

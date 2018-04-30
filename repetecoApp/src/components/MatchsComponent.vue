@@ -12,7 +12,7 @@
             </div>
             <div class="notification pull-right">
                <div class="img_classification">
-                  <button type="button btnMatchFalse" v-on:click="Refresh(); starClickOff();" class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">          
+                  <button type="button btnMatchFalse" v-on:click="refreshVue(); starClickOff();" class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">          
                       <span aria-hidden="true">&times;</span>          
                   </button>
                   <i class="imgficaria" v-tooltip.top-start="'Ficaria'"></i>
@@ -31,12 +31,12 @@
             </div>
             <div class="notification pull-right">
                <div class="img_classification">
-                  <button type="button btnMatchFalse" v-on:click="Refresh(); starClickOff();" class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">          
+                  <button type="button btnMatchFalse" v-on:click="refreshVue(); starClickOff();" class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">          
                       <span aria-hidden="true">&times;</span>          
                   </button>
                   <i class="imgficaria2" v-tooltip.top-start="'Ficaria Novamente'"></i>
                   <span class="Nfdate">{{dataMatch}}</span>
-                  <span id="mtPiscadinhas" class="btn pull-right" v-on:click="picadinhaNotify();" v-tooltip.top-start="'Enviar uma Piscadinha'">😉 Piscadinha</span>
+                  <span id="mtPiscadinhas" class="btn pull-right" v-on:click="picadinhaNotify();" v-tooltip.top-start="'Enviar uma Piscadinha'"><i class="fa fa-eye"> Piscadinha</i></span>
                </div>
             </div>
          </li>
@@ -46,7 +46,7 @@
 
 <script>
 export default{
-  props:['name','id','imagem','link','option','user_id','id_fb_friends', 'dataMatch'],
+  props:['name','id','imagem','link','option','user_id','id_fb_friends', 'dataMatch', 'userName', 'userLink', 'userImagem'],
     components:{
   },
   data() {
@@ -106,13 +106,36 @@ export default{
       this.efeitoClick = 'transition: opacity .5s; color: red; transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);'
     },
     picadinhaNotify: function(){
-      console.log("Piscadinha clicou");
+      var idFriendsCorrent = this.id_fb_friends
+      const fdpsOption = {
+        id_fb_friends: this.id_fb_friends,
+        name: this.userName,
+        imagem: this.userImagem,
+        link: this.userLink,
+        type: "Piscadinha",
+        status: "0",
+        text: "deu uma piscadinha em você!",
+        user_id: this.user_id        
+      }
+      $.ajax({
+        url: "http://localhost:9096/wsrepeteco/users/"+ idFriendsCorrent +"/notification",
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          'dataType': 'json'
+        },
+        dataType: 'json',
+        crossDomain: true,
+        origin: "*",
+        processData: true,
+        data: JSON.stringify(fdpsOption)
+      });
+      console.log("Piscadinha clicou"+idFriendsCorrent);
 
     },
-    Refresh: function (){
-    window.location.reload();
-    //setTimeout('location.reload();', 5000);
-    },
+     refreshVue: function(){
+      window.location.reload();
+    }
   }
 }
 </script>
