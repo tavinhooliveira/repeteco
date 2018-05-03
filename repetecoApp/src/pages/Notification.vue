@@ -7,8 +7,7 @@
         <br><br><br>
         <div class="panel-heading col-md-6 col-md-offset-3">
                 <div class="" role="group" >                     
-                    <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>
-                    <span class="pull-right"><i class="fa fa-bell fa-red"></i> </span>	   
+                    <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>  
                 </div>
         </div>
         <div id="notify" class="col-md-6 container panel col-md-offset-3">

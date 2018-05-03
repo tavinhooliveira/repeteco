@@ -1,7 +1,6 @@
 <template>
    <li v-if="genderPreference === gender || genderPreference === ''"  class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
       <form class="statusForm center-block" >
-         <a v-bind:src="pictureLarge" data-toggle="lightbox" style="width: 100% !important;" role="document" data-title="..." v-bind:data-footer="name" >
             <div class="media-left col-md-4 LfPicture" >
          <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
          </div>
@@ -49,10 +48,7 @@ export default {
     }
   },
   computed: {
-    pictureLarge() {
-      return (this.id_fb_friends) ? `https://graph.facebook.com/${this.id_fb_friends}/picture?width=300
-` : `/src/assets/img/man.gif`
-    }
+ 
 
   },
   methods: {

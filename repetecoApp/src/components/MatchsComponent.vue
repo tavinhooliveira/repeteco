@@ -1,7 +1,8 @@
 <template>
    <div>
-      <section id="idMatchs"   v-if="option === 'ficaria' || option === 'ficariaNovamente'" >
-         <li v-if="option === 'ficaria'"  class="list-group-item col-md-4 notification" >
+      <section id="idMatchs"   v-if="option === optionNew || option === optionOld" >
+         <li v-if="option === 'ficaria'" style="display: block;" >
+           <div v-if="read === '0'" class="list-group-item col-md-4 notification readView" v-on:click="readView(); refreshVue();" v-tooltip.top-start="'Click p/ marcar como vizualizado'">
             <div class="media-left LfPicture">
                <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
             </div>
@@ -9,7 +10,7 @@
                <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
                <small class="Nfmensagem">Disse que rola um possivel... <br> <b>Lance!</b>
                 </small>
-            </div>
+            </div>            
             <div class="notification pull-right">
                <div class="img_classification">
                   <button type="button btnMatchFalse" v-on:click="refreshVue(); starClickOff();" class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">          
@@ -17,36 +18,79 @@
                   </button>
                   <i class="imgficaria" v-tooltip.top-start="'Ficaria'"></i>
                   <span class="Nfdate">{{dataMatch}}</span>
-                  <span id="mtPiscadinhas" class="btn pull-right" v-on:click="picadinhaNotify();" v-tooltip.top-start="'Enviar uma Piscadinha'">😉 Piscadinha</span>
                </div>
             </div>
-         </li>
-         <li v-else class="list-group-item col-md-4 notification" >
-            <div class="media-left LfPicture ">
-               <a v-bind:href="link" target="_blank"><img class="media-object " v-bind:src="imagem"></a>
+           </div>
+           <!-- not View -->
+           <div v-else class="list-group-item col-md-4 notification">
+            <div class="media-left LfPicture">
+               <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
             </div>
             <div class="media-body  notification">
                <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
-               <small class="Nfmensagem">Disse que rola um possivel... <br> <b>Flash Back!</b> </small>
-            </div>
+               <small class="Nfmensagem">Disse que rola um possivel... <br> <b>Lance!</b>
+                </small>
+            </div>            
             <div class="notification pull-right">
                <div class="img_classification">
                   <button type="button btnMatchFalse" v-on:click="refreshVue(); starClickOff();" class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">          
                       <span aria-hidden="true">&times;</span>          
                   </button>
-                  <i class="imgficaria2" v-tooltip.top-start="'Ficaria Novamente'"></i>
+                  <i class="imgficaria" v-tooltip.top-start="'Ficaria'"></i>
                   <span class="Nfdate">{{dataMatch}}</span>
-                  <span id="mtPiscadinhas" class="btn pull-right" v-on:click="picadinhaNotify();" v-tooltip.top-start="'Enviar uma Piscadinha'"><i class="fa fa-eye"> Piscadinha</i></span>
+                  <span id="mtPiscadinhas" class="btn pull-right" v-on:click="piscadinhaNotify();" v-tooltip.top-start="'Enviar uma Piscadinha'"><img id="logotipo" src="/src/assets/img/piscadinha.png"></span>
                </div>
             </div>
+           </div>
          </li>
+         <!-- Old matchs -->
+         <li v-else style="display: block;">
+            <div v-if="read === '0'" class="list-group-item col-md-4 notification readView" v-on:click="readView(); refreshVue();">
+                <div class="media-left LfPicture ">
+                    <a v-bind:href="link" target="_blank"><img class="media-object " v-bind:src="imagem"></a>
+                </div>
+                <div class="media-body  notification">
+                    <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
+                    <small class="Nfmensagem">Disse que rola um possivel... <br> <b>Flash Back!</b> </small>
+                </div>
+                <div class="notification pull-right">
+                    <div class="img_classification">
+                        <button type="button btnMatchFalse" v-on:click="refreshVue(); starClickOff();" class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <i class="imgficaria2" v-tooltip.top-start="'Ficaria Novamente'"></i>
+                        <span class="Nfdate">{{dataMatch}}</span>  
+                    </div>
+                </div>
+            </div>
+            <!-- not view -->
+            <div v-else class="list-group-item col-md-4 notification">
+                <div class="media-left LfPicture ">
+                    <a v-bind:href="link" target="_blank"><img class="media-object " v-bind:src="imagem"></a>
+                </div>
+                <div class="media-body  notification">
+                    <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
+                    <small class="Nfmensagem">Disse que rola um possivel... <br> <b>Flash Back!</b> </small>
+                </div>
+                <div class="notification pull-right">
+                    <div class="img_classification">
+                        <button type="button btnMatchFalse" v-on:click="refreshVue(); starClickOff();" class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <i class="imgficaria2" v-tooltip.top-start="'Ficaria Novamente'"></i>
+                        <span class="Nfdate">{{dataMatch}}</span>
+                        <span id="mtPiscadinhas" class="btn pull-right" v-on:click="piscadinhaNotify();" v-tooltip.top-start="'Enviar uma Piscadinha'"><img id="logotipo" src="/src/assets/img/piscadinha.png"></span>
+                    </div>
+                </div>
+            </div>
+        </li>
       </section>
    </div>
 </template>
 
 <script>
 export default{
-  props:['name','id','imagem','link','option','user_id','id_fb_friends', 'dataMatch', 'userName', 'userLink', 'userImagem'],
+  props:['name','id','imagem','link','option','user_id','id_fb_friends', 'dataMatch', 'userName', 'userLink', 'userImagem', 'read'],
     components:{
   },
   data() {
@@ -54,7 +98,9 @@ export default{
       efeitoClick: null,
       genderPreference: this.preference,
       optiondata: this.option,
-      click: null
+      click: null,
+      optionNew: 'ficaria',
+      optionOld: 'ficariaNovamente'
     }
   },
   computed:{
@@ -62,6 +108,7 @@ export default{
 
   }, 
   methods: {
+    //Desfazer match
     starClickOff: function() {
       this.optiondata = null;
       const fdOption = {
@@ -105,7 +152,8 @@ export default{
 
       this.efeitoClick = 'transition: opacity .5s; color: red; transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);'
     },
-    picadinhaNotify: function(){
+    //Enviar uma Piscadinha
+    piscadinhaNotify: function(){
       var idFriendsCorrent = this.id_fb_friends
       const fdpsOption = {
         id_fb_friends: this.id_fb_friends,
@@ -130,11 +178,32 @@ export default{
         processData: true,
         data: JSON.stringify(fdpsOption)
       });
-      console.log("Piscadinha clicou"+idFriendsCorrent);
-
+      console.log("Piscadinha enviada para: "+idFriendsCorrent);
     },
+    //Refresh page
      refreshVue: function(){
       window.location.reload();
+    },
+    //Marcar como lida
+    readView: function(){
+      var idFriendsCorrentRead = this.id
+      const fdpsReadOption = {
+        read: "1"        
+      }
+      $.ajax({
+        url: "http://localhost:9096/wsrepeteco/matchs/readStatus/"+ idFriendsCorrentRead,
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          'dataType': 'json'
+        },
+        dataType: 'json',
+        crossDomain: true,
+        origin: "*",
+        processData: true,
+        data: JSON.stringify(fdpsReadOption)
+      });
+      console.log("ReadView"+idFriendsCorrentRead);
     }
   }
 }
@@ -143,5 +212,6 @@ export default{
 <style>
 .btnMatchFalse { margin-top: -72px; margin-right: -38px;}
 .msgClamigos{margin-top: -17px; margin-left: 16px;}
+.readView{box-shadow: 0px 0px 2px 0px #355fe8 !important;}
 </style>
 

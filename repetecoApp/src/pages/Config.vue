@@ -65,29 +65,6 @@
                     </ul>
                 </div>
                 </br>
-                <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapseNotify" aria-expanded="false" aria-controls="collapsePrivacy">Alertas</button>
-                <div class="collapse" id="collapseNotify">
-                    <ul class="list-group" @change="updatePreferencia()">
-                      <div class="panel-heading">
-                          <h4>Alertas de Notificação</h4>
-                          <div class="">
-                            <li class="list-group-item">
-                                <label>
-                                    <input class="w3-radio" type="checkbox" name="flagDisplayCount" id="flagDisplayCount"/>
-                                    <i class="fa fa-heartbeat" aria-hidden="true"></i> <span>Alerta: Novo Match!</span>
-                                </label>
-                            </li>
-                            <li class="list-group-item">
-                                <label>
-                                    <input class="w3-radio" type="checkbox" name="localNewFriend" id="flagDisplayHot" />
-                                    <i class="fa fa-user-plus" aria-hidden="true"></i> <span>Alerta novo Amigo no APP</span>
-                                </label>
-                            </li>
-                          </div>
-                      </div>
-                    </ul>
-                </div>
-                </br>
                 <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" href="#collapsePolicies" aria-expanded="false" aria-controls="collapsePolicies">Política</button>
                 <div class="collapse" id="collapsePolicies">
                     <div class="panel-heading">

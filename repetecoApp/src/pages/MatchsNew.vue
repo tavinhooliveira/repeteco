@@ -18,132 +18,69 @@
                   </div>
                </div>
             </div>
-            <ul v-if="this.statusAPIAPP === true" class="list-group" id="searchUL">
-               <matchNewComponent v-bind:friend="matchsList" v-for="friend in matchsList" v-bind:key="friend.id" v-bind:id="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem" v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:option="friend.option" v-bind:id_fb_friends="friend.id_fb_friends" v-bind:user_id="friend.user_id" v-bind:friendsAll="friendsAll"></matchNewComponent>
-            </ul>
-            <div v-else>
-               <reload></reload>
+            <matchNewComponent v-bind:matchs="users.matchs" v-for="matchs in users.matchs" v-bind:key="matchs.id" v-bind:id="matchs.id"
+                v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender"
+                v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id"
+                v-bind:dataMatch="matchs.dataMatch" v-bind:userName="users.name" v-bind:userLink="users.link" v-bind:userImagem="users.imagem" v-bind:read="matchs.read"> 
+            </matchNewComponent>
+            <div v-if="isMatch == false">
+                <br><p class="text-center">Você ainda não tem Matchs! ☹</p>
             </div>
-              <p v-if="contMatchNewMatch <= 0"class="text-center"></br>Você ainda não tem Match! ☹</p>
-            </br>
+            <br>
          </div>
       </section>
    </div>
 </template>
 <script>
    import MatchNewComponent from '../components/MatchNewComponent.vue';
-   import UserComponent from '../components/UserComponent.vue';
+   import axios from 'axios';
    import Reload from "../components/Reload.vue";
    import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
    
    export default{
      name: "NotificationNewMatch",
-     props: ["name", "imagem", "option","user_id"],
+     props: ["name", "imagem", "option","user_id","link", "matchs", "friends"],
      components:{
    	    MatchNewComponent,
-        UserComponent,
         Reload,
-        ReloadAuthorizedComponent
+        ReloadAuthorizedComponent,
+        axios
      },
      data () {
        return {
-         nomeProjeto: "NotificationNewMatch",
-         profile: {},
          authorized: false,
-         friends: {},
-         friendsAll: {},
          statusAPIAPP: false,
-         idUserFbSession: null
+         idUserFbSession: null,
+         users: [],
+         matchsData: [],
+         ApiRepetecoStatus: false
        };
      },
   computed: {
-    matchsList (){
-        //myMatch - return list: id_fb_friends
-        let fdlist = this.friends;
-        let friendslist = [];
-        let listFB = null;
-        for (let i = 0; i < fdlist.length; i++) {
-            listFB = {
-                id: fdlist[i].id,
-                name: fdlist[i].name,
-                id_fb_friends: fdlist[i].id_fb_friends,
-                user_id: fdlist[i].user_id,
-                option: fdlist[i].option,
-                link: fdlist[i].link,
-                imagem: fdlist[i].imagem
-            }
-            if (fdlist[i].option === 'ficaria' || fdlist[i].option === 'ficariaNovamente') {
-                friendslist.push(listFB)
-            }
+    isMatch() {
+        if(this.users.matchs){
+            return true;         
+        }else{
+            return false;
         }
-        //youMatchs - return list: user_id
-        let fdlistAll = this.friendsAll;
-        let friendslistAll = [];
-        let listFbAll = null;
-        for (let i = 0; i < fdlistAll.length; i++) {
-            listFbAll = {
-                user_id: (fdlistAll[i].user_id).toString(),
-                option: fdlistAll[i].option
-            }
-            if ((fdlistAll[i].option === 'ficaria' || fdlistAll[i].option === 'ficariaNovamente') && fdlistAll[i].id_fb_friends === this.idUserFbSession) {
-                friendslistAll.push(listFbAll)
-            }
-        }
-        //Match myMatch + you Match
-        var matchs = [];
-        var listMy = friendslist;
-        var listYou = friendslistAll;
-        listMy.forEach(
-            function myfunction(my){
-                listYou.forEach(
-                    function youFunction(you){
-                        if(my.id_fb_friends === you.user_id && my.option === you.option){
-                            matchs.push(my);
-                        }
-                    }
-                )     
-            }
-        )
-        return matchs;
     },
-    contMatchNewMatch() { 
-        let litrs =[];           
-        let list = [];
-            for (let i = 0; i < this.matchsList.length; i++) {
-                if(this.matchsList[i].option === 'ficaria'){
-                    list = {option: this.matchsList[i].option}
-                    litrs.push(list)
-                    }
-                }
-        return litrs.length           
-    }
+
   },
   methods: {
    getApiRepeteco(userid){
-   			this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}/friends`).then(response => {				
-         this.friends = response.data
-         if (this.friends.length > 0) {
-           console.log("API Repeteco: OK!")
-           this.statusAPIAPP = true;
+   		this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
+        this.ApiRepetecoStatus = response.status			
+         if (this.ApiRepetecoStatus === 200) {
+            this.users = response.data
+            this.statusAPIAPP = true;
+            console.log("API Repeteco: OK!")
          } else {
            this.statusAPIAPP = false;
+           this.users = 0;
            console.log("Erro na chamada da API - Repeteco");
          }    
        })
    	},
-     //usado para extrair o id dos amigos que deram match!
-    getApiRepetecoFriendsAll() {
-        this.$http.get(`http://localhost:9096/wsrepeteco/friends`).then(response => {
-            this.friendsAll = response.data
-            if (this.friendsAll.length > 0) {
-                console.log("API Repeteco: OK!")
-                this.statusAPIAPP = true;
-            } else {
-                this.statusAPIAPP = false;
-                console.log("Erro na chamada da API - Repeteco");
-            }
-        })
-    },
    statusChangeCallback (response) {
          let vm = this
          var idFb = response.authResponse.userID
@@ -153,7 +90,6 @@
            vm.authorized = true
            vm.idUserFbSession = idFb
            vm.getApiRepeteco(idFb)
-           vm.getApiRepetecoFriendsAll()
          } else if (response.status === 'not_authorized') {
            console.log("Status: Não Autorizado!");
            vm.authorized = false

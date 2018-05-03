@@ -14,25 +14,27 @@
             <div class="container">
                 <div class="col-md-12 btn btn-navbar">              
                     <a href="/notification"><span class="footerIcon fa fa-bell fa-red  text-red fa-1x col-md-3" data-transition="pop" data-toggle="tooltip" data-placement="top" title="Notificação"><i v-show="coutNotificationNotRead != 0" class="badge btnNotify" id="cont_cl_fico">{{coutNotificationNotRead}}</i></span></a>                     
-                    <a href="/matchs"><span class="footerIcon fa fa-heartbeat fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Matchs"><i v-show="coutMatchs != 0" class="badge btnNotify" id="cont_cl_fico">{{coutMatchs}}</i></span></a>       
+                    <a href="/matchs"><span class="footerIcon fa fa-heartbeat fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Matchs"><i v-show="coutMatchsNotRead != 0" class="badge btnNotify" id="cont_cl_fico">{{coutMatchsNotRead}}</i></span></a>       
                     <a href="/config"><span class="footerIcon fa fa-sun-o fa-1x col-md-3 " data-transition="pop" data-toggle="tooltip" data-placement="top" title="Configuração"></span></a>
                     <a href="/" onclick="Refresh();"><span class="footerIcon fa fa-sign-out fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Sair"></span></a>
                 </div>
             </div>
         </footer>
-
         {{localStoregeFuntion}}
-        <div class="btnNotificationNewMatch">            
-            <div class="col-3 btnNotificationNewMatchBtn">
+
+        <!-- Botões flutuantes -->
+        <!-- <div class="">            
+            <div class="col-md-3 btnNotificationNewMatchBtn">
                 <i  href="#"  class="btn btnCircular btnPrincipal btnColor fa fa-bell" data-toggle="tooltip" data-placement="top" title="Alertas"></i> 
             </div>
         </div>
 
-        <!-- <div v-if="coutMatchs > 0" class="btnNotificationNewMatch">            
-            <div class="col-3 btnNotificationNewMatchBtn">
-                <a  href="/matchs"  class="btn btnCircular btnPrincipal btnColor fa fa-heartbeat" data-toggle="tooltip" data-placement="left" title="Matchs!" name="1"><i class=""><b>{{coutMatchs}}</b></i></a> 
+         <div class="btnNotificationNewMatch ">            
+            <div class="col-md-3 btnNotificationNewMatchBtn">
+                <a  href="#navmenu"  class="btn btnCircular btnPrincipal btnColor glyphicon glyphicon-triangle-top" data-toggle="tooltip" data-placement="top" title="Topo"></a> 
             </div>
         </div> -->
+
         <!-- Receber Notificações -->
         <span v-if="coutMatchs > 0">{{notifyCountMatch}}</span>                 
     </div>
@@ -78,14 +80,25 @@ export default {
                 return 0;
             }
         },
-
-        //Recuperado a quantidade de Matchs (ficaria novamente)!
+        //Recuperado a quantidade de Notificação NÃO lidas (status)!
         coutNotificationNotRead() { 
             let litrs =[];           
             let list = [];
                 for (let i = 0; i < this.notificationData.length; i++) {
                     if(this.notificationData[i].status === '0'){
                         list = {status: this.notificationData[i].status}
+                        litrs.push(list)
+                        }
+                    }
+            return litrs.length           
+        },
+        //Recuperado a quantidade de Matchs NÃO lidos (read)!
+        coutMatchsNotRead() { 
+            let litrs =[];           
+            let list = [];
+                for (let i = 0; i < this.matchsData.length; i++) {
+                    if(this.matchsData[i].read === '0'){
+                        list = {read: this.matchsData[i].read}
                         litrs.push(list)
                         }
                     }
@@ -115,8 +128,7 @@ export default {
             e.onclick = function (){
                 location.href = "/matchs";
             }
-        }
-        
+        }       
     },
     methods: {
         matchsNotify(userid){
@@ -153,7 +165,7 @@ export default {
 </script>
 
 <style>
-.btnNotificationNewMatch{position:fixed;float:bottom;bottom:15px;right:15px;z-index:100}
+.btnNotificationNewMatch{position:fixed;float:bottom;bottom:0px;right:15px;z-index:100}
 .btnNotificationNewMatchBtn .btnNotificationNewMatchInput{display:inline-block}
 .btnPrincipal{font-size:18px;padding:15px;margin-bottom:30px}
 .btnColor:hover{color:#f31d1b;font-size:24px}

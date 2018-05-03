@@ -115,7 +115,7 @@
 }
 
 #mtPiscadinhas {
-    margin-top: -36px;
+    margin-top: -35px;
     margin-left: -128px;
     font-size: 11px;
     z-index: 999;
@@ -238,7 +238,7 @@
 }
 
 #mtPiscadinhas {
-    margin-top: -36px;
+    margin-top: -35px;
     margin-left: -128px;
     font-size: 11px;
     z-index: 999;
@@ -417,11 +417,16 @@
 }
 
 #mtPiscadinhas {
-    margin-top: -36px;
+    margin-top: -35px;
     margin-left: -128px;
     font-size: 11px;
     z-index: 999;
     position: absolute;
+}
+
+#mtPiscadinhas img{
+    width: 20px;
+    height: 20px;
 }
 
 
@@ -582,7 +587,7 @@
 }
 
 #mtPiscadinhas {
-    margin-top: -36px;
+    margin-top: -35px;
     margin-left: -128px;
     font-size: 11px;
     z-index: 999;
