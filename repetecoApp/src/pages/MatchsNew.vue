@@ -59,11 +59,23 @@
   computed: {
     isMatch() {
         if(this.users.matchs){
-            return true;         
+            return true;      
         }else{
             return false;
         }
     },
+    contMatchNewMatch() {
+        let listData = this.users;
+        let litrs =[];           
+        let list = [];
+            for (let i = 0; i < this.listData.length; i++) {
+                if(this.listData[i].option === 'ficaria'){
+                    list = {option: this.listData[i].option}
+                    litrs.push(list)
+                    }
+                }
+        return litrs.length
+    }
 
   },
   methods: {
