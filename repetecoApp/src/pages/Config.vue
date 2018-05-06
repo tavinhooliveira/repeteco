@@ -91,6 +91,39 @@
                     </div>
                 </div>
               </div>
+
+                <br><br><br><br><br>
+                <button type="button" class="btn panel-default btn-lg btn-block" data-toggle="collapse" href="#collapsyAbout" aria-expanded="false" aria-controls="collapsePrivacy">Sobre Nós</button>
+                <div class="collapse" id="collapsyAbout">
+                    <ul class="list-group">
+                      <div class="panel-heading">
+                              <div class="">
+                              <br>  
+                              <p><h4>CONTATOS</h4>
+                              <h5>Quer falar conosco ou nos envie um e-mail.</h5>
+                              <p>Fone: 83 3066-2470 / 83 998870611</p>
+                              <p> Email: repetecowebapp@gmail.com / tavinhomegas18@gmail.com</p>
+                              <br>
+                              <h4>PARCERIAS</h4>
+                              <h5>Interessado em se tornar parceiro?</h5>
+                              <p>Fone: 83 3066-2470 / 83 998870611</p>
+                              <p>Email: repetecowebapp@gmail.com / tavinhomegas18@gmail.com</p>
+                              <br>
+                              <h4>ENDEREÇO</h4>
+                              <p>Antonio José Santiago - 215</p>
+                              <p>Campina Grande - PB/BR</p>
+                              <br>
+                              <h4>REDE SOCIAIS</h4>
+                              <p><a href="#" target="_blank">Facebook</a></p>
+                              <p><a href="#" target="_blank">Instagram</a></p>
+                              <p><a href="#" target="_blank">Twitter</a></p>
+                              <p><a href="#" target="_blank">WhatsApp</a></p>
+                              <br><br>
+                          </div>
+                      </div>
+                    </ul>
+                </div>
+
           </div>
           <div v-else>
               <br><br><br><br><br><br>
@@ -122,16 +155,6 @@ export default {
 
   },
   methods: {
-    //Facebook - API GET
-    getFacebook(callback) {
-      let vm = this
-      FB.api('/me?fields=id,name,link,picture{url},friends{id}', function(response) {
-        vm.$set(vm, 'profile', response)
-        console.log("API Facebook: ", response);
-        let userid = response.id
-        callback(response.id)
-      })
-    },
     //WsRepeteco - API GET
     getApiRepeteco(profileId) {
       this.$http.get(`http://localhost:9096/wsrepeteco/users/${profileId}`).then(response => {

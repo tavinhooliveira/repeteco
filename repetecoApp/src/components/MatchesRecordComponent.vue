@@ -1,13 +1,14 @@
 <template>
     <div>
-        </br>
+        <br>
         {{postMacts}}
+        {{callMatchs}}
         <div class="btnNotification" role="group">
             <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>
             <div class="btn-group pull-right">
                 <div v-show="isMatch == true">
                     <a href="/matchs" class="active" title="Todos">Todos |</a>
-                    <a href="/matchsNew" title="Novos Matchs">Novos Matchs |</a>
+                    <a href="/matchsNew" title="Novos Matchs">Novos Lances |</a>
                     <a href="/matchsOld" title="Flash Backs">Flash Backs</a>
                 </div>
             </div>
@@ -130,7 +131,11 @@ export default{
             processData: true,
             data: JSON.stringify(listMatchs)
         });        
-        //Recuperado os Matchs
+       
+    },
+     //Recuperado os Matchs
+    callMatchs(){
+        let userid =  this.id_fb_users;
         axios.get(`http://localhost:9096/wsrepeteco/users/${userid}/matchs/`)
         .then(response => {
             this.matchsData = response.data
@@ -139,8 +144,8 @@ export default{
             } else {
                 console.log("API matchsData: - Not Matchs");
             }
-        })
-    }   
+        })   
+    }
               
 	},
     method: {

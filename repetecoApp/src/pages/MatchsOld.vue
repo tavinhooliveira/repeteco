@@ -13,7 +13,7 @@
                <div class="btn-group pull-right">
                   <div>					        
                      <a href="/matchs" title="Todos" >Todos |</a> 
-                     <a href="/matchsNew" title="Novos Matchs" >Novos Matchs |</a>  
+                     <a href="/matchsNew" title="Novos Matchs" >Novos Lances |</a>  
                      <a href="/matchsOld" title="Flash Backs" >Flash Backs</a>
                   </div>
                </div>
@@ -23,8 +23,8 @@
                 v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id"
                 v-bind:dataMatch="matchs.dataMatch" v-bind:userName="users.name" v-bind:userLink="users.link" v-bind:userImagem="users.imagem" v-bind:read="matchs.read"> 
             </matchOldComponent>
-            <div v-if="isMatch == false">
-                <br><p class="text-center">Você ainda não tem Matchs! ☹</p>
+            <div v-if="contMatchOldMatch <= 0">
+                <br><p class="text-center">Você não tem Match para essa classificação ☹</p>
             </div>
             <br>
          </div>
@@ -64,18 +64,19 @@
             return false;
         }
     },
-    contMatchNewMatch() {
-        let listData = this.users.matchs;
+    contMatchOldMatch() {
+      if(this.users.matchs){
         let litrs =[];           
         let list = [];
-            for (let i = 0; i < this.listData.length; i++) {
-                if(this.listData[i].option === 'ficaria'){
-                    list = {option: this.listData[i].option}
+            for (let i = 0; i < this.users.matchs.length; i++) {
+              if(this.users.matchs[i].option === 'ficariaNovamente'){
+                list = {option: this.users.matchs[i].option}
                     litrs.push(list)
                     }
                 }
-        return litrs.length           
-    }
+          return litrs.length    
+      } 
+		}
 
   },
   methods: {

@@ -45,7 +45,7 @@
          </li>
          <!-- Old matchs -->
          <li v-else style="display: block;">
-            <div v-if="read === '0'" class="list-group-item col-md-4 notification readView" v-on:click="readView(); refreshVue();">
+            <div v-if="read === '0'" class="list-group-item col-md-4 notification readView" v-on:click="readView(); refreshVue();" v-tooltip.top-start="'Click p/ marcar como vizualizado'">
                 <div class="media-left LfPicture ">
                     <a v-bind:href="link" target="_blank"><img class="media-object " v-bind:src="imagem"></a>
                 </div>

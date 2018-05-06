@@ -5,11 +5,11 @@
     <br><br><br>
     <span class="sr-only">Loading...</span>
     <section class="links">
-        <a class="error-link" onclick="window.history.go(-1);" href="#">☚ Volte</a>
+        <a class="error-link" href="/">Login</a>
         <h5 class="error-description">Erro 500 – Internal Server Error</h5>
     </section>  
     <section class="links">
-        <a href="/">Login</a>
+        <a onclick="window.history.go(-1);" href="#">☚ Volte</a>
         <a href="/classification">Classificações</a>
         <a href="/config">Configurações</a>
         <a href="/politicas">Politicas</a>
