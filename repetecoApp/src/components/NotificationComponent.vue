@@ -11,7 +11,7 @@
             </span>
            <a v-tooltip.top-start="'Vizualizar Perfil no Facebook!'" v-bind:href="link" target="_blank">{{name}}</a> -
             {{text}}
-            <span class="pull-right">
+            <span class="pull-right btnDate">
                 <span id="dataNotify">{{dateNotify}}</span>
                 <i v-on:click="deleteNotificationRead(); refreshVue();" class="glyphicon glyphicon-remove" v-tooltip.top-start="'Deletar Notificação'"></i>    
             </span>
@@ -28,7 +28,7 @@
             </span>
             <a v-tooltip.top-start="'Vizualizar Perfil no Facebook!'" v-bind:href="link" target="_blank">{{name}}</a> - 
             {{text}}
-            <span class="pull-right">
+            <span class="pull-right btnDate">
                 <span id="dataNotify">{{dateNotify}}</span>
                 <i class="glyphicon glyphicon-record " v-tooltip.top-start="'Marcar Como Lida'"></i>     
             </span>

@@ -36,7 +36,7 @@
 	.perfil .perfilPicture {
     margin-top: 10px;
     }
-    .perfil .classification {float: left; margin-left: 30%;}
+
     .perfil #carrossel{
         width: 665px !important;
     }
@@ -155,9 +155,7 @@
     margin-top: 10px;
     margin-left: 266px !important;
 	}
-    .perfil .classification {
-    margin-left: 76%;
-    }
+
     .perfil #carrossel{
         width: 665px !important;
     }
@@ -284,10 +282,6 @@
 
     .perfil .perfilPicture {
         margin-left: -73px !important;
-    }
-
-    .perfil .classification {
-        margin-left: -14%!important;
     }
    
     .perfil .perfilbrprogress p {
@@ -465,9 +459,6 @@
  
     .perfil .perfilPicture {
         margin-left: 53px !important;
-    }
-    .perfil .classification {
-    margin-left: 0%!important;
     }
     .perfil .perfilbrprogress p {
     margin-left: 70% !important;

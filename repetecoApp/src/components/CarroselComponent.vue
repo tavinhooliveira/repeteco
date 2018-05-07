@@ -1,6 +1,6 @@
 <template>
   <li>
-    <a v-bind:href="link" target="_blank"><img v-bind:src="imagem" v-tooltip.bottom-start="name"></a>
+    <a v-bind:href="link" target="_blank"><img v-bind:src="imagem" v-tooltip.bottom-start="name"><br></a>
   </li>
 </template>
 <script>

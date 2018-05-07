@@ -231,7 +231,6 @@ footer .col-links .fa {
 /*====================================Perfil======================*/
 .perfil{margin-top: 50px;}
 .perfil ul.img_classification {display: inline-flex;}
-.perfil .classification {float: left; margin-left: 50%;}
 .perfil .perfilPicture {margin-top: 10px;}
 .perfil .perfilPicture img { width: 150px;height: 150px;border-radius: 86px; border: 5px solid #e8e8e8;background-color: #fff; margin-left: 38%;}
 .perfil .perfilName{margin-bottom: 10px;text-align: center;}
@@ -258,9 +257,9 @@ footer .col-links .fa {
 .perfil li ul li.cl_fico:hover {background-position: -163px -34px;}
 .perfil li ul li.cl_Ninteresse:hover {background-position: -213px -34px;}
 .perfilMatch{margin-top: 10px;}
-.perfilMatch .perfilMatchList{color: #8a8989; border-bottom: 1px solid #dad2d2; margin-bottom: 20px; margin-left: 0px;}
-.perfilMatch .perfilMatchListInfo{margin-bottom: 10px;}
-.perfil .classification .badge{margin-top: 36px; margin-left: 3px; margin-bottom: 10px;}
+.perfilMatch .perfilMatchList{color: #8a8989; border-bottom: 1px solid #dad2d2; margin-bottom: 6px; margin-left: 0px;}
+.perfilMatch .perfilMatchListInfo{margin-bottom: 1px;}
+.perfil .classification .badge{margin-top: 36px; margin-left: 3px; margin-bottom: 5px;}
 .perfil .classification #cont_cl_fico{margin-left: 6px;}
 .perfil .classification #cont_cl_picante{margin-left: 6px;}
 .perfilNewFriends small{color: #8a8989;}
@@ -375,4 +374,10 @@ footer .col-links .fa {
 .configuracao ul a {text-decoration: none}
 .configuracao li a {text-decoration: none}
 
-
+.perfil  {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}

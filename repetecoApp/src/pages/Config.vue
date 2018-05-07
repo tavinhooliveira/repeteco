@@ -90,11 +90,18 @@
                       </li>
                     </div>
                 </div>
-              </div>
+              </div>          
 
-                <br><br><br><br><br>
-                <button type="button" class="btn panel-default btn-lg btn-block" data-toggle="collapse" href="#collapsyAbout" aria-expanded="false" aria-controls="collapsePrivacy">Sobre Nós</button>
+                <br><br><br>
+                <button type="button" class="btn panel-default btn-lg btn-block" data-toggle="collapse" href="#collapsyAbout" aria-expanded="false" aria-controls="collapsePrivacy">Como Funciona</button>
                 <div class="collapse" id="collapsyAbout">
+                    <ul class="list-group">
+                      <br><aboutComponent></aboutComponent><br>
+                    </ul>
+                </div>
+                <br><br>
+                <button type="button" class="btn panel-default btn-lg btn-block" data-toggle="collapse" href="#collapsyContact" aria-expanded="false" aria-controls="collapsePrivacy">Sobre Nós</button>
+                <div class="collapse" id="collapsyContact">
                     <ul class="list-group">
                       <div class="panel-heading">
                               <div class="">
@@ -123,7 +130,7 @@
                       </div>
                     </ul>
                 </div>
-
+                <br><br><br><br>
           </div>
           <div v-else>
               <br><br><br><br><br><br>
@@ -137,6 +144,7 @@
 <script>
 import Reload from "../components/Reload.vue";
 import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
+import AboutComponent from "../components/AboutComponent.vue";
 export default {
   props: ['preference'],
   data() {
@@ -149,7 +157,8 @@ export default {
   },
   components: {
     Reload,
-    ReloadAuthorizedComponent
+    ReloadAuthorizedComponent,
+    AboutComponent
   },
   created() {
 

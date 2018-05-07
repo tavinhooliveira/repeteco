@@ -9,7 +9,7 @@
                <profileComponent v-for="profileinfo in users" v-bind:key="profileinfo.id" v-bind:id="profileinfo.id" v-bind:city="profileinfo.city"
                   v-bind:name="profileinfo.name" v-bind:imagem="profileinfo.imagem" v-bind:link="profileinfo.link" v-bind:id_fb_users="profileinfo.id_fb_users"
                   v-bind:friendsTotalFb="profileinfo.friendsTotalFb" v-bind:friendsTotalApp="profileinfo.friendsTotalApp" v-bind:flagDisplayHot="profileinfo.flagDisplayHot"
-                  v-bind:flagDisplayCount="profileinfo.flagDisplayCount" v-bind:friends="profileinfo.friends" v-bind:friendsAll="friendsAll">
+                  v-bind:flagDisplayCount="profileinfo.flagDisplayCount" v-bind:friends="profileinfo.friends" v-bind:notification="profileinfo.notification"  v-bind:friendsAll="friendsAll">
                </profileComponent>               
             </section>
          </div>

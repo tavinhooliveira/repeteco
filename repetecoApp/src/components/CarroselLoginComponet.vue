@@ -124,10 +124,10 @@ export default{
 }
 
 .CarouselLogin .carousel-inner b {
-    color: #ececec;
+    color: #747474;
 }
 .CarouselLogin .carousel-inner p {
-    color: #ececec;
+    color: #747474;
 }
 
 </style>

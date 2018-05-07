@@ -38,13 +38,13 @@
                   <a v-show="authorized"  class="btn btn-default " @click="logout">Logout
                   <i class="fa fa-sign-out"></i>
                   </a>
-                  </br>
+                  <br>
                   <div class="well collapse" id="collapseclassificationInfo">
                      <aboutComponent></aboutComponent>
                   </div>
-                  </br>
+                  <br>
                     <carroselLoginComponet></carroselLoginComponet>
-                  </br></br>
+                  <br><br>
                </div>
             </div>
          </div>
