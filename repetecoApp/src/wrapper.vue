@@ -36,7 +36,10 @@
         </div> -->
 
         <!-- Receber Notificações -->
-        <span v-if="coutMatchs > 0">{{notifyCountMatch}}</span>                 
+        <span v-if="coutMatchs > 0">{{notifyCountMatch}}</span>  
+
+        <span id="goTop" v-on:click="scrolltop();"  data-toggle="tooltip" data-placement="top" title="Topo"></span>
+
     </div>
 </template>
 
@@ -157,7 +160,10 @@ export default {
                     console.log("API notificationData: - Not notificationData");
                 }
             })
-        }  
+        },
+        scrolltop: function(){
+            window.scrollTo(0, 0);
+        }       
 
     }
  
@@ -170,6 +176,25 @@ export default {
 .btnPrincipal{font-size:18px;padding:15px;margin-bottom:30px}
 .btnColor:hover{color:#f31d1b;font-size:24px}
 .btnNotify {font-size: 9px; margin-top: -29px; margin-left: -8px; background-color: #f25655d1;}
+
+#goTop {
+    position: fixed;
+    margin-left: 1000px;
+    top: 88%;
+    height: 35px;
+    right: -8px;
+    width: 60px;
+    opacity: 0.1;
+    cursor: pointer;
+    background: url(/src/assets/img/arrowtop.png) no-repeat;
+    -moz-transition: opacity 300ms linear;
+    -ms-transition: opacity 300ms linear;
+    transition: opacity 300ms linear;
+    -webkit-transition: opacity 300ms linear;
+    z-index: 9999;
+}
+
+
 </style>
 
 

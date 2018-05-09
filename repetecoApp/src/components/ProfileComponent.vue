@@ -1,5 +1,5 @@
 <template>
-<div class="newProfile col-md-12 ">
+<div class="newProfile  ">
      {{postMacts}}
     <br><br><br>
     <!-- sidebar -->
@@ -37,7 +37,7 @@
             </ul><br>
         </div>
         <!-- box cout Classification new Old Alert! -->
-        <div class="box perfil">
+        <div v-if="contAllClassification != 0" class="box perfil">
                 <div v-if="contAllClassification != 0" class="alert alert-info alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <strong>Você Classificou</strong> {{contAllClassification}} amigos(as) <span v-show="contNotClassification != 0">{{contNotClassification}} ainda espera por você!</span>
@@ -49,14 +49,14 @@
                 <li class="listyle" v-if="countMatch != 0" ><i class="fa fa-heartbeat"></i> Total de Mathcs
                     <span class="badge pull-right">{{countMatch}}</span>            
                 </li>
-                <li class="listyle" v-if="contMatchNewMatch != 0" ><a href="/matchsNew"><i class="fa fa-heartbeat"></i> Match Novo Lance!                                          
+                <li class="listyle" v-if="contMatchNewMatch != 0" ><a v-tooltip.top-start="'Verificar Novos Lances'" href="/matchsNew"><i class="fa fa-heartbeat"></i> Match Novo Lance!                                          
                         <span class="badge pull-right">{{contMatchNewMatch}}</span></a>        
                 </li>
-                <li class="listyle" v-if="contMatchOldMacth != 0" ><a href="/matchsOld"><i class="fa fa-heartbeat"></i> Macth Flash Back!                                          
+                <li class="listyle" v-if="contMatchOldMacth != 0" ><a v-tooltip.top-start="'Verificar Flash backs'" href="/matchsOld"><i class="fa fa-heartbeat"></i> Macth Flash Back!                                          
                         <span class="badge pull-right">{{contMatchOldMacth}}</span></a>        
                 </li>
                 <li class="listyle" v-if="countNotification > 0" ><a href="/notification"><i class="fa fa-bell"></i> Notificações!                                          
-                        <span v-show="countNotificationNotRead !=0" class="alert text-info"> [ Não Vizualizadas: {{countNotificationNotRead}} ]</span>
+                        <label v-show="countNotificationNotRead !=0" class="label label-info">  Não Vizualizadas: {{countNotificationNotRead}} </label>
                         <span class="badge pull-right">{{countNotification}}</span></a>       
                 </li>
             </ul>
@@ -159,7 +159,7 @@
                 </div>
         </div>
         <!-- box Large -->
-        <div v-show="friendsTotalApp" class="box col-md-12 profile-info n-border-top">            
+        <div v-show="friendsTotalApp > 0" class="box col-md-12 profile-info n-border-top">            
             <div id="perfilNewFriends" class="slider perfilNewFriends  panel-body">
                 <small> <i class="fa fa-users"></i> Amigos Recentes no APP</small><br>
                 <span v-on:mouseover="scrollEsquerda()" v-on:mouseout="clearScroll()" class="handle handlePrev active">
@@ -176,12 +176,47 @@
             </div>
         </div>
 
-    </div>
-        <br><br>
-        <div class="navbar-fixed-bottom ">
-                <p class="text-center "> <h6 class=" text-center copyright">Copyright ©Megas - Todos os direitos reservados - Versão 1.0 - 2018</h6></p>
-                <br><br>
+        <div class="col-md-8 ">
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>Conheça a nossa <a href="/politicas"> política</a> e os <a href="/termos"> termos</a> de uso do webApp <strong>Repeteco!</strong> Convide seus amigos do <a href="https://www.facebook.com/"> facebook</a> para entrar.</span></p>
+            </div>
         </div>
+        <div class="box col-md-4">
+            <br>
+            <button type="button" class="btn btn-default btn-lg center-block" data-toggle="modal" data-target="#myModal">
+                Não entende como funciona ? <i class="glyphicon glyphicon-info-sign"></i> 
+            </button>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="navbar-fixed-bottom ">
+            <p class="text-center "> <h6 class=" text-center copyright">Copyright ©Megas - Todos os direitos reservados - Versão 1.0 - 2018</h6></p>
+            <br><br>
+    </div>
+
+
+ <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Repeteco Web</h4>
+               </div>
+                <div class="modal-body">        
+                    <aboutComponent></aboutComponent>
+               </br>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+ <!-- End Modal -->
+
 </div>
 </template>
 
@@ -191,6 +226,7 @@ import UserComponent from '../components/UserComponent.vue';
 import CarroselComponent from '../components/CarroselComponent.vue';
 import NotificationComponent from "../components/NotificationComponent.vue";
 import CarroselAdvertisingComponet from "../components/CarroselAdvertisingComponet.vue";
+import AboutComponent from "../components/AboutComponent.vue";
 import axios from 'axios';
 
 export default {
@@ -201,6 +237,7 @@ export default {
         CarroselComponent,
         NotificationComponent,
         CarroselAdvertisingComponet,
+        AboutComponent,
         axios      
     },
     data() {
@@ -465,7 +502,7 @@ export default {
 <style>
 /* new stile */
 .user-heading {
-    background: #08080805;
+    background: #8a8a8a03;
     color: #fff;
     border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
@@ -492,6 +529,7 @@ export default {
     background: #ffffff;
     border-top: 3px solid #f25655;
     border-bottom: 5px;
+    padding-bottom: 10px;
     margin-bottom: 20px;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     background-color: #fff;

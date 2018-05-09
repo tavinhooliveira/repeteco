@@ -13,7 +13,11 @@
 
         <b>Opção de Classificação Picante</b></br>
         Essa classificação é opcional, e vem por padrão desabilitada, podendo ser habilitada pelo o usuário em configurações,</br>
-        <i>é secreta e não é passiva de match.</i>
+        <i>é secreta e não é passiva de match, indica que você teve uma relação mas quente com a pessoa.</i></br></br>
+
+        <b>Posso Classificar Amigo de Amigo</b></br>
+        <b>NÃO</b> A classificação é restrita apenas para seus amigos que entrarem também no Aplicativo repeteco pelo o login social do facebook!
+
     </p>    
 </div>
 </template>

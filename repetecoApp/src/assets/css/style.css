@@ -269,10 +269,12 @@ footer .col-links .fa {
 
 .perfilNewFriends small{color: #8a8989;}
 .perfilNewFriends ul li a img {width: 50px; height: 50px; border-radius: 86px; border: 2px solid #e8e8e8;}
+.perfilNewFriends ul li a img:hover {width: 60px; height: 60px; border-radius: 86px; border: 2px solid #f25655; z-index: 9999;float: initial;}
 .perfilNewFriends ul li a p {font-size: 10px; margin-left: 5px;}
 .perfilNewFriends ul {margin-left: 0px; margin-top: 5px; padding-left: 2px;}
 .perfilNewFriends ul li {display: inline-block; padding-left: 12px; width: 60px !important;}
 .perfilNewFriends #menu-carrossel a {margin-top: -56px; z-index: 999; border: 5px solid #e4ecf3; border-radius: 15px;}
+
 
 /*css para o botao notificacao*/
 .perfilConfig .toggle.btn {float: right;}

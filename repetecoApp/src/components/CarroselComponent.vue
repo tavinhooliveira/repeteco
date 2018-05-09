@@ -18,7 +18,8 @@ export default{
 .slider {
     height: 100px;
     position: relative;
-    margin: 0;
+    margin: 9px;
+    margin-bottom: -22px;
     padding: 0 4%;
     -ms-touch-action: pan-y;
     touch-action: pan-y;
