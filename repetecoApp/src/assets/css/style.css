@@ -1,4 +1,5 @@
 body{background-color: #f5f7fa8c !important}
+.copyright{color: #a0a0a0}
 .navbar-default {z-index: 1032 !important;}
 
 .perfil .ui-link {color: #3498db !important;}
@@ -229,8 +230,6 @@ footer .col-links .fa {
 }
 
 /*====================================Perfil======================*/
-.perfil{margin-top: 50px;}
-.perfil ul.img_classification {display: inline-flex;}
 .perfil .perfilPicture {margin-top: 10px;}
 .perfil .perfilPicture img { width: 150px;height: 150px;border-radius: 86px; border: 5px solid #e8e8e8;background-color: #fff; margin-left: 38%;}
 .perfil .perfilName{margin-bottom: 10px;text-align: center;}
@@ -239,29 +238,35 @@ footer .col-links .fa {
 .perfil .perfilbrprogress .progress-bar {background-color: rgba(51, 122, 183, 0.52);-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);-webkit-transition: width .6s ease;-o-transition: width .6s ease;transition: width .6s ease;}
 .perfil .list-group {}
 .perfil .list-group-item {margin-top: 10px;margin-right: 10px;padding-left: 5px;padding-right: 5px; border-radius: 5px;}
-.perfil li img {width: 80px;height: 80px;}
 .perfil .list-group-item a:hover {color: #23527c;text-decoration: none;}
 .perfil li {display: inline-block;}
+.perfil li img {width: 80px;height: 80px;}
 /*List Classification*/
-.perfil li ul li {background-image: url("../img/imgclassificationm.png");background-repeat: no-repeat;display: inline-block;margin: 0px;width: 50px;height: 35px;margin-top: 7px;}
+.perfil ul {margin: 5px; margin-bottom: 10px;}
+.perfil ul.nav-stacked li{ margin-bottom: 10px;}
+.perfil ul.nav-stacked li.listyle{padding-bottom: 10px;color: #89817f; border-bottom: 1px solid #dad2d2;}
+.perfil ul.nav-stacked li.listyle a{margin: 0px; padding: 0;}
+.perfil ul .img_classification {display: inline-flex;}
+.classification ul li {background-image: url("../img/imgclassificationm.png");background-repeat: no-repeat;display: inline-block;margin: 0px;width: 45px;height: 35px;margin-top: 7px;}
+.classification li .badge{margin-top: 36px; margin-left: 3px; margin-bottom: 5px;}
 /*List Classification*/
-.perfil li ul li.cl_fiquei {background-position: -5px -1px;}
-.perfil li ul li.cl_ficaria2 {background-position: -60px -1px;}
-.perfil li ul li.cl_picante {background-position: -114px -1px}
-.perfil li ul li.cl_fico {background-position: -162px -1px;}
-.perfil li ul li.cl_Ninteresse {background-position: -213px -1px;}
+.classification ul li.cl_fiquei {background-position: -5px -1px;}
+.classification ul li.cl_ficaria2 {background-position: -60px -1px;}
+.classification ul li.cl_picante {background-position: -114px -1px}
+.classification ul li.cl_fico {background-position: -162px -1px;}
+.classification ul li.cl_Ninteresse {background-position: -213px -1px;}
 /*List Classification Hover*/
-.perfil li ul li.cl_fiquei:hover {background-position: -5px -32px;}
-.perfil li ul li.cl_ficaria2:hover {background-position: -60px -32px;}
-.perfil li ul li.cl_picante:hover {background-position: -115px -34px}
-.perfil li ul li.cl_fico:hover {background-position: -163px -34px;}
-.perfil li ul li.cl_Ninteresse:hover {background-position: -213px -34px;}
+.classification ul li.cl_fiquei:hover {background-position: -5px -32px;}
+.classification ul li.cl_ficaria2:hover {background-position: -60px -32px;}
+.classification ul li.cl_picante:hover {background-position: -115px -34px}
+.classification ul li.cl_fico:hover {background-position: -163px -34px;}
+.classification ul li.cl_Ninteresse:hover {background-position: -213px -34px;}
+
+
 .perfilMatch{margin-top: 10px;}
 .perfilMatch .perfilMatchList{color: #8a8989; border-bottom: 1px solid #dad2d2; margin-bottom: 6px; margin-left: 0px;}
 .perfilMatch .perfilMatchListInfo{margin-bottom: 1px;}
-.perfil .classification .badge{margin-top: 36px; margin-left: 3px; margin-bottom: 5px;}
-.perfil .classification #cont_cl_fico{margin-left: 6px;}
-.perfil .classification #cont_cl_picante{margin-left: 6px;}
+
 .perfilNewFriends small{color: #8a8989;}
 .perfilNewFriends ul li a img {width: 50px; height: 50px; border-radius: 86px; border: 2px solid #e8e8e8;}
 .perfilNewFriends ul li a p {font-size: 10px; margin-left: 5px;}

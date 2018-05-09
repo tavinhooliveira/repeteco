@@ -11,8 +11,16 @@ Vue.use(FBSignInButton)
 Vue.use(VTooltip)
 Vue.prototype.$ajax = axios
 
-new Vue ({
+// new Vue ({
+//   el: '#app',
+//   router,
+//   render: h => h(Wrapper)
+// })
+
+Vue.config.productionTip = false
+new Vue({
   el: '#app',
   router,
-  render: h => h(Wrapper)
+  template: '<Wrapper/>',
+  components: { Wrapper }
 })

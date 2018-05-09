@@ -249,7 +249,7 @@
 /*Responsivo Modile Android*/
 @media (min-width : 320px) and (max-width : 480px){
     .socailIcons {
-        margin-left: 21%;
+        margin-left: 0%;
         margin-right: auto;
     }
     .CarouselLogin img {
