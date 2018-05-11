@@ -1,17 +1,25 @@
 <template>
-    <div>
+    <div class="pageMatch">
         <br>
         {{postMacts}}
         {{callMatchs}}
         <div class="btnNotification" role="group">
             <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>
             <div class="btn-group pull-right">
-                <div v-show="isMatch == true">
-                    <a href="/matchs" class="active" title="Todos">Todos |</a>
-                    <a href="/matchsNew" title="Novos Matchs">Novos Lances |</a>
-                    <a href="/matchsOld" title="Flash Backs">Flash Backs</a>
+                  <div class="btn " data-toggle="collapse" href="#btnCollapseLeft" aria-expanded="false" aria-controls="btnCollapseLeft"><i class="fa fa-ellipsis-h"></i></div>
+                  <div id="btnCollapseLeft" class="">
+                    <div>					        
+                        <a href="/matchsNew" title="Novos Matchs"> Lances |</a>  
+                        <a href="/matchsOld" title="Flash Backs">Flash Backs</a>
+                          <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'">
+                            <span class="fa fa-eye"></span> 
+                          </button>
+                          <button class="btn btn-default btn-xs" type="button"  v-tooltip.bottom-start="'Não Vizualizado'">
+                            <span class="fa fa-eye-slash"></span>
+                          </button>                      
+                    </div>                  
+                  </div>                 
                 </div>
-            </div>
         </div>
         </br>
         <div class="btn-group btn-group-justified" role="group" aria-label="...">

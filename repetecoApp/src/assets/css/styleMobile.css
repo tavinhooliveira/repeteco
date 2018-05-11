@@ -1,618 +1,604 @@
-
+ 
 /*Responsivo Tablet*/
 @media (min-width : 430px) and (max-width: 1198px) {
-    .copyright{display: none;}
-
+    .newProfile ul.tablist {
+        margin-left: 50px;
+   }
+    {
+        margin-left: 50px;
+   }
+   {
+       margin-left: 10px;
+   }
 
     .ListFriends .col-md-4 {
         width: 31.333333% !important;
-    }
-
+   }
     .ListFriends .classification {
         margin-left: 71px !important;
         margin-top: -82px !important;
-    }
-
+   }
     .btnclassifications {
         margin-top: 4px !important;
         margin-right: 20px !important;
-    }
-
+   }
     .CarouselLogin img {
         margin-left: 0px !important;
-    }
-    .btnclassifications{margin-top: -40px}
-    
-	#logar .classificationInfo {
-    width: 100%;
-    margin-left: 0px;
-    }	
-	header #logotipo {
-    top: -13px;
-    margin-left: 72px;
-    margin-right: 75px;
-    }
-
-    .searchClassification input {width: 94% !important;}
-    
-            .newProfile  .classification{padding-left: 15px }
-    
-    /*Perfil*/
-	.perfil .perfilPicture {
-    margin-top: 10px;
-    }
-
+   }
+    .btnclassifications{
+       margin-top: -40px
+   }
+    #logar .classificationInfo {
+        width: 100%;
+        margin-left: 0px;
+   }
+    header #logotipo {
+        top: -13px;
+        margin-left: 72px;
+        margin-right: 75px;
+   }
+    .searchClassification input {
+       width: 94% !important;
+   }
+    .newProfile .classification{
+       padding-left: 15px 
+   }
+   /*Perfil*/
+    .perfil .perfilPicture {
+        margin-top: 10px;
+   }
     .perfil #carrossel{
         width: 665px !important;
-    }
+   }
     .perfilMatch .perfilMatchList {
-    color: #8a8989;
-    border-bottom: 1px solid #dad2d2;
-    margin-bottom: 20px;
-    margin-left: -19px;
-    }
-
+        color: #8a8989;
+        border-bottom: 1px solid #dad2d2;
+        margin-bottom: 20px;
+        margin-left: -19px;
+   }
     .col-md-12.btn.btn-navbar{
         width: 100%;
-    }
-
-    /*Lista de Amigos*/
+   }
+   /*Lista de Amigos*/
     .ListFriends .col-md-4 {
-    width: 31.333333% !important;
-    }
+        width: 31.333333% !important;
+   }
     .ListFriends .classification {
-    margin-left: 100px;
-    margin-top: -85px;
-    }
+        margin-left: 100px;
+        margin-top: -85px;
+   }
     .ListFriends .img_classification {
-    width: 510px;
-    margin-top: 10px;
-    }
+        width: 510px;
+        margin-top: 10px;
+   }
     .ListFriends .img_classification label {
-    margin-left: 60px;
-    }
+        margin-left: 60px;
+   }
     .ListFriends .media-heading {
-    text-align: left;
-    width: 350px;
-    margin-top: 7px;
-    }
+        text-align: left;
+        width: 350px;
+        margin-top: 7px;
+   }
     .ListFriends .starClassification {
-    background-position: -4px -4px;
-    margin-top: -86px;;
-    margin-right: -40px;
-    }
-	.ListFriends .classificationTrue {
-    background-position: -4px -43px;
-    margin-top: -88px;
-    margin-right: -41px;
-    z-index: 9999;
-    }
+        background-position: -4px -4px;
+        margin-top: -86px;
+       ;
+        margin-right: -40px;
+   }
+    .ListFriends .classificationTrue {
+        background-position: -4px -43px;
+        margin-top: -88px;
+        margin-right: -41px;
+        z-index: 9999;
+   }
     .ListFriends .starClassification:hover {
         background-position: -4px -43px;
         margin-top: -155px;
         margin-right: -44px;
-    }
+   }
     footer .footerIcon{
         padding-right: 20% !important;
         padding-left: 40px !important;
-    }
+   }
     header .headerIcon{
         padding-right: 20% !important;
         padding-left: 40px !important;
-    }
-
-
-.notification .img_classification {
-    width: 4px !important;
-    margin-top: -26px;
+   }
+    .notification .img_classification {
+        width: 4px !important;
+        margin-top: -26px;
+   }
+    .ListFriends .notification .Nfdate {
+        margin-top: -15px !important;
+        margin-left: -45px !important;
+   }
+    .msgClamigos {
+        font-size: 10px;
+        color: #cecdcd;
+        position: absolute;
+        margin-top: -57px;
+        margin-left: 113px;
+   }
+    #mtPiscadinhas {
+        margin-top: -35px;
+        margin-left: -128px;
+        font-size: 11px;
+        z-index: 999;
+        position: absolute;
+   }
 }
-.ListFriends .notification .Nfdate {
-    margin-top: -15px !important;
-    margin-left: -45px !important;
-}
-
-.msgClamigos {
-    font-size: 10px;
-    color: #cecdcd;
-    position: absolute;
-    margin-top: -57px;
-    margin-left: 113px;
-}
-
-#mtPiscadinhas {
-    margin-top: -35px;
-    margin-left: -128px;
-    font-size: 11px;
-    z-index: 999;
-    position: absolute;
-}
-	
-}/*END Responsivo Tablet*/
-
-
-
+/*END Responsivo Tablet*/
 /*Responsivo Tablet*/
 @media (min-width : 480px) and (max-width: 768px) {
-    .copyright{display: none;}
+    .newProfile ul.tablist {
+       margin-left: 250px;
+   }
 
     .ListFriends .col-md-4 {
         width: 31.333333% !important;
-    }
+   }
     .socailIcons {
         margin-left: 21%;
         margin-right: auto;
-    }
-	.CarouselLogin img {
+   }
+    .CarouselLogin img {
         margin-left: 0px !important;
-    }
-	#logar .classificationInfo {
-    width: 100%;
-    margin-left: 0px;
-    }	
-	header #logotipo {
-    top: -13px;
-    margin-left: 72px;
-    margin-right: 75px;
-    }
-
-    .searchClassification input {width: 94% !important;}
-    
-            .newProfile  .classification{padding-left: 15px }
-    
-    /*Perfil*/
-	.perfil .perfilPicture {
-    margin-top: 10px;
-    margin-left: 266px !important;
-	}
-
+   }
+    .caroselAdvertiting img {
+        height: 100% !important;
+        width: 100%;
+   }
+    #logar .classificationInfo {
+        width: 100%;
+        margin-left: 0px;
+   }
+    header #logotipo {
+        top: -13px;
+        margin-left: 72px;
+        margin-right: 75px;
+   }
+    .searchClassification input {
+       width: 94% !important;
+   }
+    .newProfile .classification{
+       padding-left: 220px 
+   }
+   /*Perfil*/
+    .perfil .perfilPicture {
+        margin-top: 10px;
+        margin-left: 266px !important;
+   }
     .perfil #carrossel{
         width: 665px !important;
-    }
+   }
     .perfilMatch .perfilMatchList {
-    color: #8a8989;
-    border-bottom: 1px solid #dad2d2;
-    margin-bottom: 20px;
-    margin-left: -19px;
-    }
-
+        color: #8a8989;
+        border-bottom: 1px solid #dad2d2;
+        margin-bottom: 20px;
+        margin-left: -19px;
+   }
     .col-md-12.btn.btn-navbar{
         width: 100%;
-    }
-
-    /*Lista de Amigos*/
+   }
+   /*Lista de Amigos*/
     .ListFriends .col-md-4 {
-    width: 100% !important;
-    }
+        width: 100% !important;
+   }
     .ListFriends .classification {
-    margin-left: 100px;
-    margin-top: -85px;
-    }
+        margin-left: 100px;
+        margin-top: -85px;
+   }
     .ListFriends .img_classification {
-    width: 510px;
-    margin-top: 10px;
-    }
+        width: 510px;
+        margin-top: 10px;
+   }
     .ListFriends .img_classification label {
-    margin-left: 50px;
-    }
+        margin-left: 50px;
+   }
     .ListFriends .media-heading {
-    text-align: left;
-    width: 350px;
-    margin-top: 7px;
-    margin-left: 20px;
-    }
+        text-align: left;
+        width: 350px;
+        margin-top: 7px;
+        margin-left: 20px;
+   }
     .ListFriends .starClassification {
-    background-position: -4px -4px;
-    margin-top: -60px;;
-    margin-right: -40px;
-    margin-left: 20px;
-    }
-	.ListFriends .classificationTrue {
-    background-position: -4px -43px;
-    margin-top: -60px;
-    margin-right: -41px;
-    z-index: 9999;
-    }
+        background-position: -4px -4px;
+        margin-top: -60px;
+       ;
+        margin-right: -40px;
+        margin-left: 20px;
+   }
+    .ListFriends .classificationTrue {
+        background-position: -4px -43px;
+        margin-top: -60px;
+        margin-right: -41px;
+        z-index: 9999;
+   }
     .ListFriends .starClassification:hover {
         background-position: -4px -43px;
         margin-top: -155px;
         margin-right: -44px;
-    }
+   }
     footer .footerIcon{
         padding-right: 20% !important;
         padding-left: 40px !important;
-    }
+   }
     header .headerIcon{
         padding-right: 20% !important;
         padding-left: 40px !important;
-    }
-
-
-.notification .img_classification {
-    width: 4px !important;
-    margin-top: -26px;
+   }
+    .notification .img_classification {
+        width: 4px !important;
+        margin-top: -26px;
+   }
+    .ListFriends .notification .Nfdate {
+        margin-top: -15px !important;
+        margin-left: -45px !important;
+   }
+    .msgClamigos {
+        font-size: 10px;
+        color: #cecdcd;
+        position: absolute;
+        margin-top: -57px;
+        margin-left: 113px;
+   }
+    #mtPiscadinhas {
+        margin-top: -35px;
+        margin-left: -128px;
+        font-size: 11px;
+        z-index: 999;
+        position: absolute;
+   }
 }
-.ListFriends .notification .Nfdate {
-    margin-top: -15px !important;
-    margin-left: -45px !important;
-}
-
-.msgClamigos {
-    font-size: 10px;
-    color: #cecdcd;
-    position: absolute;
-    margin-top: -57px;
-    margin-left: 113px;
-}
-
-#mtPiscadinhas {
-    margin-top: -35px;
-    margin-left: -128px;
-    font-size: 11px;
-    z-index: 999;
-    position: absolute;
-}
-	
-}/*END Responsivo Tablet*/
-
-
+/*END Responsivo Tablet*/
 /*Responsivo Modile Android*/
 @media (min-width : 320px) and (max-width : 480px){
-    .copyright{display: none;}
+    .newProfile ul.tablist {
+        margin-left: 50px;
+   }
+    {
+        margin-left: 50px;
+   }
+   {
+       margin-left: 10px;
+   }
 
     .socailIcons {
         margin-left: 0%;
         margin-right: auto;
-    }
+   }
     .CarouselLogin img {
         margin-left: 0px !important;
-    }
-    
-    .btnclassifications{margin-top: -40px}
-
+   }
+    .caroselAdvertiting img{
+        height: 200px !important;
+        width: 100% 
+   }
+    .btnclassifications{
+       margin-top: -40px
+   }
     #logar .classificationInfo {
-    width: 330px;
-    margin-left: 0px;
-    }    
+        width: 330px;
+        margin-left: 0px;
+   }
     #logar .classificationInfo img{
-    width: 300px !important;
-    }
-	
-	header #logotipo {
+        width: 300px !important;
+   }
+    header #logotipo {
         top: -13px;
         margin-left: 50px;
         margin-right: 50px;
-    }
-
+   }
     .searchClassification {
         margin-top: 50px !important;
         width: 100% !important;
-    }
-
-    .searchClassification input {width: 99% !important;}
-
-            .newProfile  .classification{padding-left: 15px }
-
+   }
+    .searchClassification input {
+       width: 99% !important;
+   }
+    .newProfile .classification{
+       padding-left: 15px 
+   }
     .perfil .perfilPicture {
         margin-left: -73px !important;
-    }
-
-
-   
+   }
     .perfil .perfilbrprogress p {
-    margin-left: 70% !important;
-    }
-    .perfilNewFriends #carrossel {width: 305px !important;}
+        margin-left: 70% !important;
+   }
+    .perfilNewFriends #carrossel {
+       width: 305px !important;
+   }
     .perfilNewFriends ul li {
         padding-left: 9px !important;
-    }
+   }
     .perfilMatch .perfilMatchList {
-    color: #8a8989;
-    border-bottom: 1px solid #dad2d2;
-    margin-bottom: 20px;
-    margin-left: -18px;
-    }
+        color: #8a8989;
+        border-bottom: 1px solid #dad2d2;
+        margin-bottom: 20px;
+        margin-left: -18px;
+   }
     .ListFriends li .LfPicture img {
-    width: 83px;
-    height: 83px;
-    border-radius: 76px;
-    border: 2px solid rgba(163, 173, 183, 0.54);
-    margin-bottom: 6px;
-    }
-
+        width: 83px;
+        height: 83px;
+        border-radius: 76px;
+        border: 2px solid rgba(163, 173, 183, 0.54);
+        margin-bottom: 6px;
+   }
     .ListFriends .classification {
-    margin-left: 25%;
-    margin-top: -30%;
-    }
-
+        margin-left: 25%;
+        margin-top: -30%;
+   }
     .notification li img {
-    width: 83px;
-    height: 83px;
-    border-radius: 76px;
-    border: 2px solid rgba(163, 173, 183, 0.54);
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-    margin-bottom: 0px !important;
-    } 
-    
+        width: 83px;
+        height: 83px;
+        border-radius: 76px;
+        border: 2px solid rgba(163, 173, 183, 0.54);
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 0px !important;
+   }
     .ListFriends .col-md-4 {
         width: 100%;
-    }
+   }
     .ListFriends li ul li {
         display: inline-block;
         margin: 0px;
         width: 41px;
         height: 35px;
         margin-top: 7px;
-    }
+   }
     .ListFriends ul.img_classification {
         width: 298px;
         margin-left: 13px;
         position: inherit;
         margin-top: 0px;
-    }
+   }
     .ListFriends .media-heading {
-    text-align: left;
-    margin-left: 20px;
-    }
+        text-align: left;
+        margin-left: 20px;
+   }
     .ListFriends .LfLocation {
         text-align: center;
         font-size: 9px;
         margin-left: 2px;
         margin-top: -3px;
-    }
+   }
     .ListFriends .starClassification {
-    background-position: -4px -4px;
-    margin-top: -85px;
-    margin-right: -53px;
-    }
+        background-position: -4px -4px;
+        margin-top: -85px;
+        margin-right: -53px;
+   }
     .ListFriends .classificationTrue {
-    background-position: -4px -43px;
-    margin-top: -85px;
-    margin-right: -53px;
-    z-index: 9999;
-    }
-    /* .ListFriends .starClassification:hover {
+        background-position: -4px -43px;
+        margin-top: -85px;
+        margin-right: -53px;
+        z-index: 9999;
+   }
+   /* .ListFriends .starClassification:hover {
         background-position: -4px -43px;
         margin-top: -155px;
         margin-right: -44px;
-    } */
+   }
+    */
     .ListFriends .list-group {
         margin-left: 0px;
-    }
-
+   }
     .ListFriends .img_classification{
         width: 251px !important;
-    }
+   }
     .ListFriends .img_classification label{
         margin-left: 11px !important;
-    }
-
+   }
     footer .row-creditos-footer {
         display: none;
-    }
+   }
     footer .col-md-4 {
         width: 100px;
-    }
-
-    footer .col-md-3{width: 40%;}
-
-
-/*===========Notificacao===========*/
-.ListFriends li .notification img  {
-    width: 83px;
-    height: 83px;
-    border-radius: 76px;
-    border: 2px solid rgba(163, 173, 183, 0.54);
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-    margin-bottom: 6px;
+   }
+    footer .col-md-3{
+       width: 40%;
+   }
+   /*===========Notificacao===========*/
+    .ListFriends li .notification img {
+        width: 83px;
+        height: 83px;
+        border-radius: 76px;
+        border: 2px solid rgba(163, 173, 183, 0.54);
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 6px;
+   }
+    .notification .img_classification {
+        width: 4px !important;
+        margin-top: -26px;
+   }
+    .ListFriends .notification .Nfdate {
+        margin-top: -15px !important;
+        margin-left: -45px !important;
+   }
+    .msgClamigos {
+        font-size: 10px;
+        color: #cecdcd;
+        position: absolute;
+        margin-top: -57px !important;
+        margin-left: 113px !important;
+   }
+    #mtPiscadinhas {
+        margin-top: -35px;
+        margin-left: -115px;
+        font-size: 11px;
+        z-index: 999;
+        position: absolute;
+   }
+    #mtPiscadinhas img{
+        width: 20px;
+        height: 20px;
+   }
 }
-.notification .img_classification {
-    width: 4px !important;
-    margin-top: -26px;
-}
-.ListFriends .notification .Nfdate {
-    margin-top: -15px !important;
-    margin-left: -45px !important;
-}
-
-.msgClamigos {
-    font-size: 10px;
-    color: #cecdcd;
-    position: absolute;
-    margin-top: -57px !important;
-    margin-left: 113px !important;
-}
-
-#mtPiscadinhas {
-    margin-top: -35px;
-    margin-left: -128px;
-    font-size: 11px;
-    z-index: 999;
-    position: absolute;
-}
-
-#mtPiscadinhas img{
-    width: 20px;
-    height: 20px;
-}
-
-
-}/*END Android*/
-
-
+/*END Android*/
 /*Responsivo Iphone 5*/
 @media (min-width: 200px) and (max-width: 320px) {
-    .copyright{display: none;}
-    
+    .newProfile ul.tablist {
+        margin-left: 50px;
+   }
+
     .CarouselLogin img {
         margin-left: 0px;
-    }
-  .btnNotification .profile .media {margin-left: -30px !important;}
-
-  .btnclassifications{margin-top: -40px}
-
-  .searchClassification input {width: 94% !important;}
-    
+   }
+    .caroselAdvertiting img{
+        height: 200px !important;
+        width: 100% 
+   }
+    .btnNotification .profile .media {
+       margin-left: -30px !important;
+   }
+    .btnclassifications{
+       margin-top: -40px
+   }
+    .searchClassification input {
+       width: 94% !important;
+   }
     #logar .classificationInfo {
-    width: 100%;
-    }    
+        width: 100%;
+   }
     #logar .classificationInfo img{
-    width: 300px !important;
-    margin-left: -20px;
-    }
-	
-	header #logotipo {
-    top: -13px;
-    margin-left: 35px;
-    margin-right: 35px;
-    }
-
+        width: 300px !important;
+        margin-left: -20px;
+   }
+    header #logotipo {
+        top: -13px;
+        margin-left: 35px;
+        margin-right: 35px;
+   }
     .searchClassification {
         margin-top: 50px !important;
         width: 100% !important;
-    }
-    
-            .newProfile  .classification{padding-left: 15px }
-
+   }
+    .newProfile .classification{
+       padding-left: 15px 
+   }
+    .newProfile ul.tablist {
+        margin-left: 50px;
+   }
     .perfil .perfilPicture {
         margin-left: 53px !important;
-    }
+   }
     .perfil .perfilbrprogress p {
-    margin-left: 70% !important;
-    }
-    .perfilNewFriends #carrossel {width: 305px !important;}
+        margin-left: 70% !important;
+   }
+    .perfilNewFriends #carrossel {
+       width: 305px !important;
+   }
     .perfilNewFriends ul li {
         padding-left: 9px !important;
-    }
+   }
     .perfil #carrossel{
         width: 245px !important;
         margin-left: 11px !important;
-    }
+   }
     .perfilMatch .perfilMatchList {
-    color: #8a8989;
-    border-bottom: 1px solid #dad2d2;
-    margin-bottom: 20px;
-    }
+        color: #8a8989;
+        border-bottom: 1px solid #dad2d2;
+        margin-bottom: 20px;
+   }
     .ListFriends li .LfPicture img {
-    width: 83px;
-    height: 83px;
-    border-radius: 76px;
-    border: 2px solid rgba(163, 173, 183, 0.54);
-    margin-left: 50%;
-    margin-right: 101px;
-    margin-bottom: 6px;
-    }
+        width: 83px;
+        height: 83px;
+        border-radius: 76px;
+        border: 2px solid rgba(163, 173, 183, 0.54);
+        margin-left: 50%;
+        margin-right: 101px;
+        margin-bottom: 6px;
+   }
     .ListFriends .col-md-4 {
         width: 100%;
-    }
+   }
     .ListFriends li ul li {
         display: inline-block;
         margin: 0px;
         width: 41px;
         height: 35px;
         margin-top: 7px;
-    }
+   }
     .ListFriends ul.img_classification {
         width: 298px;
         margin-left: 13px;
         position: inherit;
         margin-top: 0px;
-    }
+   }
     .ListFriends .media-heading {
         text-align: center;
-    }
+   }
     .ListFriends .LfLocation {
         text-align: center;
         font-size: 9px;
         margin-left: 2px;
         margin-top: -3px;
-    }
+   }
     .ListFriends .starClassification {
-    background-position: -4px -4px;
-    margin-top: -155px;
-    margin-right: -44px;
-    }
+        background-position: -4px -4px;
+        margin-top: -155px;
+        margin-right: -44px;
+   }
     .ListFriends .classificationTrue {
-    background-position: -4px -43px;
-    margin-top: -158px;
-    margin-right: -44px;
-    z-index: 9999;
-    }
+        background-position: -4px -43px;
+        margin-top: -158px;
+        margin-right: -44px;
+        z-index: 9999;
+   }
     .ListFriends .starClassification:hover {
         background-position: -4px -43px;
         margin-top: -155px;
         margin-right: -44px;
-    }
+   }
     .ListFriends .list-group {
         margin-left: 0px;
-    }
-
+   }
     .ListFriends .img_classification{
-    width: 266px !important;
-}
+        width: 266px !important;
+   }
     .ListFriends .img_classification label{
         margin-left: 10px !important;
-    }
-
-   
+   }
     footer .row-creditos-footer {
         display: none;
-    }
+   }
     footer .col-md-4 {
         width: 100px;
-    }
-
-    footer .col-md-3{width: 40%;}
-
-
-/*===========Notificacao===========*/
-.ListFriends li .notification img  {
-    width: 83px;
-    height: 83px;
-    border-radius: 76px;
-    border: 2px solid rgba(163, 173, 183, 0.54);
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-    margin-bottom: 6px;
-}
-
-.notification .img_classification {
-    width: 4px !important;
-    margin-top: -67px;
-}
-.ListFriends .notification .Nfdate {
-    margin-top: -15px !important;
-    margin-left: -45px !important;
-}
-
-
-.msgClamigos {
-    font-size: 10px;
-    color: #cecdcd;
-    position: absolute;
-    margin-top: -57px;
-    margin-left: 113px;
-}
-
-#mtPiscadinhas {
-    margin-top: -35px;
-    margin-left: -128px;
-    font-size: 11px;
-    z-index: 999;
-    position: absolute;
-}
-
-
-}/*END - Responsivo Iphone 5*/
-
-
-
-
-
-
-
-
-
-
-
+   }
+    footer .col-md-3{
+       width: 40%;
+   }
+   /*===========Notificacao===========*/
+    .ListFriends li .notification img {
+        width: 83px;
+        height: 83px;
+        border-radius: 76px;
+        border: 2px solid rgba(163, 173, 183, 0.54);
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 6px;
+   }
+    .notification .img_classification {
+        width: 4px !important;
+        margin-top: -67px;
+   }
+    .ListFriends .notification .Nfdate {
+        margin-top: -15px !important;
+        margin-left: -45px !important;
+   }
+    .msgClamigos {
+        font-size: 10px;
+        color: #cecdcd;
+        position: absolute;
+        margin-top: -57px;
+        margin-left: 113px;
+   }
+    #mtPiscadinhas {
+        margin-top: -35px;
+        margin-left: -128px;
+        font-size: 11px;
+        z-index: 999;
+        position: absolute;
+   }
+/*END - Responsivo Iphone 5*/

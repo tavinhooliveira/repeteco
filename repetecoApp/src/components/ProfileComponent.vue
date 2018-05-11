@@ -147,7 +147,7 @@
         <!-- box sidebar right Top -->
         <div class="box col-md-3 perfilCoutClassification">
             <h6 class="text-center">Siga Nas Redes Sociais</h6>              
-                <ul class="col-md-12 " role="tablist">
+                <ul class="col-md-12 tablist" role="tablist">
                     <li class="col-md-3" v-tooltip.bottom-start="'Facebook'"><a href="https://www.facebook.com/Repeteco-490925014612889/" target="_blank"><i class="fa fa-facebook-official"></i></a></li>
                     <li class="col-md-3" v-tooltip.bottom-start="'Instagram'"><a href="https://www.facebook.com/Repeteco-490925014612889/" target="_blank"><i class="fa fa-instagram"></i></a></li>
                     <li class="col-md-3" v-tooltip.bottom-start="'Twitter'"><a href="https://www.facebook.com/Repeteco-490925014612889/" target="_blank"><i class="fa fa-twitter"></i></a></li>
@@ -184,19 +184,14 @@
         </div>
         <div class="box col-md-4">
             <br>
-            <button type="button" class="btn btn-default btn-lg center-block" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-default center-block" data-toggle="modal" data-target="#myModal">
                 Não entende como funciona ? <i class="glyphicon glyphicon-info-sign"></i> 
             </button>
         </div>
     </div>
 
     <br><br>
-    <div class="navbar-fixed-bottom ">
-            <p class="text-center "> <h6 class=" text-center copyright">Copyright ©Megas - Todos os direitos reservados - Versão 1.0 - 2018</h6></p>
-            <br><br>
-    </div>
-
-
+   
  <!-- Modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
          <div class="modal-dialog" role="document">
@@ -523,7 +518,7 @@ export default {
     border: 15px solid rgba(188, 221, 247, 0.62);
     -webkit-border-radius: 50%;
 }
-.box {
+.box0 {
     position: relative;
     border-radius: 3px;
     background: #ffffff;
@@ -533,6 +528,17 @@ export default {
     margin-bottom: 20px;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     background-color: #fff;
+}
+.box {
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #e7e7e7;
+    border-bottom: 5px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    background-color: #00000003;
 }
 .box-progress{}
 
@@ -546,12 +552,9 @@ export default {
 
 .perfilCoutClassification ul li{text-decoration: none; display: inline-block;}
 
-
-
 .progressBarCirculos .centroDiv{margin-left: 12%;}
 @media (min-width : 320px) and (max-width : 480px){
-.progressBarCirculos .centroDiv {margin-left: 3%;}
-}
+.progressBarCirculos .centroDiv {margin-left: 3%;}}
 /*Stilo progress bar  #44484b*/
 .progress{width:150px;height:150px;line-height:150px;background:0 0;margin:0 auto;box-shadow:none;position:relative}
 .progress .progress-bar,.progress:after,.progress>span{height:100%;position:absolute}

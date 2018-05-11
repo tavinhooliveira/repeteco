@@ -1,5 +1,5 @@
 <template>
-   <div>
+   <div class="pageMatch">
       <section>
          <div v-if="!authorized">
             <ReloadAuthorizedComponent></ReloadAuthorizedComponent>
@@ -11,12 +11,20 @@
             <div class="btnNotification" role="group" >
                <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
                <div class="btn-group pull-right">
-                  <div>					        
-                     <a href="/matchs" title="Todos" >Todos |</a> 
-                     <a href="/matchsNew" title="Novos Matchs" >Novos Lances |</a>  
-                     <a href="/matchsOld" title="Flash Backs" >Flash Backs</a>
-                  </div>
-               </div>
+                  <div class="btn " data-toggle="collapse" href="#btnCollapseLeft" aria-expanded="false" aria-controls="btnCollapseLeft"><i class="fa fa-ellipsis-h"></i></div>
+                  <div id="btnCollapseLeft" class="">
+                    <div>					        
+                        <a href="/matchs" title="Todos" > Todos |</a>  
+                        <a href="/matchsOld" title="Flash Backs" >Flash Backs</a>
+                          <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'">
+                            <span class="fa fa-eye"></span> 
+                          </button>
+                          <button class="btn btn-default btn-xs" type="button"  v-tooltip.bottom-start="'Não Vizualizado'">
+                            <span class="fa fa-eye-slash"></span>
+                          </button>                      
+                    </div>                  
+                  </div>                 
+                </div>
             </div>
             <matchNewComponent v-bind:matchs="users.matchs" v-for="matchs in users.matchs" v-bind:key="matchs.id" v-bind:id="matchs.id"
                 v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender"
@@ -69,7 +77,7 @@
                 }
           return litrs.length    
       }
-		}
+    }
   },
   methods: {
    getApiRepeteco(userid){
@@ -122,3 +130,7 @@
      }
    };
 </script>
+
+<style>
+
+</style>

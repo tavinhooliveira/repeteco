@@ -5,16 +5,16 @@
          <!-- Indicators -->
          <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="1" ></li>
          </ol>
          <!-- Wrapper for slides -->
          <div class="carousel-inner" role="listbox">
                <div class="item active">        
-                 <img src="/src/assets/img/slaider/ads/ad01.jpeg">
+                <a href=""> <img src="/src/assets/img/slaider/ads/ad02.png"></a>
                </div>          
                
                <div class="item">
-                 <img src="/src/assets/img/slaider/ads/ad02.jpeg">
+                 <a href=""><img src="/src/assets/img/slaider/ads/ad01.png"></a>
                  <div class="carousel-caption"> </div>
                </div>
          </div>
@@ -27,7 +27,8 @@
          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
          <span class="sr-only">Next</span>
          </a>
-      </div><br>
+         <i class="publi-title">publicidade</i>
+      </div>
    </div>
 </template>
 <script>
@@ -43,10 +44,7 @@ export default{
 
 <style>
 
- .caroselAdvertiting img{
-    height: 100px !important;
-    width: 260px;
-}
+
  .caroselAdvertiting .handle.active {
      cursor: pointer;
 }
@@ -72,7 +70,7 @@ export default{
      color: #fff;
 } 
 .caroselAdvertiting .carousel-indicators {
-      margin-bottom: -40px;
+      margin-bottom: -25px;
     
 }
 .caroselAdvertiting .carousel-indicators .active {
@@ -92,9 +90,14 @@ export default{
 .caroselAdvertiting .carousel-inner p {
     color: #747474;
 }
+.publi-title {
+    color: #d6d6d6;
+    font-size: 11px;
+    margin-left:  20px;
+}
 
-
-
+.carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev {margin-top: 17px;}
+.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {margin-top: 17px;}
 </style>
 
 

@@ -13,7 +13,7 @@
         <footer class="footer navbar-fixed-bottom navbar-default">
             <div class="container">
                 <div class="col-md-12 btn btn-navbar">              
-                    <a href="/notification"><span class="footerIcon fa fa-bell fa-red  text-red fa-1x col-md-3" data-transition="pop" data-toggle="tooltip" data-placement="top" title="Notificação"><i v-show="coutNotificationNotRead != 0" class="badge btnNotify" id="cont_cl_fico">{{coutNotificationNotRead}}</i></span></a>                     
+                    <a href="/notification"><span class="footerIcon fa fa-bell fa-red  text-red fa-1x col-md-3" data-transition="pop" data-toggle="tooltip" data-placement="top" title="Notificações"><i v-show="coutNotificationNotRead != 0" class="badge btnNotify" id="cont_cl_fico">{{coutNotificationNotRead}}</i></span></a>                     
                     <a href="/matchs"><span class="footerIcon fa fa-heartbeat fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Matchs"><i v-show="coutMatchsNotRead != 0" class="badge btnNotify" id="cont_cl_fico">{{coutMatchsNotRead}}</i></span></a>       
                     <a href="/config"><span class="footerIcon fa fa-sun-o fa-1x col-md-3 " data-transition="pop" data-toggle="tooltip" data-placement="top" title="Configuração"></span></a>
                     <a href="/" onclick="Refresh();"><span class="footerIcon fa fa-sign-out fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Sair"></span></a>
@@ -21,20 +21,14 @@
             </div>
         </footer>
         {{localStoregeFuntion}}
-
         <!-- Botões flutuantes -->
-        <!-- <div class="">            
+        <!--
+         <div class="">            
             <div class="col-md-3 btnNotificationNewMatchBtn">
                 <i  href="#"  class="btn btnCircular btnPrincipal btnColor fa fa-bell" data-toggle="tooltip" data-placement="top" title="Alertas"></i> 
             </div>
         </div>
-
-         <div class="btnNotificationNewMatch ">            
-            <div class="col-md-3 btnNotificationNewMatchBtn">
-                <a  href="#navmenu"  class="btn btnCircular btnPrincipal btnColor glyphicon glyphicon-triangle-top" data-toggle="tooltip" data-placement="top" title="Topo"></a> 
-            </div>
-        </div> -->
-
+        -->
         <!-- Receber Notificações -->
         <span v-if="coutMatchs > 0">{{notifyCountMatch}}</span>  
 
@@ -172,7 +166,7 @@ export default {
 
 <style>
 .btnNotificationNewMatch{position:fixed;float:bottom;bottom:0px;right:15px;z-index:100}
-.btnNotificationNewMatchBtn .btnNotificationNewMatchInput{display:inline-block}
+.btnNotificationNewMatchBtn .btnNotificationNewMatchInput{display:inline-block; z-index: 99999}
 .btnPrincipal{font-size:18px;padding:15px;margin-bottom:30px}
 .btnColor:hover{color:#f31d1b;font-size:24px}
 .btnNotify {font-size: 9px; margin-top: -29px; margin-left: -8px; background-color: #f25655d1;}

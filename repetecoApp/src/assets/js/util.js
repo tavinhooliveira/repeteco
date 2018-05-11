@@ -56,7 +56,7 @@ $('#myModal').on('shown.bs.modal', function () {
 /*popover*/
 $(function () {
     $('[data-toggle="popover"]').popover()
-  })
+})
 
 /*Corrosel newFriends*/
 $(function() {

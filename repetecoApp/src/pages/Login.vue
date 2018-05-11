@@ -6,8 +6,8 @@
                <div v-if="!authorized" class="well text-center">
                   <div><img src="/src/assets/img/repeteco.png" style='height: 100px; width: 100px;'>
                   </div>
-                  <h3>Vamos La!</h3>
-                  <h6>Para Entar! é Obrigatório o login no Facebook!</h6>
+                  <h3 class="titleh3">Vamos La!</h3>
+                  <h6 class="titleh6">Para Entar! é Obrigatório o login no Facebook!</h6>
                   <div class="">
                      <div class="col-2">
                         <button type="button" class="btn btn-primary" @click="login"><b> f    </b>Login Facebook</button>                        
@@ -23,7 +23,7 @@
                      <a v-bind:href="profile.link" v-tooltip.bottom-start="'Perfil Facebook'" target="_blank">{{profile.name}}</a>                  
                   </div>
                   <br>     
-                  <div class="well">
+                  <div class="">
                      <h3><i class="fa fa-star">Pronto!</i></h3>
                      <h6>Você tem <b v-html="totalFriendsApp"></b> amigos no APP de <b v-html="totalFriendsFB"></b> no facebook!</h6>
                      <h6>Agora é só Classificar Seus Amigos!</h6>
@@ -236,4 +236,13 @@ body{background-image:url(/src/assets/img/bg.png)!important;background-repeat:no
 #app{font-family:Avenir,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-align:center;color:#2c3e50;margin-top:60px;}
 button{cursor:pointer}
 #iconEntrar {color: #FFF !important;}
+.well{background-color: rgba(255, 255, 255, .15);
+    border: 1px solid #b4b4b47d;}
+.well img {    height: 100px;
+    width: 100px;
+    border-radius: 75px;
+    border: 6px solid #7777772b;
+}
+.titleh3{color: #e48189}
+.titleh6{color: #e48189}
 </style>

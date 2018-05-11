@@ -130,7 +130,12 @@
                       </div>
                     </ul>
                 </div>
-                <br><br><br><br>
+                <br>
+                 <div class="navbar-fixed-bottom ">
+                    <p class="text-center "> <h6 class=" text-center copyright">Copyright ©Megas - Todos os direitos reservados - Versão 1.0 - 2018</h6></p>
+                    <br><br>
+                </div>
+                <br><br><br>
           </div>
           <div v-else>
               <br><br><br><br><br><br>

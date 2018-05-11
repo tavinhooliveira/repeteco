@@ -164,5 +164,6 @@ export default{
 <style>
 .btnMatchFalse { margin-top: -72px; margin-right: -38px;}
 .msgClamigos{margin-top: -17px; margin-left: 16px;}
-.readView{box-shadow: 0px 0px 2px 0px #355fe8 !important;}
+/* .readView{box-shadow: 0px 0px 2px 0px #355fe8 !important;} */
+.readView{box-shadow: 0px 0px 2px 0px #2ecc71 !important;}
 </style>
