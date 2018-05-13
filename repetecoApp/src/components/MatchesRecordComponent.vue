@@ -5,7 +5,7 @@
         {{callMatchs}}
         <div class="btnNotification" role="group">
             <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>
-            <div class="btn-group pull-right">
+            <div v-show="isMatch == true" class="btn-group pull-right">
                   <div class="btn " data-toggle="collapse" href="#btnCollapseLeft" aria-expanded="false" aria-controls="btnCollapseLeft"><i class="fa fa-ellipsis-h"></i></div>
                   <div id="btnCollapseLeft" class="">
                     <div>					        

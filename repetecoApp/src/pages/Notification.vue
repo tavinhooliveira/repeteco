@@ -10,7 +10,15 @@
         <div id="notify" class="col-md-6 container panel col-md-offset-3">
             <div class="list-group">
                 <div class="panel-heading">
-                    <h4>Notificações:</h4>
+                    <h4>Notificações:<span>{{coutNotification}}</span></h4>
+                    <div class="pull-right notificationView">
+                        <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'">
+                            <span class="fa fa-eye"></span> 
+                          </button>
+                          <button class="btn btn-default btn-xs" type="button"  v-tooltip.bottom-start="'Não Vizualizado'">
+                            <span class="fa fa-eye-slash"></span>
+                          </button>  
+                    </div>
                     <div v-if="this.statusNotification === true">
                         <NotificationComponent v-bind:notification="notificationData" v-for="notification in notificationData" v-bind:key="notification.id" v-bind:id="notification.id" v-bind:name="notification.name" v-bind:link="notification.link"
                             v-bind:imagem="notification.imagem" v-bind:type="notification.type" v-bind:text="notification.text" v-bind:status="notification.status" v-bind:dateNotify="notification.dateNotify">
@@ -89,3 +97,6 @@ export default {
   }
 };
 </script>
+<style>
+.notificationView{margin-top: -35px;}
+</style>

@@ -1,13 +1,14 @@
 <template>
    <div class="pageMatch">
       <section>
-         <div id="ListFriends" class="ListFriends container notification">
+        <div v-if="statusAPIAPP === true" id="ListFriends" class="ListFriends container notification">
+          <span v-show="contMatchOldMatch != null">
             <div id="searchClassification" class="container searchClassification navbar-fixed-top">
                <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">
             </div>
             <div class="btnNotification" role="group" >
                <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
-               <div class="btn-group pull-right">
+                <div v-show="contMatchOldMatch > 0" class="btn-group pull-right">
                   <div class="btn " data-toggle="collapse" href="#btnCollapseLeft" aria-expanded="false" aria-controls="btnCollapseLeft"><i class="fa fa-ellipsis-h"></i></div>
                   <div id="btnCollapseLeft" class="">
                     <div>					        
@@ -23,16 +24,20 @@
                   </div>                 
                 </div>
             </div>
+            </span>
             <matchOldComponent v-bind:matchs="users.matchs" v-for="matchs in users.matchs" v-bind:key="matchs.id" v-bind:id="matchs.id"
                 v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender"
                 v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id"
                 v-bind:dataMatch="matchs.dataMatch" v-bind:userName="users.name" v-bind:userLink="users.link" v-bind:userImagem="users.imagem" v-bind:read="matchs.read"> 
             </matchOldComponent>
-            <div v-if="contMatchOldMatch <= 0">
+            <div v-if="contMatchOldMatch <= 0 || contMatchOldMatch == null">
                 <br><p class="text-center">Você não tem Match para essa classificação ☹</p>
             </div>
             <br>
          </div>
+         <div v-else><br><br><br><br>
+              <reload></reload>
+          </div>
          {{localStoregeFuntion}}  
       </section>
    </div>

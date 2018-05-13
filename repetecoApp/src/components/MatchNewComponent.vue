@@ -12,8 +12,8 @@
             </div>            
             <div class="notification pull-right">
                <div class="img_classification">
-                  <button type="button btnMatchFalse" v-on:click="refreshVue(); starClickOff();" class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">          
-                      <span aria-hidden="true">&times;</span>          
+                  <button type="button btnMatchFalse"  class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">          
+                      <span class="glyphicon glyphicon-eye-close"></span>          
                   </button>
                   <i class="imgficaria" v-tooltip.top-start="'Ficaria'"></i>
                   <span class="Nfdate">{{dataMatch}}</span>
@@ -32,16 +32,34 @@
             </div>            
             <div class="notification pull-right">
                <div class="img_classification">
-                  <button type="button btnMatchFalse" v-on:click="refreshVue(); starClickOff();" class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">          
-                      <span aria-hidden="true">&times;</span>          
-                  </button>
+                 <span class="btn  btnModalAcaoMatch" v-tooltip.top-start="'Acão!'" ><i class="fa fa-ellipsis-h" data-toggle="modal" data-target=".bs-example-modal-sm"></i></span>
                   <i class="imgficaria" v-tooltip.top-start="'Ficaria'"></i>
                   <span class="Nfdate">{{dataMatch}}</span>
-                  <span id="mtPiscadinhas" class="btn pull-right" v-on:click="piscadinhaNotify();" v-tooltip.top-start="'Enviar uma Piscadinha'"><img id="logotipo" src="/src/assets/img/piscadinha.png"></span>
                </div>
             </div>
            </div>
          </li>
+         <!-- Small modal -->
+         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">O Que Deseja Fazer?</h4>
+                </div>
+                <div class="modal-body">
+
+                  <div class="list-group">
+                    <button type="button" v-on:click="piscadinhaNotify(); refreshVue();" class="list-group-item"><span class="badge"><img src="/src/assets/img/piscadinha.png"></span>Enviar uma Piscadinha</button>
+                    <button type="button" class="disabled list-group-item"><span class="badge"><img src="/src/assets/img/whatsapp.png"></span>Enviar WhatsApp</button>
+                    <button type="button" v-on:click="starClickOff(); refreshVue();" class="list-group-item"><span class="badge"><img src="/src/assets/img/closeMatch.png"></span>Desfazer Match</button>
+                  </div>
+
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Small modal -->
    </section>
 </template>
 
@@ -165,5 +183,12 @@ export default{
 .btnMatchFalse { margin-top: -72px; margin-right: -38px;}
 .msgClamigos{margin-top: -17px; margin-left: 16px;}
 /* .readView{box-shadow: 0px 0px 2px 0px #355fe8 !important;} */
-.readView{box-shadow: 0px 0px 2px 0px #2ecc71 !important;}
+.readView{box-shadow: 0px 0px 2px 0px #355fe8 !important;}
+.btnModalAcaoMatch{
+    margin-top: -77px;
+    margin-left: 19px;
+    font-size: 12px;
+    z-index: 999;
+    position: absolute;
+}
 </style>
