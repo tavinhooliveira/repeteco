@@ -14,8 +14,8 @@
                   <div class="btn " data-toggle="collapse" href="#btnCollapseLeft" aria-expanded="false" aria-controls="btnCollapseLeft"><i class="fa fa-ellipsis-h"></i></div>
                   <div id="btnCollapseLeft" class="">
                     <div>					        
-                        <a href="/matchs" title="Todos" > Todos |</a>  
-                        <a href="/matchsOld" title="Flash Backs" >Flash Backs</a>
+                        <a href="/matchs"> Todos |</a> 
+                        <a href="/matchsOld" v-tooltip.bottom-start="'Um Caso Antigo'">Flash Backs </a>  
                           <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'">
                             <span class="fa fa-eye"></span> 
                           </button>

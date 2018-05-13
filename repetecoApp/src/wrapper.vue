@@ -1,13 +1,7 @@
 <template>
     <div id="app">
-        <header class="navbar-fixed-top navbar-default" id="navmenu">
-            <div class="container">
-                <div class="menu col-md-12 btn btn-navbar">
-                    <a href="/profile" onclick="Refresh();"><span class="headerIcon fa fa-user col-md-4" data-toggle="tooltip" data-placement="bottom" title="Perfil"></span></a>             
-                    <span href="#" onclick="Refresh();"><span class="headerIcon col-md-4"><img id="logotipo" src="/src/assets/img/logo.png" data-toggle="tooltip" data-placement="bottom" title="Refresh"></span></span> 
-                    <a href="/classification"><span class="headerIcon fa fa-star-half-o col-md-4" data-toggle="tooltip" data-placement="bottom" title="Classificação"></span></a>  
-                </div>
-            </div>
+        <header class="navbar-fixed-top navbar-default" id="navmenu">            
+            <header-component :imagem="usersData.imagem"/>
         </header>
             <router-view> </router-view>
         <footer class="footer navbar-fixed-bottom navbar-default">
@@ -21,34 +15,23 @@
             </div>
         </footer>
         {{localStoregeFuntion}}
-        <!-- Botões flutuantes -->
-        <!--
-         <div class="">            
-            <div class="col-md-3 btnNotificationNewMatchBtn">
-                <i  href="#"  class="btn btnCircular btnPrincipal btnColor fa fa-bell" data-toggle="tooltip" data-placement="top" title="Alertas"></i> 
-            </div>
-        </div>
-        -->
-        <!-- Receber Notificações -->
         <span v-if="coutMatchs > 0">{{notifyCountMatch}}</span>  
-
         <span id="goTop" v-on:click="scrolltop();"  data-toggle="tooltip" data-placement="top" title="Topo"></span>
-
     </div>
 </template>
 
 <script>
 import axios from 'axios';
+import HeaderComponent from './components/HeaderComponent.vue';
 export default {
     name: 'wrapper',
     components:{
-        axios
+        axios,
+        HeaderComponent
     },
     data() {
         return {
-            matchsData: [],
-            notificationData: [],
-            matchsNotifyStatus: 500
+            usersData: []
         }
     },
     computed: {
@@ -57,49 +40,54 @@ export default {
             var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
             if(idFBStoragelogado != null){
             console.log("wrapper id: OK!");
-                ch.matchsNotify(idFBStoragelogado);
-                ch.getNotificationAPI(idFBStoragelogado);
+                ch.getUsers(idFBStoragelogado);
             }else{
             console.log("wrapper id: NOK!");
             }
         },
+        //Recupera a quantidade de matchs
         coutMatchs() {
-            if(this.matchsData){
-                return this.matchsData.length;         
+            if(this.usersData.matchs){
+                return this.usersData.matchs.length;         
             }else{
                 return 0;
             }
         },
+        //Recupera a quantidade de Notificação
         coutNotification() {
-            if(this.notificationData){
-                return this.notificationData.length;         
+            if(this.usersData.notification){
+                return this.usersData.notification.length;         
             }else{
                 return 0;
             }
         },
         //Recuperado a quantidade de Notificação NÃO lidas (status)!
-        coutNotificationNotRead() { 
-            let litrs =[];           
-            let list = [];
-                for (let i = 0; i < this.notificationData.length; i++) {
-                    if(this.notificationData[i].status === '0'){
-                        list = {status: this.notificationData[i].status}
-                        litrs.push(list)
+        coutNotificationNotRead() {
+            if(this.usersData.notification){
+                let litrs =[];           
+                let list = [];
+                    for (let i = 0; i < this.usersData.notification.length; i++) {
+                        if(this.usersData.notification[i].status === '0'){
+                            list = {status: this.usersData.notification[i].status}
+                            litrs.push(list)
+                            }
                         }
-                    }
-            return litrs.length           
+                return litrs.length
+            }          
         },
         //Recuperado a quantidade de Matchs NÃO lidos (read)!
-        coutMatchsNotRead() { 
+        coutMatchsNotRead() {
+            if(this.usersData.matchs){
             let litrs =[];           
             let list = [];
-                for (let i = 0; i < this.matchsData.length; i++) {
-                    if(this.matchsData[i].read === '0'){
-                        list = {read: this.matchsData[i].read}
+                for (let i = 0; i < this.usersData.matchs.length; i++) {
+                    if(this.usersData.matchs[i].read === '0'){
+                        list = {read: this.usersData.matchs[i].read}
                         litrs.push(list)
                         }
                     }
             return litrs.length           
+            } 
         },
         notifyCountMatch(){
             //Data corrente
@@ -111,7 +99,7 @@ export default {
             //Atributos de MSG
             var dataAtribute ={
                 msg: "Você Tem ",
-                count: this.matchsData.length,
+                count: this.usersData.matchs.length,
                 date: currentTime        
             }       
 
@@ -128,30 +116,16 @@ export default {
         }       
     },
     methods: {
-        matchsNotify(userid){
-            axios.get(`http://localhost:9096/wsrepeteco/users/${userid}/matchs/`)
+        getUsers(userid){
+            axios.get(`http://localhost:9096/wsrepeteco/users/${userid}`)
             .then(response => {
-                this.matchsNotifyStatus = response.status;
-                if (this.matchsNotifyStatus === 200) {
-                    this.matchsData = response.data
-                    console.log("Yes Matchs")
+                this.usersStatus = response.status;
+                if (this.usersStatus === 200) {
+                    this.usersData = response.data
+                    console.log("Yes GetUsers")
                 } else {
-                    this.matchsData = []
-                    console.log("Not Matchs");
-                }
-            })
-        },
-        getNotificationAPI(userid){
-            axios.get(`http://localhost:9096/wsrepeteco/users/${userid}/notification`)
-            .then(response => {
-                this.notificationDataStatus = response.status
-                if (this.notificationDataStatus === 200) {
-                    this.notificationData = response.data
-                    this.statusNotification = true;
-                    console.log("API notificationData: OK!")
-                } else {
-                    this.notificationData = [];
-                    console.log("API notificationData: - Not notificationData");
+                    this.usersData = []
+                    console.log("Not GetUsers");
                 }
             })
         },
@@ -172,23 +146,10 @@ export default {
 .btnNotify {font-size: 9px; margin-top: -29px; margin-left: -8px; background-color: #f25655d1;}
 
 #goTop {
-    position: fixed;
-    margin-left: 1000px;
-    top: 88%;
-    height: 35px;
-    right: -8px;
-    width: 60px;
-    opacity: 0.1;
-    cursor: pointer;
-    background: url(/src/assets/img/arrowtop.png) no-repeat;
-    -moz-transition: opacity 300ms linear;
-    -ms-transition: opacity 300ms linear;
-    transition: opacity 300ms linear;
-    -webkit-transition: opacity 300ms linear;
-    z-index: 9999;
+    position: fixed; margin-left: 1000px; top: 88%;height: 35px;right: -8px;width: 60px;opacity: 0.1;cursor: pointer;
+    background: url(/src/assets/img/arrowtop.png) no-repeat;-moz-transition: opacity 300ms linear;-ms-transition: opacity 300ms linear;
+    transition: opacity 300ms linear; -webkit-transition: opacity 300ms linear;z-index: 9999;
 }
-
-
 </style>
 
 

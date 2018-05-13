@@ -4,13 +4,7 @@
     .newProfile ul.tablist {
         margin-left: 50px;
    }
-    {
-        margin-left: 50px;
-   }
-   {
-       margin-left: 10px;
-   }
-
+  
     .ListFriends .col-md-4 {
         width: 31.333333% !important;
    }
@@ -284,11 +278,11 @@
     #logar .classificationInfo img{
         width: 300px !important;
    }
-    header #logotipo {
-        top: -13px;
-        margin-left: 50px;
-        margin-right: 50px;
-   }
+   header #logotipo {
+    top: -13px;
+    margin-left: 100px;
+    margin-right: 35px;
+}
     .searchClassification {
         margin-top: 50px !important;
         width: 100% !important;

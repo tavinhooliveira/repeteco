@@ -14,8 +14,8 @@
                   <div class="btn " data-toggle="collapse" href="#btnCollapseLeft" aria-expanded="false" aria-controls="btnCollapseLeft"><i class="fa fa-ellipsis-h"></i></div>
                   <div id="btnCollapseLeft" class="">
                     <div>					        
-                        <a href="/matchs" title="Todos" > Todos |</a>  
-                        <a href="/matchsNew" title="Novos Matchs" >Novos Lances |</a>
+                        <a href="/matchs" > Todos |</a>  
+                        <a href="/matchsNew" v-tooltip.bottom-start="'Um Novo Lance'"> Novo Lance </a>
                           <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'">
                             <span class="fa fa-eye"></span> 
                           </button>

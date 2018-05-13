@@ -10,14 +10,13 @@
             </div>
             <div class="row container">
                <div class="btnNotification">
-                  <profileHeaderComponent v-for="user in users" v-bind:key="user.id" v-bind:name="user.name" v-bind:imagem="user.imagem"
-                     v-bind:link="user.link" v-bind:friendsTotalFb="user.friendsTotalFb" v-bind:friendsTotalApp="user.friendsTotalApp">
-                  </profileHeaderComponent>
-                  <div class="btn-group pull-right btnclassifications" role="group" aria-label="...">
-                     <button type="button" class="btn btn-default" v-tooltip.bottom-start="'Todos'" onclick="location.href='/classification'"><i class="fa fa-star-half-o"> </i></button>
-                     <button type="button" class="btn btn-default" v-tooltip.bottom-start="'Classificados'" onclick="location.href='classificationOn'" data-transition="slide"><i class="fa fa-star"> </i></button>
-                     <button type="button" class="btn btn-default active" v-tooltip.bottom-start="'Não Classificados'" onclick="location.href='/classificationOff'"><i class="fa fa-star-o"> </i></button>
-                  </div>
+                  <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
+                  
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default" v-tooltip.bottom-start="'Todos'" onclick="location.href='/classification'"><i class="fa fa-star-half-o"> </i></button>
+                        <button type="button" class="btn btn-default" v-tooltip.bottom-start="'Classificados'" onclick="location.href='classificationOn'" data-transition="slide"><i class="fa fa-star"> </i></button>
+                        <button type="button" class="btn btn-default active" v-tooltip.bottom-start="'Não Classificados'" onclick="location.href='/classificationOff'"><i class="fa fa-star-o"> </i></button>
+                    </div>
                </div>
             </div>
             <div class="list-group" id="searchUL">
