@@ -2,9 +2,9 @@
 <div  class="col-md-4 profileHeaderComponent">
     <div class="media">
         <div class="media-left">
-            <a :href="link" >
+            <router-link :to="link">
                 <img class="media-object" :src="imagem || `/src/assets/img/man.jpg`" v-tooltip.right-start="'Perfil'">
-            </a>
+            </router-link>
         </div>
     </div>
 </div> 

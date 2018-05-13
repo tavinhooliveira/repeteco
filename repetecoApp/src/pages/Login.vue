@@ -54,14 +54,12 @@
 </template>
 
 <script>
-import ProfileHeaderComponent from "../components/ProfileHeaderComponent.vue";
 import CarroselLoginComponet from "../components/CarroselLoginComponet.vue";
 import AboutComponent from "../components/AboutComponent.vue";
 
 export default {
   name: 'login',
   components: {
-    ProfileHeaderComponent,
     CarroselLoginComponet,
     AboutComponent
   },
@@ -194,6 +192,7 @@ export default {
           console.log("Usuario Connectado")
           console.log("API Facebook: - Ok!");
         window.localStorage.setItem('idFBStorage', idFb);
+        window.sessionStorage.setItem('idFBStorage', idFb);
       } else if (response.status === 'not_authorized') {
           console.log("Não Autorizado!");
           vm.authorized = false
@@ -228,7 +227,7 @@ export default {
 /*Inibir botoes do menu e footer- Begin */
 .btnNotificationNewMatch{display:none}
 .menu a,footer{display:none}
-header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:485px}
+/* header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:485px} */
 @media (max-width:480px) and (min-width:320px){
   header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:92px}
   .well_b {

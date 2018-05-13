@@ -9,8 +9,8 @@
                   <div class="btn " data-toggle="collapse" href="#btnCollapseLeft" aria-expanded="false" aria-controls="btnCollapseLeft"><i class="fa fa-ellipsis-h"></i></div>
                   <div id="btnCollapseLeft" class="">
                     <div>					        
-                        <a href="/matchsNew" v-tooltip.bottom-start="'Um Novo Lance'"> Lances |</a>  
-                        <a href="/matchsOld" v-tooltip.bottom-start="'Um Caso Antigo'">Flash Backs </a>
+                        <router-link to="matchsNew" v-tooltip.bottom-start="'Um Novo Lance'"> Lance </router-link>
+                        <router-link to="matchsOld" v-tooltip.bottom-start="'Um Caso Antigo'"> Flash Backs </router-link>
                           <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'">
                             <span class="fa fa-eye"></span> 
                           </button>

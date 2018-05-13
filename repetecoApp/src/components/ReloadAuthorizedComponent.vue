@@ -1,11 +1,11 @@
 <template >
   <div>
     <br><br><br>
-    <section class="error-message ">
-      <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
-      <span class="sr-only">Loading...</span>
-      <h5 class="error-description text-danger">Verificando Autorização...</h5>
-      <a class="error-link" onclick="location.href='/'">login</a>
+    <section class="error-message " v-on:click="refreshVue();" >
+      <i class="fa fa-refresh fa-spin fa-3x fa-fw" v-tooltip.top-start="'Atualizar?'"></i>
+      <span class="sr-only" >Loading...</span>
+      <h5 class="error-description text-danger" >Verificando Autorização...</h5>
+      <router-link  to="/" class="error-link">login</router-link>
     </section>
   </div>
 </template>
@@ -13,6 +13,19 @@
 <script>
 export default {
   name: "ReloadAuthorized",
+  data() {
+    return {
+    }
+  },
+  computed: {
+    //Refresh page
+     refreshVue: function(){
+      window.location.reload();
+    }
+  },
+  methods:{
+
+  }
 };
 </script>
 

@@ -1,10 +1,7 @@
 <template>
    <div>
       <section>
-         <div v-if="!authorized">
-            <ReloadAuthorizedComponent></ReloadAuthorizedComponent>
-         </div>
-         <div v-else  id="ListFriends" class="ListFriends container notification">
+         <div id="ListFriends" class="ListFriends container notification">
             <div id="searchClassification" class="container searchClassification navbar-fixed-top">
                <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">
             </div>
@@ -18,7 +15,8 @@
             <div v-else>
                <reload></reload>
             </div>   
-          </div>     
+          </div>
+          {{localStoregeFuntion}}     
       </section>
    </div>
 </template>
@@ -27,7 +25,6 @@ import Matchscomponent from '../components/Matchscomponent.vue';
 import MatchesRecordComponent from '../components/MatchesRecordComponent.vue';
 import UserComponent from '../components/UserComponent.vue';
 import Reload from "../components/Reload.vue";
-import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
 
 export default {
   name: "Notificatiob",
@@ -36,18 +33,14 @@ export default {
     Matchscomponent,
     UserComponent,
     Reload,
-    ReloadAuthorizedComponent,
     MatchesRecordComponent
   },
   data() {
     return {
       nomeProjeto: "Matcrs",
-      profile: {},
-      authorized: false,
       matchs: {},
       statusApiRepeteco: false,
       statusApiRepetecoAll: false,
-      idUserFbSession: null,
       friendsAll: [],
       users: [],
       matchs: []
@@ -60,6 +53,17 @@ export default {
             return true;         
         }else{
             return false;
+        }
+    },
+    localStoregeFuntion(){
+        let ch = this
+        var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
+        if(idFBStoragelogado != null){
+        console.log("Wrapper: [Matcrs] - id: "+idFBStoragelogado);
+        ch.getApiRepeteco(idFBStoragelogado);
+        ch.getApiRepetecoFriendsAll()
+        }else{
+        console.log("Wrapper [Matcrs] NOK!");
         }
     }
   
@@ -88,41 +92,7 @@ export default {
                 console.log("Erro na chamada da API - Repeteco");
             }
         })
-    },
-    statusChangeCallback(response) {
-        let vm = this
-        var idFb = response.authResponse.userID
-        if (response.status === 'connected') {
-            console.log("Usuario Autorizado!");
-            console.log("Status: Connectado!")
-            vm.authorized = true
-            vm.idUserFbSession = idFb
-            vm.getApiRepeteco(idFb)
-            vm.getApiRepetecoFriendsAll()
-        } else if (response.status === 'not_authorized') {
-            console.log("Status: Não Autorizado!");
-            vm.authorized = false
-        } else if (response.status === 'unknown') {
-            vm.profile = {}
-            vm.authorized = false
-        } else {
-            vm.authorized = false
-        }
     }
-  },
-  mounted() {
-      let vm = this
-      window.fbAsyncInit = function() {
-          FB.init({
-              appId: '175578203007671',
-              cookie: true,
-              xfbml: true,
-              version: 'v2.10'
-          });
-          FB.getLoginStatus(response => {
-              vm.statusChangeCallback(response)
-          })
-      };
   }
 };
 </script>

@@ -1,9 +1,6 @@
 <template >
    <div>
-      <div v-if="!authorized">
-         <ReloadAuthorizedComponent></ReloadAuthorizedComponent>
-      </div>
-      <div v-else id="ListFriends" class="ListFriends container">
+      <div id="ListFriends" class="ListFriends container">
          <div v-if="this.statusAPIAPP === true">
             <div id="searchClassification" class="container searchClassification navbar-fixed-top">
                <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">
@@ -13,9 +10,9 @@
                   <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
                   
                     <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default" v-tooltip.bottom-start="'Todos'" onclick="location.href='/classification'"><i class="fa fa-star-half-o"> </i></button>
-                        <button type="button" class="btn btn-default" v-tooltip.bottom-start="'Classificados'" onclick="location.href='classificationOn'" data-transition="slide"><i class="fa fa-star"> </i></button>
-                        <button type="button" class="btn btn-default active" v-tooltip.bottom-start="'Não Classificados'" onclick="location.href='/classificationOff'"><i class="fa fa-star-o"> </i></button>
+                        <router-link to="classification"><button type="button" class="btn btn-default" v-tooltip.bottom-start="'Todos'"><i class="fa fa-star-half-o"> </i></button></router-link>
+                        <router-link to="classificationOn"><button type="button" class="btn btn-default" v-tooltip.bottom-start="'Classificados'" data-transition="slide"><i class="fa fa-star"> </i></button></router-link>
+                        <router-link to="classificationOff"><button type="button" class="btn btn-default active" v-tooltip.bottom-start="'Não Classificados'" ><i class="fa fa-star-o"> </i></button></router-link>
                     </div>
                </div>
             </div>
@@ -24,42 +21,51 @@
                   v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"
                   v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot"></userComponentOff>
             </div>
-            </br>
+            <br>
          </div>
          <div v-else>
             <reload></reload>
          </div>
       </div>
+      {{localStoregeFuntion}}
    </div>
 </template>
 
 <script>
 import UserComponentOff from "../components/UserComponentOff.vue";
 import Reload from "../components/Reload.vue";
-import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
-import ProfileHeaderComponent from "../components/ProfileHeaderComponent.vue";
+import axios from 'axios';
 
 export default {
   name: "ClassificationOff",
   props: ["name", "imagem", "friends"],
   components: {
     UserComponentOff,
-    ProfileHeaderComponent,
     Reload,
-    ReloadAuthorizedComponent
+    axios
   },
   data() {
       return {
         nomeProjeto: "ClassificationOff",
-        profile: {},
-        authorized: false,
         users: {},
         statusAPIAPP: false
       };
   },
+  computed: {
+    localStoregeFuntion(){
+        let ch = this
+        var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
+        if(idFBStoragelogado != null){
+        console.log("Wrapper: [classificationOff] - id: "+idFBStoragelogado);
+        ch.getApiRepeteco(idFBStoragelogado);
+        }else{
+        console.log("Wrapper [classificationOff] NOK!");
+        }
+    }
+  },
   methods: {
     getApiRepeteco(userid) {
-        this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
+        axios.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
             this.users = [response.data]
             if (this.users.length > 0) {
                 console.log("API Repeteco: OK!")
@@ -69,39 +75,7 @@ export default {
                 console.log("Erro na chamada da API - Repeteco");
             }
         })
-    },
-    statusChangeCallback(response) {
-        let vm = this
-        if (response.status === 'connected') {
-            console.log("Usuario Autorizado!");
-            console.log("Status: Connectado!")
-            vm.authorized = true
-            vm.getApiRepeteco(response.authResponse.userID)
-        } else if (response.status === 'not_authorized') {
-            console.log("Status: Não Autorizado!");
-            vm.authorized = false
-        } else if (response.status === 'unknown') {
-            vm.profile = {}
-            vm.authorized = false
-        } else {
-            vm.authorized = false
-        }
     }
-  },
-  mounted() {
-      let vm = this
-      window.fbAsyncInit = function() {
-          FB.init({
-              appId: '175578203007671',
-              cookie: true,
-              xfbml: true,
-              version: 'v2.10'
-          });
-          FB.getLoginStatus(response => {
-              vm.statusChangeCallback(response)
-          })
-      };
   }
-  //Facebook - End 
 };
 </script>

@@ -13,11 +13,11 @@
             {{text}}
             <span class="pull-right btnDate">
                 <span id="dataNotify">{{dateNotify}}</span>
-                <i v-on:click="deleteNotificationRead(); refreshVue();" class="glyphicon glyphicon-remove" v-tooltip.top-start="'Deletar Notificação'"></i>    
+                <i v-on:click="deleteNotificationRead(); " class="glyphicon glyphicon-remove" v-tooltip.top-start="'Deletar Notificação'"></i>    
             </span>
         </span>
     </li>
-    <li v-if="statusData === '0'" v-on:click="starClickRead(); refreshVue();" class="list-group-item itemNotification">
+    <li v-if="statusData === '0'" v-on:click="starClickRead();" class="list-group-item itemNotification">
         <span>
             <img class="imgNotificatioCirculo"  v-bind:src="imagem" style='height: 40px; width: 40px;'>
             <span>
@@ -73,8 +73,10 @@ export default {
         data: JSON.stringify(fdStatus)
       });
       this.efeitoClick = 'transition: opacity .5s; color: red; transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);'
+      this.refreshVue();
     },
     deleteNotificationRead: function() {
+      this.statusData = null;
       var notifyId = this.id;
       $.ajax({
         url: "http://localhost:9096/wsrepeteco/notification/delete/" + notifyId,

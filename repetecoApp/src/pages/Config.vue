@@ -1,10 +1,7 @@
 <template>
   <section>
     <div>
-        <div v-if="!authorized">
-          <ReloadAuthorizedComponent></ReloadAuthorizedComponent>
-        </div>
-        <div v-else>
+        <div >
           <div v-if="this.statusAPIAPP === true" id="configuracao" class="configuracao col-md-6 container col-md-offset-3 ">
               <div class="panel panel-default">
                 <div class="panel-heading">
@@ -142,31 +139,40 @@
               <reload></reload>
           </div>
         </div>
+        {{localStoregeFuntion}}
     </div>
   </section>
 </template>
 
 <script>
 import Reload from "../components/Reload.vue";
-import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
 import AboutComponent from "../components/AboutComponent.vue";
 export default {
-  props: ['preference'],
-  data() {
-      return {
-        user: {},
-        profile: {},
-        statusAPIAPP: false,
-        authorized: false
-      }
-  },
-  components: {
-    Reload,
-    ReloadAuthorizedComponent,
-    AboutComponent
-  },
-  created() {
+    props: ['preference'],
+    data() {
+        return {
+            user: {},
+            statusAPIAPP: false
+        }
+    },
+    components: {
+        Reload,
+        AboutComponent
+    },
+    created() {
 
+    },
+    computed: {
+        localStoregeFuntion(){
+            let ch = this
+            var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
+            if(idFBStoragelogado != null){
+            console.log("Wrapper: [config] - id: "+idFBStoragelogado);
+            ch.getApiRepeteco(idFBStoragelogado);
+            }else{
+            console.log("Wrapper [config] NOK!");
+            }
+        }
   },
   methods: {
     //WsRepeteco - API GET
@@ -213,45 +219,10 @@ export default {
             data: JSON.stringify(setPreference)
         });
         document.getElementById("msgPreference").style.display = "block";
-    },
-    statusChangeCallback(response) {
-        let vm = this
-        var idFb = response.authResponse.userID
-        if (response.status === 'connected') {
-            console.log("Usuario Autorizado!");
-            console.log("Status: Connectado!")
-            vm.authorized = true
-            vm.idUserFbSession = idFb
-            vm.getApiRepeteco(idFb)
-        } else if (response.status === 'not_authorized') {
-            console.log("Status: Não Autorizado!");
-            vm.authorized = false
-        } else if (response.status === 'unknown') {
-            vm.profile = {}
-            vm.authorized = false
-        } else {
-            vm.authorized = false
-        }
     }
-  },
-  mounted() {
-      let vm = this
-      window.fbAsyncInit = function() {
-          FB.init({
-              appId: '175578203007671',
-              cookie: true,
-              xfbml: true,
-              version: 'v2.10'
-          });
-          FB.AppEvents.logPageView();
-          FB.getLoginStatus(response => {
-              vm.statusChangeCallback(response)
-          })
-      };
   }
-  //Facebook - End 
+
 }
 </script>
 <style>
-#msgPreference{padding: 0px 20px;}
-</style>
+#msgPreference{padding: 0px 20px;}</style>

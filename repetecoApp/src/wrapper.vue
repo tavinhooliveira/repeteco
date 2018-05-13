@@ -1,48 +1,56 @@
 <template>
-    <div id="app">
-        <header class="navbar-fixed-top navbar-default" id="navmenu">            
+    <div id="app">        
+          <header class="navbar-fixed-top navbar-default" id="navmenu">            
             <header-component :imagem="usersData.imagem"/>
         </header>
+        <span v-if="!authorized">
+            <ReloadAuthorizedComponent></ReloadAuthorizedComponent>
+        </span>
+        <span v-else>
             <router-view> </router-view>
+      </span>        
         <footer class="footer navbar-fixed-bottom navbar-default">
             <div class="container">
-                <div class="col-md-12 btn btn-navbar">              
-                    <a href="/notification"><span class="footerIcon fa fa-bell fa-red  text-red fa-1x col-md-3" data-transition="pop" data-toggle="tooltip" data-placement="top" title="Notificações"><i v-show="coutNotificationNotRead != 0" class="badge btnNotify" id="cont_cl_fico">{{coutNotificationNotRead}}</i></span></a>                     
-                    <a href="/matchs"><span class="footerIcon fa fa-heartbeat fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Matchs"><i v-show="coutMatchsNotRead != 0" class="badge btnNotify" id="cont_cl_fico">{{coutMatchsNotRead}}</i></span></a>       
-                    <a href="/config"><span class="footerIcon fa fa-sun-o fa-1x col-md-3 " data-transition="pop" data-toggle="tooltip" data-placement="top" title="Configuração"></span></a>
+                <div class="col-md-12 btn btn-navbar">
+                               
+                    <router-link to="notification"><span class="footerIcon fa fa-bell fa-red  text-red fa-1x col-md-3" data-transition="pop" data-toggle="tooltip" data-placement="top" title="Notificações"><i v-show="coutNotificationNotRead != 0" class="badge btnNotify" id="cont_cl_fico">{{coutNotificationNotRead}}</i></span></router-link>                     
+                    <router-link to="matchs"><span class="footerIcon fa fa-heartbeat fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Matchs"><i v-show="coutMatchsNotRead != 0" class="badge btnNotify" id="cont_cl_fico">{{coutMatchsNotRead}}</i></span></router-link>     
+                    <router-link to="config"><span class="footerIcon fa fa-sun-o fa-1x col-md-3 " data-transition="pop" data-toggle="tooltip" data-placement="top" title="Configuração"></span></router-link>
                     <a href="/" onclick="Refresh();"><span class="footerIcon fa fa-sign-out fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Sair"></span></a>
                 </div>
             </div>
-        </footer>
-        {{localStoregeFuntion}}
-        <span v-if="coutMatchs > 0">{{notifyCountMatch}}</span>  
+        </footer> 
         <span id="goTop" v-on:click="scrolltop();"  data-toggle="tooltip" data-placement="top" title="Topo"></span>
+        {{localStoregeFuntion}}
     </div>
 </template>
 
 <script>
+import ReloadAuthorizedComponent from "./components/ReloadAuthorizedComponent.vue";
 import axios from 'axios';
 import HeaderComponent from './components/HeaderComponent.vue';
 export default {
     name: 'wrapper',
     components:{
         axios,
-        HeaderComponent
+        HeaderComponent,
+        ReloadAuthorizedComponent
     },
     data() {
         return {
-            usersData: []
+            usersData: [],
+            authorized: true
         }
     },
     computed: {
         localStoregeFuntion(){
-            let ch = this
+            let vm = this
             var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
             if(idFBStoragelogado != null){
-            console.log("wrapper id: OK!");
-                ch.getUsers(idFBStoragelogado);
+            console.log("Wrapper: [localStorage] "+idFBStoragelogado);
+            vm.getUsers(idFBStoragelogado);
             }else{
-            console.log("wrapper id: NOK!");
+            console.log("Wrapper [localStorage] NOK!");
             }
         },
         //Recupera a quantidade de matchs
@@ -88,32 +96,7 @@ export default {
                     }
             return litrs.length           
             } 
-        },
-        notifyCountMatch(){
-            //Data corrente
-            var today = new Date();
-            var dd = today.getDate(); 
-            var mm = today.getMonth()+1; 
-            var yyyy = today.getFullYear();
-            var currentTime = today.toLocaleString('pt-BR');
-            //Atributos de MSG
-            var dataAtribute ={
-                msg: "Você Tem ",
-                count: this.usersData.matchs.length,
-                date: currentTime        
-            }       
-
-            var e = new Notification ("RepetecoWEB", {
-                body: dataAtribute.msg + dataAtribute.count +" Matchrs!"+ "\n" + "Atualizado em: " + dataAtribute.date,
-                icon: "/src/assets/img/repeteco.png",
-                tag: "NEVERGRIND-CHAT-ALERT",
-                silent: false,
-                vibrate: [200, 100, 200]
-            });            
-            e.onclick = function (){
-                location.href = "/matchs";
-            }
-        }       
+        }
     },
     methods: {
         getUsers(userid){
@@ -122,18 +105,18 @@ export default {
                 this.usersStatus = response.status;
                 if (this.usersStatus === 200) {
                     this.usersData = response.data
-                    console.log("Yes GetUsers")
+                    console.log("API Wrapper [GetUsers] OK!")
                 } else {
                     this.usersData = []
-                    console.log("Not GetUsers");
+                    console.log("Not Wrapper GetUsers");
                 }
             })
         },
         scrolltop: function(){
             window.scrollTo(0, 0);
-        }       
+        }
 
-    }
+     }
  
 }
 </script>

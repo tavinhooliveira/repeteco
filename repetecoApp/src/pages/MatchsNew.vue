@@ -1,10 +1,7 @@
 <template>
    <div class="pageMatch">
       <section>
-         <div v-if="!authorized">
-            <ReloadAuthorizedComponent></ReloadAuthorizedComponent>
-         </div>
-         <div v-else  id="ListFriends" class="ListFriends container notification">
+         <div id="ListFriends" class="ListFriends container notification">
             <div id="searchClassification" class="container searchClassification navbar-fixed-top">
                <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">
             </div>
@@ -14,8 +11,8 @@
                   <div class="btn " data-toggle="collapse" href="#btnCollapseLeft" aria-expanded="false" aria-controls="btnCollapseLeft"><i class="fa fa-ellipsis-h"></i></div>
                   <div id="btnCollapseLeft" class="">
                     <div>					        
-                        <a href="/matchs"> Todos |</a> 
-                        <a href="/matchsOld" v-tooltip.bottom-start="'Um Caso Antigo'">Flash Backs </a>  
+                        <router-link to="matchs">Todos |</router-link>
+                        <router-link to="matchsOld" v-tooltip.bottom-start="'Um Caso Antigo'">Flash Backs </router-link>
                           <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'">
                             <span class="fa fa-eye"></span> 
                           </button>
@@ -36,6 +33,7 @@
             </div>
             <br>
          </div>
+         {{localStoregeFuntion}}  
       </section>
    </div>
 </template>
@@ -43,7 +41,6 @@
    import MatchNewComponent from '../components/MatchNewComponent.vue';
    import axios from 'axios';
    import Reload from "../components/Reload.vue";
-   import ReloadAuthorizedComponent from "../components/ReloadAuthorizedComponent.vue";
    
    export default{
      name: "NotificationNewMatch",
@@ -51,20 +48,27 @@
      components:{
    	    MatchNewComponent,
         Reload,
-        ReloadAuthorizedComponent,
         axios
      },
      data () {
        return {
-         authorized: false,
          statusAPIAPP: false,
-         idUserFbSession: null,
          users: [],
          matchsData: [],
          ApiRepetecoStatus: false
        };
      },
   computed: {
+    localStoregeFuntion(){
+        let ch = this
+        var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
+        if(idFBStoragelogado != null){
+        console.log("Wrapper: [Matcrs] - id: "+idFBStoragelogado);
+        ch.getApiRepeteco(idFBStoragelogado);
+        }else{
+        console.log("Wrapper [Matcrs] NOK!");
+        }
+    },
     contMatchNewMatch() {
       if(this.users.matchs){
         let litrs =[];           
@@ -80,55 +84,22 @@
     }
   },
   methods: {
-   getApiRepeteco(userid){
-   		this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
+    getApiRepeteco(userid){
+      this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
         this.ApiRepetecoStatus = response.status			
-         if (this.ApiRepetecoStatus === 200) {
+        if (this.ApiRepetecoStatus === 200) {
             this.users = response.data
             this.statusAPIAPP = true;
             console.log("API Repeteco: OK!")
-         } else {
-           this.statusAPIAPP = false;
-           this.users = 0;
-           console.log("Erro na chamada da API - Repeteco");
-         }    
-       })
-   	},
-   statusChangeCallback (response) {
-         let vm = this
-         var idFb = response.authResponse.userID
-         if (response.status === 'connected') {
-           console.log("Usuario Autorizado!");       
-           console.log("Status: Connectado!")
-           vm.authorized = true
-           vm.idUserFbSession = idFb
-           vm.getApiRepeteco(idFb)
-         } else if (response.status === 'not_authorized') {
-           console.log("Status: Não Autorizado!");
-           vm.authorized = false
-         } else if (response.status === 'unknown') {
-           vm.profile = {}
-           vm.authorized = false
-         } else {
-           vm.authorized = false
-         }
-       }
-     },
-   mounted () {
-       let vm = this    
-       window.fbAsyncInit = function() {
-         FB.init({
-           appId: '175578203007671',
-           cookie: true,
-           xfbml: true,
-           version: 'v2.10'
-         });
-         FB.getLoginStatus(response => {
-           vm.statusChangeCallback(response)
-         })
-       };
-     }
-   };
+        } else {
+          this.statusAPIAPP = false;
+          this.users = 0;
+          console.log("Erro na chamada da API - Repeteco");
+        }    
+      })
+    }
+  }
+};
 </script>
 
 <style>
