@@ -1,6 +1,14 @@
  
 /*Responsivo Tablet*/
 @media (min-width : 430px) and (max-width: 1198px) {
+    .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+        right: 50%;
+        margin-right: -30px;
+    }
+    .col-md-4 profileHeaderComponent{
+        z-index: 9999 !important;
+        position: absolute !important;
+    }
     .newProfile ul.tablist {
         margin-left: 50px;
    }
@@ -124,6 +132,14 @@
 /*END Responsivo Tablet*/
 /*Responsivo Tablet*/
 @media (min-width : 480px) and (max-width: 768px) {
+    .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+        right: 50%;
+        margin-right: -30px;
+    }
+    .col-md-4 profileHeaderComponent{
+        z-index: 9999 !important;
+        position: absolute !important;
+    }
     .newProfile ul.tablist {
        margin-left: 250px;
    }
@@ -247,14 +263,16 @@
 /*END Responsivo Tablet*/
 /*Responsivo Modile Android*/
 @media (min-width : 320px) and (max-width : 480px){
+    .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+        right: 50%;
+        margin-right: -30px;
+    }
+    .col-md-4 profileHeaderComponent{
+        z-index: 9999 !important;
+        position: absolute !important;
+    }
     .newProfile ul.tablist {
         margin-left: 50px;
-   }
-    {
-        margin-left: 50px;
-   }
-   {
-       margin-left: 10px;
    }
 
     .socailIcons {
@@ -432,6 +450,14 @@
 /*END Android*/
 /*Responsivo Iphone 5*/
 @media (min-width: 200px) and (max-width: 320px) {
+    .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+        right: 50%;
+        margin-right: -30px;
+    }
+    .col-md-4 profileHeaderComponent{
+        z-index: 9999 !important;
+        position: absolute !important;
+    }
     .newProfile ul.tablist {
         margin-left: 50px;
    }
@@ -596,3 +622,4 @@
         position: absolute;
    }
 /*END - Responsivo Iphone 5*/
+}

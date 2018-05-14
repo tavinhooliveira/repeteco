@@ -6,6 +6,7 @@
             <div id="searchClassification" class="container searchClassification navbar-fixed-top">
                <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">
             </div>
+            <br>
             <div class="btnNotification" role="group" >
                <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
                 <div v-show="contMatchOldMatch > 0" class="btn-group pull-right">

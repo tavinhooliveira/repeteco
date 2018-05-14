@@ -229,7 +229,7 @@ export default {
 .menu a,footer{display:none}
 /* header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:485px} */
 @media (max-width:480px) and (min-width:320px){
-  header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:92px}
+  header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:30px}
   .well_b {
     background-color: rgba(255, 255, 255, 0.94) !important;
     border: 1px solid #b4b4b47d;

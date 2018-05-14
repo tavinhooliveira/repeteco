@@ -12,12 +12,12 @@
             </div>            
             <div class="notification pull-right">
                <div class="img_classification">
-                  <button type="button btnMatchFalse"  class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Desfazer Match'">          
+                  <button type="button btnMatchFalse"  class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Não Vizualizado'">          
                       <span class="glyphicon glyphicon-eye-close"></span>          
                   </button>
                   <i class="imgficaria" v-tooltip.top-start="'Ficaria'"></i>
                   <span class="Nfdate">{{dataMatch}}</span>
-               </div>
+               </div>              
             </div>
            </div>
            <!-- not View -->
@@ -29,44 +29,44 @@
                <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
                <small class="Nfmensagem">Disse que rola um possivel... <br> <b>Lance!</b>
                 </small>
-            </div>            
+            </div>
             <div class="notification pull-right">
                <div class="img_classification">
-                 <span class="btn  btnModalAcaoMatch" v-tooltip.top-start="'Acão!'" ><i class="fa fa-ellipsis-h" data-toggle="modal" data-target=".bs-example-modal-sm"></i></span>
+                 <span class="btn  btnModalAcaoMatch" v-tooltip.top-start="'Acão!'" ><i class="fa fa-ellipsis-h" v-on:click="sweetModalSimple();"></i></span>
                   <i class="imgficaria" v-tooltip.top-start="'Ficaria'"></i>
                   <span class="Nfdate">{{dataMatch}}</span>
                </div>
             </div>
            </div>
          </li>
-         <!-- Small modal -->
-         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-          <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">O Que Deseja Fazer?</h4>
-                </div>
-                <div class="modal-body">
-
-                  <div class="list-group">
-                    <button type="button" v-on:click="piscadinhaNotify(); refreshVue();" class="list-group-item"><span class="badge"><img src="/src/assets/img/piscadinha.png"></span>Enviar uma Piscadinha</button>
-                    <button type="button" class="disabled list-group-item"><span class="badge"><img src="/src/assets/img/whatsapp.png"></span>Enviar WhatsApp</button>
-                    <button type="button" v-on:click="starClickOff(); refreshVue();" class="list-group-item"><span class="badge"><img src="/src/assets/img/closeMatch.png"></span>Desfazer Match</button>
-                  </div>
-
-                </div>
-            </div>
-          </div>
-        </div>
-        <!-- End Small modal -->
+         <!-- Modal Begin -->
+            <sweet-modal ref="sweetModalSimple" >O Que Deseja Fazer com: {{name}}
+              <div class="list-group modal-body">
+                <button type="button" v-on:click="piscadinhaNotify(); sweetModalSuccess();" class="list-group-item"><span class="badge"><img src="/src/assets/img/piscadinha.png"></span>Enviar uma Piscadinha</button>
+                <button type="button" class="disabled list-group-item"><span class="badge"><img src="/src/assets/img/whatsapp.png"></span>Enviar WhatsApp</button>
+                <button type="button" v-on:click="sweetModalAcao();" class="list-group-item"><span class="badge"><img src="/src/assets/img/closeMatch.png"></span>Desfazer Match</button>
+              </div>
+            </sweet-modal>
+            <!-- modal success  -->
+            <sweet-modal icon="success" ref="sweetModalSuccess">
+              Feito!
+            </sweet-modal>
+          <!-- modal acao -->
+            <sweet-modal icon="error" ref="sweetModalAcao">
+                <p>Tem Certeza que desaja desfazer o Match?</p>
+                <button v-on:click="starClickOff(); refreshVue();" role="button" class="btn btn-warning">Desfazer</button>
+            </sweet-modal>
+        <!-- Modal End -->  
    </section>
 </template>
 
 <script>
+import { SweetModal, SweetModalTab } from 'sweet-modal-vue'
 export default{
   props:['name','id','imagem','link','option','user_id','id_fb_friends', 'dataMatch', 'userName', 'userLink', 'userImagem', 'read'],
     components:{
+      SweetModal,
+		  SweetModalTab
   },
   data() {
     return {
@@ -78,6 +78,15 @@ export default{
     }
   }, 
   methods: {
+    sweetModalSimple(){
+      return this.$refs.sweetModalSimple.open();
+    },
+    sweetModalSuccess(){
+      return this.$refs.sweetModalSuccess.open();
+    },
+    sweetModalAcao(){
+      return this.$refs.sweetModalAcao.open();
+    },
     //Desfazer match
     starClickOff: function() {
       this.optiondata = null;
@@ -184,11 +193,4 @@ export default{
 .msgClamigos{margin-top: -17px; margin-left: 16px;}
 /* .readView{box-shadow: 0px 0px 2px 0px #355fe8 !important;} */
 .readView{box-shadow: 0px 0px 2px 0px #355fe8 !important;}
-.btnModalAcaoMatch{
-    margin-top: -77px;
-    margin-left: 19px;
-    font-size: 12px;
-    z-index: 999;
-    position: absolute;
-}
 </style>

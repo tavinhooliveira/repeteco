@@ -5,10 +5,13 @@ import VTooltip from 'v-tooltip'
 import axios from 'axios'
 import Wrapper from './Wrapper'
 import router from './router'
+import SweetModal from 'sweet-modal-vue/src/plugin.js'
+
 
 Vue.use(VueResource)
 Vue.use(FBSignInButton)
 Vue.use(VTooltip)
+Vue.use(SweetModal)
 Vue.prototype.$ajax = axios
 
 // new Vue ({
