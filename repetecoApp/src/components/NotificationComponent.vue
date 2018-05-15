@@ -5,9 +5,10 @@
             <img class="imgNotificatioCirculo"  v-bind:src="imagem" style='height: 40px; width: 40px;'>
             <span>
             <i v-if="type === 'Match'" class="fa fa-heartbeat" aria-hidden="true"></i>
+             <i v-if="type === 'WhatsApp'" class="fa fa-whatsapp" aria-hidden="true"></i>
             <i v-if="type === 'Novo Amigo'" class="fa fa-user-plus" aria-hidden="true"></i>
             <i v-if="type === 'Piscadinha'" class="fa fa-eye" aria-hidden="true"></i>
-            <i v-if="type != 'Novo Amigo' && type != 'Match' && type != 'Piscadinha'" class="fa fa-info-circle" aria-hidden="true"></i>            
+            <i v-if="type != 'Novo Amigo' && type != 'Match' && type != 'Piscadinha' && type != 'WhatsApp'"  class="fa fa-info-circle" aria-hidden="true"></i>            
             </span>
            <a v-tooltip.top-start="'Vizualizar Perfil no Facebook!'" v-bind:href="link" target="_blank">{{name}}</a> -
             {{text}}

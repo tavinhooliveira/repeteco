@@ -8,7 +8,7 @@
                   v-bind:friendsTotalFb="profileinfo.friendsTotalFb" v-bind:friendsTotalApp="profileinfo.friendsTotalApp" v-bind:flagDisplayHot="profileinfo.flagDisplayHot"
                   v-bind:flagDisplayCount="profileinfo.flagDisplayCount" v-bind:numberWhats="profileinfo.numberWhats" v-bind:email="profileinfo.email" v-bind:gender="profileinfo.gender"  v-bind:preference="profileinfo.preference"
                   v-bind:friends="profileinfo.friends" v-bind:notification="profileinfo.notification"  v-bind:friendsAll="friendsAll">
-               </profileComponent>               
+               </profileComponent>  
             </section>
          </div>
          <div v-else>
@@ -16,7 +16,7 @@
             <reload></reload>
          </div>
       </div>
-       {{localStoregeFuntion}}
+       {{localStoregeFuntion}}     
    </div>
 </template>
 
@@ -25,7 +25,7 @@ import ProfileComponent from '../components/ProfileComponent.vue';
 import UserComponent from '../components/UserComponent.vue';
 import FriendComponent from '../components/FriendComponent.vue';
 import Reload from '../components/Reload.vue';
-
+import axios from 'axios';
 export default {
   name: 'Profile',
   props: ['id', 'name', 'email', 'imagem', 'link', 'friends', 'city', 'id_fb_users', 'gender','numberWhats'],
@@ -33,7 +33,8 @@ export default {
     ProfileComponent,
     FriendComponent,
     UserComponent,
-    Reload
+    Reload,
+    axios
   },
   data() {
       return {
@@ -47,12 +48,12 @@ export default {
   },
   computed: {
         localStoregeFuntion(){
-            let ch = this
+            let vm = this
             var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
             if(idFBStoragelogado != null){
             console.log("Wrapper: [Profile] - id: "+idFBStoragelogado);
-            ch.getApiRepeteco(idFBStoragelogado);
-            ch.getApiRepetecoFriendsAll();
+            vm.getApiRepeteco(idFBStoragelogado);
+            vm.getApiRepetecoFriendsAll();
             }else{
             console.log("Wrapper [Profile] NOK!");
             }
@@ -61,7 +62,7 @@ export default {
   methods: {
     //usado para extrair o id dos amigos que deram match!
     getApiRepetecoFriendsAll() {
-        this.$http.get(`http://localhost:9096/wsrepeteco/friends`).then(response => {
+        axios.get(`http://localhost:9096/wsrepeteco/friends`).then(response => {
             this.friendsAll = response.data
             if (this.friendsAll.length > 0) {
                 console.log("API Repeteco AllFriends: OK!")
@@ -74,7 +75,7 @@ export default {
     },
     //API repeteco lista de user corrente                    
     getApiRepeteco(userid) {
-        this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
+         axios.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
             this.getApiRepetecoStatus = response.status
             if (this.getApiRepetecoStatus === 200) {
                 this.users = [response.data];

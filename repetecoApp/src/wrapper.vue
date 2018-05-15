@@ -43,7 +43,7 @@ export default {
         }
     },
     computed: {
-        localStoregeFuntion(){
+        localStoregeFuntion: function(){
             let vm = this
             var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
             if(idFBStoragelogado != null){
@@ -97,6 +97,9 @@ export default {
             return litrs.length           
             } 
         }
+   
+
+         
     },
     methods: {
         getUsers(userid){
@@ -114,8 +117,12 @@ export default {
         },
         scrolltop: function(){
             window.scrollTo(0, 0);
+        },
+        recalled(){
+            window.location.reload();
+            setTimeout('location.reload();', 5000);
         }
-
+        
      }
  
 }
