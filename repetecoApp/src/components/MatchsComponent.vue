@@ -82,8 +82,16 @@
             <sweet-modal ref="sweetModalSimple" >O Que Deseja Fazer com: {{name}}
               <div class="list-group modal-body">
                 <button type="button" v-on:click="piscadinhaNotify(); sweetModalSuccess();" class="list-group-item"><span class="badge"><img src="/src/assets/img/piscadinha.png"></span>Enviar uma Piscadinha</button>
-                <button type="button" class="disabled list-group-item"><span class="badge"><img src="/src/assets/img/whatsapp.png"></span>Enviar WhatsApp</button>
+                <span v-if="isValidWhats == true">
+                  <button type="button" v-on:click="whatsAppNotify(); sweetModalSuccess();" class="list-group-item"><span class="badge"><img src="/src/assets/img/whatsapp.png"></span>Enviar WhatsApp</button>
+                </span>
+                <span v-else>
+                  <button type="button" class="list-group-item disabled"><span class="badge"><img src="/src/assets/img/whatsapp.png"></span>Enviar WhatsApp</button>
+                </span>
                 <button type="button" v-on:click="sweetModalAcao();" class="list-group-item"><span class="badge"><img src="/src/assets/img/closeMatch.png"></span>Desfazer Match</button>
+                <div v-show="isValidWhats ==  false">
+                  <p id="infoWhats">Para enviar o Número do WhatsApp é nescessário Cadastar em: Perfil/Editar</p>
+                </div>
               </div>
             </sweet-modal>
             <!-- modal success  -->
@@ -104,7 +112,7 @@
 <script>
 import { SweetModal, SweetModalTab } from 'sweet-modal-vue'
 export default{
-  props:['name','id','imagem','link','option','user_id','id_fb_friends', 'dataMatch', 'userName', 'userLink', 'userImagem', 'read'],
+  props:['name','id','imagem','link','option','user_id','id_fb_friends', 'dataMatch', 'userName', 'userLink', 'userImagem', 'read', 'userNumberWhats'],
     components:{
       SweetModal,
 		  SweetModalTab
@@ -120,7 +128,12 @@ export default{
     }
   },
   computed:{
-    
+    isValidWhats() {
+      if(this.userNumberWhats != '' && this.userNumberWhats != null){
+        return true;
+        document.getElementById("btnWhats").style.display = "none";
+      } return false;
+    }    
 
   }, 
   methods: {
@@ -205,6 +218,34 @@ export default{
       });
       console.log("Piscadinha enviada para: "+idFriendsCorrent);
     },
+    //Enviar uma Piscadinha
+    whatsAppNotify: function(){
+      var idFriendsCorrent = this.id_fb_friends
+      const fdpsOption = {
+        id_fb_friends: this.id_fb_friends,
+        name: this.userName,
+        imagem: this.userImagem,
+        link: this.userLink,
+        type: "WhatsApp",
+        status: "0",
+        text: "Enviou o WhatsApp para você: "+this.userNumberWhats,
+        user_id: this.user_id        
+      }
+      $.ajax({
+        url: "http://localhost:9096/wsrepeteco/users/"+ idFriendsCorrent +"/notification",
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          'dataType': 'json'
+        },
+        dataType: 'json',
+        crossDomain: true,
+        origin: "*",
+        processData: true,
+        data: JSON.stringify(fdpsOption)
+      });
+      console.log("Piscadinha enviada para: "+idFriendsCorrent);
+    },
     //Refresh page
      refreshVue: function(){
       window.location.reload();
@@ -238,5 +279,6 @@ export default{
 .btnMatchFalse { margin-top: -72px; margin-right: -38px;}
 .msgClamigos{margin-top: -17px; margin-left: 16px;}
 .readView{box-shadow: 0px 0px 2px 0px #355fe8 !important;}
+#infoWhats{font-size: 9px; color: rgb(241, 144, 70); margin-top: 10px;}
 </style>
 

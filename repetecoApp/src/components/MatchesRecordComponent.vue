@@ -30,7 +30,7 @@
         <matchscomponent v-bind:matchs="matchsData" v-for="matchs in matchsData" v-bind:key="matchs.id" v-bind:id="matchs.id"
         v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender"
         v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id"
-        v-bind:dataMatch="matchs.dataMatch" v-bind:userName="name" v-bind:userLink="link" v-bind:userImagem="imagem" v-bind:read="matchs.read"> 
+        v-bind:dataMatch="matchs.dataMatch" v-bind:userName="name" v-bind:userLink="link" v-bind:userImagem="imagem" v-bind:read="matchs.read" v-bind:userNumberWhats="numberWhats"> 
         </matchscomponent>
         <div v-if="isMatch == false">
             <br><p class="text-center">Você ainda não tem Matchs! ☹</p>
@@ -42,7 +42,7 @@ import Matchscomponent from './Matchscomponent.vue';
 import axios from 'axios';
 
 export default{
-  props:['id','id_fb_users','user_id','name','imagem','link','nationality','friendsTotalFb','friends','preference','flagDisplayHot', 'matchs', 'friendsAll'],
+  props:['id','id_fb_users','user_id','name','imagem','link','nationality','friendsTotalFb','friends','preference','flagDisplayHot', 'matchs', 'friendsAll', 'numberWhats'],
   components:{
       Matchscomponent,
       axios

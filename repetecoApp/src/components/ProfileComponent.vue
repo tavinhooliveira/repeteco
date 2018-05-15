@@ -5,14 +5,27 @@
     <!-- sidebar -->
     <div class="col-md-3 ">
         <!-- sidebar Perfil -->
-       <div class="user-heading round" v-tooltip.top-start="'Perfil Facebook'">
-            <a v-bind:href="link" target="_blank">
-                <img v-bind:src="imagem" alt="">
-            </a>
-            <h4 class="perfilName center-block"><a v-bind:href="link" target="_blank">{{name}}</a>
-                <h6 class="small center-block">{{friendsTotalApp}} de {{friendsTotalFb}} <i class="fa fa-users"></i> </h6>
-            </h4>
+       <div class="user-heading round">
+           <span v-tooltip.top-start="'Perfil Facebook'">
+                <a v-bind:href="link" target="_blank">
+                    <img v-bind:src="imagem" alt="">
+                </a>
+                <h4 class="perfilName center-block"><a v-bind:href="link" target="_blank">{{name}}</a>
+                    <h6 class="small center-block">{{friendsTotalApp}} de {{friendsTotalFb}} <i class="fa fa-users"></i> </h6>
+                </h4>
+            </span>
+            <a class="" data-toggle="collapse" href="#collapsePerfilEdite" aria-expanded="false" aria-controls="collapsePerfilEdite" style="font-size: 10px;"><i class="glyphicon glyphicon-edit"/> Edita Perfil</a>
         </div>
+        <!-- box Edite perfil Info -->
+        <span class="collapse" id="collapsePerfilEdite">
+            <ul class="list-group box">
+                <div class="panel-heading">
+                    <div class="">
+                        <formProfile :id="id" :name="name" :email="email" :city="city" :preference="preference" :numberWhats="numberWhats" :gender="gender" :flagDisplayCount="flagDisplayCount" :flagDisplayHot="flagDisplayHot"/>                   
+                    </div>
+                </div>
+            </ul>
+        </span>
         <!-- sidebar Box Cout options ===========================================================-->
         <div class="box  classification" v-show="flagDisplayCount === true">
             <ul class="img_classification">
@@ -190,8 +203,7 @@
         </div>
     </div>
 
-    <br><br>
-   
+    <br><br>      
  <!-- Modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
          <div class="modal-dialog" role="document">
@@ -222,10 +234,10 @@ import CarroselComponent from '../components/CarroselComponent.vue';
 import NotificationComponent from "../components/NotificationComponent.vue";
 import CarroselAdvertisingComponet from "../components/CarroselAdvertisingComponet.vue";
 import AboutComponent from "../components/AboutComponent.vue";
+import FormProfile from "../components/FormProfile.vue";
 import axios from 'axios';
-
 export default {
-	props: ['name', 'imagem', 'link', 'friendsTotalFb', 'friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp', 'flagDisplayCount', 'flagDisplayHot', 'friendsAll', 'notification'],
+	props: ['name', 'imagem', 'email', 'link', 'gender','friendsTotalFb','preference','numberWhats', 'friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp', 'flagDisplayCount', 'flagDisplayHot', 'friendsAll', 'notification'],
 	components: {
         FriendComponent,
         UserComponent,
@@ -233,6 +245,7 @@ export default {
         NotificationComponent,
         CarroselAdvertisingComponet,
         AboutComponent,
+        FormProfile,
         axios      
     },
     data() {
@@ -240,7 +253,7 @@ export default {
         matchsData: []    
         }
     },
-    computed: {
+    computed: {        
 		profileName() {
 				if (this.id) {
 						return `${this.name}`
