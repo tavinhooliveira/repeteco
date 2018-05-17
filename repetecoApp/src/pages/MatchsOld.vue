@@ -39,7 +39,6 @@
          <div v-else><br><br><br><br>
               <reload></reload>
           </div>
-         {{localStoregeFuntion}}  
       </section>
    </div>
 </template>
@@ -64,15 +63,19 @@ import Reload from "../components/Reload.vue";
          ApiRepetecoStatus: false
        };
      },
+  created(){
+    let vm = this;
+    vm.localStoregeFuntion;
+  },
   computed: {
     localStoregeFuntion(){
-        let ch = this
+        let mv = this
         var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
         if(idFBStoragelogado != null){
-        console.log("Wrapper: [Matcrs] - id: "+idFBStoragelogado);
-        ch.getApiRepeteco(idFBStoragelogado);
+          console.log("Wrapper: [Matcrs] - id: "+idFBStoragelogado);
+          mv.getApiRepeteco(idFBStoragelogado);
         }else{
-        console.log("Wrapper [Matcrs] NOK!");
+          console.log("Wrapper [Matcrs] NOK!");
         }
     },
     isMatch() {
@@ -99,7 +102,7 @@ import Reload from "../components/Reload.vue";
   },
   methods: {
    getApiRepeteco(userid){
-   		this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
+   		this.$http.get(this.$urlAPI+`users/${userid}`).then(response => {
         this.ApiRepetecoStatus = response.status			
          if (this.ApiRepetecoStatus === 200) {
             this.users = response.data

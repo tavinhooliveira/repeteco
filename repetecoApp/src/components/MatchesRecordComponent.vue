@@ -1,8 +1,6 @@
 <template>
     <div class="pageMatch">
-        <br>
-        {{postMacts}}
-        {{callMatchs}}
+        <br>        
         <div class="btnNotification" role="group">
             <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>
             <div v-show="isMatch == true" class="btn-group pull-right">
@@ -50,6 +48,11 @@ export default{
    beforeCreate() {
     
   },
+    created(){
+        let vm = this;
+        vm.postMacts;
+        vm.callMatchs;
+    },
    data() {
         return {
         friendslist: [],
@@ -144,7 +147,7 @@ export default{
      //Recuperado os Matchs
     callMatchs(){
         let userid =  this.id_fb_users;
-        axios.get(`http://localhost:9096/wsrepeteco/users/${userid}/matchs/`)
+        axios.get(this.$urlAPI+`users/${userid}/matchs/`)
         .then(response => {
             this.matchsData = response.data
             if (this.matchsData.length > 0) {

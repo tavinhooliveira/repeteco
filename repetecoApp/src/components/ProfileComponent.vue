@@ -1,6 +1,5 @@
 <template>
 <div class="newProfile  ">
-     {{postMacts}}
     <br><br><br>
     <!-- sidebar -->
     <div class="col-md-3 ">
@@ -252,6 +251,10 @@ export default {
         return {
         matchsData: []    
         }
+    },
+    created(){
+        let vm = this;
+        vm.postMacts;
     },
     computed: {        
 		profileName() {

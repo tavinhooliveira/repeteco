@@ -1,6 +1,5 @@
 <template >
-   <div>
-       
+   <div>       
       <div id="ListFriends" class="ListFriends container">
          <div v-if="this.statusAPIAPP === true">
             <div id="searchClassification" class="container searchClassification navbar-fixed-top">
@@ -30,7 +29,6 @@
             <reload></reload>
          </div>
       </div>
-       {{localStoregeFuntion}}
    </div>
 </template>
 
@@ -47,22 +45,26 @@ export default {
       UserComponent,
       Reload,
       ProfileHeaderComponent,
-  },
-  data() {
-    return {
-      nomeProjeto: "Classification",
-      statusAPIAPP: false,
-      users: {},
-      ApiRepetecoStatus: false,
-    };
-  },
+    },
+    data() {
+        return {
+            nomeProjeto: "Classification",
+            statusAPIAPP: false,
+            users: {},
+            ApiRepetecoStatus: false,
+        };
+    },
+    created(){
+        let vm = this;
+        vm.localStoregeFuntion;
+    },
     computed: {
         localStoregeFuntion(){
-        let ch = this
+        let mv = this
         var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
         if(idFBStoragelogado != null){
-        console.log("Wrapper: [classificationOff] - id: "+idFBStoragelogado);
-        ch.getApiRepeteco(idFBStoragelogado);
+            console.log("Wrapper: [classificationOff] - id: "+idFBStoragelogado);
+            mv.getApiRepeteco(idFBStoragelogado);
         }else{
         console.log("Wrapper [classificationOff] NOK!");
         }
@@ -70,7 +72,7 @@ export default {
     },
   methods: {
     getApiRepeteco(userid) {
-        axios.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
+        axios.get(this.$urlAPI+`users/${userid}`).then(response => {
             this.users = [response.data]
             this.ApiRepetecoStatus = response.status;
             if (this.ApiRepetecoStatus === 200) {

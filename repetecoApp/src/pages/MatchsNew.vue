@@ -38,32 +38,35 @@
          </div>
          <div v-else><br><br><br><br>
               <reload></reload>
-          </div>
-         {{localStoregeFuntion}}  
+          </div>  
       </section>
    </div>
 </template>
 <script>
-   import MatchNewComponent from '../components/MatchNewComponent.vue';
-   import axios from 'axios';
-   import Reload from "../components/Reload.vue";
-   
-   export default{
-     name: "NotificationNewMatch",
-     props: ["name", "imagem", "option","user_id","link", "matchs", "friends"],
-     components:{
-   	    MatchNewComponent,
-        Reload,
-        axios
-     },
-     data () {
-       return {
-         statusAPIAPP: false,
-         users: [],
-         matchsData: [],
-         ApiRepetecoStatus: false
-       };
-     },
+import MatchNewComponent from '../components/MatchNewComponent.vue';
+import axios from 'axios';
+import Reload from "../components/Reload.vue";
+
+export default{
+  name: "NotificationNewMatch",
+  props: ["name", "imagem", "option","user_id","link", "matchs", "friends"],
+  components:{
+    MatchNewComponent,
+    Reload,
+    axios
+    },
+  data () {
+    return {
+      statusAPIAPP: false,
+      users: [],
+      matchsData: [],
+      ApiRepetecoStatus: false
+    };
+    },
+  created(){
+    let vm = this;
+    vm.localStoregeFuntion;
+  },
   computed: {
     localStoregeFuntion(){
         let ch = this
@@ -91,7 +94,7 @@
   },
   methods: {
     getApiRepeteco(userid){
-      this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
+      this.$http.get(this.$urlAPI+`users/${userid}`).then(response => {
         this.ApiRepetecoStatus = response.status			
         if (this.ApiRepetecoStatus === 200) {
             this.users = response.data

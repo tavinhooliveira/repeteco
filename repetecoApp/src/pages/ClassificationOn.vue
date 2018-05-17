@@ -28,7 +28,6 @@
             <reload></reload>
          </div>
       </div>
-       {{localStoregeFuntion}}
    </div>
 </template>
 
@@ -53,29 +52,33 @@ export default {
       statusAPIAPP: false
     };
   },
+  created(){
+    let vm = this;
+    vm.localStoregeFuntion;
+  },
   computed: {
     localStoregeFuntion(){
-        let ch = this
+        let mv = this
         var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
         if(idFBStoragelogado != null){
-        console.log("Wrapper: [classificationOn] - id: "+idFBStoragelogado);
-        ch.getApiRepeteco(idFBStoragelogado);
+          console.log("Wrapper: [classificationOn] - id: "+idFBStoragelogado);
+          mv.getApiRepeteco(idFBStoragelogado);
         }else{
-        console.log("Wrapper [classificationOn] NOK!");
+          console.log("Wrapper [classificationOn] NOK!");
         }
     }
   },
   methods: {
     getApiRepeteco(userid) {
-        axios.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
-            this.users = [response.data]
-            if (this.users.length > 0) {
+        axios.get(this.$urlAPI+`users/${userid}`).then(response => {
+          this.users = [response.data]
+          if (this.users.length > 0) {
               console.log("API Repeteco: OK!")
               this.statusAPIAPP = true;
-            } else {
+          } else {
               this.statusAPIAPP = false;
               console.log("Erro na chamada da API - Repeteco");
-            }
+          }
         })
     }
   }

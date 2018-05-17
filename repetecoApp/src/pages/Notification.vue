@@ -32,8 +32,7 @@
                     </div>                   
                 </div>
             </div>
-        </div>
-        {{localStoregeFuntion}}  
+        </div>  
       </div>
    </div>
 </template>
@@ -46,55 +45,58 @@ import axios from 'axios';
 export default {
   name: "Notification",
   props: ['notification'],
-  components: {
-      Reload,
-      NotificationComponent,
-      axios
-  },
-  data() {
-    return {
-      notificationData: [],
-      statusNotification: null,
-      notificationDataStatus: null
-    };
-  },
-  computed:{
-    localStoregeFuntion(){
-        let ch = this
-        var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
-        if(idFBStoragelogado != null){
-        console.log("Wrapper: [Matcrs] - id: "+idFBStoragelogado);
-        ch.getNotificationAPI(idFBStoragelogado);
-        }else{
-        console.log("Wrapper [Matcrs] NOK!");
-        }
+    components: {
+        Reload,
+        NotificationComponent,
+        axios
     },
-    coutNotification() {
-        if(this.notificationData){
-            return this.notificationData.length;         
-        }else{
-            return 0;
-        }
-    }
- 
-  }, 
-  methods: {
-    //Recuperado os Matchs
-    getNotificationAPI(userid){
-    axios.get(`http://localhost:9096/wsrepeteco/users/${userid}/notification`)
-        .then(response => {
+    data() {
+        return {
+        notificationData: [],
+        statusNotification: null,
+        notificationDataStatus: null
+        };
+    },
+    created(){
+        let vm = this;
+        vm.localStoregeFuntion;
+    },
+    computed:{
+        localStoregeFuntion(){
+            let ch = this
+            var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
+            if(idFBStoragelogado != null){
+            console.log("Wrapper: [Matcrs] - id: "+idFBStoragelogado);
+            ch.getNotificationAPI(idFBStoragelogado);
+            }else{
+            console.log("Wrapper [Matcrs] NOK!");
+            }
+        },
+        coutNotification() {
+            if(this.notificationData){
+                return this.notificationData.length;         
+            }else{
+                return 0;
+            }
+        } 
+    }, 
+    methods: {
+        //Recuperado os Matchs
+        getNotificationAPI(userid){
+            axios.get(this.$urlAPI+`users/${userid}/notification`)        
+            .then(response => {
             this.notificationData = response.data
             this.notificationDataStatus = response.status
-            if (this.notificationDataStatus === 200) {
-                console.log("API notificationData: OK!")
-                this.statusNotification = true;
-            } else {
-                console.log("API notificationData: - Not notificationData");
-                this.notificationData = false
-            }
-        })
-    } 
-  }
+                if (this.notificationDataStatus === 200) {
+                    console.log("API notificationData: OK!")
+                    this.statusNotification = true;
+                } else {
+                    console.log("API notificationData: - Not notificationData");
+                    this.notificationData = false
+                }
+            })
+        } 
+    }
 };
 </script>
 <style>

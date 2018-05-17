@@ -23,5 +23,4 @@
 a{color: #5ba4e5; text-decoration: none; margin-top: 100px;}
 .links{margin-top: 50px;}
 .links a{ padding-left: 10px;}
-
 </style>

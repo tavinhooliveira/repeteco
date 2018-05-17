@@ -27,7 +27,6 @@
             <reload></reload>
          </div>
       </div>
-      {{localStoregeFuntion}}
    </div>
 </template>
 
@@ -39,33 +38,37 @@ import axios from 'axios';
 export default {
   name: "ClassificationOff",
   props: ["name", "imagem", "friends"],
-  components: {
-    UserComponentOff,
-    Reload,
-    axios
-  },
-  data() {
-      return {
-        nomeProjeto: "ClassificationOff",
-        users: {},
-        statusAPIAPP: false
-      };
-  },
+    components: {
+        UserComponentOff,
+        Reload,
+        axios
+    },
+    data() {
+        return {
+            nomeProjeto: "ClassificationOff",
+            users: {},
+            statusAPIAPP: false
+        };
+    },
+    created(){
+        let vm = this;
+        vm.localStoregeFuntion;
+    },
   computed: {
     localStoregeFuntion(){
-        let ch = this
+        let vm = this
         var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
         if(idFBStoragelogado != null){
-        console.log("Wrapper: [classificationOff] - id: "+idFBStoragelogado);
-        ch.getApiRepeteco(idFBStoragelogado);
+            console.log("Wrapper: [classificationOff] - id: "+idFBStoragelogado);
+            vm.getApiRepeteco(idFBStoragelogado);
         }else{
-        console.log("Wrapper [classificationOff] NOK!");
+            console.log("Wrapper [classificationOff] NOK!");
         }
     }
   },
   methods: {
     getApiRepeteco(userid) {
-        axios.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
+        axios.get(this.$urlAPI+`users/${userid}`).then(response => {
             this.users = [response.data]
             if (this.users.length > 0) {
                 console.log("API Repeteco: OK!")

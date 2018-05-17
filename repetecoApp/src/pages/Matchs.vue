@@ -16,7 +16,6 @@
             <div v-else><br><br><br><br>
                <reload></reload>
             </div>   
-          {{localStoregeFuntion}}     
       </section>
    </div>
 </template>
@@ -36,63 +35,67 @@ export default {
     MatchesRecordComponent
   },
   data() {
-    return {
-      nomeProjeto: "Matcrs",
-      matchs: {},
-      statusApiRepeteco: false,
-      statusApiRepetecoAll: false,
-      friendsAll: [],
-      users: [],
-      matchs: []
+        return {
+        nomeProjeto: "Matcrs",
+        matchs: {},
+        statusApiRepeteco: false,
+        statusApiRepetecoAll: false,
+        friendsAll: [],
+        users: [],
+        matchs: []
 
-    };
-  },
-  computed: {
-    isMatch() {
-        if(this.users.matchs){
-            return true;         
-        }else{
-            return false;
-        }
+        };
     },
-    localStoregeFuntion(){
-        let ch = this
-        var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
-        if(idFBStoragelogado != null){
-        console.log("Wrapper: [Matcrs] - id: "+idFBStoragelogado);
-        ch.getApiRepeteco(idFBStoragelogado);
-        ch.getApiRepetecoFriendsAll()
-        }else{
-        console.log("Wrapper [Matcrs] NOK!");
-        }
-    }
-  
-  },
-  methods: {    
-    getApiRepetecoFriendsAll() {
-      this.$http.get(`http://localhost:9096/wsrepeteco/friends`).then(response => {
-          this.friendsAll = response.data
-          if (this.friendsAll.length > 0) {
-              console.log("API Repeteco AllFriends: OK!")
-              this.statusApiRepetecoAll = true;
-          } else {
-              this.statusApiRepetecoAll = false;
-              console.log("Erro na chamada da API - AllFriends");
-          }
-      })
+    created(){
+        let vm = this;
+        vm.localStoregeFuntion;
     },
-    getApiRepeteco(userid) {
-        this.$http.get(`http://localhost:9096/wsrepeteco/users/${userid}`).then(response => {
-            this.users = [response.data]
-            if (this.users.length > 0) {
-                console.log("API Repeteco: OK!")
-                this.statusApiRepeteco = true;
+    computed: {
+        isMatch() {
+            if(this.users.matchs){
+                return true;         
+            }else{
+                return false;
+            }
+        },
+        localStoregeFuntion(){
+            let mv = this
+            var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
+            if(idFBStoragelogado != null){
+                console.log("Wrapper: [Matcrs] - id: "+idFBStoragelogado);
+                mv.getApiRepeteco(idFBStoragelogado);
+                mv.getApiRepetecoFriendsAll()
+            }else{
+                console.log("Wrapper [Matcrs] NOK!");
+            }
+        }
+    
+    },
+    methods: {    
+        getApiRepetecoFriendsAll() {
+        this.$http.get(this.$urlAPI+`friends`).then(response => {
+            this.friendsAll = response.data
+            if (this.friendsAll.length > 0) {
+                console.log("API Repeteco AllFriends: OK!")
+                this.statusApiRepetecoAll = true;
             } else {
-                this.statusApiRepeteco = false;
-                console.log("Erro na chamada da API - Repeteco");
+                this.statusApiRepetecoAll = false;
+                console.log("Erro na chamada da API - AllFriends");
             }
         })
+        },
+        getApiRepeteco(userid) {
+            this.$http.get(this.$urlAPI+`users/${userid}`).then(response => {
+                this.users = [response.data]
+                if (this.users.length > 0) {
+                    console.log("API Repeteco: OK!")
+                    this.statusApiRepeteco = true;
+                } else {
+                    this.statusApiRepeteco = false;
+                    console.log("Erro na chamada da API - Repeteco");
+                }
+            })
+        }
     }
-  }
 };
 </script>

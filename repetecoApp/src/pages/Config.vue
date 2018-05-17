@@ -139,7 +139,6 @@
               <reload></reload>
           </div>
         </div>
-        {{localStoregeFuntion}}
     </div>
   </section>
 </template>
@@ -159,25 +158,26 @@ export default {
         Reload,
         AboutComponent
     },
-    created() {
-
+    created(){
+        let vm = this;
+        vm.localStoregeFuntion;
     },
     computed: {
         localStoregeFuntion(){
-            let ch = this
+            let vm = this
             var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
             if(idFBStoragelogado != null){
-            console.log("Wrapper: [config] - id: "+idFBStoragelogado);
-            ch.getApiRepeteco(idFBStoragelogado);
+              console.log("Wrapper: [config] - id: "+idFBStoragelogado);
+              vm.getApiRepeteco(idFBStoragelogado);
             }else{
-            console.log("Wrapper [config] NOK!");
+              console.log("Wrapper [config] NOK!");
             }
         }
   },
   methods: {
     //WsRepeteco - API GET
     getApiRepeteco(profileId) {
-      this.$http.get(`http://localhost:9096/wsrepeteco/users/${profileId}`).then(response => {
+      this.$http.get(this.$urlAPI+`users/${profileId}`).then(response => {
         this.user = response.data
         if (this.user) {
           this.statusAPIAPP = true;
@@ -185,14 +185,6 @@ export default {
           this.statusAPIAPP = false;
           console.log("Erro na chamada da API - Repeteco");
         }
-      })
-    },
-    //Logout
-    logout() {
-      let vm = this
-      FB.logout(function(response) {
-          vm.statusChangeCallback(response)
-          console.log("logout Efetuado")
       })
     },
     //PUT API APP Set Preferencia Sexual
@@ -204,9 +196,9 @@ export default {
           flagDisplayCount: this.user.flagDisplayCount,
           flagDisplayHot: this.user.flagDisplayHot
         }
-        var userId = this.user.id
-        $.ajax({
-            url: (`http://localhost:9096/wsrepeteco/users/${userId}/preference`),
+        var userid = this.user.id
+        $.ajax({          
+            url: (this.$urlAPI+`users/${userid}/preference`),
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
