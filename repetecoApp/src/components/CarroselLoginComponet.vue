@@ -87,8 +87,7 @@ export default{
 .CarouselLogin .handle.active {
     cursor: pointer;
 }
-.CarouselLogin .handle {
-    /*background: rgba(20, 20, 20, 0.26);*/
+/* .CarouselLogin .handle {
     position: absolute;
     top: 0;
     height: 100%;
@@ -107,9 +106,15 @@ export default{
     display: -ms-flexbox;
     display: flex;
     color: #fff;
+} 
+*/
+
+.CarouselLogin .handle {
+    display: none;
 }
 .CarouselLogin .carousel-indicators {
       margin-bottom: -50px;
+      display: none;
     
 }
 .CarouselLogin .carousel-indicators .active {

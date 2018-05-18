@@ -45,6 +45,9 @@
                 <button type="button" v-on:click="piscadinhaNotify(); sweetModalSuccess();" class="list-group-item"><span class="badge"><img src="/src/assets/img/piscadinha.png"></span>Enviar uma Piscadinha</button>
                 <button type="button" class="disabled list-group-item"><span class="badge"><img src="/src/assets/img/whatsapp.png"></span>Enviar WhatsApp</button>
                 <button type="button" v-on:click="sweetModalAcao();" class="list-group-item"><span class="badge"><img src="/src/assets/img/closeMatch.png"></span>Desfazer Match</button>
+                <div v-show="isValidWhats ==  false">
+                  <p id="infoWhats">Para enviar o Número do WhatsApp é nescessário Cadastar em:  <router-link to="profile">Perfil/Editar</router-link></p>
+                </div>
               </div>
             </sweet-modal>
             <!-- modal success  -->
@@ -76,7 +79,16 @@ export default{
       click: null,
       optionNew: 'ficaria'
     }
-  }, 
+  },
+  computed:{
+    isValidWhats() {
+      if(this.userNumberWhats != '' && this.userNumberWhats != null){
+        return true;
+        document.getElementById("btnWhats").style.display = "none";
+      } return false;
+    }    
+
+  },   
   methods: {
     sweetModalSimple(){
       return this.$refs.sweetModalSimple.open();

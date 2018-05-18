@@ -90,7 +90,7 @@
                 </span>
                 <button type="button" v-on:click="sweetModalAcao();" class="list-group-item"><span class="badge"><img src="/src/assets/img/closeMatch.png"></span>Desfazer Match</button>
                 <div v-show="isValidWhats ==  false">
-                  <p id="infoWhats">Para enviar o Número do WhatsApp é nescessário Cadastar em: Perfil/Editar</p>
+                  <p id="infoWhats">Para enviar o Número do WhatsApp é nescessário Cadastar em:  <router-link to="profile">Perfil/Editar</router-link></p>
                 </div>
               </div>
             </sweet-modal>

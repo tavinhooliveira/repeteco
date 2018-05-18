@@ -12,7 +12,7 @@
     </div>
     <div class="form-group">
       <label for="exampleInputWhatsNumber">Numero WhatsApp</label>
-      <input type="text" class="form-control" id="exampleInputWhatsNumber" placeholder="(dd) d dddd-dddd" v-model="numberWhats">
+      <input type="text" class="form-control" id="exampleInputWhatsNumber" placeholder="(dd) d dddd-dddd" v-model="dataNumberWhats">
     </div>
     <div class="form-group">
       <label for="exampleInputCity">Cidade - UF</label>
@@ -89,7 +89,7 @@ export default {
   },
     data() {
         return {
-
+          dataNumberWhats: this.numberWhats
         }
     },
     computed:{
@@ -107,7 +107,7 @@ export default {
           flagNotificationFriends: this.flagNotificationFriends,
           flagDisplayCount: this.flagDisplayCount,
           flagDisplayHot: this.flagDisplayHot,
-          numberWhats: this.numberWhats,
+          numberWhats: this.dataNumberWhats,
           email: this.email,
           city: this.city
         }

@@ -16,11 +16,11 @@
                   <h6>Ao entrar, você concorda com os nossos <a href="/termos">Termos</a> e <a href="/politicas">Politica de Privacidade.</a></h6>
                </div>
                <div v-else class="well_b text-center">
-                  <div>
+                  <div >
                      <img :src="profilePicture" style='height: 100px; width: 100px; border-radius: 75px;'>
                   </div>                
-                  <div>
-                     <a v-bind:href="profile.link" v-tooltip.bottom-start="'Perfil Facebook'" target="_blank">{{profile.name}}</a>                  
+                  <div v-show="listeningWsRepeteco == 200">
+                     <a v-bind:href="profile.link" v-tooltip.bottom-start="'Perfil Facebook'" target="_blank">{{profileNome}}</a>                  
                   </div>
                   <br>     
                   <div v-if="listeningWsRepeteco == 200" class="">
@@ -81,6 +81,9 @@ export default {
         }
     },
     computed: {
+        profileNome(){
+        return (this.profile.name) ? this.profile.name : `Verificando...`
+        },
         profilePicture() {
         return (this.profile.id) ? this.profile.picture.data.url : `/src/assets/img/loading3.gif`
         },
@@ -267,7 +270,9 @@ export default {
     padding: 10px;
 }
 }
+/* body background imagem 
 body{background-image:url(/src/assets/img/bg.png)!important;background-repeat:no-repeat;background-size:100%}
+*/
 #app{font-family:Avenir,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-align:center;color:#2c3e50;margin-top:60px;}
 button{cursor:pointer}
 #iconEntrar {color: #FFF !important;}
