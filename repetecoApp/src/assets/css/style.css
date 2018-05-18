@@ -4,6 +4,7 @@ header,header .container{
 .configuracao li a,.configuracao li ul li a,.configuracao ul a,.configuracao ul li a,.configuracao ul li ul li a,.menu a,.menu a:hover,.perfil .list-group-item a:hover,footer a,footer a:hover{
     text-decoration:none
 }
+.ListFriends li {list-style: none !important;}
 
 .btnModalAcaoMatch{
     margin-top: -77px;

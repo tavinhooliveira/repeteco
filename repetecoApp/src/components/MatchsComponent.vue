@@ -2,9 +2,9 @@
    <div>
       <section id="idMatchs"   v-if="option === optionNew || option === optionOld" >
          <li v-if="option === 'ficaria'" style="display: block;" >
-           <div v-if="read === '0'" class="list-group-item col-md-4 notification readView" v-on:click="readView(); refreshVue();" v-tooltip.top-start="'Click p/ marcar como vizualizado'">
+           <div v-if="read === '0'" class="list-group-item col-md-4 notification" v-on:click="readView(); refreshVue();" v-tooltip.top-start="'Click p/ marcar como vizualizado'">
             <div class="media-left LfPicture">
-               <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
+               <a v-bind:href="link" target="_blank"><img class="media-object readView" v-bind:src="imagem"></a>
             </div>
             <div class="media-body  notification">
                <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
@@ -14,7 +14,7 @@
             <div class="notification pull-right">
                <div class="img_classification">
                   <div  class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Não Vizualizado'">          
-                    <span class="glyphicon glyphicon-eye-close"></span>          
+                    <i class="fa fa-circle" style="color: #0164f5!important;"></i>          
                   </div>
                   <i class="imgficaria" v-tooltip.top-start="'Ficaria'"></i>
                   <span class="Nfdate">{{dataMatch}}</span>
@@ -42,9 +42,9 @@
          </li>
          <!-- Old matchs ================================== -->
          <li v-else style="display: block;">
-            <div v-if="read === '0'" class="list-group-item col-md-4 notification readView" v-on:click="readView(); refreshVue();" v-tooltip.top-start="'Click p/ marcar como vizualizado'">
+            <div v-if="read === '0'" class="list-group-item col-md-4 notification" v-on:click="readView(); refreshVue();" v-tooltip.top-start="'Click p/ marcar como vizualizado'">
                 <div class="media-left LfPicture ">
-                    <a v-bind:href="link" target="_blank"><img class="media-object " v-bind:src="imagem"></a>
+                    <a v-bind:href="link" target="_blank"><img class="media-object readView" v-bind:src="imagem"></a>
                 </div>
                 <div class="media-body  notification">
                     <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
@@ -53,7 +53,7 @@
                 <div class="notification pull-right">
                     <div class="img_classification">
                         <div  class="close btnMatchFalse" aria-label="Close" v-tooltip.top-start="'Não Vizualizado'">          
-                          <span class="glyphicon glyphicon-eye-close"></span>          
+                          <i class="fa fa-circle" style="color: #0164f5!important;"></i>          
                         </div>
                         <i class="imgficaria2" v-tooltip.top-start="'Ficaria Novamente'"></i>
                         <span class="Nfdate">{{dataMatch}}</span>  
@@ -278,7 +278,7 @@ export default{
 <style>
 .btnMatchFalse { margin-top: -72px; margin-right: -38px;}
 .msgClamigos{margin-top: -17px; margin-left: 16px;}
-.readView{box-shadow: 0px 0px 2px 0px #355fe8 !important;}
+.readView{box-shadow: 0px 0px 3px 0px #0a63fb !important;}
 #infoWhats{font-size: 9px; color: rgb(241, 144, 70); margin-top: 10px;}
 </style>
 
