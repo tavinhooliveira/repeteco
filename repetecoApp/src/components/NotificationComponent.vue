@@ -32,7 +32,7 @@
             {{text}}
             <span class="pull-right btnDate">
                 <span id="dataNotify">{{dateNotify}}</span>
-                <i class="glyphicon glyphicon-record " v-tooltip.top-start="'Marcar Como Lida'"></i>     
+                <i class="fa fa-circle" style="color: #5ba4e5!important;" v-tooltip.top-start="'Marcar Como Lida'"></i>     
             </span>
         </span>
     </li>       

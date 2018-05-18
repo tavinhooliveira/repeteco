@@ -17,19 +17,24 @@
                </div>
                <div v-else class="well_b text-center">
                   <div>
-                     <img :src="profilePicture" style='height: 100px; width: 100px; border-radius: 75px; border: 2px solid rgba(73, 158, 223, 0.144)'>
-                  </div>                  
+                     <img :src="profilePicture" style='height: 100px; width: 100px; border-radius: 75px;'>
+                  </div>                
                   <div>
                      <a v-bind:href="profile.link" v-tooltip.bottom-start="'Perfil Facebook'" target="_blank">{{profile.name}}</a>                  
                   </div>
                   <br>     
-                  <div class="">
+                  <div v-if="listeningWsRepeteco == 200" class="">
                      <h3><i class="fa fa-star">Pronto!</i></h3>
                      <h6>Você tem <b v-html="totalFriendsApp"></b> amigos no APP de <b v-html="totalFriendsFB"></b> no facebook!</h6>
                      <h6>Agora é só Classificar Seus Amigos!</h6>
                      <br>
-                     <a href="/classification"  class="btn btn-success" >Entrar <span id="iconEntrar" class="glyphicon glyphicon-log-in"></span></a>
+                     <span>
+                        <a href="/classification"  class="btn btn-success" >Entrar <span id="iconEntrar" class="glyphicon glyphicon-log-in"></span></a>
+                     </span>
                   </div>
+                     <span v-else-if="listeningWsRepeteco == 500" class="alert text-warning">
+                         Desculpe, algo deu errado, tente novamente mais tarde!
+                     </span>
                </div><br>
                <div class="row col-md-6 text-center classificationInfo container">
                   <a class="btn btn-default " role="button" data-toggle="collapse" href="#collapseclassificationInfo" aria-expanded="false" aria-controls="collapseclassificationInfo">
@@ -56,170 +61,196 @@
 <script>
 import CarroselLoginComponet from "../components/CarroselLoginComponet.vue";
 import AboutComponent from "../components/AboutComponent.vue";
+import axios from 'axios';
 
 export default {
-  name: 'login',
-  components: {
-    CarroselLoginComponet,
-    AboutComponent
-  },
-  data() {
-    return {
-      profile: {},
-      authorized: false,
-      users: null,
-      data: [],
-      summary: []
-    }
-  },
-  computed: {
-    profilePicture() {
-      return (this.profile.id) ? this.profile.picture.data.url : `/src/assets/img/loading3.gif`
+    name: 'login',
+    components: {
+        CarroselLoginComponet,
+        AboutComponent,
+        axios
     },
-    totalFriendsApp() {
-      if (this.profile.id) {
-        var f = this.profile.friends.data.length;
-        return f;
-      }
-    return 0;
+    data() {
+        return {
+        profile: {},
+        authorized: false,
+        users: null,
+        data: [],
+        summary: [],
+        listeningWsRepeteco: 500
+        }
     },
-    totalFriendsFB() {
-      if (this.profile.id) {
-        var f = this.profile.friends.summary.total_count;
-        return f;
-      }
-    return 0;
-    }
-  },
-  methods: {
-    //Facebook - Begin
-    getFacebook() {
-      let vm = this
-      FB.api('/me?fields=id,name,link,email,gender,location,locale,picture{url},friends{id,name,link,email,gender,location,locale,picture{url}}', function(response) {
-          vm.$set(vm, 'profile', response)
-          //De-Para FB Users
-          let users = null;
-          users = {
-              id: response.id,
-              name: response.name,
-              id_fb_users: response.id,
-              link: response.link,
-              email: response.email,
-              gender: response.gender,
-              imagem: response.picture.data.url,
-              city: response.locale,
-              nationality: response.locale,
-              preference: "",
-              friendsTotalFb: response.friends.summary.total_count,
-              friendsTotalApp: response.friends.data.length
-          }
-          //id do usuario logado
-          let userid = response.id
-          //lista de Amigos
-          let fdlist = response.friends.data
-          let friendslist = [];
-          let listFB = null;
-          for (let i = 0; i < fdlist.length; i++) {
-              listFB = {
-                  id: userid + fdlist[i].id,
-                  id_fb_friends: fdlist[i].id,
-                  name: fdlist[i].name,
-                  link: fdlist[i].link,
-                  gender: fdlist[i].gender,
-                  imagem: fdlist[i].picture.data.url
-              }
-              friendslist.push(listFB)
-          }
-          //Inserir User Na Basse Via Ajax.
-          $.ajax({
-              url: "http://localhost:9096/wsrepeteco/users",
-              async: false,
-              method: "POST",
-              headers: {
-                  'Content-Type': 'application/json;charset=UTF-8',
-                  'dataType': 'json'
-              },
-              dataType: 'json',
-              crossDomain: true,
-              origin: "*",
-              processData: false,
-              data: JSON.stringify(users)
-          });
-
-          //Inserir Friends Na Basse Via Ajax
-          $.ajax({
-              url: "http://localhost:9096/wsrepeteco/users/" + userid + "/friends",
-              async: false,
-              method: "POST",
-              headers: {
-                  'Content-Type': 'application/json;charset=UTF-8',
-                  'dataType': 'json'
-              },
-              dataType: 'json',
-              crossDomain: true,
-              origin: "*",
-              processData: true,
-              data: JSON.stringify(friendslist)
-          });
-          
+    computed: {
+        profilePicture() {
+        return (this.profile.id) ? this.profile.picture.data.url : `/src/assets/img/loading3.gif`
+        },
+        profilePictureLarge() {
+        return (this.profile.id) ? this.profile.picture.data.url : `/src/assets/img/loading3.gif`
+        },
+        totalFriendsApp() {
+        if (this.profile.id) {
+            var f = this.profile.friends.data.length;
+            return f;
+        }
+        return 0;
+        },
+        totalFriendsFB() {
+        if (this.profile.id) {
+            var f = this.profile.friends.summary.total_count;
+            return f;
+        }
+        return 0;
+        }
+    },
+    methods: {
+        islisteningWsRepeteco(responseIdFb){
+            let mv = this;
+            var idFb = responseIdFb;
+            axios.get(this.$urlAPI).then(response => {
+                this.listeningWsRepeteco = response.status;
+                if (this.listeningWsRepeteco === 200) {
+                    mv.getFacebook()
+                    window.localStorage.setItem('idFBStorage', idFb);
+                    window.sessionStorage.setItem('idFBStorage', idFb);
+                    console.log("API Repeteco listening... OK!")
+                } else {
+                    console.log("Erro na conexão da API, tente mais tarde!");
+                    this.listeningWsRepeteco = 404;
+                }
+            })
+            .catch(e => {
+                console.log(e,"Erro! Tente novamente mais tarde!")
+            })
+        },
+        
+        getFacebook() {
+        let vm = this
+        FB.api('/me?fields=id,name,link,email,gender,location,locale,picture{url},friends{id,name,link,email,gender,location,locale,picture{url}}', function(response) {
+            vm.$set(vm, 'profile', response)
+            //De-Para FB Users
+            let users = null;
+            let userid = response.id
+            users = {
+                id: response.id,
+                name: response.name,
+                id_fb_users: response.id,
+                link: response.link,
+                email: response.email,
+                gender: response.gender,
+                imagem: response.picture.data.url,
+                city: response.locale,
+                nationality: response.locale,
+                preference: "",
+                numberWhats: "",
+                friendsTotalFb: response.friends.summary.total_count,
+                friendsTotalApp: response.friends.data.length
+            }
+            //De-Para FB Friends
+            let fdlist = response.friends.data
+            let friendslist = [];
+            let listFB = null;
+                for (let i = 0; i < fdlist.length; i++) {
+                    listFB = {
+                        id: userid + fdlist[i].id,
+                        id_fb_friends: fdlist[i].id,
+                        name: fdlist[i].name,
+                        link: fdlist[i].link,
+                        gender: fdlist[i].gender,
+                        imagem: fdlist[i].picture.data.url
+                    }
+                    friendslist.push(listFB)
+                }
+                vm.createUserFb(users);
+                vm.createFriendsFb(friendslist, userid);                       
+            })
+        },
+        createUserFb(users){
+            $.ajax({
+                url: "http://localhost:9096/wsrepeteco/users",
+                async: false,
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'dataType': 'json'
+                },
+                dataType: 'json',
+                crossDomain: true,
+                origin: "*",
+                processData: false,
+                data: JSON.stringify(users)
+            });
+        },
+        createFriendsFb(friendslist, userid){
+            $.ajax({
+                url: "http://localhost:9096/wsrepeteco/users/"+userid+"/friends",
+                async: false,
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'dataType': 'json'
+                },
+                dataType: 'json',
+                crossDomain: true,
+                origin: "*",
+                processData: true,
+                data: JSON.stringify(friendslist)
+            });
+        },
+        login() {
+            let vm = this
+            FB.login(function(response) {
+                vm.statusChangeCallback(response)
+            }, {
+                scope: 'public_profile, email, user_friends',
+                return_scopes: true
+            })
+        },
+        logout() {
+            let vm = this
+            FB.logout(function(response) {
+                vm.statusChangeCallback(response)
+                console.log("logout Efetuado")
+            })
+            window.localStorage.removeItem('idFBStorage');
+            window.sessionStorage.removeItem('idFBStorage');
+            window.localStorage.clear();
+            window.sessionStorage.clear();
+        },
+        statusChangeCallback(response) {
+            let vm = this
+            console.log("Autorizando Usuario...");
+            if (response.status === 'connected') {
+                var idFb = response.authResponse.userID
+                vm.authorized = true
+                vm.islisteningWsRepeteco(idFb);
+                console.log("Usuario Autorizado")               
+            } else if (response.status === 'not_authorized') {
+                console.log("Usuario Não Autorizado!");
+                vm.authorized = false
+            } else if (response.status === 'unknown') {
+                vm.profile = {}
+                vm.authorized = false
+            } else {
+                vm.authorized = false
+            }
+        }
+    },
+    mounted() {
+        let vm = this
+        window.fbAsyncInit = function() {
+        FB.init({
+            appId: '175578203007671',
+            cookie: true,
+            xfbml: true,
+            version: 'v2.10'
+        });
+        FB.AppEvents.logPageView();
+        // Get FB Login Status
+        FB.getLoginStatus(response => {
+            vm.statusChangeCallback(response)
         })
-    },
-  login() {
-      let vm = this
-      FB.login(function(response) {
-          vm.statusChangeCallback(response)
-      }, {
-          scope: 'public_profile, email, user_friends',
-          return_scopes: true
-      })
-  },
-  logout() {
-      let vm = this
-      FB.logout(function(response) {
-          vm.statusChangeCallback(response)
-          console.log("logout Efetuado")
-      })
-      window.localStorage.removeItem('idFBStorage');
-  },
-  statusChangeCallback(response) {
-      let vm = this
-      if (response.status === 'connected') {
-          var idFb = response.authResponse.userID
-          console.log("Autorizando Usuario...");
-          vm.authorized = true
-          //Chamada API Facebok e Repeteco
-          vm.getFacebook()
-          console.log("Usuario Connectado")
-          console.log("API Facebook: - Ok!");
-        window.localStorage.setItem('idFBStorage', idFb);
-        window.sessionStorage.setItem('idFBStorage', idFb);
-      } else if (response.status === 'not_authorized') {
-          console.log("Não Autorizado!");
-          vm.authorized = false
-      } else if (response.status === 'unknown') {
-          vm.profile = {}
-          vm.authorized = false
-      } else {
-          vm.authorized = false
-      }
-  }
-  },
-  mounted() {
-    let vm = this
-    window.fbAsyncInit = function() {
-      FB.init({
-          appId: '175578203007671',
-          cookie: true,
-          xfbml: true,
-          version: 'v2.10'
-      });
-      FB.AppEvents.logPageView();
-      // Get FB Login Status
-      FB.getLoginStatus(response => {
-          vm.statusChangeCallback(response)
-      })
-    };
-  }
+        };
+    }
 }
 </script>
 

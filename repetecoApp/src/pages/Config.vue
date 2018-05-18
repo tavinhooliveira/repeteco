@@ -81,7 +81,7 @@
                       <h4>Conta</h4>
                       <li class="list-group-item well">
                           <div>
-                            <span><i class="fa fa-sign-out" aria-hidden="true"></i><a href="/" @click="logout">Sair</a></span>
+                            <router-link to="classification"><i class="fa fa-sign-out" aria-hidden="true"></i><a>Sair</a></span></router-link>
                             <span class="pull-right"><a href="#"> <i class="fa fa-times-circle-o" aria-hidden="true"></i> Apagar Conta</a></span>
                           </div>
                       </li>

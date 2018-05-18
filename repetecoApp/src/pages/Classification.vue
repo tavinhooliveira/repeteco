@@ -45,6 +45,7 @@ export default {
       UserComponent,
       Reload,
       ProfileHeaderComponent,
+      axios
     },
     data() {
         return {

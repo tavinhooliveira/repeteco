@@ -10,8 +10,8 @@
         <div id="notify" class="col-md-6 container panel col-md-offset-3">
             <div class="list-group">
                 <div class="panel-heading">
-                    <h4>Notificações:<span>{{coutNotification}}</span></h4>
-                    <div class="pull-right notificationView">
+                    <h4>Notificações: <span>{{coutNotification}}</span></h4>
+                    <div v-show="coutNotification != 0" class="pull-right notificationView">
                         <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'">
                             <span class="fa fa-eye"></span> 
                           </button>
