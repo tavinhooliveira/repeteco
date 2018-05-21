@@ -7,11 +7,11 @@
         v-bind:preference="preference" v-bind:flagDisplayHot="flagDisplayHot">
       </friendComponentOn>
     </div>
-    <p v-if="contAllClassification <= 0"class="text-center"></br>Nenhum amigo encontrado! ☹</p> 
+    <p v-if="contAllClassification <= 0"class="text-center"></br>Nenhum amigo classificado! ☹</p> 
   </div>
 </template>
 <script>
-import FriendComponentOn from './FriendComponentOn.vue';
+import FriendComponentOn from '../classification/FriendComponentOn.vue';
 export default{
   props:['name','imagem','link','nationality','friendsTotalFb','friends', 'preference', 'flagDisplayHot'],
   components:{

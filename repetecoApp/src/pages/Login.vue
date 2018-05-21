@@ -9,29 +9,29 @@
                   <h3 class="titleh3">Vamos La!</h3>
                   <h6 class="titleh6">Para Entar! é Obrigatório o login no Facebook!</h6>
                   <div class="">
-                     <div class="col-2">
+                    <div class="col-2">
                         <button type="button" class="btn btn-primary" @click="login"><b> f    </b>Login Facebook</button>                        
-                     </div>
+                    </div>
                   </div>
                   <h6>Ao entrar, você concorda com os nossos <a href="/termos">Termos</a> e <a href="/politicas">Politica de Privacidade.</a></h6>
                </div>
                <div v-else class="well_b text-center">
-                  <div >
-                     <img :src="profilePicture" style='height: 100px; width: 100px; border-radius: 75px;'>
-                  </div>                
-                  <div v-show="listeningWsRepeteco == 200">
-                     <a v-bind:href="profile.link" v-tooltip.bottom-start="'Perfil Facebook'" target="_blank">{{profileNome}}</a>                  
-                  </div>
-                  <br>     
-                  <div v-if="listeningWsRepeteco == 200" class="">
-                     <h3><i class="fa fa-star">Pronto!</i></h3>
-                     <h6>Você tem <b v-html="totalFriendsApp"></b> amigos no APP de <b v-html="totalFriendsFB"></b> no facebook!</h6>
-                     <h6>Agora é só Classificar Seus Amigos!</h6>
-                     <br>
-                     <span>
+                    <div >
+                        <img :src="profilePicture" style='height: 100px; width: 100px; border-radius: 75px;'>
+                    </div>                
+                    <div v-show="listeningWsRepeteco == 200">
+                        <a v-bind:href="profile.link" v-tooltip.bottom-start="'Perfil Facebook'" target="_blank">{{profileNome}}</a>                  
+                    </div>
+                    <br>     
+                    <div v-if="listeningWsRepeteco == 200" class="">
+                        <h3><i class="fa fa-star">Pronto!</i></h3>
+                        <h6>Você tem <b v-html="totalFriendsApp"></b> amigos no APP de <b v-html="totalFriendsFB"></b> no facebook!</h6>
+                        <h6>Agora é só Classificar Seus Amigos!</h6>
+                        <br>
+                        <span>
                         <a href="/classification"  class="btn btn-success" >Entrar <span id="iconEntrar" class="glyphicon glyphicon-log-in"></span></a>
-                     </span>
-                  </div>
+                        </span>
+                    </div>
                      <span v-else-if="listeningWsRepeteco == 500" class="alert text-warning">
                          Desculpe, algo deu errado, tente novamente mais tarde!
                      </span>
@@ -59,8 +59,8 @@
 </template>
 
 <script>
-import CarroselLoginComponet from "../components/CarroselLoginComponet.vue";
-import AboutComponent from "../components/AboutComponent.vue";
+import CarroselLoginComponet from "../components/utils/CarroselLoginComponet.vue";
+import AboutComponent from "../components/utils/AboutComponent.vue";
 import axios from 'axios';
 
 export default {

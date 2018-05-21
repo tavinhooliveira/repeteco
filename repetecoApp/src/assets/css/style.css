@@ -32,6 +32,7 @@ header,header .container{
 }
 .pageMatch #btnCollapseLeft.in {
     width: 220px;
+    margin-left: 5px;
 }
 .pageMatch .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
     border-radius: 30px !important;

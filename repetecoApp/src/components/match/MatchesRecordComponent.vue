@@ -7,12 +7,12 @@
                   <div class="btn " data-toggle="collapse" href="#btnCollapseLeft" aria-expanded="false" aria-controls="btnCollapseLeft"><i class="fa fa-ellipsis-h"></i></div>
                   <div id="btnCollapseLeft" class="">
                     <div>					        
-                        <router-link to="matchsNew" v-tooltip.bottom-start="'Um Novo Lance'"> Lance </router-link>
+                        <router-link to="matchsNew" v-tooltip.bottom-start="'Um Novo Lance'"> Lance |</router-link>
                         <router-link to="matchsOld" v-tooltip.bottom-start="'Um Caso Antigo'"> Flash Backs </router-link>
-                          <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'">
+                          <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'" v-on:click="showView = true">
                             <span class="fa fa-eye"></span> 
                           </button>
-                          <button class="btn btn-default btn-xs" type="button"  v-tooltip.bottom-start="'Não Vizualizado'">
+                          <button class="btn btn-default btn-xs" type="button"  v-tooltip.bottom-start="'Não Vizualizado'" v-on:click="showView = false">
                             <span class="fa fa-eye-slash"></span>
                           </button>                      
                     </div>                  
@@ -57,7 +57,8 @@ export default{
         return {
         friendslist: [],
         myMatchList: [],
-        matchsData: []      
+        matchsData: [],
+        showView: "all"     
         }
     },
   computed: {  

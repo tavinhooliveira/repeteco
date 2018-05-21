@@ -3,9 +3,7 @@
       <section>
          <div v-if="statusAPIAPP === true" id="ListFriends" class="ListFriends container notification">
            <span v-show="contMatchNewMatch != null">
-            <div id="searchClassification" class="container searchClassification navbar-fixed-top">
-               <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">
-            </div>
+            <searchComponent/> 
             <br>
             <div class="btnNotification" role="group" >
                <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
@@ -15,10 +13,10 @@
                     <div>					        
                         <router-link to="matchs">Todos |</router-link>
                         <router-link to="matchsOld" v-tooltip.bottom-start="'Um Caso Antigo'">Flash Backs </router-link>
-                          <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'">
+                          <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'" v-on:click="showView = true">
                             <span class="fa fa-eye"></span> 
                           </button>
-                          <button class="btn btn-default btn-xs" type="button"  v-tooltip.bottom-start="'Não Vizualizado'">
+                          <button class="btn btn-default btn-xs" type="button"  v-tooltip.bottom-start="'Não Vizualizado'" v-on:click="showView = false">
                             <span class="fa fa-eye-slash"></span>
                           </button>                      
                     </div>                  
@@ -26,12 +24,35 @@
                 </div>
             </div>
             </span>
-            <div  class="list-group" id="searchUL">
-              <matchNewComponent v-bind:matchs="users.matchs" v-for="matchs in users.matchs" v-bind:key="matchs.id" v-bind:id="matchs.id"
+            <div class="list-group" id="searchUL">
+              <!-- <matchNewComponent v-bind:matchs="users.matchs" v-for="matchs in users.matchs" v-bind:key="matchs.id" v-bind:id="matchs.id"
                   v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender"
                   v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id"
                   v-bind:dataMatch="matchs.dataMatch" v-bind:userName="users.name" v-bind:userLink="users.link" v-bind:userImagem="users.imagem" v-bind:read="matchs.read"> 
-              </matchNewComponent>
+              </matchNewComponent> -->
+              <span v-if="showView == true">
+                <readView v-bind:matchs="users.matchs" v-for="matchs in users.matchs" v-bind:key="matchs.id" v-bind:id="matchs.id"
+                  v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender"
+                  v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id"
+                  v-bind:dataMatch="matchs.dataMatch" v-bind:userName="users.name" v-bind:userLink="users.link" v-bind:userImagem="users.imagem" v-bind:read="matchs.read"> 
+                </readView>
+              </span>
+              <span v-else-if="showView == false">
+                <notReadView v-bind:matchs="users.matchs" v-for="matchs in users.matchs" v-bind:key="matchs.id" v-bind:id="matchs.id"
+                  v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender"
+                  v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id"
+                  v-bind:dataMatch="matchs.dataMatch" v-bind:userName="users.name" v-bind:userLink="users.link" v-bind:userImagem="users.imagem" v-bind:read="matchs.read"> 
+                </notReadView>
+              </span>
+              <span v-else-if="showView == 'all'">
+                <matchNewComponent v-bind:matchs="users.matchs" v-for="matchs in users.matchs" v-bind:key="matchs.id" v-bind:id="matchs.id"
+                    v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender"
+                    v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id"
+                    v-bind:dataMatch="matchs.dataMatch" v-bind:userName="users.name" v-bind:userLink="users.link" v-bind:userImagem="users.imagem" v-bind:read="matchs.read"> 
+                </matchNewComponent>
+              </span>
+
+  
             </div>
             <div v-if="contMatchNewMatch <= 0 || contMatchNewMatch == null">
                 <br><p class="text-center">Você não tem Match para essa classificação ☹</p>
@@ -45,24 +66,31 @@
    </div>
 </template>
 <script>
-import MatchNewComponent from '../components/MatchNewComponent.vue';
+import SearchComponent from "../components/utils/SearchComponent.vue";
+import MatchNewComponent from '../components/match/new/MatchNewComponent.vue';
+import ReadView from '../components/match/new/ReadView.vue';
+import NotReadView from '../components/match/new/NotReadView.vue';
 import axios from 'axios';
-import Reload from "../components/Reload.vue";
+import Reload from "../components/utils/Reload.vue";
 
 export default{
   name: "NotificationNewMatch",
   props: ["name", "imagem", "option","user_id","link", "matchs", "friends"],
   components:{
     MatchNewComponent,
+    ReadView,
+    NotReadView,
     Reload,
-    axios
+    axios,
+    SearchComponent
     },
   data () {
     return {
       statusAPIAPP: false,
       users: [],
       matchsData: [],
-      ApiRepetecoStatus: false
+      ApiRepetecoStatus: false,
+      showView: "all"
     };
     },
   created(){

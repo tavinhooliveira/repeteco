@@ -20,18 +20,14 @@
 </template>
 
 <script>
-import ProfileComponent from '../components/ProfileComponent.vue';
-import UserComponent from '../components/UserComponent.vue';
-import FriendComponent from '../components/FriendComponent.vue';
-import Reload from '../components/Reload.vue';
+import ProfileComponent from '../components/profile/ProfileComponent.vue';
+import Reload from '../components/utils/Reload.vue';
 import axios from 'axios';
 export default {
   name: 'Profile',
   props: ['id', 'name', 'email', 'imagem', 'link', 'friends', 'city', 'id_fb_users', 'gender','numberWhats'],
   components: {
     ProfileComponent,
-    FriendComponent,
-    UserComponent,
     Reload,
     axios
   },

@@ -227,21 +227,15 @@
 </template>
 
 <script>
-import FriendComponent from '../components/FriendComponent.vue';
-import UserComponent from '../components/UserComponent.vue';
-import CarroselComponent from '../components/CarroselComponent.vue';
-import NotificationComponent from "../components/NotificationComponent.vue";
-import CarroselAdvertisingComponet from "../components/CarroselAdvertisingComponet.vue";
-import AboutComponent from "../components/AboutComponent.vue";
-import FormProfile from "../components/FormProfile.vue";
+import CarroselComponent from '../utils/CarroselComponent.vue';
+import CarroselAdvertisingComponet from "../utils/CarroselAdvertisingComponet.vue";
+import AboutComponent from "../utils/AboutComponent.vue";
+import FormProfile from "../profile/FormProfile.vue";
 import axios from 'axios';
 export default {
 	props: ['name', 'imagem', 'email', 'link', 'gender','friendsTotalFb','preference','numberWhats', 'friends', 'city', 'id', 'id_fb_users', 'friendsTotalApp', 'flagDisplayCount', 'flagDisplayHot', 'friendsAll', 'notification'],
 	components: {
-        FriendComponent,
-        UserComponent,
         CarroselComponent,
-        NotificationComponent,
         CarroselAdvertisingComponet,
         AboutComponent,
         FormProfile,

@@ -144,8 +144,8 @@
 </template>
 
 <script>
-import Reload from "../components/Reload.vue";
-import AboutComponent from "../components/AboutComponent.vue";
+import Reload from "../components/utils/Reload.vue";
+import AboutComponent from "../components/utils/AboutComponent.vue";
 export default {
     props: ['preference'],
     data() {

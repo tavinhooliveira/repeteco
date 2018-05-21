@@ -11,18 +11,31 @@
             <div class="list-group">
                 <div class="panel-heading">
                     <h4>Notificações: <span>{{coutNotification}}</span></h4>
-                    <div v-show="coutNotification != 0" class="pull-right notificationView">
-                        <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'">
-                            <span class="fa fa-eye"></span> 
-                          </button>
-                          <button class="btn btn-default btn-xs" type="button"  v-tooltip.bottom-start="'Não Vizualizado'">
-                            <span class="fa fa-eye-slash"></span>
-                          </button>  
+                    <div v-show="coutNotification != 0" class="pull-right notificationView" >
+                        <button class="btn btn-default btn-xs" type="input"  value="true" v-tooltip.bottom-start="'Vizualizado'" v-on:click="showView = true">
+                            <span class="fa fa-eye" value="true"></span> 
+                        </button>
+                        <button class="btn btn-default btn-xs" type="button" value="false"  v-tooltip.bottom-start="'Não Vizualizado'" v-on:click="showView = false">
+                            <span class="fa fa-eye-slash" value="false"></span>
+                        </button>  
                     </div>
-                    <div v-if="this.statusNotification === true">
+                    <div v-if="this.statusNotification === true">                        
+                        <span v-if="showView == true">
+                            <NReadTrue v-bind:notification="notificationData" v-for="notification in notificationData" v-bind:key="notification.id" v-bind:id="notification.id" v-bind:name="notification.name" v-bind:link="notification.link"
+                                v-bind:imagem="notification.imagem" v-bind:type="notification.type" v-bind:text="notification.text" v-bind:status="notification.status" v-bind:dateNotify="notification.dateNotify">
+                            </NReadTrue>
+                        </span>
+                        <span v-else-if="showView == false">
+                            <NReadFalse v-bind:notification="notificationData" v-for="notification in notificationData" v-bind:key="notification.id" v-bind:id="notification.id" v-bind:name="notification.name" v-bind:link="notification.link"
+                                v-bind:imagem="notification.imagem" v-bind:type="notification.type" v-bind:text="notification.text" v-bind:status="notification.status" v-bind:dateNotify="notification.dateNotify">
+                            </NReadFalse>
+                        </span>
+                        <span v-else-if="showView == 'all'">
                         <NotificationComponent v-bind:notification="notificationData" v-for="notification in notificationData" v-bind:key="notification.id" v-bind:id="notification.id" v-bind:name="notification.name" v-bind:link="notification.link"
                             v-bind:imagem="notification.imagem" v-bind:type="notification.type" v-bind:text="notification.text" v-bind:status="notification.status" v-bind:dateNotify="notification.dateNotify">
-                        </NotificationComponent>                 
+                        </NotificationComponent>
+                        </span>
+                                        
                     <div v-show="coutNotification === 0">
                         <p class="text-center">Nehuma Notificação no momento!</p>
                     </div>
@@ -38,23 +51,29 @@
 </template>
 
 <script>
-import NotificationComponent from "../components/NotificationComponent.vue";
-import Reload from "../components/Reload.vue";
+
+import NReadTrue from "../components/notification/NReadTrue.vue";
+import NReadFalse from "../components/notification/NReadFalse.vue";
+import NotificationComponent from "../components/notification/NotificationComponent.vue";
+import Reload from "../components/utils/Reload.vue";
 import axios from 'axios';
 
 export default {
   name: "Notification",
-  props: ['notification'],
+  props: ['notification' ],
     components: {
         Reload,
         NotificationComponent,
+        NReadTrue,
+        NReadFalse,
         axios
     },
     data() {
         return {
         notificationData: [],
         statusNotification: null,
-        notificationDataStatus: null
+        notificationDataStatus: null,
+        showView: "all"
         };
     },
     created(){
@@ -95,7 +114,7 @@ export default {
                     this.notificationData = false
                 }
             })
-        } 
+        }
     }
 };
 </script>

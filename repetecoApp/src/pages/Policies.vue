@@ -4,8 +4,8 @@
          </br></br>
       <h2 class="text-center">Políticas do Aplicativo</h2></br></br>
       <p class="container well"></br></br>
-<span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>
-</br></br>
+<span class="pull-left"> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a> | <a href="/termos">Termos</a> | <a href="/">Login</a></span>
+<br><br>
 Importante: O uso desse site e todas as disputas legais relacionadas estão sujeitas aos termos e condições seguintes, de acordo com as leis da Alemanha.
 
 Essa versão traduzida dos Termos e Condições abaixo é fornecida apenas por conveniência. A versão com vínculos jurídicos e legais dos Termos de Serviço é a alemã (Allgemeine Geschäftsbedingungen AGB) que pode ser lida aqui.
@@ -113,9 +113,9 @@ All disputes arising out of or in connection with this Agreement, the parties tr
 /*Inibir botoes do menu e footer- Begin */
 .btnNotificationNewMatch{display:none}
 .menu a,footer{display:none}
-header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:485px}
+header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:0px}
 @media (max-width:480px) and (min-width:320px){
-  header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:92px}
+  header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:40px}
 }
 body{background-image:url(/src/assets/img/bg.png)!important;background-repeat:no-repeat;background-size:100%}
 #app{font-family:Avenir,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-align:center;color:#2c3e50;margin-top:30px;}

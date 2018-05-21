@@ -2,9 +2,7 @@
    <div>       
       <div id="ListFriends" class="ListFriends container">
          <div v-if="this.statusAPIAPP === true">
-            <div id="searchClassification" class="container searchClassification navbar-fixed-top">
-               <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar..." class="fa fa-search">     
-            </div>
+            <searchComponent/>
             <div class="row container">
                <div  class="btnNotification" >
                     <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
@@ -33,9 +31,10 @@
 </template>
 
 <script>
-import UserComponent from "../components/UserComponent.vue";
-import Reload from "../components/Reload.vue";
-import ProfileHeaderComponent from "../components/ProfileHeaderComponent.vue";
+
+import SearchComponent from "../components/utils/SearchComponent.vue";
+import UserComponent from "../components/classification/UserComponent.vue";
+import Reload from "../components/utils/Reload.vue";
 import axios from 'axios';
 
 export default {
@@ -44,7 +43,7 @@ export default {
   components: {
       UserComponent,
       Reload,
-      ProfileHeaderComponent,
+      SearchComponent,
       axios
     },
     data() {

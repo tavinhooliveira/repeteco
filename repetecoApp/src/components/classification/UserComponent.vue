@@ -10,7 +10,7 @@
   </div>  
 </template>
 <script>
-import FriendComponent from './FriendComponent.vue';
+import FriendComponent from '../classification/FriendComponent.vue';
 export default{
   props:['id','id_fb_users','name','imagem','link','nationality','friendsTotalFb','friends','preference','flagDisplayHot'],
   components:{

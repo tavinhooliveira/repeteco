@@ -2,10 +2,7 @@
    <div>
       <section>
          <div v-if="this.statusApiRepeteco === true && this.statusApiRepetecoAll === true" id="ListFriends" class="ListFriends container notification">
-            <div id="searchClassification" class="container searchClassification navbar-fixed-top">
-               <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar...">
-            </div>
-            
+            <searchComponent/>            
             <div  class="list-group" id="searchUL">
                <matchesRecordComponent v-bind:user="users" v-for="user in users" v-bind:key="user.id" v-bind:id_fb_users="user.id_fb_users" v-bind:name="user.name" v-bind:imagem="user.imagem" v-bind:user_id="user.user_id"
                   v-bind:link="user.link" v-bind:friends="user.friends" v-bind:gender="user.gender" v-bind:friendsTotalFb="user.friendsTotalFb"
@@ -20,19 +17,17 @@
    </div>
 </template>
 <script>
-import Matchscomponent from '../components/Matchscomponent.vue';
-import MatchesRecordComponent from '../components/MatchesRecordComponent.vue';
-import UserComponent from '../components/UserComponent.vue';
-import Reload from "../components/Reload.vue";
+import SearchComponent from "../components/utils/SearchComponent.vue";
+import MatchesRecordComponent from '../components/match/MatchesRecordComponent.vue';
+import Reload from "../components/utils/Reload.vue";
 
 export default {
   name: "Notificatiob",
   props: ["name", "imagem", "option", "user_id", 'item', 'id', 'dataMatch'],
   components: {
-    Matchscomponent,
-    UserComponent,
     Reload,
-    MatchesRecordComponent
+    MatchesRecordComponent,
+    SearchComponent
   },
   data() {
         return {

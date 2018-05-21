@@ -1,46 +1,41 @@
 <template>
     <div id="app">        
-          <header class="navbar-fixed-top navbar-default" id="navmenu">            
-            <header-component :imagem="usersData.imagem"/>
-        </header>
         <span v-if="!authorized">
             <ReloadAuthorizedComponent></ReloadAuthorizedComponent>
         </span>
         <span v-else>
+            <header class="navbar-fixed-top navbar-default" id="navmenu">            
+                <header-component :imagem="usersData.imagem"/>
+            </header>
             <router-view> </router-view>
-      </span>        
-        <footer class="footer navbar-fixed-bottom navbar-default">
-            <div class="container">
-                <div class="col-md-12 btn btn-navbar">
-                               
-                    <router-link to="notification"><span class="footerIcon fa fa-bell fa-red  text-red fa-1x col-md-3" data-transition="pop" data-toggle="tooltip" data-placement="top" title="Notificações"><i v-show="coutNotificationNotRead != 0" class="badge btnNotify" id="cont_cl_fico">{{coutNotificationNotRead}}</i></span></router-link>                     
-                    <router-link to="matchs"><span class="footerIcon fa fa-heartbeat fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Matchs"><i v-show="coutMatchsNotRead != 0" class="badge btnNotify" id="cont_cl_fico">{{coutMatchsNotRead}}</i></span></router-link>     
-                    <router-link to="config"><span class="footerIcon fa fa-sun-o fa-1x col-md-3 " data-transition="pop" data-toggle="tooltip" data-placement="top" title="Configuração"></span></router-link>
-                    <a href="/" onclick="Refresh();"><span class="footerIcon fa fa-sign-out fa-1x col-md-3" data-toggle="tooltip" data-placement="top" title="Sair"></span></a>
-                </div>
-            </div>
-        </footer> 
+                <footer-component :varcoutNotificationNotRead="coutNotificationNotRead" :varcoutMatchsNotRead="coutMatchsNotRead" />
+        </span>         
         <span id="goTop" v-on:click="scrolltop();"  data-toggle="tooltip" data-placement="top" title="Topo"></span>
-        {{localStoregeFuntion}}
     </div>
 </template>
 
 <script>
-import ReloadAuthorizedComponent from "./components/ReloadAuthorizedComponent.vue";
 import axios from 'axios';
-import HeaderComponent from './components/HeaderComponent.vue';
+import ReloadAuthorizedComponent from "./components/utils/ReloadAuthorizedComponent.vue";
+import HeaderComponent from './components/template/HeaderComponent.vue';
+import FooterComponent from './components/template/FooterComponent';
 export default {
     name: 'wrapper',
     components:{
         axios,
+        ReloadAuthorizedComponent,
         HeaderComponent,
-        ReloadAuthorizedComponent
+        FooterComponent
     },
     data() {
         return {
             usersData: [],
             authorized: true
         }
+    },
+    created(){
+        let vm = this;
+        vm.localStoregeFuntion;
     },
     computed: {
         localStoregeFuntion: function(){
@@ -96,10 +91,7 @@ export default {
                     }
             return litrs.length           
             } 
-        }
-   
-
-         
+        }        
     },
     methods: {
         getUsers(userid){
