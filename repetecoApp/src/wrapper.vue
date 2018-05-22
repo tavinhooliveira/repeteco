@@ -7,8 +7,8 @@
             <header class="navbar-fixed-top navbar-default" id="navmenu">            
                 <header-component :imagem="usersData.imagem"/>
             </header>
-            <router-view> </router-view>
-                <footer-component :varcoutNotificationNotRead="coutNotificationNotRead" :varcoutMatchsNotRead="coutMatchsNotRead" />
+                <router-view> </router-view>
+            <footer-component :varcoutNotificationNotRead="coutNotificationNotRead" :varcoutMatchsNotRead="coutMatchsNotRead" />
         </span>         
         <span id="goTop" v-on:click="scrolltop();"  data-toggle="tooltip" data-placement="top" title="Topo"></span>
     </div>

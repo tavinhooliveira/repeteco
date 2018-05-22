@@ -61,15 +61,15 @@
                 <li class="listyle" v-if="countMatch != 0" ><i class="fa fa-heartbeat"></i> Total de Mathcs
                     <span class="badge pull-right">{{countMatch}}</span>            
                 </li>
-                <li class="listyle" v-if="contMatchNewMatch != 0" ><a v-tooltip.top-start="'Verificar Novos Lances'" href="/matchsNew"><i class="fa fa-heartbeat"></i> Match Novo Lance!                                          
-                        <span class="badge pull-right">{{contMatchNewMatch}}</span></a>        
+                <li class="listyle" v-if="contMatchNewMatch != 0" ><router-link to="/matchsNew" v-tooltip.top-start="'Verificar Novos Lances'"><i class="fa fa-heartbeat"></i> Match Novo Lance!                                          
+                        <span class="badge pull-right">{{contMatchNewMatch}}</span></router-link>        
                 </li>
-                <li class="listyle" v-if="contMatchOldMacth != 0" ><a v-tooltip.top-start="'Verificar Flash backs'" href="/matchsOld"><i class="fa fa-heartbeat"></i> Macth Flash Back!                                          
-                        <span class="badge pull-right">{{contMatchOldMacth}}</span></a>        
+                <li class="listyle" v-if="contMatchOldMacth != 0" ><router-link to="/matchsOld" v-tooltip.top-start="'Verificar Flash backs'"><i class="fa fa-heartbeat"></i> Macth Flash Back!                                          
+                        <span class="badge pull-right">{{contMatchOldMacth}}</span></router-link>      
                 </li>
-                <li class="listyle" v-if="countNotification > 0" ><a href="/notification"><i class="fa fa-bell"></i> Notificações!                                          
+                <li class="listyle" v-if="countNotification > 0" ><router-link to="/notification"><i class="fa fa-bell"></i> Notificações!                                          
                         <label v-show="countNotificationNotRead !=0" class="label label-info">  Não Vizualizadas: {{countNotificationNotRead}} </label>
-                        <span class="badge pull-right">{{countNotification}}</span></a>       
+                        <span class="badge pull-right">{{countNotification}}</span></router-link>   
                 </li>
             </ul>
         </div>
@@ -81,7 +81,7 @@
         <div class="box col-md-9">
             <div class=" col-md-3">            
                 <div class="" v-tooltip.top-start="'Amigos no Aplicativo'">
-                    <a href="/classification">
+                    <router-link to="/classification">
                     <div class="layer w-100 mB-10">
                         <h6 class="lh-1">Amigos no Facebook</h6>
                     </div>
@@ -95,12 +95,12 @@
                         <div class="progress-value">{{friendsTotalFb}}</div>
                         <p class="labelCount text-center"><i class="fa fa-facebook-official" aria-hidden="true"></i></p>
                     </div>
-                    </a>
+                    </router-link>
                 </div>
             </div>           
             <div class="col-md-3 box-progress">            
                 <div class="" v-tooltip.top-start="'Amigos no Aplicativo'">
-                <a href="/classification">
+                <router-link to="/classification">
                     <div class="layer w-100 mB-6">
                         <h6 class="lh-1">Amigos no Repeteco</h6>
                     </div>
@@ -114,12 +114,12 @@
                         <div class="progress-value" :value="progress()" :max="friendsTotalApp">{{friendsTotalApp}} </div>
                         <p class="labelCount text-center"><i class="fa fa-users" aria-hidden="true"></i></p>
                     </div>
-                </a>
+                </router-link>
                 </div>
             </div>            
             <div class=" col-md-3">            
                 <div class="" v-tooltip.top-start="'Amigos no Aplicativo'">
-                    <a href="/classificationOn">
+                    <router-link to="/classificationOn">
                     <div class="layer w-100 mB-10">
                         <h6 class="lh-1">Amigos Classificados</h6>
                     </div>
@@ -133,12 +133,12 @@
                         <div class="progress-value">{{progress()}}</div>
                         <p class="labelCount text-center"><i class="fa fa-star" aria-hidden="true"></i></p>
                     </div>
-                    </a>
+                    </router-link>
                 </div>
             </div>
             <div class=" col-md-3">            
                 <div class="" v-tooltip.top-start="'Amigos no Aplicativo'" >
-                    <a href="/matchs">
+                    <router-link to="/matchs">
                     <div class="layer w-100 mB-10">
                         <h6 class="lh-1">Total de Matchs</h6>
                     </div>
@@ -152,7 +152,7 @@
                         <div class="progress-value">{{countMatch}}</div>
                         <p class="labelCount text-center"><i class="fa fa-heartbeat" aria-hidden="true"></i></p>
                     </div>
-                    </a>
+                    </router-link>
                 </div>
             </div>
         </div>
