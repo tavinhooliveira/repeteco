@@ -73,7 +73,7 @@
   </div>
 </form>
 <button data-toggle="collapse" href="#collapsePerfilEdite" aria-expanded="false" aria-controls="collapsePerfilEdite" class="btn btn-default ">Cancelar</button>
-<button v-on:click="updateUserPerfil(); sweetModalFormSuccess()" class="btn btn-success pull-right">Salvar</button>
+<button v-on:click="updateUserPerfil(); sweetModalFormSuccess()" data-toggle="collapse" aria-expanded="false" aria-controls="collapsePerfilEdite" class="btn btn-success pull-right">Salvar</button>
 <!-- modal perfil -->
     <sweet-modal ref="sweetModalFormSuccess" icon="success"/>
 </div>

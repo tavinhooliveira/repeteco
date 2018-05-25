@@ -1,11 +1,21 @@
 <template>
     <div>
-        <div class="container HeaderComponent">
-            <div class="menu col-md-12 btn btn-navbar">
-                <profileHeaderComponent link="/profile" :imagem="imagem" />
-                <router-link to="" onclick="Refresh();"><span class="headerIcon col-md-4"><img id="logotipo" src="/src/assets/img/logo.png" data-toggle="tooltip" data-placement="bottom" title="Refresh"></span></router-link> 
-                <router-link to="classification"><span class="headerIcon round pull-right"><img id="" src="/src/assets/img/btnClassification.png" data-toggle="tooltip" data-placement="bottom" title="Classificação"></span></router-link>
+        <div class="header container">
+            <div class="col-md-4">
+                <span class="">
+                    <router-link class="btnClassification" to="classification"><span class="round"><img id="" src="/src/assets/img/btnClassification.png" data-toggle="tooltip" data-placement="bottom" title="Classificação"></span></router-link>
+                </span>
             </div>
+            <div class="col-md-4">
+                <span class="navbar-brand-center">
+                    <router-link class="col-md-4" to="" onclick="Refresh();"><img id="logotipo" src="/src/assets/img/logo.png" data-toggle="tooltip" data-placement="bottom" title="Atualizar..."></router-link> 
+                </span>
+            </div>
+            <div class="col-md-4">
+                <span class="pull-right">
+                    <profileHeaderComponent class="HeaderComponent col-md-4" link="/profile" :imagem="imagem" />
+                </span>            
+            </div>           
         </div>
     </div> 
 </template>
@@ -16,14 +26,56 @@ export default {
     props: ['imagem'],
     name: 'HeaderComponent',
     components:{
-        ProfileHeaderComponent
+    ProfileHeaderComponent
     }
 }
 </script>
 <style>
-.HeaderComponent img {width: 25px; height: 18px; margin-right: 30px;}
-.HeaderComponent img:hover {width: 24px; height: 17px;}
-@media (min-width : 300px) and (max-width : 500px){
-.HeaderComponent img {margin-top: -3px; margin-right: -5px;}
+.navMenu{
+     z-index: 9999999 !important;
 }
+.header .navbar-brand-center {
+    position: absolute;
+    left: 50%;
+    padding: 0;
+    margin: 0;
+    -webkit-transform: translate(-50%,0);
+    -ms-transform: translate(-50%,0);
+    -o-transform: translate(-50%,0);
+    transform: translate(-50%,0);
+}
+
+.header a #logotipo{
+    margin-top: -45px;
+    margin-left: -25px;
+    z-index: 9999999 !important;
+    position: absolute;
+    margin-left: -55px;
+}
+.header .btnClassification img{
+    width: 30px;
+    height: 23px;
+    position: absolute;
+    z-index: 9999999 !important;
+    margin: 15px 0px auto -5px;
+}
+.header .btnClassification img:hover{
+    width: 33px;
+    height: 24px;
+    border-radius: 7px;
+    border: 2px solid rgba(184, 184, 184, 0.144) !important;
+    position: absolute;
+    z-index: 9999999 !important;
+    margin: 15px 0px auto -5px;
+}
+
+@media (min-width : 300px) and (max-width : 500px){
+    .header a #logotipo {
+        margin-top: 15px;
+        margin-left: -50px;
+        z-index: 9999999 !important;
+        position: absolute;
+    }
+}
+
 </style>

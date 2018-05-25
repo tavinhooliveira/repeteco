@@ -1,6 +1,6 @@
 <template>
-    <div id="searchClassification" class="container searchClassification navbar-fixed-top">
-        <input type="text" id="searchInput" onkeyup="functionSearch()" placeholder="Buscar..." autocomplete = "off" class="fa fa-search">     
+    <div id="" class="searchClassification col-md-12">
+        <input type="text" id="searchInput"  class=" fa fa-search" onkeyup="functionSearch()" placeholder="Buscar..." autocomplete = "off">     
     </div>
 </template>
 <script>

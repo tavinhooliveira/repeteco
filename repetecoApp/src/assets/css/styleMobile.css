@@ -302,11 +302,10 @@
     margin-right: 35px;
 }
     .searchClassification {
-        margin-top: 50px !important;
         width: 100% !important;
    }
     .searchClassification input {
-       width: 99% !important;
+       width: 100% !important;
    }
     .newProfile .classification{
        padding-left: 15px 

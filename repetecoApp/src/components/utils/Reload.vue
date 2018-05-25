@@ -1,5 +1,5 @@
 <template >
-<div>
+<div><br><br><br><br><br><br><br><br><br><br>
   <section class="error-message" onclick="Refresh();">
     <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
     <br><br><br>

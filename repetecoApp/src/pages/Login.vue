@@ -2,6 +2,8 @@
    <div>
       <section>
          <div class="container" id="logar">
+             <!-- <router-link v-show="listeningWsRepeteco == 500" to="" onclick="Refresh();"><img id="logotipo" src="/src/assets/img/logo.png" style="margin-left: -54px;margin-top: -56px;z-index: 9999999;position: absolute;margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="Refresh">
+             </router-link>             -->
             <div class="row col-md-6 col-md-offset-3 ">
                <div v-if="!authorized" class="well_b text-center">
                   <div><img src="/src/assets/img/repeteco.png" style='height: 100px; width: 100px;'>
@@ -32,8 +34,17 @@
                         <a href="/classification"  class="btn btn-success" >Entrar <span id="iconEntrar" class="glyphicon glyphicon-log-in"></span></a>
                         </span>
                     </div>
-                     <span v-else-if="listeningWsRepeteco == 500" class="alert text-warning">
-                         Desculpe, algo deu errado, tente novamente mais tarde!
+                     <span v-else-if="listeningWsRepeteco == 500" class="alert text-warning">                         
+                         <p> Desculpe, algo deu errado, tente mais tarde! 
+                            <h6 class="error-description">Erro 500 – Internal Server Error</h6>
+                         </p><br>
+                             <section class="links">
+                                <a class="error-link" href="/">Tentar Novamente</a>
+                            </section><br> 
+                            <section class="links">
+                                <a href="/termos">Termos</a> |
+                                <a href="/politicas">Politicas</a>
+                            </section>
                      </span>
                </div><br>
                <div class="row col-md-6 text-center classificationInfo container">
@@ -261,18 +272,14 @@ export default {
 /*Inibir botoes do menu e footer- Begin */
 .btnNotificationNewMatch{display:none}
 .menu a,footer{display:none}
-/* header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:485px} */
+.menu a,header{display:none}
+.menu a,header #logotipo{display:none !important;}
 @media (max-width:480px) and (min-width:320px){
-  header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:30px}
-  .well_b {
-    background-color: rgba(255, 255, 255, 0.94) !important;
-    border: 1px solid #b4b4b47d;
-    padding: 10px;
+    .well_b {
+        border: 1px solid #b4b4b47d;
+        padding: 10px;
+    }
 }
-}
-/* body background imagem 
-body{background-image:url(/src/assets/img/bg.png)!important;background-repeat:no-repeat;background-size:100%}
-*/
 #app{font-family:Avenir,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-align:center;color:#2c3e50;margin-top:60px;}
 button{cursor:pointer}
 #iconEntrar {color: #FFF !important;}

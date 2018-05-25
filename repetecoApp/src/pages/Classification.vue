@@ -2,8 +2,8 @@
    <div>       
       <div id="ListFriends" class="ListFriends container">
          <div v-if="this.statusAPIAPP === true">
-            <searchComponent/>
             <div class="row container">
+                <searchComponent/>
                <div  class="btnNotification" >
                     <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
                   

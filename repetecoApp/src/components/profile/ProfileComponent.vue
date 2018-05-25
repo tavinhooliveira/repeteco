@@ -51,7 +51,6 @@
         <!-- box cout Classification new Old Alert! -->
         <div v-if="contAllClassification != 0" class="box perfil">
                 <div v-if="contAllClassification != 0" class="alert alert-info alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <strong>Você Classificou</strong> {{contAllClassification}} amigos(as) <span v-show="contNotClassification != 0">{{contNotClassification}} ainda espera por você!</span>
                 </div>
              <ul class="nav nav-stacked">
@@ -511,7 +510,6 @@ export default {
     color: #fff;
     border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
-    padding: 30px;
     text-align: center;
 }
 .user-heading a img {
@@ -543,7 +541,7 @@ export default {
     position: relative;
     border-radius: 3px;
     background: #ffffff;
-    border-top: 3px solid #e7e7e7;
+    /* border-top: 3px solid #e7e7e7; */
     border-bottom: 5px;
     padding-bottom: 10px;
     margin-bottom: 20px;
