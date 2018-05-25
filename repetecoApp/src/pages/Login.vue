@@ -117,13 +117,15 @@ export default {
         }
     },
     methods: {
-        islisteningWsRepeteco(responseIdFb){
+        islisteningWsRepeteco(responseIdFb, responseFb){
             let mv = this;
             var idFb = responseIdFb;
+            var authAux = responseFb;
             axios.get(this.$urlAPI).then(response => {
                 this.listeningWsRepeteco = response.status;
                 if (this.listeningWsRepeteco === 200) {
                     mv.getFacebook()
+                    window.sessionStorage.setItem('authAuxStore', authAux );
                     window.localStorage.setItem('idFBStorage', idFb);
                     window.sessionStorage.setItem('idFBStorage', idFb);
                     console.log("API Repeteco listening... OK!")
@@ -234,10 +236,12 @@ export default {
             let vm = this
             console.log("Autorizando Usuario...");
             if (response.status === 'connected') {
+                let responseFb = response.authResponse
                 var idFb = response.authResponse.userID
                 vm.authorized = true
-                vm.islisteningWsRepeteco(idFb);
-                console.log("Usuario Autorizado")               
+                vm.islisteningWsRepeteco(idFb, responseFb);
+                console.log("Usuario Autorizado");
+                console.log("responseFb: ", responseFb);                 
             } else if (response.status === 'not_authorized') {
                 console.log("Usuario Não Autorizado!");
                 vm.authorized = false

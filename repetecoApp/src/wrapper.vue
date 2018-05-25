@@ -40,15 +40,28 @@ export default {
     computed: {
         localStoregeFuntion: function(){
             let vm = this
+            let sessionAuthAux = window.sessionStorage.getItem('authAuxStore');
             var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
             if(idFBStoragelogado != null){
             console.log("Wrapper: [localStorage] "+idFBStoragelogado);
+            console.log("Wrapper: [sessionAuthAux] "+sessionAuthAux);
             vm.getUsers(idFBStoragelogado);
             vm.authorized = true;
             }else{
             console.log("Wrapper [localStorage] NOK!");
             }
         },
+        // localStoregeFuntion: function(){
+        //     let vm = this
+        //     var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
+        //     if(idFBStoragelogado != null){
+        //     console.log("Wrapper: [localStorage] "+idFBStoragelogado);
+        //     vm.getUsers(idFBStoragelogado);
+        //     vm.authorized = true;
+        //     }else{
+        //     console.log("Wrapper [localStorage] NOK!");
+        //     }
+        // },
         //Recupera a quantidade de matchs
         coutMatchs() {
             if(this.usersData.matchs){

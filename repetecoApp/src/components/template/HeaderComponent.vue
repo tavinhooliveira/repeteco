@@ -52,6 +52,9 @@ export default {
     position: absolute;
     margin-left: -55px;
 }
+.header a #logotipo:hover{
+    zoom: 20px
+}
 .header .btnClassification img{
     width: 30px;
     height: 23px;
@@ -59,14 +62,15 @@ export default {
     z-index: 9999999 !important;
     margin: 15px 0px auto -5px;
 }
-.header .btnClassification img:hover{
+.header .btnClassification img:hover {
     width: 33px;
     height: 24px;
-    border-radius: 7px;
-    border: 2px solid rgba(184, 184, 184, 0.144) !important;
+    border-radius: 65px;
+    padding: 2px;
     position: absolute;
     z-index: 9999999 !important;
     margin: 15px 0px auto -5px;
+    box-shadow: -1px -1px 34px 8px #e0e0e0;
 }
 
 @media (min-width : 300px) and (max-width : 500px){
