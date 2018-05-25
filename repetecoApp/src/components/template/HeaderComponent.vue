@@ -70,7 +70,7 @@ export default {
     position: absolute;
     z-index: 9999999 !important;
     margin: 15px 0px auto -5px;
-    box-shadow: -1px -1px 34px 8px #e0e0e0;
+    box-shadow: -1px -1px 90px 2px #e0e0e0;
 }
 
 @media (min-width : 300px) and (max-width : 500px){
