@@ -7,7 +7,7 @@
         v-bind:preference="preference" v-bind:flagDisplayHot="flagDisplayHot">
       </friendComponentOn>
     </div>
-    <p v-if="contAllClassification <= 0"class="text-center"></br>Nenhum amigo classificado! ☹</p> 
+    <p v-if="contAllClassification <= 0" class="text-center"></br>Nenhum amigo classificado! ☹</p> 
   </div>
 </template>
 <script>

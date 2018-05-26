@@ -43,20 +43,9 @@ export default {
     },
     created(){
         let vm = this;
-        vm.localStoregeFuntion;
-    },
-    computed: {
-        localStoregeFuntion(){
-            let vm = this
-            var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
-            if(idFBStoragelogado != null){
-            console.log("Wrapper: [Profile] - id: "+idFBStoragelogado);
-            vm.getApiRepeteco(idFBStoragelogado);
-            vm.getApiRepetecoFriendsAll();
-            }else{
-            console.log("Wrapper [Profile] NOK!");
-            }
-        }
+        var idAux = vm.$store.getters.getUseriId;
+        vm.getApiRepeteco(idAux);
+        vm.getApiRepetecoFriendsAll();
     },
     methods: {
         //usado para extrair o id dos amigos que deram match!

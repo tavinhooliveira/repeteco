@@ -25,11 +25,6 @@
             </div>
             </span>
             <div class="list-group" id="searchUL">
-              <!-- <matchNewComponent v-bind:matchs="users.matchs" v-for="matchs in users.matchs" v-bind:key="matchs.id" v-bind:id="matchs.id"
-                  v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender"
-                  v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id"
-                  v-bind:dataMatch="matchs.dataMatch" v-bind:userName="users.name" v-bind:userLink="users.link" v-bind:userImagem="users.imagem" v-bind:read="matchs.read"> 
-              </matchNewComponent> -->
               <span v-if="showView == true">
                 <readView v-bind:matchs="users.matchs" v-for="matchs in users.matchs" v-bind:key="matchs.id" v-bind:id="matchs.id"
                   v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender"
@@ -50,11 +45,9 @@
                     v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id"
                     v-bind:dataMatch="matchs.dataMatch" v-bind:userName="users.name" v-bind:userLink="users.link" v-bind:userImagem="users.imagem" v-bind:read="matchs.read"> 
                 </matchNewComponent>
-              </span>
-
-  
+              </span>  
             </div>
-            <div v-if="contMatchNewMatch <= 0 || contMatchNewMatch == null">
+            <div v-if="contMatchNewMatch <= 0 || contMatchNewMatch == null"><br><br><br><br>
                 <br><p class="text-center">Você não tem Match para essa classificação ☹</p>
             </div>
             <br>
@@ -95,19 +88,10 @@ export default{
     },
   created(){
     let vm = this;
-    vm.localStoregeFuntion;
+    var idAux = vm.$store.getters.getUseriId;
+    vm.getApiRepeteco(idAux);
   },
   computed: {
-    localStoregeFuntion(){
-        let ch = this
-        var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
-        if(idFBStoragelogado != null){
-        console.log("Wrapper: [Matcrs] - id: "+idFBStoragelogado);
-        ch.getApiRepeteco(idFBStoragelogado);
-        }else{
-        console.log("Wrapper [Matcrs] NOK!");
-        }
-    },
     contMatchNewMatch() {
       if(this.users.matchs){
         let litrs =[];           
@@ -129,7 +113,6 @@ export default{
         if (this.ApiRepetecoStatus === 200) {
             this.users = response.data
             this.statusAPIAPP = true;
-            console.log("API Repeteco: OK!")
         } else {
           this.statusAPIAPP = false;
           this.users = 0;

@@ -49,7 +49,7 @@
 
 
             </div>
-            <div v-if="contMatchOldMatch <= 0 || contMatchOldMatch == null">
+            <div v-if="contMatchOldMatch <= 0 || contMatchOldMatch == null"><br><br><br><br>
                 <br><p class="text-center">Você não tem Match para essa classificação ☹</p>
             </div>
             <br>
@@ -90,19 +90,10 @@ import Reload from "../components/utils/Reload.vue";
      },
   created(){
     let vm = this;
-    vm.localStoregeFuntion;
+    var idAux = vm.$store.getters.getUseriId;
+    vm.getApiRepeteco(idAux);
   },
   computed: {
-    localStoregeFuntion(){
-        let mv = this
-        var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
-        if(idFBStoragelogado != null){
-          console.log("Wrapper: [Matcrs] - id: "+idFBStoragelogado);
-          mv.getApiRepeteco(idFBStoragelogado);
-        }else{
-          console.log("Wrapper [Matcrs] NOK!");
-        }
-    },
     isMatch() {
         if(this.users.matchs){
             return true;         
@@ -126,20 +117,20 @@ import Reload from "../components/utils/Reload.vue";
 
   },
   methods: {
-   getApiRepeteco(userid){
-   		this.$http.get(this.$urlAPI+`users/${userid}`).then(response => {
-        this.ApiRepetecoStatus = response.status			
-         if (this.ApiRepetecoStatus === 200) {
-            this.users = response.data
-            this.statusAPIAPP = true;
-            console.log("API Repeteco: OK!")
-         } else {
-           this.statusAPIAPP = false;
-           this.users = 0;
-           console.log("Erro na chamada da API - Repeteco");
-         }    
-       })
-   	}
+    getApiRepeteco(userid){
+        this.$http.get(this.$urlAPI+`users/${userid}`).then(response => {
+          this.ApiRepetecoStatus = response.status			
+          if (this.ApiRepetecoStatus === 200) {
+              this.users = response.data
+              this.statusAPIAPP = true;
+              console.log("API Repeteco: OK!")
+          } else {
+            this.statusAPIAPP = false;
+            this.users = 0;
+            console.log("Erro na chamada da API - Repeteco");
+          }    
+        })
+      }
    }
 };
 </script>

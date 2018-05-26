@@ -3,7 +3,7 @@
    <li v-if="(genderPreference === gender || genderPreference === '')" class="list-group-item col-md-4" v-bind:style="efeitoClick" v-on:mouseover="mauseEfeito()" v-on:mouseout="removemauseEfeito()">
       <form class="statusForm">
             <div class="media-left col-md-4 LfPicture" >
-              <a v-on:click="sweetModalPerfil();"  v-tooltip.left-start="'@Perfil'"><img class="media-object" v-bind:src="imagem"></a>
+              <a v-on:click="sweetModalPerfil();"  v-tooltip.left-start="'@Perfil'"><img class="media-object" v-bind:src="imagem || `/src/assets/img/man.jpg`"></a>
          </div>
          <div class="col-md-8 classification">
             <h4 class="media-heading"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
@@ -40,7 +40,7 @@
     <sweet-modal ref="sweetModalPerfil">
       <div class="media">
             <a :href="link" target="_blank">
-              <img class="" style="width:200px" v-bind:src="imagem">
+              <img class="" style="width:200px" v-bind:src="imagem || `/src/assets/img/man.jpg`">
             </a>
           <div class="media-body">
             <h4 class="">{{name}}</h4>
@@ -116,7 +116,7 @@ export default {
       }
       var friendId = this.id;
       $.ajax({
-        url: "http://localhost:9096/wsrepeteco/friends/opcao/" + friendId,
+        url: (this.$urlAPI+`friends/opcao/${friendId}`),
         method: "PUT",
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
@@ -136,7 +136,7 @@ export default {
       }
       var friendId = this.id;
       $.ajax({
-        url: "http://localhost:9096/wsrepeteco/friends/opcao/" + friendId,
+        url: (this.$urlAPI+`friends/opcao/${friendId}`),
         method: "PUT",
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',

@@ -2,7 +2,7 @@
    <div>
     <li v-if="statusData === '1'" class="list-group-item itemNotificationRead">
         <span>
-            <img class="imgNotificatioCirculo"  v-bind:src="imagem" style='height: 40px; width: 40px;'>
+            <img class="imgNotificatioCirculo"  v-bind:src="imagem || `/src/assets/img/man.jpg`" style='height: 40px; width: 40px;'>
             <span>
             <i v-if="type === 'Match'" class="fa fa-heartbeat" aria-hidden="true"></i>
              <i v-if="type === 'WhatsApp'" class="fa fa-whatsapp" aria-hidden="true"></i>

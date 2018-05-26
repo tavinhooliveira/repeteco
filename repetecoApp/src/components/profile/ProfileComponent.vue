@@ -7,7 +7,7 @@
        <div class="user-heading round">
            <span v-tooltip.top-start="'Perfil Facebook'">
                 <a v-bind:href="link" target="_blank">
-                    <img v-bind:src="imagem" alt="">
+                    <img v-bind:src="imagem || `/src/assets/img/man.jpg`" alt="">
                 </a>
                 <h4 class="perfilName center-block"><a v-bind:href="link" target="_blank">{{name}}</a>
                     <h6 class="small center-block">{{friendsTotalApp}} de {{friendsTotalFb}} <i class="fa fa-users"></i> </h6>
@@ -66,7 +66,7 @@
                 <li class="listyle" v-if="contMatchOldMacth != 0" ><router-link to="/matchsOld" v-tooltip.top-start="'Verificar Flash backs'"><i class="fa fa-heartbeat"></i> Macth Flash Back!                                          
                         <span class="badge pull-right">{{contMatchOldMacth}}</span></router-link>      
                 </li>
-                <li class="listyle" v-if="countNotification > 0" ><router-link to="/notification"><i class="fa fa-bell"></i> Notificações!                                          
+                <li class="listyle" v-if="countNotification > 0" ><router-link to="/notification"><i class="fa fa-bell"></i> Notificações:                                          
                         <label v-show="countNotificationNotRead !=0" class="label label-info">  Não Vizualizadas: {{countNotificationNotRead}} </label>
                         <span class="badge pull-right">{{countNotification}}</span></router-link>   
                 </li>

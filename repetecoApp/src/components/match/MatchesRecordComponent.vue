@@ -1,6 +1,9 @@
 <template>
     <div class="pageMatch">
-        <br>        
+        <span  v-if="!isMatch == false">
+            <searchComponent/>
+        </span>        
+        <br>
         <div class="btnNotification" role="group">
             <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>
             <div v-show="isMatch == true" class="btn-group pull-right">
@@ -19,23 +22,26 @@
                   </div>                 
                 </div>
         </div>
-        </br>
+        <br>
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group">
                 <button type="button" onclick="Refresh();" class="btn btn-default"><i class="footerIcon fa fa-heartbeat fa-1x"></i> Verificar Matchs <i class="footerIcon fa fa-heartbeat fa-1x"></i></button>
             </div>
-        </div>
+        </div>                   
+        <div  class="list-group" id="searchUL">
         <matchscomponent v-bind:matchs="matchsData" v-for="matchs in matchsData" v-bind:key="matchs.id" v-bind:id="matchs.id"
         v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender"
         v-bind:option="matchs.option" v-bind:id_fb_friends="matchs.id_fb_friends" v-bind:user_id="matchs.user_id"
         v-bind:dataMatch="matchs.dataMatch" v-bind:userName="name" v-bind:userLink="link" v-bind:userImagem="imagem" v-bind:read="matchs.read" v-bind:userNumberWhats="numberWhats"> 
         </matchscomponent>
+        </div>
         <div v-if="isMatch == false">
             <br><p class="text-center">Você ainda não tem Matchs! ☹</p>
         </div>
     </div>
 </template>
 <script>
+import SearchComponent from "../utils/SearchComponent.vue";
 import Matchscomponent from './Matchscomponent.vue';
 import axios from 'axios';
 
@@ -43,7 +49,8 @@ export default{
   props:['id','id_fb_users','user_id','name','imagem','link','nationality','friendsTotalFb','friends','preference','flagDisplayHot', 'matchs', 'friendsAll', 'numberWhats'],
   components:{
       Matchscomponent,
-      axios
+      axios,
+      SearchComponent
   },
    beforeCreate() {
     

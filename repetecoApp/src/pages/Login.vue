@@ -117,17 +117,15 @@ export default {
         }
     },
     methods: {
-        islisteningWsRepeteco(responseIdFb, responseFb){
+        islisteningWsRepeteco(responseFb){
             let mv = this;
-            var idFb = responseIdFb;
             var authAux = responseFb;
             axios.get(this.$urlAPI).then(response => {
                 this.listeningWsRepeteco = response.status;
                 if (this.listeningWsRepeteco === 200) {
                     mv.getFacebook()
-                    window.sessionStorage.setItem('authAuxStore', authAux );
-                    window.localStorage.setItem('idFBStorage', idFb);
-                    window.sessionStorage.setItem('idFBStorage', idFb);
+                    this.$store.commit('setAuth', responseFb);
+                    sessionStorage.setItem('user',JSON.stringify(responseFb));
                     console.log("API Repeteco listening... OK!")
                 } else {
                     console.log("Erro na conexão da API, tente mais tarde!");
@@ -227,8 +225,7 @@ export default {
                 vm.statusChangeCallback(response)
                 console.log("logout Efetuado")
             })
-            window.localStorage.removeItem('idFBStorage');
-            window.sessionStorage.removeItem('idFBStorage');
+            window.sessionStorage.removeItem('user');
             window.localStorage.clear();
             window.sessionStorage.clear();
         },
@@ -236,12 +233,11 @@ export default {
             let vm = this
             console.log("Autorizando Usuario...");
             if (response.status === 'connected') {
-                let responseFb = response.authResponse
+                let responseFb = response
                 var idFb = response.authResponse.userID
                 vm.authorized = true
-                vm.islisteningWsRepeteco(idFb, responseFb);
-                console.log("Usuario Autorizado");
-                console.log("responseFb: ", responseFb);                 
+                vm.islisteningWsRepeteco(responseFb);
+                console.log("Usuario Autorizado");               
             } else if (response.status === 'not_authorized') {
                 console.log("Usuario Não Autorizado!");
                 vm.authorized = false

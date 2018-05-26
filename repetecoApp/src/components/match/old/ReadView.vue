@@ -3,7 +3,7 @@
        <li  v-if="option === optionOld" style="display: block;" >
             <div v-if="read === '1'" class="list-group-item col-md-4 notification">
                 <div class="media-left LfPicture ">
-                    <a v-bind:href="link" target="_blank"><img class="media-object " v-bind:src="imagem"></a>
+                    <a v-bind:href="link" target="_blank"><img class="media-object " v-bind:src="imagem || `/src/assets/img/man.jpg`"></a>
                 </div>
                 <div class="media-body  notification">
                     <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>

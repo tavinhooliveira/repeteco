@@ -78,19 +78,10 @@ export default {
     },
     created(){
         let vm = this;
-        vm.localStoregeFuntion;
+        var idAux = vm.$store.getters.getUseriId;
+        vm.getNotificationAPI(idAux);
     },
     computed:{
-        localStoregeFuntion(){
-            let ch = this
-            var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
-            if(idFBStoragelogado != null){
-            console.log("Wrapper: [Matcrs] - id: "+idFBStoragelogado);
-            ch.getNotificationAPI(idFBStoragelogado);
-            }else{
-            console.log("Wrapper [Matcrs] NOK!");
-            }
-        },
         coutNotification() {
             if(this.notificationData){
                 return this.notificationData.length;         
@@ -107,7 +98,6 @@ export default {
             this.notificationData = response.data
             this.notificationDataStatus = response.status
                 if (this.notificationDataStatus === 200) {
-                    console.log("API notificationData: OK!")
                     this.statusNotification = true;
                 } else {
                     console.log("API notificationData: - Not notificationData");

@@ -5,8 +5,7 @@
             <div class="row container">
                 <searchComponent/>
                <div  class="btnNotification" >
-                    <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
-                  
+                    <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>                  
                     <div class="btn-group pull-right">
                      <router-link to="classification"><button type="button" class="btn btn-default active" v-tooltip.bottom-start="'Todos'" ><i class="fa fa-star-half-o"></i></button></router-link>
                      <router-link to="classificationOn"><button type="button" class="btn btn-default " v-tooltip.bottom-start="'Classificados'" data-transition="slide"><i class="fa fa-star"> </i></button></router-link>
@@ -40,51 +39,44 @@ import axios from 'axios';
 export default {
   name: "ClassificationAPP",
   props: ["id", "id_fb_users", "name", "imagem", "preference", "link", "friends", "matchs", "userProfile"],
-  components: {
-      UserComponent,
-      Reload,
-      SearchComponent,
-      axios
-    },
-    data() {
-        return {
-            nomeProjeto: "Classification",
-            statusAPIAPP: false,
-            users: {},
-            ApiRepetecoStatus: false,
-        };
-    },
-    created(){
-        let vm = this;
-        vm.localStoregeFuntion;
-    },
-    computed: {
-        localStoregeFuntion(){
-        let mv = this
-        var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
-        if(idFBStoragelogado != null){
-            console.log("Wrapper: [classificationOff] - id: "+idFBStoragelogado);
-            mv.getApiRepeteco(idFBStoragelogado);
-        }else{
-        console.log("Wrapper [classificationOff] NOK!");
-        }
-    }
-    },
-  methods: {
-    getApiRepeteco(userid) {
-        axios.get(this.$urlAPI+`users/${userid}`).then(response => {
-            this.users = [response.data]
-            this.ApiRepetecoStatus = response.status;
-            if (this.ApiRepetecoStatus === 200) {
-                console.log("API Repeteco Users: OK!")
-                this.statusAPIAPP = true;
-            } else {
-                this.statusAPIAPP = false;
-                console.log("Erro na chamada da API - Repeteco");
-            }
-        })
-    },
+    components: {
+        UserComponent,
+        Reload,
+        SearchComponent,
+        axios
+        },
+        data() {
+            return {
+                nomeProjeto: "Classification",
+                statusAPIAPP: false,
+                users: {},
+                ApiRepetecoStatus: false,
+                idAux: null
+            };
+        },
+        created(){
+            let vm = this;
+            var idAux = vm.$store.getters.getUseriId;
+            vm.getApiRepeteco(idAux);
+        },
+        computed: {
 
-  }
+    },
+    methods: {
+        getApiRepeteco(userid) {
+            axios.get(this.$urlAPI+`users/${userid}`).then(response => {
+                this.users = [response.data]
+                this.ApiRepetecoStatus = response.status;
+                if (this.ApiRepetecoStatus === 200) {
+                    console.log("API Repeteco Users: OK!")
+                    this.statusAPIAPP = true;
+                } else {
+                    this.statusAPIAPP = false;
+                    console.log("Erro na chamada da API - Repeteco");
+                }
+            })
+        },
+
+    }
 };
 </script>

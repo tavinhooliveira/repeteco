@@ -52,26 +52,14 @@ export default {
     },
     created(){
         let vm = this;
-        vm.localStoregeFuntion;
+        var idAux = vm.$store.getters.getUseriId;
+        vm.getApiRepeteco(idAux);
     },
-  computed: {
-    localStoregeFuntion(){
-        let vm = this
-        var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
-        if(idFBStoragelogado != null){
-            console.log("Wrapper: [classificationOff] - id: "+idFBStoragelogado);
-            vm.getApiRepeteco(idFBStoragelogado);
-        }else{
-            console.log("Wrapper [classificationOff] NOK!");
-        }
-    }
-  },
   methods: {
     getApiRepeteco(userid) {
         axios.get(this.$urlAPI+`users/${userid}`).then(response => {
             this.users = [response.data]
             if (this.users.length > 0) {
-                console.log("API Repeteco: OK!")
                 this.statusAPIAPP = true;
             } else {
                 this.statusAPIAPP = false;

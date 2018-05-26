@@ -1,9 +1,6 @@
 <template>
     <div id="app">        
-        <span v-if="!authorized">
-            <ReloadAuthorizedComponent></ReloadAuthorizedComponent>
-        </span>
-        <span v-else>
+        <span>
             <header class="navbar-fixed-top navbar-default">
                 <header-component :imagem="usersData.imagem"/>
             </header>
@@ -30,39 +27,33 @@ export default {
     data() {
         return {
             usersData: [],
-            authorized: true
+            storeResponseAuth: false,
+            storeUserId: false,
+            userAuxStatus: false         
         }
     },
     created(){
         let vm = this;
         vm.localStoregeFuntion;
+        vm.getStoreAuthUser;       
     },
     computed: {
-        localStoregeFuntion: function(){
-            let vm = this
-            let sessionAuthAux = window.sessionStorage.getItem('authAuxStore');
-            var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
-            if(idFBStoragelogado != null){
-            console.log("Wrapper: [localStorage] "+idFBStoragelogado);
-            console.log("Wrapper: [sessionAuthAux] "+sessionAuthAux);
-            vm.getUsers(idFBStoragelogado);
-            vm.authorized = true;
-            }else{
-            console.log("Wrapper [localStorage] NOK!");
-            }
-        },
-        // localStoregeFuntion: function(){
-        //     let vm = this
-        //     var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
-        //     if(idFBStoragelogado != null){
-        //     console.log("Wrapper: [localStorage] "+idFBStoragelogado);
-        //     vm.getUsers(idFBStoragelogado);
-        //     vm.authorized = true;
-        //     }else{
-        //     console.log("Wrapper [localStorage] NOK!");
-        //     }
-        // },
-        //Recupera a quantidade de matchs
+        getStoreAuthUser(){
+            let vm = this;
+            let userAux = vm.$store.getters.getAuth;
+                if(userAux){
+                    vm.userAuxStatus = vm.$store.getters.getAuthStatus;
+                    if(vm.userAuxStatus == 'connected'){
+                        vm.storeResponseAuth = vm.$store.getters.getAuth;
+                        vm.storeUserId = vm.$store.getters.getUseriId;
+                        vm.getUsers(vm.storeUserId);
+                    }else{
+                        this.$router.push('/');
+                    }
+                }else{
+                    this.$router.push('/');
+                }
+        },       
         coutMatchs() {
             if(this.usersData.matchs){
                 return this.usersData.matchs.length;         
@@ -109,12 +100,13 @@ export default {
     },
     methods: {
         getUsers(userid){
-            axios.get(`http://localhost:9096/wsrepeteco/users/${userid}`)
+            // axios.get(this.$urlAPI+`/users/${userid}`,
+            // {"headers":{"authorization":"Bearer "+$authJWTbasic}})
+            axios.get(this.$urlAPI+`/users/${userid}`)
             .then(response => {
                 this.usersStatus = response.status;
                 if (this.usersStatus === 200) {
                     this.usersData = response.data
-                    console.log("API Wrapper [GetUsers] OK!")
                 } else {
                     this.usersData = []
                     console.log("Not Wrapper GetUsers");

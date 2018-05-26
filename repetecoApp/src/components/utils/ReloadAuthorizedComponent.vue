@@ -19,12 +19,12 @@ export default {
   },
   computed: {
     //Refresh page
-     refreshVue: function(){
-      window.location.reload();
-    }
+     
   },
   methods:{
-
+    refreshVue: function(){
+      window.location.reload();
+    }
   }
 };
 </script>

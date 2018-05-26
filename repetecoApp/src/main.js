@@ -8,8 +8,6 @@ import router from './router'
 import SweetModal from 'sweet-modal-vue/src/plugin.js'
 import Vuex from 'vuex'
 
-
-
 Vue.use(VueResource)
 Vue.use(FBSignInButton)
 Vue.use(VTooltip)
@@ -17,23 +15,30 @@ Vue.use(SweetModal)
 Vue.use(Vuex)
 
 Vue.prototype.$urlAPI = `http://127.0.0.1:9096/wsrepeteco/`
+Vue.prototype.$authJWTbasic = 'userSenhaApi'
 Vue.prototype.$ajax = axios
 
 var store = {
   state:{
-    usuario: sessionStorage.getItem('authStore') ? JSON.parse(sessionStorage.getItem('authStore')) : null
+    user: sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')) : null
   },
   getters:{
-    getUsuario: state =>{
-      return state.usuario;
+    getAuth: state =>{
+      return state.user;
     },
     getToken: state =>{
-      return state.usuario.token;
+        return state.user.authResponse.accessToken;
+    },
+    getUseriId: state =>{
+        return state.user.authResponse.userID;
+    },
+    getAuthStatus: state =>{
+        return state.user.status;
     }
   },
   mutations:{
-    setUsuario(state,n){
-      state.usuario = n;
+    setAuth(state,n){
+      state.user = n;
     }
   }
 };
@@ -45,11 +50,3 @@ new Vue({
   template: '<Wrapper/>',
   components: { Wrapper }
 })
-
-
-
-// new Vue ({
-//   el: '#app',
-//   router,
-//   render: h => h(Wrapper)
-// })

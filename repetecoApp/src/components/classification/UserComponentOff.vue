@@ -8,7 +8,7 @@
         v-bind:flagDisplayHot="flagDisplayHot">
       </friendComponentOff>
     </div>
-    <p v-if="contNotClassification <= 0" class="text-center"></br>Nenhum amigo encontrado! ☹</p>
+    <p v-if="contNotClassification <= 0" class="text-center"><br>Nenhum amigo encontrado! ☹</p>
   </div>  
 </template>
 <script>

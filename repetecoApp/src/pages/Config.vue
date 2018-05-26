@@ -160,20 +160,9 @@ export default {
     },
     created(){
         let vm = this;
-        vm.localStoregeFuntion;
+        var idAux = vm.$store.getters.getUseriId;
+        vm.getApiRepeteco(idAux);
     },
-    computed: {
-        localStoregeFuntion(){
-            let vm = this
-            var idFBStoragelogado = window.localStorage.getItem('idFBStorage');
-            if(idFBStoragelogado != null){
-              console.log("Wrapper: [config] - id: "+idFBStoragelogado);
-              vm.getApiRepeteco(idFBStoragelogado);
-            }else{
-              console.log("Wrapper [config] NOK!");
-            }
-        }
-  },
   methods: {
     //WsRepeteco - API GET
     getApiRepeteco(profileId) {

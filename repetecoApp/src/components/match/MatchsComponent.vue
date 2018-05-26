@@ -4,7 +4,7 @@
          <li v-if="option === 'ficaria'" style="display: block;" >
            <div v-if="read === '0'" class="list-group-item col-md-4 notification" v-on:click="readView(); refreshVue();" v-tooltip.top-start="'Click p/ marcar como vizualizado'">
             <div class="media-left LfPicture">
-               <a v-bind:href="link" target="_blank"><img class="media-object readView" v-bind:src="imagem"></a>
+               <a v-bind:href="link" target="_blank"><img class="media-object readView" v-bind:src="imagem || `/src/assets/img/man.jpg`"></a>
             </div>
             <div class="media-body  notification">
                <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
@@ -24,7 +24,7 @@
            <!-- not View -->
            <div v-else class="list-group-item col-md-4 notification">
             <div class="media-left LfPicture">
-               <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem"></a>
+               <a v-bind:href="link" target="_blank"><img class="media-object" v-bind:src="imagem || `/src/assets/img/man.jpg`"></a>
             </div>
             <div class="media-body  notification">
                <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
@@ -44,7 +44,7 @@
          <li v-else style="display: block;">
             <div v-if="read === '0'" class="list-group-item col-md-4 notification" v-on:click="readView(); refreshVue();" v-tooltip.top-start="'Click p/ marcar como vizualizado'">
                 <div class="media-left LfPicture ">
-                    <a v-bind:href="link" target="_blank"><img class="media-object readView" v-bind:src="imagem"></a>
+                    <a v-bind:href="link" target="_blank"><img class="media-object readView" v-bind:src="imagem || `/src/assets/img/man.jpg`"></a>
                 </div>
                 <div class="media-body  notification">
                     <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
@@ -63,7 +63,7 @@
             <!-- not view -->
             <div v-else class="list-group-item col-md-4 notification">
                 <div class="media-left LfPicture ">
-                    <a v-bind:href="link" target="_blank"><img class="media-object " v-bind:src="imagem"></a>
+                    <a v-bind:href="link" target="_blank"><img class="media-object " v-bind:src="imagem || `/src/assets/img/man.jpg`"></a>
                 </div>
                 <div class="media-body  notification">
                     <h4 class="NFName"><a v-bind:href="link" target="_blank">{{name}}</a></h4>
