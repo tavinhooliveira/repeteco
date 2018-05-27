@@ -76,7 +76,7 @@
     </div>
 
     <!-- body ===========================================================-->
-    <div class="col-md-9 ">
+    <div id="boxProgress" class="col-md-9">
         <div class="box col-md-9">
             <div class=" col-md-3">            
                 <div class="" v-tooltip.top-start="'Amigos no Aplicativo'">
@@ -563,7 +563,9 @@ export default {
 
 .progressBarCirculos .centroDiv{margin-left: 12%;}
 @media (min-width : 320px) and (max-width : 480px){
-.progressBarCirculos .centroDiv {margin-left: 3%;}}
+.progressBarCirculos .centroDiv {margin-left: 3%;}
+#boxProgress .lh-1{margin-left: 30% }
+}
 /*Stilo progress bar  #44484b*/
 .progress{width:150px;height:150px;line-height:150px;background:0 0;margin:0 auto;box-shadow:none;position:relative}
 .progress .progress-bar,.progress:after,.progress>span{height:100%;position:absolute}
@@ -582,5 +584,7 @@ export default {
 .progress.green .progress-bar{border-color:#1abc9c}
 .progress.green .progress-left .progress-bar{animation:loading-5 1.2s linear forwards 1.8s}@keyframes loading-1{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(180deg);transform:rotate(180deg)}}@keyframes loading-2{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(144deg);transform:rotate(144deg)}}@keyframes loading-3{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(90deg);transform:rotate(90deg)}}@keyframes loading-4{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(36deg);transform:rotate(36deg)}}@keyframes loading-5{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(126deg);transform:rotate(126deg)}}@media only screen and (max-width:990px){.progress{margin-bottom:20px}}
 .labelCount{color: #fff;position: relative;margin-top: 25px;}
+
+
 
 </style>
