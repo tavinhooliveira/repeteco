@@ -108,7 +108,7 @@ export default{
   },
   methods: {
     getApiRepeteco(userid){
-      this.$http.get(this.$urlAPI+`users/${userid}`).then(response => {
+      this.$http.get(this.$urlAPI+`users/${userid}`, {"headers":{"authorization":"Basic "+this.$basicAuthParams}}).then(response => {
         this.ApiRepetecoStatus = response.status			
         if (this.ApiRepetecoStatus === 200) {
             this.users = response.data

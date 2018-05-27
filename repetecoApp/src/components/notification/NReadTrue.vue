@@ -41,11 +41,12 @@ export default {
       this.statusData = null;
       var notifyId = this.id;
       $.ajax({
-        url: "http://localhost:9096/wsrepeteco/notification/delete/" + notifyId,
+        url: (this.$urlAPI+`notification/delete/${notifyId}`),
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'dataType': 'json'
+          'dataType': 'json',
+          'authorization': 'Basic '+this.$basicAuthParams
         },
         dataType: 'json',
         crossDomain: true,

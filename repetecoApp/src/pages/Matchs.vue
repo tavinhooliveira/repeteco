@@ -53,7 +53,7 @@ export default {
     },
     methods: {    
         getApiRepetecoFriendsAll() {
-        this.$http.get(this.$urlAPI+`friends`).then(response => {
+        this.$http.get(this.$urlAPI+`friends`, {"headers":{"authorization":"Basic "+this.$basicAuthParams}}).then(response => {
             this.friendsAll = response.data
             if (this.friendsAll.length > 0) {
                 this.statusApiRepetecoAll = true;
@@ -64,7 +64,7 @@ export default {
         })
         },
         getApiRepeteco(userid) {
-            this.$http.get(this.$urlAPI+`users/${userid}`).then(response => {
+            this.$http.get(this.$urlAPI+`users/${userid}`, {"headers":{"authorization":"Basic "+this.$basicAuthParams}}).then(response => {
                 this.users = [response.data]
                 if (this.users.length > 0) {
                     this.statusApiRepeteco = true;

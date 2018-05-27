@@ -88,11 +88,12 @@ methods: {
       var idUserYouMatchs = this.id_fb_friends +  this.user_id;
       console.log("id idUserYouMatchs"+idUserYouMatchs);
       $.ajax({
-        url: "http://localhost:9096/wsrepeteco/friends/opcao/" + friendId,
+        url: (this.$urlAPI+`friends/opcao/${friendId}`),
         method: "PUT",
         headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          'dataType': 'json'
+            'Content-Type': 'application/json;charset=UTF-8',
+            'dataType': 'json',
+            'authorization': 'Basic '+this.$basicAuthParams
         },
         dataType: 'json',
         crossDomain: true,
@@ -102,8 +103,13 @@ methods: {
       });
 
        $.ajax({
-        url: "http://localhost:9096/wsrepeteco/matchs/" + friendId,
+        url: (this.$urlAPI+`matchs/${friendId}`),
         method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'dataType': 'json',
+            'authorization': 'Basic '+this.$basicAuthParams
+        },
         dataType: 'json',
         crossDomain: true,
         origin: "*",
@@ -111,8 +117,13 @@ methods: {
       });
 
       $.ajax({
-        url: "http://localhost:9096/wsrepeteco/matchs/" + idUserYouMatchs,
+        url: (this.$urlAPI+`matchs/${idUserYouMatchs}`),
         method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'dataType': 'json',
+            'authorization': 'Basic '+this.$basicAuthParams
+        },
         dataType: 'json',
         crossDomain: true,
         origin: "*",
@@ -135,11 +146,12 @@ methods: {
         user_id: this.user_id        
       }
       $.ajax({
-        url: "http://localhost:9096/wsrepeteco/users/"+ idFriendsCorrent +"/notification",
+        url: (this.$urlAPI+`users/${idFriendsCorrent}/notification`),
         method: "POST",
         headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          'dataType': 'json'
+            'Content-Type': 'application/json;charset=UTF-8',
+            'dataType': 'json',
+            'authorization': 'Basic '+this.$basicAuthParams
         },
         dataType: 'json',
         crossDomain: true,
@@ -160,11 +172,12 @@ methods: {
         read: "1"        
       }
       $.ajax({
-        url: "http://localhost:9096/wsrepeteco/matchs/readStatus/"+ idFriendsCorrentRead,
+        url: (this.$urlAPI+`matchs/readStatus/${idFriendsCorrentRead}`),
         method: "PUT",
         headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          'dataType': 'json'
+            'Content-Type': 'application/json;charset=UTF-8',
+            'dataType': 'json',
+            'authorization': 'Basic '+this.$basicAuthParams
         },
         dataType: 'json',
         crossDomain: true,

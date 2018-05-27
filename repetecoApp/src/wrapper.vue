@@ -38,6 +38,7 @@ export default {
         vm.getStoreAuthUser;       
     },
     computed: {
+        //Recuperando Usuario/Authenticação da Sessão
         getStoreAuthUser(){
             let vm = this;
             let userAux = vm.$store.getters.getAuth;
@@ -53,7 +54,8 @@ export default {
                 }else{
                     this.$router.push('/');
                 }
-        },       
+        },
+        //Quantidade de Matchs       
         coutMatchs() {
             if(this.usersData.matchs){
                 return this.usersData.matchs.length;         
@@ -99,10 +101,9 @@ export default {
         }        
     },
     methods: {
+        //Recuperando a informações de usuario da API.
         getUsers(userid){
-            // axios.get(this.$urlAPI+`/users/${userid}`,
-            // {"headers":{"authorization":"Bearer "+$authJWTbasic}})
-            axios.get(this.$urlAPI+`/users/${userid}`)
+            axios.get(this.$urlAPI+`/users/${userid}`, {"headers":{"authorization":"Basic "+this.$basicAuthParams}})
             .then(response => {
                 this.usersStatus = response.status;
                 if (this.usersStatus === 200) {

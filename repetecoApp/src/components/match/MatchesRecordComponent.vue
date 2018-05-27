@@ -12,12 +12,14 @@
                     <div>					        
                         <router-link to="matchsNew" v-tooltip.bottom-start="'Um Novo Lance'"> Lance |</router-link>
                         <router-link to="matchsOld" v-tooltip.bottom-start="'Um Caso Antigo'"> Flash Backs </router-link>
-                          <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'" v-on:click="showView = true">
+                        <!--
+                        <button class="btn btn-default btn-xs" type="button" v-tooltip.bottom-start="'Vizualizado'" v-on:click="showView = true">
                             <span class="fa fa-eye"></span> 
-                          </button>
-                          <button class="btn btn-default btn-xs" type="button"  v-tooltip.bottom-start="'Não Vizualizado'" v-on:click="showView = false">
+                        </button>
+                        <button class="btn btn-default btn-xs" type="button"  v-tooltip.bottom-start="'Não Vizualizado'" v-on:click="showView = false">
                             <span class="fa fa-eye-slash"></span>
-                          </button>                      
+                        </button>
+                        -->
                     </div>                  
                   </div>                 
                 </div>
@@ -142,7 +144,8 @@ export default{
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
-                'dataType': 'json'
+                'dataType': 'json',
+                'authorization': 'Basic '+this.$basicAuthParams
             },
             dataType: 'json',
             crossDomain: true,
@@ -155,7 +158,7 @@ export default{
      //Recuperado os Matchs
     callMatchs(){
         let userid =  this.id_fb_users;
-        axios.get(this.$urlAPI+`users/${userid}/matchs/`)
+        axios.get(this.$urlAPI+`users/${userid}/matchs/`, {"headers":{"authorization":"Basic "+this.$basicAuthParams}})
         .then(response => {
             this.matchsData = response.data
             if (this.matchsData.length > 0) {

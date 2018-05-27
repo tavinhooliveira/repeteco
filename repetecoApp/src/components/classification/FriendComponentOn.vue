@@ -120,7 +120,8 @@ export default {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'dataType': 'json'
+          'dataType': 'json',
+          'authorization': 'Basic '+this.$basicAuthParams
         },
         dataType: 'json',
         crossDomain: true,
@@ -141,7 +142,8 @@ export default {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'dataType': 'json'
+          'dataType': 'json',
+          'authorization': 'Basic '+this.$basicAuthParams
         },
         dataType: 'json',
         crossDomain: true,

@@ -50,7 +50,7 @@ export default {
     methods: {
         //usado para extrair o id dos amigos que deram match!
         getApiRepetecoFriendsAll() {
-            axios.get(this.$urlAPI+`friends`).then(response => {
+            axios.get(this.$urlAPI+`friends`, {"headers":{"authorization":"Basic "+this.$basicAuthParams}}).then(response => {
                 this.friendsAll = response.data
                 if (this.friendsAll.length > 0) {
                     console.log("API Repeteco AllFriends: OK!")
@@ -63,7 +63,7 @@ export default {
         },
         //API repeteco lista de user corrente                    
         getApiRepeteco(userid) {
-            axios.get(this.$urlAPI+`users/${userid}`).then(response => {
+            axios.get(this.$urlAPI+`users/${userid}`, {"headers":{"authorization":"Basic "+this.$basicAuthParams}}).then(response => {
                 this.getApiRepetecoStatus = response.status
                 if (this.getApiRepetecoStatus === 200) {
                     this.users = [response.data];

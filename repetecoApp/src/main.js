@@ -15,7 +15,7 @@ Vue.use(SweetModal)
 Vue.use(Vuex)
 
 Vue.prototype.$urlAPI = `http://127.0.0.1:9096/wsrepeteco/`
-Vue.prototype.$authJWTbasic = 'userSenhaApi'
+Vue.prototype.$basicAuthParams = "cmVwZXRlY29BcGk6bWVnYXMqczNuaDQ="
 Vue.prototype.$ajax = axios
 
 var store = {

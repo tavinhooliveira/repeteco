@@ -5,13 +5,13 @@
     <br><br><br>
     <span class="sr-only">Loading...</span>
     <section class="links">
-        <a class="error-link" href="/">Login</a>
+        <router-link  to="/" class="error-link">login</router-link>
         <h5 class="error-description">Erro 500 – Internal Server Error</h5>
     </section>  
     <section class="links">
         <a onclick="window.history.go(-1);" href="#">☚ Volte</a>
-        <a href="/classification">Classificações</a>
-        <a href="/config">Configurações</a>
+        <a onclick="Refresh();"> Tente Novamente </a>
+        <a href="/termos">Termos</a>
         <a href="/politicas">Politicas</a>
     </section>
   </section>

@@ -62,11 +62,12 @@ export default {
       }
       var notifyId = this.id;
       $.ajax({
-        url: "http://localhost:9096/wsrepeteco/notification/status/" + notifyId,
+        url: (this.$urlAPI+`notification/status//${notifyId}`),
         method: "PUT",
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'dataType': 'json'
+          'dataType': 'json',
+          'authorization': 'Basic '+this.$basicAuthParams
         },
         dataType: 'json',
         crossDomain: true,
@@ -81,11 +82,12 @@ export default {
       this.statusData = null;
       var notifyId = this.id;
       $.ajax({
-        url: "http://localhost:9096/wsrepeteco/notification/delete/" + notifyId,
+        url: (this.$urlAPI+`notification/delete//${notifyId}`),
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'dataType': 'json'
+          'dataType': 'json',
+          'authorization': 'Basic '+this.$basicAuthParams
         },
         dataType: 'json',
         crossDomain: true,

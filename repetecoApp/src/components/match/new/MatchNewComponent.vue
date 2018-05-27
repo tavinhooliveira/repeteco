@@ -114,7 +114,8 @@ export default{
         method: "PUT",
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'dataType': 'json'
+          'dataType': 'json',
+          'authorization': 'Basic '+this.$basicAuthParams
         },
         dataType: 'json',
         crossDomain: true,
@@ -126,6 +127,11 @@ export default{
        $.ajax({
         url: (this.$urlAPI+`matchs/${friendId}`),
         method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          'dataType': 'json',
+          'authorization': 'Basic '+this.$basicAuthParams
+        },
         dataType: 'json',
         crossDomain: true,
         origin: "*",
@@ -135,6 +141,11 @@ export default{
       $.ajax({
         url: (this.$urlAPI+`matchs/${idUserYouMatchs}`),
         method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          'dataType': 'json',
+          'authorization': 'Basic '+this.$basicAuthParams
+        },
         dataType: 'json',
         crossDomain: true,
         origin: "*",
@@ -161,7 +172,8 @@ export default{
         method: "POST",
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'dataType': 'json'
+          'dataType': 'json',
+          'authorization': 'Basic '+this.$basicAuthParams
         },
         dataType: 'json',
         crossDomain: true,
@@ -186,7 +198,8 @@ export default{
         method: "PUT",
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'dataType': 'json'
+          'dataType': 'json',
+          'authorization': 'Basic '+this.$basicAuthParams
         },
         dataType: 'json',
         crossDomain: true,

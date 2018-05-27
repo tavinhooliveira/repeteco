@@ -113,11 +113,12 @@ export default {
         }
         var userId = this.id
         $.ajax({
-            url: (`http://localhost:9096/wsrepeteco/users/${userId}/perfilupdate`),
+            url: (this.$urlAPI+`users/${userId}/perfilupdate`),
             method: "PUT",
             headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
-                'dataType': 'json'
+              'Content-Type': 'application/json;charset=UTF-8',
+              'dataType': 'json',
+              'authorization': 'Basic '+this.$basicAuthParams
             },
             dataType: 'json',
             crossDomain: true,

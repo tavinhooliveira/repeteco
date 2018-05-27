@@ -1,8 +1,10 @@
 <template>
    <div id="termos" class="well">
+     <br>
+      <span><img src="/src/assets/img/repeteco.png" style='height: 100px; width: 100px;'></span>
       <h2 class="text-center">Termos de Serviço</h2></br></br>
 <p class="container well"></br></br>
-<span class="pull-left"> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a> | <a href="/politicas">Políticas</a> | <a href="/">Login</a></span>
+<span class="pull-left"> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a> | <router-link  to="/politicas">Políticas</router-link> | <a  href="/">Login</a></span>  
 <br><br>
 
 Termos de Serviço
@@ -110,12 +112,8 @@ All disputes arising out of or in connection with this Agreement, the parties tr
 </template>
 <style>
 /*Inibir botoes do menu e footer- Begin */
-.btnNotificationNewMatch{display:none}
+.menu a,header a{display:none}
 .menu a,footer{display:none}
-header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:0px}
-@media (max-width:480px) and (min-width:320px){
-  header #logotipo{width:94px;height:35px;margin-top:-11px;margin-left:40px}
-}
 body{background-image:url(/src/assets/img/bg.png)!important;background-repeat:no-repeat;background-size:100%}
 #app{font-family:Avenir,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-align:center;color:#2c3e50;margin-top:30px;}
 button{cursor:pointer}

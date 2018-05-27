@@ -120,7 +120,8 @@ export default {
         islisteningWsRepeteco(responseFb){
             let mv = this;
             var authAux = responseFb;
-            axios.get(this.$urlAPI).then(response => {
+            axios.get(this.$urlAPI, {"headers":{"authorization":"Basic "+this.$basicAuthParams}})
+            .then(response => {
                 this.listeningWsRepeteco = response.status;
                 if (this.listeningWsRepeteco === 200) {
                     mv.getFacebook()
@@ -180,12 +181,13 @@ export default {
         },
         createUserFb(users){
             $.ajax({
-                url: "http://localhost:9096/wsrepeteco/users",
+                url: (this.$urlAPI+`users`),
                 async: false,
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
-                    'dataType': 'json'
+                    'dataType': 'json',
+                    'authorization': 'Basic '+this.$basicAuthParams
                 },
                 dataType: 'json',
                 crossDomain: true,
@@ -196,12 +198,13 @@ export default {
         },
         createFriendsFb(friendslist, userid){
             $.ajax({
-                url: "http://localhost:9096/wsrepeteco/users/"+userid+"/friends",
+                url: (this.$urlAPI+`users/${userid}/friends`),
                 async: false,
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
-                    'dataType': 'json'
+                    'dataType': 'json',
+                    'authorization': 'Basic '+this.$basicAuthParams
                 },
                 dataType: 'json',
                 crossDomain: true,
@@ -244,8 +247,10 @@ export default {
             } else if (response.status === 'unknown') {
                 vm.profile = {}
                 vm.authorized = false
+                 console.log("Usuario Não Autorizado!");
             } else {
                 vm.authorized = false
+                 console.log("Usuario Não Autorizado!");
             }
         }
     },

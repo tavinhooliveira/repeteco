@@ -421,11 +421,12 @@ export default {
         let userid =  this.id_fb_users;
         let listMatchs = this.matchsList;
         $.ajax({
-            url: "http://localhost:9096/wsrepeteco/users/" + userid + "/matchs",
+            url: (this.$urlAPI+`users/${userid}/matchs`),
             method: "PUT",
             headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
-                'dataType': 'json'
+              'Content-Type': 'application/json;charset=UTF-8',
+              'dataType': 'json',
+              'authorization': 'Basic '+this.$basicAuthParams
             },
             dataType: 'json',
             crossDomain: true,
@@ -434,7 +435,7 @@ export default {
             data: JSON.stringify(listMatchs)
         });        
         //Recuperado os Matchs (LISTA) retur: matchsData
-        axios.get(`http://localhost:9096/wsrepeteco/users/${userid}/matchs/`)
+        axios.get(`http://localhost:9096/wsrepeteco/users/${userid}/matchs/` , {"headers":{"authorization":"Basic "+this.$basicAuthParams}})
         .then(response => {
             this.matchsData = response.data
             if (this.matchsData.length > 0) {

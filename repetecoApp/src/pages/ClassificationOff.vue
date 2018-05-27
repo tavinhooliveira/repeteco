@@ -57,7 +57,7 @@ export default {
     },
   methods: {
     getApiRepeteco(userid) {
-        axios.get(this.$urlAPI+`users/${userid}`).then(response => {
+        axios.get(this.$urlAPI+`users/${userid}`, {"headers":{"authorization":"Basic "+this.$basicAuthParams}}).then(response => {
             this.users = [response.data]
             if (this.users.length > 0) {
                 this.statusAPIAPP = true;

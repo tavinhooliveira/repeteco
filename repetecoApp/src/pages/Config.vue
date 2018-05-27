@@ -166,7 +166,7 @@ export default {
   methods: {
     //WsRepeteco - API GET
     getApiRepeteco(profileId) {
-      this.$http.get(this.$urlAPI+`users/${profileId}`).then(response => {
+      this.$http.get(this.$urlAPI+`users/${profileId}`, {"headers":{"authorization":"Basic "+this.$basicAuthParams}}).then(response => {
         this.user = response.data
         if (this.user) {
           this.statusAPIAPP = true;
@@ -191,7 +191,8 @@ export default {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
-                'dataType': 'json'
+                'dataType': 'json',
+                'authorization': 'Basic '+this.$basicAuthParams
             },
             dataType: 'json',
             crossDomain: true,

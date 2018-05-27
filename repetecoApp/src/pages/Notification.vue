@@ -93,7 +93,7 @@ export default {
     methods: {
         //Recuperado os Matchs
         getNotificationAPI(userid){
-            axios.get(this.$urlAPI+`users/${userid}/notification`)        
+            axios.get(this.$urlAPI+`users/${userid}/notification`, {"headers":{"authorization":"Basic "+this.$basicAuthParams}})        
             .then(response => {
             this.notificationData = response.data
             this.notificationDataStatus = response.status
