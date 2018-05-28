@@ -1,7 +1,7 @@
 <template>
     <div id="" class="searchClassification col-md-12">
         <input type="text" id="searchInput"  class="fa fa-search" onkeyup="functionSearch()" placeholder="Buscar..." autocomplete = "off">
-        <i class="fa fa-search pull-right" style="margin: -25px 5px;position: relative;"></i>    
+        <i class="fa fa-search pull-right"> </i>    
     </div>
 </template>
 <script>

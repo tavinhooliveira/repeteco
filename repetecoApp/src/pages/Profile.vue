@@ -11,8 +11,10 @@
                     </profileComponent>  
                 </section>
             </div>
-            <div v-else>
-                <br><br><br><br><br>
+            <span v-else-if="this.statusAPIAPP === 500">
+                <internalServerComponent/>
+            </span>
+            <div v-else>                
                 <reload></reload>
             </div>
         </div>
@@ -22,6 +24,7 @@
 <script>
 import ProfileComponent from '../components/profile/ProfileComponent.vue';
 import Reload from '../components/utils/Reload.vue';
+import InternalServerComponent from "../components/utils/InternalServerComponent.vue";
 import axios from 'axios';
 export default {
   name: 'Profile',
@@ -29,7 +32,8 @@ export default {
   components: {
     ProfileComponent,
     Reload,
-    axios
+    axios,
+    InternalServerComponent
   },
     data() {
         return {
@@ -55,10 +59,14 @@ export default {
                 if (this.friendsAll.length > 0) {
                     console.log("API Repeteco AllFriends: OK!")
                     this.statusAPIAPP = true;
-                } else {
+                 } else {
                     this.statusAPIAPP = false;
                     console.log("Erro na chamada da API - Repeteco");
                 }
+            })
+            .catch(e => {
+                console.log(e,"Erro! Tente novamente mais tarde!")
+                this.statusAPIAPP = 500;
             })
         },
         //API repeteco lista de user corrente                    
@@ -70,10 +78,13 @@ export default {
                     this.statusAPIAPP = true;
                     console.log("API Repeteco: OK!")
                 } else {
-                    this.users = 0;
                     this.statusAPIAPP = false;
                     console.log("Erro na chamada da API - Repeteco");
                 }
+            })
+            .catch(e => {
+                console.log(e,"Erro! Tente novamente mais tarde!")
+                this.statusAPIAPP = 500;
             })
         }
     }

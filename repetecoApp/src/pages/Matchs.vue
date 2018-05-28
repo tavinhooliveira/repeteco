@@ -7,6 +7,9 @@
                   v-bind:friendsTotalApp="user.friendsTotalApp" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot" v-bind:numberWhats="user.numberWhats" v-bind:matchs="user.matchs"  v-bind:friendsAll="friendsAll">
                </matchesRecordComponent>
           </div>
+            <span v-else-if="this.statusApiRepeteco === 500">
+                <internalServerComponent/>
+            </span>
             <div v-else><br><br><br><br>
                <reload></reload>
             </div>   
@@ -15,6 +18,7 @@
 </template>
 <script>
 import MatchesRecordComponent from '../components/match/MatchesRecordComponent.vue';
+import InternalServerComponent from "../components/utils/InternalServerComponent.vue";
 import Reload from "../components/utils/Reload.vue";
 
 export default {
@@ -22,7 +26,8 @@ export default {
   props: ["name", "imagem", "option", "user_id", 'item', 'id', 'dataMatch'],
   components: {
     Reload,
-    MatchesRecordComponent
+    MatchesRecordComponent,
+    InternalServerComponent
   },
   data() {
         return {
@@ -72,6 +77,10 @@ export default {
                     this.statusApiRepeteco = false;
                     console.log("Erro na chamada da API - Repeteco");
                 }
+            })
+            .catch(e => {
+                console.log(e,"Erro! Tente novamente mais tarde!")
+                this.statusApiRepeteco = 500;
             })
         }
     }

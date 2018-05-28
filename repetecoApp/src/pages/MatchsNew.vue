@@ -52,6 +52,9 @@
             </div>
             <br>
          </div>
+         <span v-else-if="this.statusAPIAPP === 500">
+              <internalServerComponent/>
+          </span>
          <div v-else><br><br><br><br>
               <reload></reload>
           </div>  
@@ -59,6 +62,7 @@
    </div>
 </template>
 <script>
+import InternalServerComponent from "../components/utils/InternalServerComponent.vue";
 import SearchComponent from "../components/utils/SearchComponent.vue";
 import MatchNewComponent from '../components/match/new/MatchNewComponent.vue';
 import ReadView from '../components/match/new/ReadView.vue';
@@ -75,7 +79,8 @@ export default{
     NotReadView,
     Reload,
     axios,
-    SearchComponent
+    SearchComponent,
+    InternalServerComponent
     },
   data () {
     return {
@@ -114,11 +119,14 @@ export default{
             this.users = response.data
             this.statusAPIAPP = true;
         } else {
-          this.statusAPIAPP = false;
-          this.users = 0;
-          console.log("Erro na chamada da API - Repeteco");
-        }    
-      })
+                  this.statusAPIAPP = false;
+                  console.log("Erro na chamada da API - Repeteco");
+              }
+        })
+        .catch(e => {
+            console.log(e,"Erro! Tente novamente mais tarde!")
+            this.statusAPIAPP = 500;
+        })
     }
   }
 };

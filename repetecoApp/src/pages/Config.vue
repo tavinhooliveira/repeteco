@@ -134,6 +134,9 @@
                 </div>
                 <br><br><br>
           </div>
+          <span v-else-if="this.statusAPIAPP === 500">
+             <internalServerComponent/>
+         </span>
           <div v-else>
               <br><br><br><br><br><br>
               <reload></reload>
@@ -144,6 +147,7 @@
 </template>
 
 <script>
+import InternalServerComponent from "../components/utils/InternalServerComponent.vue";
 import Reload from "../components/utils/Reload.vue";
 import AboutComponent from "../components/utils/AboutComponent.vue";
 export default {
@@ -156,7 +160,8 @@ export default {
     },
     components: {
         Reload,
-        AboutComponent
+        AboutComponent,
+        InternalServerComponent
     },
     created(){
         let vm = this;
@@ -174,6 +179,10 @@ export default {
           this.statusAPIAPP = false;
           console.log("Erro na chamada da API - Repeteco");
         }
+      })
+      .catch(e => {
+          console.log(e,"Erro! Tente novamente mais tarde!")
+          this.statusAPIAPP = 500;
       })
     },
     //PUT API APP Set Preferencia Sexual

@@ -20,8 +20,11 @@
                   v-bind:friendsTotalFb="user.friendsTotalFb" v-bind:preference="user.preference" v-bind:flagDisplayHot="user.flagDisplayHot">
                </userComponentOn>
             </div>
-            </br>
+            <br>
          </div>
+         <span v-else-if="this.statusAPIAPP === 500">
+             <internalServerComponent/>
+         </span>
          <div v-else>
             <reload></reload>
          </div>
@@ -30,6 +33,7 @@
 </template>
 
 <script>
+import InternalServerComponent from "../components/utils/InternalServerComponent.vue";
 import SearchComponent from "../components/utils/SearchComponent.vue";
 import UserComponentOn from "../components/classification/UserComponentOn.vue";
 import Reload from "../components/utils/Reload.vue";
@@ -42,6 +46,7 @@ export default {
   components: {
     UserComponentOn,
     Reload,
+    InternalServerComponent,
     SearchComponent,
     axios
   },
@@ -64,10 +69,14 @@ export default {
           if (this.users.length > 0) {
               this.statusAPIAPP = true;
           } else {
-              this.statusAPIAPP = false;
-              console.log("Erro na chamada da API - Repeteco");
-          }
-        })
+                    this.statusAPIAPP = false;
+                    console.log("Erro na chamada da API - Repeteco");
+                }
+      })
+      .catch(e => {
+          console.log(e,"Erro! Tente novamente mais tarde!")
+          this.statusAPIAPP = 500;
+      })
     }
   }
 };

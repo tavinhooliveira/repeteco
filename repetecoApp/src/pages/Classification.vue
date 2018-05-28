@@ -22,6 +22,9 @@
             <br>
             <reload v-if="this.users <= 0"></reload>
          </div>
+         <span v-else-if="this.statusAPIAPP === 500">
+             <internalServerComponent/>
+         </span>
          <div v-else>
             <reload></reload>
          </div>
@@ -34,6 +37,7 @@
 import SearchComponent from "../components/utils/SearchComponent.vue";
 import UserComponent from "../components/classification/UserComponent.vue";
 import Reload from "../components/utils/Reload.vue";
+import InternalServerComponent from "../components/utils/InternalServerComponent.vue";
 import axios from 'axios';
 
 export default {
@@ -43,6 +47,7 @@ export default {
         UserComponent,
         Reload,
         SearchComponent,
+        InternalServerComponent,
         axios
         },
         data() {
@@ -75,6 +80,10 @@ export default {
                     this.statusAPIAPP = false;
                     console.log("Erro na chamada da API - Repeteco");
                 }
+            })
+            .catch(e => {
+                console.log(e,"Erro! Tente novamente mais tarde!")
+                this.statusAPIAPP = 500;
             })
         },
 

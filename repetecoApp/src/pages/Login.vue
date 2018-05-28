@@ -14,7 +14,7 @@
                     <div class="col-2">
                         <button type="button" class="btn btn-primary" @click="login"><b> f    </b>Login Facebook</button>                        
                     </div>
-                  </div>
+                  </div><br>
                   <h6>Ao entrar, você concorda com os nossos <a href="/termos">Termos</a> e <a href="/politicas">Politica de Privacidade.</a></h6>
                </div>
                <div v-else class="well_b text-center">

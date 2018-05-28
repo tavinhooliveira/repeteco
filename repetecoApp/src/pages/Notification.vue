@@ -40,6 +40,9 @@
                         <p class="text-center">Nehuma Notificação no momento!</p>
                     </div>
                     </div>
+                    <span v-else-if="this.statusNotification === 500">
+                        <internalServerComponent id="internalStile"/>
+                    </span>
                     <div v-else>
                         <reload></reload>
                     </div>                   
@@ -51,7 +54,7 @@
 </template>
 
 <script>
-
+import InternalServerComponent from "../components/utils/InternalServerComponent.vue";
 import NReadTrue from "../components/notification/NReadTrue.vue";
 import NReadFalse from "../components/notification/NReadFalse.vue";
 import NotificationComponent from "../components/notification/NotificationComponent.vue";
@@ -66,7 +69,8 @@ export default {
         NotificationComponent,
         NReadTrue,
         NReadFalse,
-        axios
+        axios,
+        InternalServerComponent
     },
     data() {
         return {
@@ -100,9 +104,14 @@ export default {
                 if (this.notificationDataStatus === 200) {
                     this.statusNotification = true;
                 } else {
-                    console.log("API notificationData: - Not notificationData");
-                    this.notificationData = false
-                }
+                  this.statusNotification = false;
+                  console.log("Erro na chamada da API - Repeteco");
+              }
+            })
+            .catch(e => {
+                console.log(e,"Erro! Tente novamente mais tarde!")
+                this.notificationData = false
+                this.statusNotification = 500;
             })
         }
     }
@@ -110,4 +119,9 @@ export default {
 </script>
 <style>
 .notificationView{margin-top: -35px;}
+.panel {
+    margin-bottom: 20px;
+}
+#internalStile{margin-top: -50px; }
 </style>
+ 
