@@ -26,12 +26,14 @@
                     </div>
                     <br>     
                     <div v-if="listeningWsRepeteco == 200" class="">
-                        <h3><i class="fa fa-star">Pronto!</i></h3>
-                        <h6>Você tem <b v-html="totalFriendsApp"></b> amigos no APP de <b v-html="totalFriendsFB"></b> no facebook!</h6>
-                        <h6>Agora é só Classificar Seus Amigos!</h6>
-                        <br>
-                        <span>
-                        <a href="/classification"  class="btn btn-success" >Entrar <span id="iconEntrar" class="glyphicon glyphicon-log-in"></span></a>
+                        <span v-show="dataIdFB != 0" >
+                            <h3><i class="fa fa-star">Pronto!</i></h3>
+                            <h6>Você tem <b v-html="totalFriendsApp"></b> amigos no APP de <b v-html="totalFriendsFB"></b> no facebook!</h6>
+                            <h6>Agora é só Classificar Seus Amigos!</h6>
+                            <br>
+                            <span>
+                                <a href="/classification" class="btn btn-success" >Entrar <span id="iconEntrar" class="glyphicon glyphicon-log-in"></span></a>
+                            </span>
                         </span>
                     </div>
                      <span v-else-if="listeningWsRepeteco == 500" class="alert text-warning">                         
@@ -88,7 +90,9 @@ export default {
         users: null,
         data: [],
         summary: [],
-        listeningWsRepeteco: 500
+        listeningWsRepeteco: 500,
+        dataNotify: [],
+        dataIdFB: 0
         }
     },
     computed: {
@@ -176,7 +180,9 @@ export default {
                     friendslist.push(listFB)
                 }
                 vm.createUserFb(users);
-                vm.createFriendsFb(friendslist, userid);                       
+                vm.createFriendsFb(friendslist, userid);
+                vm.dataIdFB = userid
+                vm.notifyCountNotReadMatch(userid)                       
             })
         },
         createUserFb(users){
@@ -252,6 +258,38 @@ export default {
                 vm.authorized = false
                  console.log("Usuario Não Autorizado!");
             }
+        },
+         notifyCountNotReadMatch(userid){
+            //chamada a API user
+            axios.get(this.$urlAPI+`users/${userid}/notification`, {"headers":{"authorization":"Basic "+this.$basicAuthParams}})
+            .then(response => {
+                    this.dataNotify = response.data.length
+                    console.log("login Notify sucesso: ", this.dataNotify)
+            //Data corrente
+            var today = new Date();
+            var dd = today.getDate(); 
+            var mm = today.getMonth()+1; 
+            var yyyy = today.getFullYear();
+            var currentTime = today.toLocaleString('pt-BR');
+
+            //Atributos de MSG
+            var dataAtribute ={
+                msg: "Você Tem ",
+                count: this.dataNotify,
+                date: currentTime        
+            }       
+
+            var e = new Notification ("RepetecoWEB: ", {
+                icon: this.profile.picture.data.url,               
+                body: dataAtribute.msg + dataAtribute.count +" Notificações!"+ "\n" + "Atualizado em: " + dataAtribute.date,
+                tag: "NEVERGRIND-CHAT-ALERT",
+                silent: false,
+                vibrate: [200, 100, 200]
+            })
+            e.onclick = function (){
+                location.href = "/notification";
+            }
+            });            
         }
     },
     mounted() {

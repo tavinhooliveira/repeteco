@@ -1,14 +1,15 @@
 <template>
-  <li>
+  <li v-if="genderPreference === gender || genderPreference === ''">
     <a v-bind:href="link" target="_blank"><img v-bind:src="imagem" v-tooltip.bottom-start="name"><br></a>
   </li>
 </template>
 <script>
 export default{
-  props:['name','imagem','link'],
+  props:['name','imagem','link', 'preference', 'gender'],
   data(){
      return{
-      efeitoClick: null    
+      efeitoClick: null,
+      genderPreference: this.preference,   
      } 
   }
 }

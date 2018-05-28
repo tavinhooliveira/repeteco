@@ -63,6 +63,7 @@ export default {
             let vm = this;
             var idAux = vm.$store.getters.getUseriId;
             vm.getApiRepeteco(idAux);
+       
         },
         computed: {
 
@@ -75,7 +76,7 @@ export default {
                 this.ApiRepetecoStatus = response.status;
                 if (this.ApiRepetecoStatus === 200) {
                     console.log("API Repeteco Users: OK!")
-                    this.statusAPIAPP = true;
+                    this.statusAPIAPP = true;                    
                 } else {
                     this.statusAPIAPP = false;
                     console.log("Erro na chamada da API - Repeteco");
@@ -85,8 +86,7 @@ export default {
                 console.log(e,"Erro! Tente novamente mais tarde!")
                 this.statusAPIAPP = 500;
             })
-        },
-
-    }
+        }
+    },
 };
 </script>

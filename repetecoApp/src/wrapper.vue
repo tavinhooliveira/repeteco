@@ -35,7 +35,8 @@ export default {
     created(){
         let vm = this;
         vm.localStoregeFuntion;
-        vm.getStoreAuthUser;       
+        vm.getStoreAuthUser;
+            
     },
     computed: {
         //Recuperando Usuario/Authenticação da Sessão
@@ -98,7 +99,7 @@ export default {
                     }
             return litrs.length           
             } 
-        }        
+        }               
     },
     methods: {
         //Recuperando a informações de usuario da API.
@@ -107,20 +108,17 @@ export default {
             .then(response => {
                 this.usersStatus = response.status;
                 if (this.usersStatus === 200) {
-                    this.usersData = response.data
+                    this.usersData = response.data                    
                 } else {
                     this.usersData = []
                     console.log("Not Wrapper GetUsers");
                 }
             })
         },
+        //Voltar ao topo
         scrolltop: function(){
             window.scrollTo(0, 0);
-        },
-        recalled(){
-            window.location.reload();
-            setTimeout('location.reload();', 5000);
-        }
+        }        
         
      }
  
