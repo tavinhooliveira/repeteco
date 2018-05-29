@@ -321,6 +321,10 @@ export default {
     .well_b {
         border: 1px solid #b4b4b47d;
         padding: 10px;
+        box-shadow: 0px 2px 19px -7px;
+        border-radius: 10px;
+        background: #fff;
+        unicode-bidi: embed;
     }
 }
 #app{font-family:Avenir,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-align:center;color:#2c3e50;margin-top:60px;}
@@ -329,6 +333,10 @@ button{cursor:pointer}
 .well_b{background-color: rgba(255, 255, 255, .15);
     border: 1px solid #b4b4b47d;
     padding: 10px;
+     box-shadow: 0px 2px 19px -7px;
+    border-radius: 10px;
+    background: #fff;
+    unicode-bidi: embed;
     }
 .well img {    height: 100px;
     width: 100px;

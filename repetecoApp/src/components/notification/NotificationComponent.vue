@@ -104,8 +104,17 @@ export default {
 </script>
 
 <style>
+
 #dataNotify{font-size: 8px; color: #afa8a8;}
 .itemNotification{margin-bottom: 2px; background-color: #eeeeee85; margin-top: 5px;}
 .imgNotificatioCirculo{border-radius: 20px;}
 .itemNotificationRead{margin-bottom: 2px; background-color: #dbfffa21; margin-top: 5px;}
+
+@media (max-width:480px) and (min-width:320px){
+    #dataNotify{    font-size: 6px;
+    color: #afa8a8;
+    position: absolute;
+    margin-top: -21px;
+    margin-left: -8px;}
+}
 </style>
