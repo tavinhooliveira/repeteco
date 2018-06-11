@@ -53,6 +53,7 @@ body{
     color:#a0a0a0;
     margin: 10px;
     font-size: 9px;
+    background-color: #f9fafc;
 }
 .navbar-default{
     z-index:1032!important

@@ -47,7 +47,7 @@ export default {
                     vm.userAuxStatus = vm.$store.getters.getAuthStatus;
                     if(vm.userAuxStatus == 'connected'){
                         vm.storeResponseAuth = vm.$store.getters.getAuth;
-                        vm.storeUserId = vm.$store.getters.getUseriId;
+                        vm.storeUserId = vm.$store.getters.getUseriId;                        
                         vm.getUsers(vm.storeUserId);
                     }else{
                         this.$router.push('/');

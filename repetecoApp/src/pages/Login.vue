@@ -128,9 +128,10 @@ export default {
             .then(response => {
                 this.listeningWsRepeteco = response.status;
                 if (this.listeningWsRepeteco === 200) {
-                    mv.getFacebook()
+                    mv.getFacebook()                    
                     this.$store.commit('setAuth', responseFb);
                     sessionStorage.setItem('user',JSON.stringify(responseFb));
+                    this.$store.commit(setAuth, "nada mesmo");
                     console.log("API Repeteco listening... OK!")
                 } else {
                     console.log("Erro na conexão da API, tente mais tarde!");

@@ -77,7 +77,7 @@
 
     <!-- body ===========================================================-->
     <div id="boxProgress" class="col-md-9">
-        <div class="box col-md-9">
+        <div class="box col-md-8">
             <div class=" col-md-3">            
                 <div class="" v-tooltip.top-start="'Amigos no Aplicativo'">
                     <router-link to="/classification">
@@ -156,7 +156,7 @@
             </div>
         </div>
         <!-- box sidebar right Top -->
-        <div class="box col-md-3 perfilCoutClassification">
+        <div class="box col-md-offset-1 col-md-3 perfilCoutClassification">
             <h6 class="text-center">Siga Nas Redes Sociais</h6>              
                 <ul class="col-md-12 tablist" role="tablist">
                     <li class="col-md-3" v-tooltip.bottom-start="'Facebook'"><a href="https://www.facebook.com/Repeteco-490925014612889/" target="_blank"><i class="fa fa-facebook-official"></i></a></li>
