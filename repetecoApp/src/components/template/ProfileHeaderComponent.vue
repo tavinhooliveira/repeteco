@@ -1,14 +1,14 @@
 <template>
 <div  class="profileHeaderComponent">
     <router-link :to="link">
-        <img class="media-object" :src="imagem || `/src/assets/img/man.jpg`" v-tooltip.bottom-start="'Perfil'">
+        <img class="media-object" :src="imagem || `/src/assets/img/man.jpg`" v-tooltip.left-start="name">
     </router-link>
 </div> 
 </template>
 
 <script>
 export default {
-    props: ['link','imagem'],
+    props: ['link','imagem', 'name'],
     name: 'ProfileHeaderComponent',
     computed: {
     }

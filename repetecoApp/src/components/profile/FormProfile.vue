@@ -30,7 +30,7 @@
 
     <div class="form-group">
       <p class="help-block"></p>
-      <a class="" data-toggle="collapse" href="#collapsePerfilEditeMore" aria-expanded="false" aria-controls="collapsePerfilEditeMore" style="font-size: 10px;"><i class="glyphicon glyphicon-edit"/> Mais...</a>
+      <a class="" data-toggle="collapse" href="#collapsePerfilEditeMore" aria-expanded="false" aria-controls="collapsePerfilEditeMore" style="font-size: 10px;"><i class="glyphicon glyphicon-cog"/> Mais...</a>
     </div>
       <!-- box Edite perfil Info -->
       <span class="collapse" id="collapsePerfilEditeMore">

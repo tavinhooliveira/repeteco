@@ -2,7 +2,7 @@
     <div id="app">        
         <span>
             <header class="navbar-fixed-top navbar-default">
-                <header-component :imagem="usersData.imagem"/>
+                <header-component :imagem="usersData.imagem" :name="usersData.name"/>
             </header>
             <router-view> </router-view>
             <footer-component :varcoutNotificationNotRead="coutNotificationNotRead" :varcoutMatchsNotRead="coutMatchsNotRead" />

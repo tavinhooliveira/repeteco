@@ -10,11 +10,11 @@
          <!-- Wrapper for slides -->
          <div class="carousel-inner" role="listbox">
                <div class="item active">        
-                <a href=""> <img src="/src/assets/img/slaider/ads/ad02.png"></a>
+                <a href="https://www.google.com.br/search?rlz=1C1GGRV_enBR789BR789&biw=1602&bih=856&tbm=isch&sa=1&ei=1DAhW_HiM4qZwgTy2o-oDA&q=anuncie+aqui+png&oq=anuncie+a&gs_l=img.3.1.0l10.8266.10029.0.12302.9.9.0.0.0.0.190.1023.0j6.6.0....0...1c.1.64.img..3.6.1021...0i67k1.0.W2XFzOOt6Tw#imgrc=zvbftFzUr7DjJM:" target="_blank"> <img src="/src/assets/img/slaider/ads/ad02.png"></a>
                </div>          
                
                <div class="item">
-                 <a href=""><img src="/src/assets/img/slaider/ads/ad01.png"></a>
+                 <a href="https://www.google.com.br/search?rlz=1C1GGRV_enBR789BR789&biw=1602&bih=856&tbm=isch&sa=1&ei=1DAhW_HiM4qZwgTy2o-oDA&q=anuncie+aqui+png&oq=anuncie+a&gs_l=img.3.1.0l10.8266.10029.0.12302.9.9.0.0.0.0.190.1023.0j6.6.0....0...1c.1.64.img..3.6.1021...0i67k1.0.W2XFzOOt6Tw#imgrc=tw6DidFVEyz3_M:" target="_blank" > <img src="/src/assets/img/slaider/ads/ad01.png"></a>
                  <div class="carousel-caption"> </div>
                </div>
          </div>

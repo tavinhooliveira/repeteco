@@ -19,7 +19,7 @@
                </div>
                <div v-else class="well_b text-center">
                     <div >
-                        <img :src="profilePicture" style='height: 100px; width: 100px; border-radius: 75px;'>
+                        <img :src="profilePictureLarge" style='height: 100px; width: 100px; border-radius: 75px;'>
                     </div>                
                     <div v-show="listeningWsRepeteco == 200">
                         <a v-bind:href="profile.link" v-tooltip.bottom-start="'Perfil Facebook'" target="_blank">{{profileNome}}</a>                  
@@ -103,7 +103,7 @@ export default {
         return (this.profile.id) ? this.profile.picture.data.url : `/src/assets/img/loading3.gif`
         },
         profilePictureLarge() {
-        return (this.profile.id) ? this.profile.picture.data.url : `/src/assets/img/loading3.gif`
+        return (this.profile.id) ? `https://graph.facebook.com/${this.profile.id}/picture?type=large` : `/src/assets/img/loading3.gif`
         },
         totalFriendsApp() {
         if (this.profile.id) {
@@ -131,7 +131,7 @@ export default {
                     mv.getFacebook()                    
                     this.$store.commit('setAuth', responseFb);
                     sessionStorage.setItem('user',JSON.stringify(responseFb));
-                    this.$store.commit(setAuth, "nada mesmo");
+                    //this.$store.commit(setAuth, "nada mesmo");
                     console.log("API Repeteco listening... OK!")
                 } else {
                     console.log("Erro na conexão da API, tente mais tarde!");
@@ -150,6 +150,7 @@ export default {
             //De-Para FB Users
             let users = null;
             let userid = response.id
+            console.log("teste response FB: ", response)
             users = {
                 id: response.id,
                 name: response.name,
@@ -265,7 +266,7 @@ export default {
             axios.get(this.$urlAPI+`users/${userid}/notification`, {"headers":{"authorization":"Basic "+this.$basicAuthParams}})
             .then(response => {
                     this.dataNotify = response.data.length
-                    console.log("login Notify sucesso: ", this.dataNotify)
+                    console.log("[login] Notifications: ", this.dataNotify)
             //Data corrente
             var today = new Date();
             var dd = today.getDate(); 

@@ -40,7 +40,7 @@
     <sweet-modal ref="sweetModalPerfil">
       <div class="media">
             <a :href="link" target="_blank">
-              <img class="" style="width:200px" v-bind:src="imagem || `/src/assets/img/man.jpg`">
+              <img class="" style="width:200px" v-bind:src="profilePictureLarge || `/src/assets/img/man.jpg`">
             </a>
           <div class="media-body">
             <h4 class="">{{name}}</h4>
@@ -95,8 +95,8 @@ export default {
     }
   },
   computed: {
-    pictureLarge() {
-      return (this.id_fb_friends) ? `https://graph.facebook.com/${this.id_fb_friends}/picture?width=350` : `/src/assets/img/man.gif`
+    profilePictureLarge() {
+      return (this.id) ? `https://graph.facebook.com/${this.id_fb_friends}/picture?type=large` : `/src/assets/img/loading3.gif`
     }
   },
   methods: {

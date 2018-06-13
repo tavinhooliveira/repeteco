@@ -25,11 +25,18 @@
                 </div>
         </div>
         <br>
-        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <!-- <div class="btn-group btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group">
                 <button type="button" onclick="Refresh();" class="btn btn-default"><i class="footerIcon fa fa-heartbeat fa-1x"></i> Verificar Matchs <i class="footerIcon fa fa-heartbeat fa-1x"></i></button>
             </div>
-        </div>                   
+        </div>                    -->
+
+        <div class="text text-center"> <br>           
+                <a onclick="Refresh();" style="cursor:pointer"><i class="fa fa-heartbeat fa-1x"></i> Verificar Matchs <i class="footerIcon fa fa-heartbeat fa-1x"></i></a>
+
+        </div> 
+
+        
         <div  class="list-group" id="searchUL">
         <matchscomponent v-bind:matchs="matchsData" v-for="matchs in matchsData" v-bind:key="matchs.id" v-bind:id="matchs.id"
         v-bind:name="matchs.name" v-bind:imagem="matchs.imagem" v-bind:link="matchs.link" v-bind:gender="matchs.gender"

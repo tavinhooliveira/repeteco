@@ -7,7 +7,7 @@
        <div class="user-heading round">
            <span v-tooltip.top-start="'Perfil Facebook'">
                 <a v-bind:href="link" target="_blank">
-                    <img v-bind:src="imagem || `/src/assets/img/man.jpg`" alt="">
+                    <img v-bind:src="profilePictureLarge || '/src/assets/img/man.jpg'" alt="">
                 </a>
                 <h4 class="perfilName center-block"><a v-bind:href="link" target="_blank">{{name}}</a>
                     <h6 class="small center-block">{{friendsTotalApp}} de {{friendsTotalFb}} <i class="fa fa-users"></i> </h6>
@@ -260,8 +260,11 @@ export default {
 				}
 		},
 		profilePicture() {
-				return (this.id) ? `https://graph.facebook.com/${this.id}/picture?width=300` : `/src/assets/img/loading0.gif`
-		},
+				return (this.id) ? `https://graph.facebook.com/${this.id}/picture?width=300` : `/src/assets/img/loading3.gif`
+        },
+        profilePictureLarge() {
+        return `https://graph.facebook.com/${this.id}/picture?type=large`
+        },
         contFiquei() { 
             let litrs =[];           
             let list = [];

@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-4">
                 <span class="pull-right">
-                    <profileHeaderComponent class="HeaderComponent col-md-4" link="/profile" :imagem="imagem" />
+                    <profileHeaderComponent class="HeaderComponent col-md-4" link="/profile" :imagem="imagem" :name="name"/>
                 </span>            
             </div>           
         </div>
@@ -23,7 +23,7 @@
 <script>
 import ProfileHeaderComponent from '../template/ProfileHeaderComponent.vue';
 export default {
-    props: ['imagem'],
+    props: ['imagem', 'name'],
     name: 'HeaderComponent',
     components:{
     ProfileHeaderComponent
