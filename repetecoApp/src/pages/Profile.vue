@@ -58,15 +58,12 @@ export default {
                 this.friendsAll = response.data
                 if (this.friendsAll.length > 0) {
                     console.log("API Repeteco AllFriends: OK!")
-                    this.statusAPIAPP = true;
                  } else {
-                    this.statusAPIAPP = false;
                     console.log("Erro na chamada da API - Repeteco");
                 }
             })
             .catch(e => {
                 console.log(e,"Erro! Tente novamente mais tarde!")
-                this.statusAPIAPP = 500;
             })
         },
         //API repeteco lista de user corrente                    

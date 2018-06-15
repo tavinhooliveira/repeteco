@@ -1,11 +1,13 @@
 <template >
-   <div>       
+   <div>
       <div id="ListFriends" class="ListFriends container">
          <div v-if="this.statusAPIAPP === true">
             <div class="row container">
                 <searchComponent/>
                <div  class="btnNotification" >
-                    <span> <a onclick="history.go(-1)"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span>                  
+                    <span> <a onclick="history.go(-1)" style="cursor:pointer"><i class="glyphicon glyphicon-chevron-left"></i>Voltar</a></span> 
+                    <span style="cursor:pointer; font-size: 11px;" @click="sortUsers('name')"><i class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <i style="font-size: 11px;" class="fa fa-users"> {{contFriends}}</i>            
                     <div class="btn-group pull-right">
                      <router-link to="classification"><button type="button" class="btn btn-default active" v-tooltip.bottom-start="'Todos'" ><i class="fa fa-star-half-o"></i></button></router-link>
                      <router-link to="classificationOn"><button type="button" class="btn btn-default " v-tooltip.bottom-start="'Classificados'" data-transition="slide"><i class="fa fa-star"> </i></button></router-link>
@@ -65,10 +67,17 @@ export default {
             vm.getApiRepeteco(idAux);
        
         },
-        computed: {
-
+    computed: {
+        contFriends() {
+            return this.users[0].friends.length
+        }
     },
     methods: {
+        sortUsers: function(chave) {
+            this.users[0].friends.sort(function(a, b) {
+            return a[chave].localeCompare(b[chave])
+            });
+        },
         getApiRepeteco(userid) {
             axios.get(this.$urlAPI+`users/${userid}`, {"headers":{"authorization":"Basic "+this.$basicAuthParams}})
             .then(response => {

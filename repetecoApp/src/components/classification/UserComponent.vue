@@ -18,18 +18,22 @@ export default{
   },
    data() {
         return {
+          
         }
     },
-    computed: {
-        contFriends() { 
-        let litrs =[];           
-        let list = [];
-            for (let i = 0; i < this.friends.length; i++) {               
-                list = {option: this.friends[i].option}
-                litrs.push(list)                  
-                }
-            return litrs.length           
-        }       
+    methods:{
+
+    },
+    computed: {        
+      contFriends() { 
+      let litrs =[];           
+      let list = [];
+          for (let i = 0; i < this.friends.length; i++) {               
+              list = {option: this.friends[i].option}
+              litrs.push(list)                  
+              }
+          return litrs.length           
+      }       
     },
 }
 </script>
