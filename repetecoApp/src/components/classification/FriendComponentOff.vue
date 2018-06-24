@@ -71,9 +71,8 @@
                 <span class="cl_Ninteresse"></span>
                 </label>
               </div>         
-         </div>
-            <br>
-            <a class="thumbnail" :href="link" target="_blank">@Perfil Facebook</a>
+         </div><br>
+            <a class="" :href="link" target="_blank">@Perfil Facebook</a>
           </div>
         </div>     
     </sweet-modal>

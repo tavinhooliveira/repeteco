@@ -47,8 +47,8 @@
               <p  v-if="gender === 'male'">Sexo: Masculino</p>
               <p  v-if="gender === 'female'">Sexo: Feminino</p>
             </span>
-              <div >
-              <div class="img_classification center-block" @change="updateStatusOption()"> 
+              <div>
+              <div class=" img_classification center-block" @change="updateStatusOption()"> 
                 <label class="cl_fiquei" v-tooltip.top-start="'Já Fiquei'">
                 <input type="radio" value="fiquei" id="optionclassificada" v-model="optiondata">
                 <span class="cl_fiquei"></span>
@@ -70,8 +70,8 @@
                 <span class="cl_Ninteresse"></span>
                 </label>
               </div>         
-         </div>
-            <a class="thumbnail" :href="link" target="_blank">@Perfil Facebook</a>
+         </div><br>
+            <a class="" :href="link" target="_blank">@Perfil Facebook</a>
           </div>
         </div>     
     </sweet-modal>

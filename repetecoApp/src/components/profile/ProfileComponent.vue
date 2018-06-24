@@ -60,10 +60,10 @@
                 <li class="listyle" v-if="countMatch != 0" ><i class="fa fa-heartbeat"></i> Total de Mathcs
                     <span class="badge pull-right">{{countMatch}}</span>            
                 </li>
-                <li class="listyle" v-if="contMatchNewMatch != 0" ><router-link to="/matchsNew" v-tooltip.top-start="'Verificar Novos Lances'"><i class="fa fa-heartbeat"></i> Match Novo Lance!                                          
+                <li class="listyle" v-if="contMatchNewMatch != 0" ><router-link to="/matchsNew" v-tooltip.top-start="'Catégoria: Lances'"><i class="fa fa-heartbeat"></i> Match Novo Lance!                                          
                         <span class="badge pull-right">{{contMatchNewMatch}}</span></router-link>        
                 </li>
-                <li class="listyle" v-if="contMatchOldMacth != 0" ><router-link to="/matchsOld" v-tooltip.top-start="'Verificar Flash backs'"><i class="fa fa-heartbeat"></i> Macth Flash Back!                                          
+                <li class="listyle" v-if="contMatchOldMacth != 0" ><router-link to="/matchsOld" v-tooltip.top-start="'Catégoria: Flash Back'"><i class="fa fa-heartbeat"></i> Macth Flash Back!                                          
                         <span class="badge pull-right">{{contMatchOldMacth}}</span></router-link>      
                 </li>
                 <li class="listyle" v-if="countNotification > 0" ><router-link to="/notification"><i class="fa fa-bell"></i> Notificações:                                          
@@ -178,7 +178,7 @@
                 </span>
                 <div ref="scroller" class="row">
                     <ul class="row__inner">
-                        <carroselComponent v-for="friend in friends" v-bind:key="friend.id" v-bind:idfriends="friend.id_fb_friends" v-bind:name="friend.name" v-bind:imagem="friend.imagem"
+                        <carroselComponent v-for="friend in friends" v-bind:key="friend.id" v-bind:id="friend.id" v-bind:idfriends="friend.id_fb_friends" v-bind:name="friend.name" v-bind:imagem="friend.imagem"
                         v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:preference="preference" ></carroselComponent>
                     </ul>
                 </div>
@@ -528,7 +528,7 @@ export default {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    border: 15px solid rgba(188, 221, 247, 0.62);
+    border: 5px solid rgba(188, 221, 247, 0.62);
     -webkit-border-radius: 50%;
 }
 .box0 {

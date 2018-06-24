@@ -15,8 +15,8 @@
             </a>
           <div class="media-body">
             <h4 class="">{{name}}</h4>
-            <p class="thumbnail" v-if="gender === 'male'">Sexo: Masculino</p>
-            <p class="thumbnail" v-if="gender === 'female'">Sexo: Feminino</p>
+            <p class="" v-if="gender === 'male'">Sexo: Masculino</p>
+            <p class="" v-if="gender === 'female'">Sexo: Feminino</p>
           <div>                      
           </div>
               <br>
@@ -29,7 +29,7 @@
 </template>
 <script>
 export default{
-  props:['key','name','imagem','link', 'preference', 'gender', 'idfriends'],
+  props:['name','imagem','link', 'preference', 'gender', 'idfriends'],
   data(){
      return{
       efeitoClick: null,
