@@ -44,8 +44,10 @@
             </a>
           <div class="media-body">
             <h4 class="">{{name}}</h4>
-            <p class="thumbnail" v-if="gender === 'male'">Sexo: Masculino</p>
-            <p class="thumbnail" v-if="gender === 'female'">Sexo: Feminino</p>
+           <span class="small">
+              <p  v-if="gender === 'male'">Sexo: Masculino</p>
+              <p  v-if="gender === 'female'">Sexo: Feminino</p>
+            </span>
               <div >
               <div class="img_classification center-block" @change="updateStatusOption()"> 
                 <label class="cl_fiquei" v-tooltip.top-start="'Já Fiquei'">
@@ -71,7 +73,7 @@
               </div>         
          </div>
             <br>
-            <a :href="link" target="_blank">@Perfil Facebook</a>
+            <a class="thumbnail" :href="link" target="_blank">@Perfil Facebook</a>
           </div>
         </div>     
     </sweet-modal>

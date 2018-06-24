@@ -178,7 +178,7 @@
                 </span>
                 <div ref="scroller" class="row">
                     <ul class="row__inner">
-                        <carroselComponent v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name" v-bind:imagem="friend.imagem"
+                        <carroselComponent v-for="friend in friends" v-bind:key="friend.id" v-bind:idfriends="friend.id_fb_friends" v-bind:name="friend.name" v-bind:imagem="friend.imagem"
                         v-bind:link="friend.link" v-bind:gender="friend.gender" v-bind:preference="preference" ></carroselComponent>
                     </ul>
                 </div>

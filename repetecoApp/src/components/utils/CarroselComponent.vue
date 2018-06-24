@@ -1,16 +1,50 @@
 <template>
+<span>
   <li v-if="genderPreference === gender || genderPreference === ''">
-    <a v-bind:href="link" target="_blank"><img v-bind:src="imagem" v-tooltip.bottom-start="name"><br></a>
+    <!-- <a v-bind:href="link" target="_blank"> -->
+    <a v-on:click="sweetModalPerfil();">
+      <img v-bind:src="imagem" v-tooltip.bottom-start="name"><br>
+    </a>
   </li>
+
+   <!-- modal perfil -->
+    <sweet-modal ref="sweetModalPerfil">
+      <div class="media">
+            <a :href="link" target="_blank">
+              <img class="" style="width:200px" v-bind:src="profilePictureLarge || `/src/assets/img/man.jpg`">
+            </a>
+          <div class="media-body">
+            <h4 class="">{{name}}</h4>
+            <p class="thumbnail" v-if="gender === 'male'">Sexo: Masculino</p>
+            <p class="thumbnail" v-if="gender === 'female'">Sexo: Feminino</p>
+          <div>                      
+          </div>
+              <br>
+              <a :href="link" target="_blank">@Perfil Facebook</a>
+            </div>
+        </div>     
+    </sweet-modal>
+<!-- modal perfil -->
+</span>
 </template>
 <script>
 export default{
-  props:['name','imagem','link', 'preference', 'gender'],
+  props:['key','name','imagem','link', 'preference', 'gender', 'idfriends'],
   data(){
      return{
       efeitoClick: null,
       genderPreference: this.preference,   
      } 
+  },
+  methods: {
+    sweetModalPerfil(){
+      return this.$refs.sweetModalPerfil.open();
+    }
+  },
+  computed: {
+    profilePictureLarge() {
+      return (this.idfriends) ? `https://graph.facebook.com/${this.idfriends}/picture?type=large` : `/src/assets/img/loading3.gif`
+    }
   }
 }
 </script>
